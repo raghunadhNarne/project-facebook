@@ -1,11 +1,4 @@
 /*
-
-[Master Stylesheet]
-
-Project Name: winku (HMTL Template)
-Version:    1.1
-Last change:  4/september/18
-
 ====INDEX=====
 
 01- general styling
@@ -2620,15 +2613,15 @@ footer .logo {
 }
 
 li.facebook {
-    background: #2f5b9d;
+    color: #2f5b9d;
 }
 
 li.twitter {
-    background: #38bff1;
+    color: #38bff1;
 }
 
 li.google {
-    background: #f24756;
+    color: #f24756;
 }
 
 .socials > li a span {
