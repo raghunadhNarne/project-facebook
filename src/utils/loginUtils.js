@@ -5,7 +5,7 @@ async function validateCredentials({email,password}){
         success : false,
         message : "",
         data : ""
-    }
+    } 
 
     try{
         let userData = await userModel.findOne({email:email});
