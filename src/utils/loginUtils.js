@@ -8,7 +8,7 @@ async function validateCredentials({email,password}){
     } 
 
     try{
-        let userData = await userModel.findOne({email:email});
+        let userData = await userModel.findOne({email:email},{_id:0});
 
         if(userData ==  undefined){
             result.message = "user not exist"
@@ -17,6 +17,8 @@ async function validateCredentials({email,password}){
             if(userData.password === password){
                 result.success = true;
                 result.message = "successfully verified"
+                result.data = userData;
+                // console.log("user verified");
             }
             else{
                 result.message = "invalid password"
