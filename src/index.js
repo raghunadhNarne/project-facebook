@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors');
 require('dotenv').config();
-const { upload } = require('./multer/multerConfig');
 
 
 
@@ -13,6 +12,7 @@ app.use(express.json());
 app.use(cors())
 
 
+
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
     res.header('Access-Control-Allow-Credentials', true);
@@ -22,6 +22,9 @@ app.use(function(req, res, next) {
 
 // const authRouter = require('./auth/authRoute');
 // app.use('/auth',authRouter);
+
+const { upload } = require('./multer/multerConfig');
+
 
 const signupRouter = require("./routes/signupRoute");
 app.use('/signup',signupRouter);
@@ -35,6 +38,32 @@ app.use("/groups",groupRouter)
 const postRouter = require('./routes/postRoute');
 app.use('/post',postRouter);
 
+const friendsRouter=require('./routes/friendsRoute')
+app.use('/friends',friendsRouter)
 
 
 app.listen(7777,()=>{console.log("Connected to port 7777")});
+
+
+// let userRoutes = ["/login"];
+
+async function auth(req,res,next){
+    var token = req.cookies.jwtToken;
+    console.log("here",token)
+    if (!token) {
+      return res.redirect('http://127.0.0.1:5500/static/404.html');
+    }
+  
+    jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
+      if (err) {
+        return res.redirect('http://127.0.0.1:5500/static/404.html');
+      }
+      if (decoded.role != 'user') {
+        return res.redirect('/404.html');
+      }
+    //   console.log("user verified")
+      req.userData = decoded;
+      next();
+    });
+}
+app.listen(7777,()=>{console.log("Connected to port 7777")})
