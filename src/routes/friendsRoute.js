@@ -12,8 +12,10 @@ friendsRouter.post('/removefriend',friendsController.justRemoveFriend)
 //my requests tab
 friendsRouter.post('/getmyfriendrequests',friendsController.getMyFriendRequests)
 friendsRouter.post('/revokefriendrequest',friendsController.justRevokeFriendRequest)
-//followings tab
-friendsRouter.post('/getfollowers',friendsController.getFollowers)
+//followers tab
+friendsRouter.post('/getmyfollowers',friendsController.getFollowers)
+//following tab
+friendsRouter.post('/getmyfollowing',friendsController.getMyFollowing)
 friendsRouter.post('/unfollowfriend',friendsController.justUnfollowFriend)
 module.exports=friendsRouter;
 

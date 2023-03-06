@@ -38,7 +38,7 @@ async function pendingFriendRequests(obj)
         data : ""
     }
     try{
-        let data=await friendsModel.find({receiverEmail:obj.receiverEmail,status:"pending"})
+        let data=await friendsModel.find({receiverEmail:obj.email,status:"pending"})
         result.success=true;
         result.message="successfully got the pending friends request data";
         result.data=data;
@@ -96,11 +96,13 @@ async function acceptedFriendRequests(obj)
         data : ""
     }
     try{
-        let data = await friendsModel.find({receiverEmail:obj.receiverEmail,status:"accept"})
-        if(data.length==0) 
-        {
-            data=await friendsModel.find({senderEmail:obj.receiverEmail,status:"accept"})
-        }
+        let data = await friendsModel.find({
+            $or:[
+                {senderEmail:obj.email,status:"accept"},
+                {receiverEmail:obj.email,status:"accept"}
+            ]
+        })
+        
         result.success=true;
         result.message="successfully got the accepted friends";
         result.data=data
@@ -120,11 +122,19 @@ async function removeFriend(obj)
         data : ""
     }
     try{
-        let data = await friendsModel.updateOne({senderEmail:obj.senderEmail,receiverEmail:obj.receiverEmail},{$set:{status:"reject"}})
-        if(data.matchedCount==0)
-        { 
-            let data = await friendsModel.updateOne({senderEmail:obj.receiverEmail,receiverEmail:obj.senderEmail},{$set:{status:"reject"}})
-        }
+        let data = await friendsModel.updateOne(
+            { $or:
+                [
+                    {senderEmail:obj.senderEmail,receiverEmail:obj.receiverEmail},
+                    {senderEmail:obj.receiverEmail,receiverEmail:obj.senderEmail}
+                ]
+            },
+            {$set:{status:"reject"}}
+        )
+        // if(data.matchedCount==0)
+        // { 
+        //     let data = await friendsModel.updateOne({senderEmail:obj.receiverEmail,receiverEmail:obj.senderEmail},{$set:{status:"reject"}})
+        // }
         result.success=true;
         result.message="successfully removed the friend";
     }
@@ -144,7 +154,7 @@ async function myFriendRequests(obj)
         data : ""
     }
     try{
-        let data = await friendsModel.find({senderEmail:obj.senderEmail,status:"pending"})
+        let data = await friendsModel.find({senderEmail:obj.email,status:"pending"})
         result.success=true;
         result.message="successfully got the friend requests data";
         result.data=data;
@@ -183,11 +193,8 @@ async function followers(obj)
         data : ""
     }
     try{
-        let data = await friendsModel.find({senderEmail:obj.senderEmail,status:"reject"})
-        if(data.length==0)
-        {
-            data = await friendsModel.find({receiverEmail:obj.senderEmail,status:"reject"})
-        }
+        let data = await friendsModel.find({receiverEmail:obj.email,status:"reject"})
+        
         result.success=true;
         result.message="successfully got the followers data";
         result.data=data
@@ -199,7 +206,8 @@ async function followers(obj)
     return result;
 }
 
-async function unfollowFriend(obj)
+
+async function myFollowing(obj)
 {
     let result = {
         success : false,
@@ -207,14 +215,10 @@ async function unfollowFriend(obj)
         data : ""
     }
     try{
-        let data = await friendsModel.deleteOne({senderEmail:obj.senderEmail,receiverEmail:obj.receiverEmail})
-        console.log(data)
-        if(data.deletedCount==0)
-        {
-            data = await friendsModel.deleteOne({senderEmail:obj.receiverEmail,receiverEmail:obj.senderEmail})
-        }
+        let data = await friendsModel.find({senderEmail:obj.email,status:"reject"})
         result.success=true;
         result.message="successfully got the followers data";
+        result.data=data
     }
     catch(e)
     {
@@ -224,4 +228,30 @@ async function unfollowFriend(obj)
 }
 
 
-module.exports = { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,unfollowFriend }
+async function unfollowFriend(obj)
+{
+    let result = {
+        success : false,
+        message : "",
+        data : ""
+    }
+    try{
+        let data = await friendsModel.deleteOne({
+            $or:[
+                {senderEmail:obj.senderEmail,receiverEmail:obj.receiverEmail},
+                {senderEmail:obj.receiverEmail,receiverEmail:obj.senderEmail}
+            ]
+        })
+        console.log(data)
+        result.success=true;
+        result.message="successfully unfollowed the friend";
+    }
+    catch(e)
+    {
+        result.message="error to unfollow friend"
+    }
+    return result;
+}
+
+
+module.exports = { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,myFollowing,unfollowFriend }

@@ -20,6 +20,8 @@ app.use('/signup',signupRouter);
 const loginRouter = require('./routes/loginRoute');
 app.use('/login',loginRouter)
 
+const groupRouter = require("./routes/groupRoute");
+app.use("/groups",groupRouter)
 
 const postRouter = require('./routes/postRoute');
 app.use('/post',postRouter);
