@@ -209,48 +209,46 @@
 
 											<div class="tab-content">
 												<div class="tab-pane active fade show " id="mygrps">
-													<ul class="nearby-contct" id="friendslist">
-														<li style="cursor: pointer;">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/friend-avatar9.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Group Name</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">Exit Group</a>
-																</div>
-															</div>
-														</li>
+													<ul class="nearby-contct" id="mygrplist">
+
 													</ul>
 													<div class="lodmore"><button
 															class="btn-view btn-load-more"></button></div>
 												</div>
+
 												<div class="tab-pane fade" id="grp-req">
-													<ul class="nearby-contct" id="friendrequestlist">
-														<li style="cursor: pointer;">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/friend-avatar9.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Group Name</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">View Requests</a>
-																</div>
-															</div>
-														</li>
+													<ul class="nearby-contct" id="mygrprequestlist">
+
 													</ul>
 													<button class="btn-view btn-load-more"></button>
 												</div>
+
+												<div class="modal fade bd-example-modal-lg" id="myModal">
+													<div class="modal-dialog modal-dialog-scrollable modal-lg" style="max-width:730px;">
+														<div class="modal-content">
+
+															<!-- Modal Header -->
+															<div class="modal-header" style="text-align: center;padding-bottom: 0px;">
+																<h1 class="modal-title" style="color: #088DCD;">Modal Heading</h1>
+															</div>
+
+															<!-- Modal body -->
+															<div class="modal-body" style="padding-top:0px;">
+																<ul class="nearby-contct" id="specificgrprequests" style="padding-top:0px;">
+
+																</ul>
+															</div>
+
+															<!-- Modal footer -->
+															<div class="modal-footer">
+																<button type="button" class="btn btn-danger"
+																	data-dismiss="modal">Close</button>
+															</div>
+
+														</div>
+													</div>
+												</div>
+
 												<div class="tab-pane fade" id="search-grps" style="padding-top: 5%;">
 													<div
 														style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
@@ -258,65 +256,25 @@
 															style="width: 100%;outline:none;font-size:18px;padding-left:8px;"
 															id="grpsearch">
 													</div>
-													<ul class="nearby-contct" id="friendrequestlist">
-														<li class="globalgrps" style="cursor:pointer">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/nearly5.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Mana Ongole</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">Ask To Join</a>
-																</div>
-															</div>
-														</li>
-														<li class="globalgrps" style="cursor:pointer">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/nearly5.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Mana Nirmal</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">Ask To Join</a>
-																</div>
-															</div>
-														</li>
-														<li class="globalgrps" style="cursor:pointer">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/nearly5.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Mana Tirupati</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">Ask To Join</a>
-																</div>
-															</div>
-														</li>
+													<ul class="nearby-contct" id="globalgrpslist">
+														
 													</ul>
 													<button class="btn-view btn-load-more"></button>
 												</div>
+												
 												<div class="tab-pane fade" id="create-grp" style="padding-top:20px;">
-													<div style="display: flex;flex-direction: column;justify-content: center;align-items: center;gap:15px">
+													<div
+														style="display: flex;flex-direction: column;justify-content: center;align-items: center;gap:15px">
 														<h1 style="color:#088DCD">Create Group</h1>
-														<input type="text" placeholder="Enter Group Name" style="width:100%;padding:5px;font-size:18px;">
-														<label for="profilepic" style="cursor: pointer;width: 100%;border:0.1px solid #545454;text-align: center;padding:5px;font-size:18px;">Select Profile Pic  </label>
+														<input type="text" placeholder="Enter Group Name"
+															style="width:100%;padding:5px;font-size:18px;"
+															id="grpnameinput">
+														<label for="profilepic"
+															style="cursor: pointer;width: 100%;border:0.1px solid #545454;text-align: center;padding:5px;font-size:18px;"
+															id="grpprofilepicinput">Select Profile Pic </label>
 														<input style="display: none;" type="file" id="profilepic">
-														<div style="padding:5px 10px;text-align: center;font-size:20px;font-weight: 700;cursor: pointer;background-color: #088DCD;color:white;">Create</div>
+														<div style="padding:5px 10px;text-align: center;font-size:20px;font-weight: 700;cursor: pointer;background-color: #088DCD;color:white;"
+															id="createGrp">Create</div>
 													</div>
 												</div>
 											</div>
