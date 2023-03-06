@@ -4,7 +4,7 @@ const { isUserExist } = require("./userUtils");
 
 
 
-async function addNewFilePost(myUserEmail,postData,userData,multerFileName){
+async function addNewFilePost(myUserEmail,postData,multerFileName){
     let result = {
         success : false,
         message : "failed to add post",
@@ -25,13 +25,14 @@ async function addNewFilePost(myUserEmail,postData,userData,multerFileName){
     }
     else{
         let postCount = await getTotalPostsCount();
+        // console.log(postData.text);
         let newPostdata = {
             postId : postCount + 1,
             userEmail : myUserEmail,
-            // userName : userData.firstName + " " + userData.lastName,
-            // userPic : profilePic,
+            userName : postData.userName,
+            userPic : postData.userPic,
             postedTime : new Date(),
-            postText : null,
+            postText : postData.text,
             postImage : null,
             postVideo : null,
             postType : postData.postType,
@@ -86,12 +87,12 @@ async function addNewTextPost(myUserEmail,postData){
     else{
         let postCount = await getTotalPostsCount();
         let newPost = new postModel({
-            postId : postCount,
+            postId : postCount + 1,
             userEmail : myUserEmail,
-            // userName : userData.firstName + " " + userData.lastName,
-            // userPic : profilePic,
+            userName : postData.userName,
+            userPic : postData.userPic,
             postedTime : new Date(),
-            postText : postData.postText,
+            postText : postData.text,
             postImage : null,
             postVideo : null,
             postType : postData.postType,

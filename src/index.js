@@ -20,19 +20,8 @@ app.use(function(req, res, next) {
     next();
   });
 
-
-const { upload } = require('./multer/multerConfig');
-
 // const authRouter = require('./auth/authRoute');
 // app.use('/auth',authRouter);
-
-const signupRouter = require("./routes/signupRoute");
-app.use('/signup',signupRouter);
-
-
-// app.use('/login',auth);
-const loginRouter = require('./routes/loginRoute');
-app.use('/login',loginRouter);
 
 const signupRouter = require("./routes/signupRoute");
 app.use('/signup',signupRouter);
@@ -48,28 +37,4 @@ app.use('/post',postRouter);
 
 
 
-app.listen(7777,()=>{console.log("Connected to port 7777")});
-
-
-// let userRoutes = ["/login"];
-
-async function auth(req,res,next){
-    var token = req.cookies.jwtToken;
-    console.log("here",token)
-    if (!token) {
-      return res.redirect('http://127.0.0.1:5500/static/404.html');
-    }
-  
-    jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
-      if (err) {
-        return res.redirect('http://127.0.0.1:5500/static/404.html');
-      }
-      if (decoded.role != 'user') {
-        return res.redirect('/404.html');
-      }
-    //   console.log("user verified")
-      req.userData = decoded;
-      next();
-    });
-}
 app.listen(7777,()=>{console.log("Connected to port 7777")});

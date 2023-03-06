@@ -16,6 +16,7 @@
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
 <body>
@@ -210,7 +211,7 @@
 											<img src="images/resources/admin2.jpg" alt="">
 										</figure>
 										<div class="newpst-input">
-											<form method="post" name="newPost" id="newPost">
+											<form enctype="multipart/form-data" method="POST" name="newPost" id="newPost">
 												<textarea rows="2" placeholder="write something" name="text" id="text"></textarea>
 												<div class="attachments">
 													<ul>
@@ -1238,6 +1239,7 @@
 	<!-- <script src="js/map-init.js"></script> -->
 	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script> -->
 	<script src="./myjs/index/indexDragula.js"></script>
+	<script src="./myjs/index/createPost.js"></script>
 
 </body>	
 
