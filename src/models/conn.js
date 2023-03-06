@@ -1,5 +1,6 @@
 const mongoose=require("mongoose")
-const url="mongodb+srv://projectfacebook:projectfacebook@cluster0.xc3r6ve.mongodb.net/projectfacebook"
+
+const url = process.env.ATLAS_CONNECTION_URL;
 
 mongoose.Promise=global.Promise
 mongoose.connect(url)

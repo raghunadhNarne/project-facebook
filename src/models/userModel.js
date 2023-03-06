@@ -22,7 +22,6 @@ let userSchema = {
     twitterLink : {type:String},
     googleLink : {type:String},
     notifications : {type:Array},
-    friendList : {type:Array},
     recentActivity : [
         {
             timeStamp : {type:String},
