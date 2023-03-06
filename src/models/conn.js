@@ -1,5 +1,4 @@
 const mongoose=require("mongoose")
-
 const url = process.env.ATLAS_CONNECTION_URL;
 
 mongoose.Promise=global.Promise

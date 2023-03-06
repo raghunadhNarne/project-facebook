@@ -40,13 +40,13 @@
 							<p>
 								Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
 							</p>
-						<form method="post">
+						<form method="post" id="loginForm" name="loginForm">
 							<div class="form-group">	
-							  <input type="text" id="input" required="required"/>
+							  <input type="text" id="input" name="email" required="required"/>
 							  <label class="control-label" for="input">Username</label><i class="mtrl-select"></i>
 							</div>
 							<div class="form-group">	
-							  <input type="password" required="required"/>
+							  <input type="password" name="password" required="required"/>
 							  <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
 							</div>
 							<div class="checkbox">
@@ -56,8 +56,8 @@
 							</div>
 							<a href="#" title="" class="forgot-pwd">Forgot Password?</a>
 							<div class="submit-btns">
-								<button class="mtr-btn signin" type="button"><span>Login</span></button>
-								<button class="mtr-btn signup" type="button"><span>Register</span></button>
+								<button class="mtr-btn signin" type="button" id="login" name="login"><span>Login</span></button>
+								<button class="mtr-btn signup" type="button" id="signup" name="signup"><span>Register</span></button>
 							</div>
 						</form>
 					</div>
@@ -66,13 +66,13 @@
 							<p>
 								Don’t use Winku Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
 							</p>
-						<form method="post">
+						<form method="post" id="registerForm" name="registerForm">
 							<div class="form-group">	
-							  <input type="text" required="required"/>
+							  <input type="text" id="name" required="required"/>
 							  <label class="control-label" for="input">First & Last Name</label><i class="mtrl-select"></i>
 							</div>
 							<div class="form-group">	
-							  <input type="text" required="required"/>
+							  <input type="text" id="" required="required"/>
 							  <label class="control-label" for="input">User Name</label><i class="mtrl-select"></i>
 							</div>
 							<div class="form-group">	
@@ -92,9 +92,9 @@
 							  </div>
 							</div>
 							<div class="form-group">	
-							  <input type="text" required="required"/>
+							  <!-- <input type="text" required="required"/>
 							  <label class="control-label" for="input"><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c29010d05002c">[email&#160;protected]</a></label><i class="mtrl-select"></i>
-							</div>
+							</div> -->
 							<div class="checkbox">
 							  <label>
 								<input type="checkbox" checked="checked"/><i class="check-box"></i>Accept Terms & Conditions ?
@@ -102,7 +102,7 @@
 							</div>
 							<a href="#" title="" class="already-have">Already have an account</a>
 							<div class="submit-btns">
-								<button class="mtr-btn signup" type="button"><span>Register</span></button>
+								<button class="mtr-btn signup" type="button" id="submit" name="submit"><span>Register</span></button>
 							</div>
 						</form>
 					</div>
@@ -112,8 +112,10 @@
 	</div>
 </div>
 	
-	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
-	<script src="js/script.js"></script>
+	<!-- <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- <script src="js/script.js"></script> -->
+	<script src="./myjs/login/login.js"></script>
 
 </body>	
 
