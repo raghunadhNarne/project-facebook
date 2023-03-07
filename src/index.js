@@ -1,9 +1,6 @@
 const express = require('express')
 const cors = require('cors');
 require('dotenv').config();
-
-
-
 const app = express();
 
 
@@ -12,26 +9,86 @@ app.use(express.json());
 app.use(cors())
 
 
+
+
+
+
+
+
+
+
+const socketio = require('socket.io');
+const http = require('http');
+const server = http.createServer(app);
+const io = socketio(server,{cors:{}});
+
+
+
+
+
+
+
+
+
+
+
+
+
+io.on('connection',socket=>{
+  
+
+  socket.on('joinroom',(obj)=>{
+
+
+    socket.join(obj.roomname);
+
+    socket.broadcast.to(obj.roomname).emit("msg","Your friend entered the chat");
+
+
+
+
+    socket.on('chatmsg',obj=>{
+      io.to(obj.roomname).emit('msg',obj);
+    })
+
+    socket.on('disconnect',socket=>{
+      io.to(obj.roomname).emit('msg',"your freind left the chat");
+    })
+  
+  })
+
+  
+
+
+  // socket.emit("msg","Hello");
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
-  });
-
+});
 
 const { upload } = require('./multer/multerConfig');
 
 // const authRouter = require('./auth/authRoute');
 // app.use('/auth',authRouter);
 
-const signupRouter = require("./routes/signupRoute");
-app.use('/signup',signupRouter);
-
-
-// app.use('/login',auth);
-const loginRouter = require('./routes/loginRoute');
-app.use('/login',loginRouter);
 
 const signupRouter = require("./routes/signupRoute");
 app.use('/signup',signupRouter);
@@ -46,11 +103,11 @@ const postRouter = require('./routes/postRoute');
 app.use('/post',postRouter);
 
 
+const chatRouter = require('./routes/chatRoute');
+app.use("/chats",chatRouter);
 
-app.listen(7777,()=>{console.log("Connected to port 7777")});
 
 
-// let userRoutes = ["/login"];
 
 async function auth(req,res,next){
     var token = req.cookies.jwtToken;
@@ -71,4 +128,6 @@ async function auth(req,res,next){
       next();
     });
 }
-app.listen(7777,()=>{console.log("Connected to port 7777")});
+
+
+server.listen(7777,()=>{console.log("Connected to port 7777")});
