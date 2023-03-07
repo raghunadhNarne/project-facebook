@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 
 async function validateUser(req,res){
+    console.log(process.env.JWT_SECRET_KEY)
     let loginDetails = req.body;
 
     let result = await validateCredentials(loginDetails);

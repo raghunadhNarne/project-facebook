@@ -1,7 +1,7 @@
 const friendsRouter = require('express').Router()
 const friendsController=require('../controllers/friendsController')
 
-friendsRouter.post('/addFriend',friendsController.addFriend)
+friendsRouter.post('/addfriend',friendsController.addFriend)
 //friend requests tab
 friendsRouter.post('/getpendingfriendrequests',friendsController.getPendingFriendRequests)
 friendsRouter.post('/acceptpendingfriendrequest',friendsController.justAcceptPendingFriendRequests);
@@ -17,6 +17,9 @@ friendsRouter.post('/getmyfollowers',friendsController.getFollowers)
 //following tab
 friendsRouter.post('/getmyfollowing',friendsController.getMyFollowing)
 friendsRouter.post('/unfollowfriend',friendsController.justUnfollowFriend)
+//search friends
+friendsRouter.post('/searchfriends',friendsController.justSearchFriends)
+
 module.exports=friendsRouter;
 
 // {
