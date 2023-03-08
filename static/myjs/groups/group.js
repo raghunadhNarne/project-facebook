@@ -10,7 +10,6 @@ window.onload = async () => {
     }
     let grpsOfMe = await $.post("http://localhost:7777/groups/getGroupsCreatedByMe", obj);
     madeGrpsOfMe(grpsOfMe.data);
-
 }
 
 
@@ -39,19 +38,19 @@ function madeGlobalGrps(arr) {
     }
 }
 
-async function makegrprequest(groupPic1,groupName1,groupOwnerEmail1,groupOwnerPic1,groupOwnerName1){
+async function makegrprequest(groupPic1, groupName1, groupOwnerEmail1, groupOwnerPic1, groupOwnerName1) {
     let obj = {
-        groupName : groupName1,
-        groupPic : groupPic1,
-        groupOwnerName : groupOwnerName1,
-        groupOwnerEmail : groupOwnerEmail1,
-        groupOwnerPic : groupOwnerPic1,
-        senderName : "Rohith",
-        senderEmail : "rohith@gmail.com",
-        senderPic : "rohithPic",
-        status : "pending"
+        groupName: groupName1,
+        groupPic: groupPic1,
+        groupOwnerName: groupOwnerName1,
+        groupOwnerEmail: groupOwnerEmail1,
+        groupOwnerPic: groupOwnerPic1,
+        senderName: "Rohith",
+        senderEmail: "rohith@gmail.com",
+        senderPic: "rohithPic",
+        status: "pending"
     }
-    let data = await $.post("http://localhost:7777/groups/joinRequest",obj);
+    let data = await $.post("http://localhost:7777/groups/joinRequest", obj);
     alert(data.message);
 }
 
@@ -106,7 +105,7 @@ function madeGrpsOfMe(arr) {
                         </h4>
                         <span>ftv model</span>
                         <a href="#" title="" class="add-butn"
-                            data-ripple="" data-toggle="modal" data-target="#myModal" onclick="showrequest('${data.groupName}')">View Requests</a>
+                            id='viewreqs' data-ripple="" data-toggle="modal" data-target="#myModal" onclick="showrequest('${data.groupName}')">View Requests</a>
                     </div>
                 </div>
             </li>`
@@ -121,7 +120,6 @@ async function showrequest(grpname) {
         groupName: grpname
     }
     let specificGrpRequests = await $.post("http://localhost:7777/groups/groupRequests", obj);
-    console.log(specificGrpRequests.message)
     appendrequests(specificGrpRequests.data, grpname);
     $("myModal").modal('show');
 }
@@ -192,7 +190,9 @@ $("#grpsearch").keyup(async () => {
     }
     let globalGrps = await $.post("http://localhost:7777/groups/getNotMyGroups", obj);
     madeGlobalGrps(globalGrps.data);
+
 })
+
 
 
 $("#createGrp").click(async () => {

@@ -1,4 +1,4 @@
-var socket = io('http://localhost:7777');
+const socket = io("http://localhost:7777")
 
 
 let obj = {
@@ -6,13 +6,13 @@ let obj = {
     email:"rohith@gmail.com",
     picture : "rohithsharma.jpg",
     time : "2:30pm",
-    roomname : "rohith@gmail.com"+":"+"raghu@gmail.com"
+    roomname : "Mana Ongole"
 }
 
 window.onload = async ()=>{
-    let data = await $.post('http://localhost:7777/chats/fetchchating',{chatRoom : obj.roomname});
+    let data = await $.post('http://localhost:7777/groupChats/fetchchating',{chatRoom : obj.roomname});
     data = data.data.messages;
-    
+
     for(x in data){
         appendToChat(data[x]);
     }
@@ -66,16 +66,16 @@ $("#sendmessage").click(async (e)=>{
         chatRoom : obj.roomname,
         message : {
             name:"Raghu",
-            email:"rohith@gmail.com",
+            email:"pranay@gmail.com",
             picture : "rohithsharma.jpg",
             time : "2:30pm",
-            roomname : "rohith@gmail.com"+":"+"raghu@gmail.com",
+            roomname : "Mana Ongole",
             message : $("#msgtext").val(),
             type : "message"
         }
     }
     socket.emit("chatmsg",pobj);
-    await $.post("http://localhost:7777/chats/putmessage",pobj);
+    await $.post("http://localhost:7777/groupChats/putmessage",pobj);
     let chatMessages = document.getElementById("chatarea")
     chatMessages.scrollTop = chatMessages.scrollHeight;
     $("#msgtext").val("")

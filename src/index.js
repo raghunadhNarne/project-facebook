@@ -113,6 +113,11 @@ app.use("/chats", chatRouter);
 
 
 
+const grouChatRouter = require('./routes/groupChatRoute')
+app.use("/groupChats",grouChatRouter);
+
+
+
 
 async function auth(req, res, next) {
   var token = req.cookies.jwtToken;
