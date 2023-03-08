@@ -42,7 +42,8 @@ const friendsRouter=require('./routes/friendsRoute')
 app.use('/friends',friendsRouter)
 
 
-app.listen(7777,()=>{console.log("Connected to port 7777")});
+const indexRouter = require('./routes/indexRoute');
+app.use('/index',indexRouter);
 
 
 // let userRoutes = ["/login"];
