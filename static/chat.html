@@ -144,8 +144,7 @@
 										<div class="message-box">
 											<ul class="peoples" id="messagebox">
 												
-												<li>
-													
+												<li onclick="window.location.href='#rohith@gmail.com'">
 													<figure>
 														<img src="images/resources/friend-avatar2.jpg" alt="">
 														<span class="status f-online"></span>
@@ -154,80 +153,18 @@
 														<span>Molly cyrus</span>
 													</div>
 												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar3.jpg" alt="">
-														<span class="status f-away"></span>
-													</figure>
-													<div class="people-name">
-														<span>Andrew</span>
-													</div>
-												</li>
-												<li>
-													
+
+												<li onclick="window.location.href='#raghu@gmail.com'">
 													<figure>
-														<img src="images/resources/friend-avatar.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													
-													<div class="people-name">
-														<span>jason bourne</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar4.jpg" alt="">
-														<span class="status off-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>Sarah Grey</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar5.jpg" alt="">
+														<img src="images/resources/friend-avatar2.jpg" alt="">
 														<span class="status f-online"></span>
 													</figure>
 													<div class="people-name">
-														<span>bill doe</span>
+														<span>Molly cyrus</span>
 													</div>
 												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar6.jpg" alt="">
-														<span class="status f-away"></span>
-													</figure>
-													<div class="people-name">
-														<span>shen cornery</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar7.jpg" alt="">
-														<span class="status off-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>kill bill</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar8.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>jasmin walia</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar6.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>neclos cage</span>
-													</div>
-												</li>
+												
+												
 											</ul>
 											<div class="peoples-mesg-box">
 												<div class="conversation-head">
@@ -237,10 +174,11 @@
 												<ul class="chatting-area" id="chatarea">
 													
 												</ul>
-												<div class="message-text-container" style="bottom: 80px;position: absolute;width: 60%">
-													<form>
-														<textarea id="msgtext"></textarea>
-														<button title="send" id="sendmessage"><i class="fa fa-paper-plane"></i></button>
+												<div class="message-text-container">
+													<form style="display: flex;flex-direction: row;justify-content: flex-end;align-items: center;gap:10px">
+														<div title="Make your speech to text" id="sendvoicemessage" style="cursor: pointer;"><i class="fa fa-microphone" style="color:#088DCD;font-size:22px"></i></div>
+														<input type="text" id="msgtext" style="width:100%;padding:7px;outline: none;border:1px ridge grey;"></input>
+														<div title="send" id="sendmessage" style="cursor: pointer;"><i class="fa fa-send" style="color:#088DCD;font-size:22px"></i></div>
 													</form>
 												</div>
 											</div>

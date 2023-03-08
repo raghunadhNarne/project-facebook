@@ -10,11 +10,6 @@ window.onload = async () => {
     }
     let grpsOfMe = await $.post("http://localhost:7777/groups/getGroupsCreatedByMe", obj);
     madeGrpsOfMe(grpsOfMe.data);
-    obj = {
-        email: "rohith@gmail.com"
-    }
-    let globalGrps = await $.post("http://localhost:7777/groups/getNotMyGroups", obj);
-    madeGlobalGrps(globalGrps.data);
 
 }
 
@@ -179,18 +174,24 @@ async function rejectgrp(senderEmail, grpname) {
 
 
 
-$("#grpsearch").keyup(() => {
-    let input = $("#grpsearch").val().toLowerCase();
-    let groups = $(".globalgrps");
-    for (let i = 0; i < groups.length; i++) {
-        let grpName = groups[i].childNodes[1].childNodes[3].childNodes[1].childNodes[0].innerHTML;
-        if (!grpName.toLowerCase().includes(input)) {
-            groups[i].style.display = "none";
-        }
-        else {
-            groups[i].style.display = "block"
-        }
+$("#grpsearch").keyup(async () => {
+    // let input = $("#grpsearch").val().toLowerCase();
+    // let groups = $(".globalgrps");
+    // for (let i = 0; i < groups.length; i++) {
+    //     let grpName = groups[i].childNodes[1].childNodes[3].childNodes[1].childNodes[0].innerHTML;
+    //     if (!grpName.toLowerCase().includes(input)) {
+    //         groups[i].style.display = "none";
+    //     }
+    //     else {
+    //         groups[i].style.display = "block"
+    //     }
+    // }
+    obj = {
+        email: "rohith@gmail.com",
+        input: $("#grpsearch").val().toLowerCase()
     }
+    let globalGrps = await $.post("http://localhost:7777/groups/getNotMyGroups", obj);
+    madeGlobalGrps(globalGrps.data);
 })
 
 
