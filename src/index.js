@@ -46,6 +46,9 @@ const indexRouter = require('./routes/indexRoute');
 app.use('/index',indexRouter);
 
 
+const recentActivityRouter = require('./routes/recentActivityRoute');
+app.use('/recentActivity',recentActivityRouter)
+
 // let userRoutes = ["/login"];
 
 async function auth(req,res,next){

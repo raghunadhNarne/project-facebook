@@ -144,4 +144,37 @@ async function fetchPostData(postid){
     return result;
 }
 
-module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData};
+
+
+async function addNewComment(commentData){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    // console.log("commentData",commentData)
+    try{
+        let newComment = {
+            userPic : commentData.userPic,
+            userName : commentData.userName,
+            commentText : commentData.commentText,
+            commentedTime : new Date()
+        }
+        // console.log("newComment",newComment)
+        let updateResult = await postModel.updateOne({postId:commentData.postId},{$push:{comments:newComment}});
+        if(updateResult.modifiedCount != 0){
+            // console.log("updated")
+            result.success = true;
+            result.message = "Added comment to comments list";
+            result.data = "";
+        }
+        else{
+            result.message = "Adding comment to comments list failed";
+        }
+    }
+    catch(e){
+        result.message = "failed to Add comment to comments list";
+    }
+    return result;
+}
+module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment};

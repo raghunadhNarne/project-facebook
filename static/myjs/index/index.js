@@ -10,6 +10,7 @@ window.onload = async ()=>{
 }
 
 async function renderComment(comment){
+    // console.log("comment",comment)
     let commentHtml = `<li>
         <div class="comet-avatar">
             <img src="${comment.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
@@ -17,7 +18,7 @@ async function renderComment(comment){
         <div class="we-comment">
             <div class="coment-head">
                 <h5><a href="time-line.html" title="">${comment.userName}</a></h5>
-                <span>1 year ago</span>
+                <span>${comment.commentedTime}</span>
                 <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
             </div>
             <p>${comment.commentText}</p>
@@ -126,11 +127,14 @@ async function renderPosts(posts){
                                     <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
-                                    <form method="post">
-                                        <textarea placeholder="Post your comment"></textarea>
-                                        
-                                        <button type="submit"></button>
-                                    </form>	
+                                    <form name="commentsForm" id="commentsForm">
+                                        <textarea id="${post.postId}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
+                                        <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                                onclick="submitMyComment('${post.postId}')"> Post
+                                        </button>
+                                    </form>
+                              
+                              
                                 </div>
                             </li>
                         </ul>
@@ -218,10 +222,10 @@ async function renderPosts(posts){
                                     <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
-                                    <form method="post">
+                                    <form name="commentsForm" id="commentsForm">
                                         <textarea placeholder="Post your comment"></textarea>
                                         
-                                        <button type="submit"></button>
+                                        <button type="submit" name="submitComment" id="submitComment">post</button>
                                     </form>	
                                 </div>
                             </li>
@@ -315,10 +319,10 @@ async function renderPosts(posts){
                                     <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
-                                    <form method="post">
+                                    <form name="commentsForm" id="commentsForm">
                                         <textarea placeholder="Post your comment"></textarea>
                                         
-                                        <button type="submit"></button>
+                                        <button type="submit" name="submitComment" id="submitComment">post</button>
                                     </form>	
                                 </div>
                             </li>
@@ -539,3 +543,33 @@ async function toggleDislike(dislikedPostId){
         await $.post("http://localhost:7777/index/addDislike", obj);
     }
 }
+
+
+
+
+async function submitMyComment(postid){
+    //add comment to post database
+    //add event to recent activity
+    //render comment in frontend page
+
+
+
+    let newCommentText = $(`#${postid}Comment`).val()
+    console.log("newCommentText",newCommentText)
+    let commentedUserdata = userData;
+
+
+
+    let newComment = {
+        postId : postid,
+        userPic : commentedUserdata.profilePic,
+        userName : commentedUserdata.lastName,
+        commentText : newCommentText,
+    }
+    // console.log("newComment",newComment)
+
+    //addding comment to posts database
+    await $.post("http://localhost:7777/index/addNewComment", newComment);
+}
+
+//What is this bro?

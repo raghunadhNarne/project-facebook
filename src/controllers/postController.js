@@ -22,7 +22,7 @@ const { addNewTextPost, addNewFilePost } = require("../utils/Postutils");
 async function createNewTextPost(req,res){
     let postData = req.body;
     let result = {};
-    console.log("hi",postData);
+    // console.log("hi",postData);
     result = await addNewTextPost(postData.userEmail,postData);
 
     res.send(result);

@@ -1,4 +1,4 @@
-const { fetchMyPosts, addUserToLikedArray, addUserToDislikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData } = require("../utils/indexUtils");
+const { fetchMyPosts, addUserToLikedArray, addUserToDislikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment } = require("../utils/indexUtils");
 const { fetchUserData } = require("../utils/userUtils");
 
 async function getMyPosts(req, res) {
@@ -60,4 +60,13 @@ async function getPostData(req, res) {
 }
 
 
-module.exports = {getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData};
+async function addComment(req,res){
+    let data = req.body;
+    // console.log("data in controller",data);
+
+    let result = await addNewComment(data);
+    res.send(result);
+}
+
+
+module.exports = {getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData, addComment};
