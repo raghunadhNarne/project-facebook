@@ -105,10 +105,11 @@ app.use(function(req, res, next) {
     next();
   });
 
+
 // const authRouter = require('./auth/authRoute');
 // app.use('/auth',authRouter);
 
-const { upload } = require('./multer/multerConfig');
+
 
 
 const signupRouter = require("./routes/signupRoute");
@@ -131,6 +132,8 @@ app.use("/chats", chatRouter);
 const friendsRouter=require('./routes/friendsRoute')
 app.use('/friends',friendsRouter)
 
+const userRouter=require('./routes/userRoute')
+app.use('/users',userRouter)
 
 const grouChatRouter = require('./routes/groupChatRoute')
 app.use("/groupChats",grouChatRouter);
