@@ -1,6 +1,9 @@
 const express = require('express')
 const cors = require('cors');
 require('dotenv').config();
+
+
+
 const app = express();
 
 
@@ -95,6 +98,19 @@ const { upload } = require('./multer/multerConfig');
 // app.use('/auth',authRouter);
 
 
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
+
+// const authRouter = require('./auth/authRoute');
+// app.use('/auth',authRouter);
+
+const { upload } = require('./multer/multerConfig');
+
+
 const signupRouter = require("./routes/signupRoute");
 app.use('/signup', signupRouter);
 
@@ -112,11 +128,18 @@ const chatRouter = require('./routes/chatRoute');
 app.use("/chats", chatRouter);
 
 
+const friendsRouter=require('./routes/friendsRoute')
+app.use('/friends',friendsRouter)
+
 
 const grouChatRouter = require('./routes/groupChatRoute')
 app.use("/groupChats",grouChatRouter);
+const indexRouter = require('./routes/indexRoute');
+app.use('/index',indexRouter);
 
 
+const recentActivityRouter = require('./routes/recentActivityRoute');
+app.use('/recentActivity',recentActivityRouter)
 
 
 async function auth(req, res, next) {

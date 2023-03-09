@@ -3,6 +3,7 @@ window.onload = async () => {
         email: "rohith@gmail.com",
         status: "accepted"
     }
+
     let myGrps = await $.post("http://localhost:7777/groups/getMyGroups", obj);
     madeMyGrps(myGrps.data);
     obj = {

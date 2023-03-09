@@ -93,6 +93,7 @@ async function getGlobalGroups(groupDetails) {
     try {
         let data = await groupModel.aggregate([
             {
+<<<<<<< HEAD
                 $group: {
                     _id: {
                         groupName: "$groupName",
@@ -117,6 +118,31 @@ async function getGlobalGroups(groupDetails) {
             }
         ])
         if (data.length != 0 && groupDetails.input.length!=0) {
+=======
+                $group:{
+                    _id:{
+                        groupName : "$groupName",
+                        groupOwnerEmail : "$groupOwnerEmail",
+                        groupOwnerName : "$groupOwnerEmail",
+                        groupOwnerPic : "$groupOwnerPic",
+                        groupPic : "$groupPic",
+                    },
+                    senderEmails : {$push: "$senderEmail"}
+                }
+            },
+            {
+                $match :{
+                    senderEmails :{$ne :"rohith@gmail.com"}
+                }
+            },
+            {
+                $project :{
+                    senderEmails : 0
+                }
+            }
+        ])
+        if (data.length != 0) {
+>>>>>>> 7fcd0fa568e1a93d161fc8a7c2f014bbe7266041
             result.success = true;
             result.message = "successfully fetched the groups";
             result.data = data;

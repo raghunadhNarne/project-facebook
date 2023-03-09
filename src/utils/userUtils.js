@@ -9,4 +9,28 @@ async function isUserExist(myEmail){
         return true;
 }
 
-module.exports = {isUserExist};
+
+async function fetchUserData(Myemail){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+        let userData = await userModel.findOne({ email: Myemail});
+        if(userData.length != 0){
+            result.success = true;
+            result.message = "Fetched posts";
+            result.data = userData;
+        }
+        else{
+            result.message = "No user";
+        }
+    }
+    catch(e){
+        result.message = "Failed to fetch user";
+    }
+    return result;
+}
+
+module.exports = {isUserExist, fetchUserData};
