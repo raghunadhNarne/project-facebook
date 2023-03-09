@@ -1,21 +1,10 @@
-$("#activitiez").append(
-    `<li>
-        <div class="activity-meta">
-            <i>10 hours Ago</i>
-            <span><a href="#" title="">Commented on Video posted </a></span>
-            <h6>by <a href="time-line.html">black demon.</a></h6>
-        </div>
-    </li>`
-)
-
-
-
 async function renderRecentActivity(){
     let recentActivityData = await getRecentActivityData();
     let limit = Math.min(4,recentActivityData.length)
-    console.log(recentActivityData);
+    // console.log(recentActivityData,"0000");
 
     for(let recentActivity = 0; recentActivity < limit; recentActivity++){
+        // console.log(recentActivityData[recentActivity].timeStamp)
         $("#activitiez").append(
             `<li>
                 <div class="activity-meta">
@@ -34,12 +23,13 @@ async function getRecentActivityData(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
+    // console.log(obj);
     let result = await $.post("http://localhost:7777/recentActivity/getMyRecentActivity", obj);
 
     let recentActivityData = result.data;
-    // console.log(recentActivityData,"recentActivityData")
+    // console.log(recentActivityData.activities,"recentActivityData")
 
-    return recentActivityData.activities;
+    return recentActivityData ? recentActivityData.activities : [];
 }
 
 

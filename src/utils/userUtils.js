@@ -1,5 +1,6 @@
 const { userModel } = require("../models/userModel");
-const { userExist } = require('../utils/signupUtils')
+const { userExist } = require('../utils/signupUtils');
+const { createRecentActivityforUser } = require("./recentActivityUtils");
 async function isUserExist(myEmail){
     let userData = await userModel.findOne({email:myEmail});
     // console.log(userData);
@@ -60,6 +61,7 @@ async function acceptPendingRequest(obj)
     }
     try{
         let data = await userModel.updateOne({email:obj.email},{$set:{status:"accept",role:obj.type}})
+        await createRecentActivityforUser(obj.email)
         result.success=true;
         result.message="successfull accepted the pending user request"
         result.data=data

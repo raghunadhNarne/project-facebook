@@ -140,7 +140,6 @@ app.use("/groupChats",grouChatRouter);
 const indexRouter = require('./routes/indexRoute');
 app.use('/index',indexRouter);
 
-
 const recentActivityRouter = require('./routes/recentActivityRoute');
 app.use('/recentActivity',recentActivityRouter)
 
@@ -166,4 +165,25 @@ async function auth(req, res, next) {
 }
 
 
-server.listen(7777, () => { console.log("Connected to port 7777") });
+
+
+// const { Configuration, OpenAIApi } = require("openai");
+
+// const configuration = new Configuration({
+//   apiKey: process.env.OPEN_API_SECRET_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
+// async function xyz(){
+//   const response = await openai.createImage({
+//     prompt: "india independence day",
+//     n: 1,
+//     size: "512x512",
+//   });
+//   console.log(response.data.data)
+//   // console.log(completion.data.choices[0].message);
+// }
+// xyz()
+
+
+
+server.listen(7777,()=>{console.log("Connected to port 7777")})
