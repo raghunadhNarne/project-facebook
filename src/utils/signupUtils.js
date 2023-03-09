@@ -1,5 +1,5 @@
 const { userModel } = require("../models/userModel");
-
+const bcrypt = require('bcrypt')
 async function userExist(email){
     try{
         let data = await userModel.findOne({email:email});
@@ -22,6 +22,9 @@ async function createUser(userDetails){
     let isUserExist = await userExist(userDetails.email);
 
     if(isUserExist == false){
+        let salt = await bcrypt.genSalt();
+        let hashedpassword = await bcrypt.hash(userDetails.body.password,salt);
+        
         let newuser = new userModel({
             firstName : userDetails.body.firstName,
             lastName : userDetails.body.lastName,
@@ -30,7 +33,7 @@ async function createUser(userDetails){
             gender : userDetails.body.gender,
             email : userDetails.body.email,
             mobileNo : userDetails.body.mobileNo,
-            password : userDetails.body.password,
+            password : hashedpassword,
             city : null,
             country : null,
             aboutMe : null,

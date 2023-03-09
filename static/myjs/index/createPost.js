@@ -83,7 +83,7 @@ $('#newPost').on('submit', async function(event) {
         //change the content of text in form data
         formData.set("text",cleanedDOM.toString());
         console.log("after sanitizing: ",cleanedDOM);
-        alert(`sorry bro these data from your text is removed: ${JSON.stringify(removedDOM)}`)
+        // alert(`sorry bro these data from your text is removed: ${JSON.stringify(removedDOM)}`)
     }
     catch(e){
         alert("sanitizing post text failed: " + e);

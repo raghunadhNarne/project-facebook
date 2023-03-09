@@ -158,7 +158,7 @@ async function renderPosts(posts){
                             <span>published: ${post.postedTime}</span>
                         </div>
                         <div class="post-meta">
-                            <img src="../${post.postImage}" alt="">
+                            <img style="height:auto;width:100%;"src="../${post.postImage}" onerror="this.onerror=null; this.src='../static/images/resources/defaultPost.png'" alt="image not found">
                             <div class="we-video-info">
                                 <ul>
                                     <li>

@@ -1,4 +1,5 @@
 const { userModel } = require("../models/userModel");
+let bcrypt = require('bcrypt')
 
 async function validateCredentials({email,password}){
     let result = {
@@ -14,7 +15,8 @@ async function validateCredentials({email,password}){
             result.message = "user not exist"
         }
         else{
-            if(userData.password === password){
+            let isValid = bcrypt.compare(password,userData.password);
+            if(isValid){
                 result.success = true;
                 result.message = "successfully verified"
                 result.data = userData;
