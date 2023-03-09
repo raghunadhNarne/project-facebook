@@ -16,10 +16,6 @@ app.use(cors())
 
 
 
-
-
-
-
 const socketio = require('socket.io');
 const http = require('http');
 const server = http.createServer(app);
@@ -189,5 +185,7 @@ async function auth(req, res, next) {
 // xyz()
 
 
+
+// server.listen(7007,()=>{console.log("Connected to port 7007")})
 
 server.listen(7777,()=>{console.log("Connected to port 7777")})
