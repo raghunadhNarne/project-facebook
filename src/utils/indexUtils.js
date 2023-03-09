@@ -1,4 +1,5 @@
 const { postModel } = require("../models/postModel");
+const mongoose = require('mongoose')
 
 async function fetchMyPosts(email){
     let result = {
@@ -26,13 +27,14 @@ async function fetchMyPosts(email){
 
 
 async function addUserToLikedArray(email,postid){
+    //postid is object id
     let result = {
         success: false,
         message: "",
         data: ""
     }
     try{
-        let updateResult = await postModel.updateOne({postId:postid},{$push:{likedUsers:email}});
+        let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(postid)},{$push:{likedUsers:email}});
         if(updateResult.modifiedCount != 0){
             result.success = true;
             result.message = "Added user to liked list";
@@ -51,13 +53,14 @@ async function addUserToLikedArray(email,postid){
 
 
 async function removeUserFromLikedArray(email,postid){
+    //postid is object id
     let result = {
         success: false,
         message: "",
         data: ""
     }
     try{
-        let updateResult = await postModel.updateOne({postId:postid},{$pull:{likedUsers:email}});
+        let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(postid)},{$pull:{likedUsers:email}});
         if(updateResult.modifiedCount != 0){
             result.success = true;
             result.message = "removed user from liked list";
@@ -82,7 +85,7 @@ async function removeUserFromDislikedArray(email,postid){
         data: ""
     }
     try{
-        let updateResult = await postModel.updateOne({postId:postid},{$pull:{dislikedUsers:email}});
+        let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(postid)},{$pull:{dislikedUsers:email}});
         if(updateResult.modifiedCount != 0){
             result.success = true;
             result.message = "removed user from dislikedUsers list";
@@ -107,7 +110,7 @@ async function addUserToDislikedArray(email,postid){
         data: ""
     }
     try{
-        let updateResult = await postModel.updateOne({postId:postid},{$push:{dislikedUsers:email}});
+        let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(postid)},{$push:{dislikedUsers:email}});
         if(updateResult.modifiedCount != 0){
             result.success = true;
             result.message = "Added user to dislikedUsers list";
@@ -127,13 +130,15 @@ async function addUserToDislikedArray(email,postid){
 
 
 async function fetchPostData(postid){
+    //postid is object id
     let result = {
         success: false,
         message: "",
         data: ""
     }
+    // console.log("postid",new mongoose.Types.ObjectId(postid))
     try{
-        let fetchResult = await postModel.findOne({postId:postid});
+        let fetchResult = await postModel.findOne({_id: new mongoose.Types.ObjectId(postid)});
             result.success = true;
             result.message = "fetched post data";
             result.data = fetchResult;
@@ -161,7 +166,7 @@ async function addNewComment(commentData){
             commentedTime : new Date()
         }
         // console.log("newComment",newComment)
-        let updateResult = await postModel.updateOne({postId:commentData.postId},{$push:{comments:newComment}});
+        let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(commentData.postId)},{$push:{comments:newComment}});
         if(updateResult.modifiedCount != 0){
             // console.log("updated")
             result.success = true;

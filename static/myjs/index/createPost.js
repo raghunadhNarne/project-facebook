@@ -100,7 +100,7 @@ $('#newPost').on('submit', async function(event) {
         }
         postData.image = null;
         postData.video = null;
-        console.log(postData)
+        // console.log(postData)
         try{
             // console.log("hi")
             let result = await $.ajax({"method":"POST",data:postData, "url":"http://localhost:7777/post/textPost"});
