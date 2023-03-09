@@ -3,6 +3,7 @@ window.onload = async () => {
         email: "rohith@gmail.com",
         status: "accepted"
     }
+
     let myGrps = await $.post("http://localhost:7777/groups/getMyGroups", obj);
     madeMyGrps(myGrps.data);
     obj = {
@@ -10,12 +11,6 @@ window.onload = async () => {
     }
     let grpsOfMe = await $.post("http://localhost:7777/groups/getGroupsCreatedByMe", obj);
     madeGrpsOfMe(grpsOfMe.data);
-    obj = {
-        email: "rohith@gmail.com"
-    }
-    let globalGrps = await $.post("http://localhost:7777/groups/getNotMyGroups", obj);
-    madeGlobalGrps(globalGrps.data);
-
 }
 
 
@@ -44,19 +39,19 @@ function madeGlobalGrps(arr) {
     }
 }
 
-async function makegrprequest(groupPic1,groupName1,groupOwnerEmail1,groupOwnerPic1,groupOwnerName1){
+async function makegrprequest(groupPic1, groupName1, groupOwnerEmail1, groupOwnerPic1, groupOwnerName1) {
     let obj = {
-        groupName : groupName1,
-        groupPic : groupPic1,
-        groupOwnerName : groupOwnerName1,
-        groupOwnerEmail : groupOwnerEmail1,
-        groupOwnerPic : groupOwnerPic1,
-        senderName : "Rohith",
-        senderEmail : "rohith@gmail.com",
-        senderPic : "rohithPic",
-        status : "pending"
+        groupName: groupName1,
+        groupPic: groupPic1,
+        groupOwnerName: groupOwnerName1,
+        groupOwnerEmail: groupOwnerEmail1,
+        groupOwnerPic: groupOwnerPic1,
+        senderName: "Rohith",
+        senderEmail: "rohith@gmail.com",
+        senderPic: "rohithPic",
+        status: "pending"
     }
-    let data = await $.post("http://localhost:7777/groups/joinRequest",obj);
+    let data = await $.post("http://localhost:7777/groups/joinRequest", obj);
     alert(data.message);
 }
 
@@ -111,7 +106,7 @@ function madeGrpsOfMe(arr) {
                         </h4>
                         <span>ftv model</span>
                         <a href="#" title="" class="add-butn"
-                            data-ripple="" data-toggle="modal" data-target="#myModal" onclick="showrequest('${data.groupName}')">View Requests</a>
+                            id='viewreqs' data-ripple="" data-toggle="modal" data-target="#myModal" onclick="showrequest('${data.groupName}')">View Requests</a>
                     </div>
                 </div>
             </li>`
@@ -126,7 +121,6 @@ async function showrequest(grpname) {
         groupName: grpname
     }
     let specificGrpRequests = await $.post("http://localhost:7777/groups/groupRequests", obj);
-    console.log(specificGrpRequests.message)
     appendrequests(specificGrpRequests.data, grpname);
     $("myModal").modal('show');
 }
@@ -179,19 +173,27 @@ async function rejectgrp(senderEmail, grpname) {
 
 
 
-$("#grpsearch").keyup(() => {
-    let input = $("#grpsearch").val().toLowerCase();
-    let groups = $(".globalgrps");
-    for (let i = 0; i < groups.length; i++) {
-        let grpName = groups[i].childNodes[1].childNodes[3].childNodes[1].childNodes[0].innerHTML;
-        if (!grpName.toLowerCase().includes(input)) {
-            groups[i].style.display = "none";
-        }
-        else {
-            groups[i].style.display = "block"
-        }
+$("#grpsearch").keyup(async () => {
+    // let input = $("#grpsearch").val().toLowerCase();
+    // let groups = $(".globalgrps");
+    // for (let i = 0; i < groups.length; i++) {
+    //     let grpName = groups[i].childNodes[1].childNodes[3].childNodes[1].childNodes[0].innerHTML;
+    //     if (!grpName.toLowerCase().includes(input)) {
+    //         groups[i].style.display = "none";
+    //     }
+    //     else {
+    //         groups[i].style.display = "block"
+    //     }
+    // }
+    obj = {
+        email: "rohith@gmail.com",
+        input: $("#grpsearch").val().toLowerCase()
     }
+    let globalGrps = await $.post("http://localhost:7777/groups/getNotMyGroups", obj);
+    madeGlobalGrps(globalGrps.data);
+
 })
+
 
 
 $("#createGrp").click(async () => {

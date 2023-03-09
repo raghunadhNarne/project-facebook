@@ -10,7 +10,7 @@ let postSchema = {
     postImage : {type : String},
     postVideo : {type : String},
     postType : {type : String},
-    comments : [{}],
+    comments : [],
     likedUsers : [],
     dislikedUsers : []
 }
