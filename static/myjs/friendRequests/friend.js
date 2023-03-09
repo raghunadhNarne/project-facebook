@@ -163,6 +163,7 @@ function addmyrequests(data)
 
 function addsearchfriends(data)
 {
+    $("#friendgloballist").html('')
     for(x in data)
     {
         $("#friendgloballist").append(
@@ -187,7 +188,6 @@ function addsearchfriends(data)
 }
 
 $("#friendssearch").keyup(async () => {
-    $("#friendgloballist").html('')
     let input = $("#friendssearch").val().toLowerCase();
     obj.firstName=input;
     let friend_list = await $.post("http://localhost:7777/friends/searchfriends",obj)

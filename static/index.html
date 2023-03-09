@@ -267,7 +267,6 @@
 									</div>
 									<i onclick="closepopup()" class="fa fa-close" style="color: #088DCD;cursor: pointer;transform: translate(0px,-50px);"></i>
 								</div>
-								
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
 								<aside class="sidebar static">
@@ -689,12 +688,12 @@
 				</div>
 			</form>
 			<!-- <p class="assistant" onclick="popsup()">Hii</p> -->
-			<img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg">
+			<!-- <img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg"> -->
 		</div><!-- side panel -->	
 		
 		<script>
-			var userData=JSON.parse(localStorage.getItem("userData"))
-			if(userData.email=="admin@gmail.com")
+			var userdata=JSON.parse(localStorage.getItem("userData"))
+			if(userdata.email=="admin@gmail.com")
 			{
 				$(".user-setting").append(
 					`<a href="admin.html"><i class="ti-user">Admin</i></a>
@@ -703,7 +702,7 @@
 					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
 				)
 			}
-			else if(userData.role=="Parent")
+			else if(userdata.role=="Parent")
 			{
 				$(".user-setting").append(
 					`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>

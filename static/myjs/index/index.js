@@ -25,7 +25,6 @@ async function renderComment(comment){
         </div>
         
     </li>`
-    // console.log("new comment",commentHtml)
     return commentHtml
 }
 

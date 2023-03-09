@@ -207,7 +207,7 @@ async function takeActionOnGroupRequest(requiredDetails) {
         data: ""
     }
     try {
-        if (requiredDetails.status == "accept") {
+        if (requiredDetails.status == "accepted") {
             let data = await groupModel.updateOne({ groupOwnerEmail: requiredDetails.email, senderEmail: requiredDetails.senderEmail, groupName: requiredDetails.groupName }, { $set: { status: requiredDetails.status } });
         }
         else {

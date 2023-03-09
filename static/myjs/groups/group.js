@@ -1,13 +1,14 @@
+let userData = JSON.parse(localStorage.getItem("userData"));
 window.onload = async () => {
     var obj = {
-        email: "rohith@gmail.com",
+        email: userData.email,
         status: "accepted"
     }
 
     let myGrps = await $.post("http://localhost:7777/groups/getMyGroups", obj);
     madeMyGrps(myGrps.data);
     obj = {
-        email: "raghu@gmail.com"
+        email: userData.email
     }
     let grpsOfMe = await $.post("http://localhost:7777/groups/getGroupsCreatedByMe", obj);
     madeGrpsOfMe(grpsOfMe.data);
@@ -46,9 +47,9 @@ async function makegrprequest(groupPic1, groupName1, groupOwnerEmail1, groupOwne
         groupOwnerName: groupOwnerName1,
         groupOwnerEmail: groupOwnerEmail1,
         groupOwnerPic: groupOwnerPic1,
-        senderName: "Rohith",
-        senderEmail: "rohith@gmail.com",
-        senderPic: "rohithPic",
+        senderName: userData.firstName+" "+userData.lastName,
+        senderEmail: userData.email,
+        senderPic: userData.profilePic,
         status: "pending"
     }
     let data = await $.post("http://localhost:7777/groups/joinRequest", obj);
@@ -82,7 +83,7 @@ function madeMyGrps(arr) {
 
 function exitgrp(grpname) {
     let obj = {
-        email: "rohith@gmail.com",
+        email: userData.email,
         groupName: grpname
     }
     let data = $.post("http://localhost:7777/groups/leaveGroup", obj);
@@ -117,7 +118,7 @@ function madeGrpsOfMe(arr) {
 async function showrequest(grpname) {
     let obj = {
         status: "pending",
-        email: "raghu@gmail.com",
+        email: userData.email,
         groupName: grpname
     }
     let specificGrpRequests = await $.post("http://localhost:7777/groups/groupRequests", obj);
@@ -150,10 +151,10 @@ function appendrequests(arr, grpname) {
 
 async function acceptgrp(senderEmail, grpname) {
     let obj = {
-        email: "raghu@gmail.com",
+        email: userData.email,
         senderEmail: senderEmail,
         groupName: grpname,
-        status: "accept"
+        status: "accepted"
     }
     let data = await $.post("http://localhost:7777/groups/acceptOrRejectRequest", obj);
     alert(data.message)
@@ -161,10 +162,10 @@ async function acceptgrp(senderEmail, grpname) {
 
 async function rejectgrp(senderEmail, grpname) {
     let obj = {
-        email: "raghu@gmail.com",
+        email: userData.email,
         senderEmail: senderEmail,
         groupName: grpname,
-        status: "reject"
+        status: "rejected"
     }
     let data = await $.post("http://localhost:7777/groups/acceptOrRejectRequest", obj);
     alert(data.message)
@@ -186,7 +187,7 @@ $("#grpsearch").keyup(async () => {
     //     }
     // }
     obj = {
-        email: "rohith@gmail.com",
+        email: userData.email,
         input: $("#grpsearch").val().toLowerCase()
     }
     let globalGrps = await $.post("http://localhost:7777/groups/getNotMyGroups", obj);
@@ -202,14 +203,14 @@ $("#createGrp").click(async () => {
     //     groupPic : $("#grpprofilepicinput").val()
     // }
     let obj = {
-        groupName: "Mumbai Indians",
+        groupName: $("#grpnameinput").val(),
         groupPic: "mumbai.jpg",
-        groupOwnerName: "Pranay",
-        groupOwnerEmail: "pranay@gmail.com",
-        groupOwnerPic: "pranayPic",
-        senderName: "Pranay",
-        senderEmail: "pranay@gmail.com",
-        senderPic: "pranayPic",
+        groupOwnerName: userData.firstName+" "+userData.lastName,
+        groupOwnerEmail: userData.email,
+        groupOwnerPic: userData.profilePic,
+        senderName: userData.firstName+" "+userData.lastName,
+        senderEmail: userData.email,
+        senderPic: userData.profilePic,
         status: "accepted"
     }
     let data = await $.post("http://localhost:7777/groups/createGroup", obj);
