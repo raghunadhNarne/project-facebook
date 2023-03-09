@@ -144,6 +144,10 @@ const recentActivityRouter = require('./routes/recentActivityRoute');
 app.use('/recentActivity',recentActivityRouter)
 
 
+const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
+app.use('/xssScriptingFix',xssScriptingFixRouter)
+
+
 async function auth(req, res, next) {
   var token = req.cookies.jwtToken;
   console.log("here", token)
