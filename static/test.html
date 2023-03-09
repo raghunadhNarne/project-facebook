@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js" integrity="sha512-nO7wgHUoWPYGCNriyGzcFwPSF+bPDOR+NvtOYy2wMcWkrnCNPKBcFEkU80XIN14UVja0Gdnff9EmydyLlOL7mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <form enctype="multipart/form-data"  method="POST" name="newPost" id="newPost">
+        <input type="text" name="text" id="text">
+        <input type="file" name="image" id="image">
+        <input type="submit" value="submit" name="addPost" id="addPost">
+    </form>
+</body>
+
+
+
+
+<script>
+    $('#newPost').on('submit', function(event) {
+ event.preventDefault(); // prevent the form from submitting normally
+ let f = new FormData(document.querySelector("#newPost")); // create a FormData object from the form
+ // add additional data to the FormData object
+ let userData = localStorage.getItem('userData');
+ userData = JSON.parse(userData);
+//  console.log(userData)
+ f.append("useremail",userData.email) //user data comes from local sorage
+ f.append("userName",userData.firstName + " " + userData.lastName)
+ f.append("userPic",userData.profilePic);
+ console.log("form data: ",f.get("text"),f.get("image"));
+});
+ </script>
+</html>

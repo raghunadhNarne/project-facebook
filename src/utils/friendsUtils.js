@@ -1,6 +1,7 @@
 const { friendsModel }=require('../models/friendsModel')
 const { userModel } = require('../models/userModel')
 
+
 async function addNewFriend(obj)
 {
     let result = {
@@ -255,6 +256,8 @@ async function unfollowFriend(obj)
 
 async function searchFriends(obj)
 {
+    // obj=JSON.parse(obj)
+    // console.log(obj)
     let result = {
         success : false,
         message : "",
@@ -279,17 +282,22 @@ async function searchFriends(obj)
             else arr.push(data[x].receiverEmail)
         }
         arr.push(obj.email)
-        data = await userModel.find({email:{$nin:arr}})
+        // let str="/"+obj.firstName+"/"
+        // console.log(str)
+        if(obj.firstName.length>0)
+        data = await userModel.find({email:{$nin:arr},firstName:{"$regex":obj.firstName,"$options":"i"}})
         result.success=true;
-        result.message="successfully unfollowed the friend";
+        result.message="successfully searched the friend";
         result.data=data;
     }
     catch(e)
     {
-        result.message="error to unfollow friend"
+        result.message="error to search friend"
     }
     return result;
 }
 
 
 module.exports = { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,myFollowing,unfollowFriend,searchFriends }
+
+

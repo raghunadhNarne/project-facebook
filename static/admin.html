@@ -16,12 +16,43 @@
     <link rel="stylesheet" href="css/responsive.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script>
-
 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <img src="../src/multer/images/1678209210272-about-img.jpg" alt="" style="height:70vh;width: 100vw;" id="imgurl">
+        </div>
+        <div class="modal-footer" style="justify-content: space-between;">
+		<div style="display: flex;flex-direction: row;justify-content: center;align-items: center;gap: 10px;">
+			<div>
+				<h6>Requested as <span id="type" style="color: teal;"></span></h6>
+			</div>
+		</div>
+		
+		
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
 <div class="theme-layout">
 	
 	<div class="responsive-header">
@@ -80,6 +111,9 @@
 						<a href="#" title=""><span class="status f-online"></span>online</a>
 						<a href="#" title=""><span class="status f-away"></span>away</a>
 						<a href="#" title=""><span class="status f-off"></span>offline</a>
+						<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+						<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
 					</div>
 				</div>
 			</div>
@@ -91,7 +125,7 @@
 	
 
 	<section>
-		<div class="gap gray-bg" style="padding-top:2%;padding-bottom:2% !important;">
+		<div class="gap gray-bg" style="padding-top:2%;">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
@@ -131,191 +165,213 @@
 											</li>
 										</ul>
 									</div>
-									
+									<div class="widget">
+										<h4 class="widget-title">Who's follownig</h4>
+										<ul class="followers">
+
+										</ul>
+									</div><!-- who's following -->
 									
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
 								<div class="central-meta">
-									<div class="messages">
-										<h5 class="f-title"><i class="ti-bell"></i>All Messages <span class="more-options"><i class="fa fa-ellipsis-h"></i></span></h5>
-										<div class="message-box">
-											<ul class="peoples" id="messagebox">
-												
-												<li>
+									<div class="frnds">
+										<ul class="nav nav-tabs" style="font-size: 16px;">
+											 <li class="nav-item" ><a class="active" href="#user-requests" data-toggle="tab">User Requests</a> </li>
+											 <!-- <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Friend Requests</a></li>
+											 <li class="nav-item"><a class="" href="#my-requests" data-toggle="tab">My Requests</a></li> -->
+											 
+											 																																								
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											
+										  <div class="tab-pane active fade show" id="user-requests" style="padding-top: 5%;">
 													
-													<figure>
-														<img src="images/resources/friend-avatar2.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>Molly cyrus</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar3.jpg" alt="">
-														<span class="status f-away"></span>
-													</figure>
-													<div class="people-name">
-														<span>Andrew</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure>
-														<img src="images/resources/friend-avatar.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													
-													<div class="people-name">
-														<span>jason bourne</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar4.jpg" alt="">
-														<span class="status off-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>Sarah Grey</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar5.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>bill doe</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar6.jpg" alt="">
-														<span class="status f-away"></span>
-													</figure>
-													<div class="people-name">
-														<span>shen cornery</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar7.jpg" alt="">
-														<span class="status off-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>kill bill</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar8.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>jasmin walia</span>
-													</div>
-												</li>
-												<li>
-													
-													<figure><img src="images/resources/friend-avatar6.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>neclos cage</span>
-													</div>
-												</li>
-											</ul>
-											<div class="peoples-mesg-box">
-												<div class="conversation-head">
-													<figure><img src="images/resources/friend-avatar.jpg" alt=""></figure>
-													<span>jason bourne <i>online</i></span>
-												</div>
-												<ul class="chatting-area">
-													<li class="you">
-														<figure><img src="images/resources/userlist-2.jpg" alt=""></figure>
-														<p>what's liz short for? :)</p>
-													</li>
-													<li class="me">
-														<figure><img src="images/resources/userlist-1.jpg" alt=""></figure>
-														<p>Elizabeth lol</p>
-													</li>
-													<li class="me">
-														<figure><img src="images/resources/userlist-1.jpg" alt=""></figure>
-														<p>wanna know whats my second guess was?</p>
-													</li>
-													<li class="you">
-														<figure><img src="images/resources/userlist-2.jpg" alt=""></figure>
-														<p>yes</p>
-													</li>
-													<li class="me">
-														<figure><img src="images/resources/userlist-1.jpg" alt=""></figure>
-														<p>Disney's the lizard king</p>
-													</li>
-													<li class="me">
-														<figure><img src="images/resources/userlist-1.jpg" alt=""></figure>
-														<p>i know him 5 years ago</p>
-													</li>
-													<li class="you">
-														<figure><img src="images/resources/userlist-2.jpg" alt=""></figure>
-														<p>coooooooooool dude ;)</p>
-													</li>
-												</ul>
-												<div class="message-text-container">
-													<form method="post">
-														<textarea></textarea>
-														<button title="send"><i class="fa fa-paper-plane"></i></button>
-													</form>
-												</div>
+													<ul class="nearby-contct" id="userspendinglist">
+                                                        
+													</ul>
 											</div>
+											<!-- followers list -->
+											<div class="tab-pane fade" id="user-pending-requests" style="padding-top: 5%;">
+												<ul class="nearby-contct" id="friendfollowerslist">
+													
+												</ul>
+											</div>
+											<!-- following list -->
+
+
 										</div>
 									</div>
 								</div>	
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
-								<aside class="sidebar" >
+								<aside class="sidebar static stick" >
 									
-									<div class="widget" >
-										<h4 class="widget-title">Who's follownig</h4>
-										<ul class="followers" style="max-height:350px !important;">
+									<div class="widget friend-list stick-widget">
+										<h4 class="widget-title">Friends</h4>
+										<div id="searchDir"></div>
+										<ul id="people-list" class="friendz-list">
 											<li>
-												<figure><img src="images/resources/friend-avatar2.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
+												<figure>
+													<img src="images/resources/friend-avatar.jpg" alt="">
+													<span class="status f-online"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">bucky barnes</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6b1afa8b2a3b4b5a9aaa2a3b486a1aba7afaae8a5a9ab">[email&#160;protected]</a></i>
 												</div>
 											</li>
 											<li>
-												<figure><img src="images/resources/friend-avatar4.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Issabel</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
+												<figure>
+													<img src="images/resources/friend-avatar2.jpg" alt="">
+													<span class="status f-away"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">Sarah Loren</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82e0e3f0ece7f1c2e5efe3ebeeace1edef">[email&#160;protected]</a></i>
 												</div>
 											</li>
 											<li>
-												<figure><img src="images/resources/friend-avatar6.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Andrew</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
+												<figure>
+													<img src="images/resources/friend-avatar3.jpg" alt="">
+													<span class="status f-off"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">jason borne</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f050e1c00010d2f08020e0603410c0002">[email&#160;protected]</a></i>
 												</div>
 											</li>
 											<li>
-												<figure><img src="images/resources/friend-avatar8.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Sophia</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
+												<figure>
+													<img src="images/resources/friend-avatar4.jpg" alt="">
+													<span class="status f-off"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">Cameron diaz</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="147e75677b7a76547379757d783a777b79">[email&#160;protected]</a></i>
 												</div>
 											</li>
 											<li>
-												<figure><img src="images/resources/friend-avatar3.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Allen</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
+												
+												<figure>
+													<img src="images/resources/friend-avatar5.jpg" alt="">
+													<span class="status f-online"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">daniel warber</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="640e05170b0a06240309050d084a070b09">[email&#160;protected]</a></i>
+												</div>
+											</li>
+											<li>
+												
+												<figure>
+													<img src="images/resources/friend-avatar6.jpg" alt="">
+													<span class="status f-away"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">andrew</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d3b9b2a0bcbdb193b4beb2babffdb0bcbe">[email&#160;protected]</a></i>
+												</div>
+											</li>
+											<li>
+												
+												<figure>
+													<img src="images/resources/friend-avatar7.jpg" alt="">
+													<span class="status f-off"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">amy watson</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deb4bfadb1b0bc9eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></i>
+												</div>
+											</li>
+											<li>
+												
+												<figure>
+													<img src="images/resources/friend-avatar5.jpg" alt="">
+													<span class="status f-online"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">daniel warber</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bbd1dac8d4d5d9fbdcd6dad2d795d8d4d6">[email&#160;protected]</a></i>
+												</div>
+											</li>
+											<li>
+												
+												<figure>
+													<img src="images/resources/friend-avatar2.jpg" alt="">
+													<span class="status f-away"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="time-line.html">Sarah Loren</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff9d9e8d919a8cbf98929e9693d19c9092">[email&#160;protected]</a></i>
 												</div>
 											</li>
 										</ul>
-									</div><!-- who's following -->
+										<div class="chat-box">
+											<div class="chat-head">
+												<span class="status f-online"></span>
+												<h6>Bucky Barnes</h6>
+												<div class="more">
+													<span><i class="ti-more-alt"></i></span>
+													<span class="close-mesage"><i class="ti-close"></i></span>
+												</div>
+											</div>
+											<div class="chat-list">
+												<ul>
+													<li class="me">
+														<div class="chat-thumb"><img src="images/resources/chatlist1.jpg" alt=""></div>
+														<div class="notification-event">
+															<span class="chat-message-item">
+																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
+															</span>
+															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
+														</div>
+													</li>
+													<li class="you">
+														<div class="chat-thumb"><img src="images/resources/chatlist2.jpg" alt=""></div>
+														<div class="notification-event">
+															<span class="chat-message-item">
+																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
+															</span>
+															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
+														</div>
+													</li>
+													<li class="me">
+														<div class="chat-thumb"><img src="images/resources/chatlist1.jpg" alt=""></div>
+														<div class="notification-event">
+															<span class="chat-message-item">
+																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
+															</span>
+															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
+														</div>
+													</li>
+												</ul>
+												<form class="text-box">
+													<textarea placeholder="Post enter to post..."></textarea>
+													<div class="add-smiles">
+														<span title="add icon" class="em em-expressionless"></span>
+													</div>
+													<div class="smiles-bunch">
+														<i class="em em---1"></i>
+														<i class="em em-smiley"></i>
+														<i class="em em-anguished"></i>
+														<i class="em em-laughing"></i>
+														<i class="em em-angry"></i>
+														<i class="em em-astonished"></i>
+														<i class="em em-blush"></i>
+														<i class="em em-disappointed"></i>
+														<i class="em em-worried"></i>
+														<i class="em em-kissing_heart"></i>
+														<i class="em em-rage"></i>
+														<i class="em em-stuck_out_tongue"></i>
+													</div>
+													<button type="submit"></button>
+												</form>
+											</div>
+										</div>
+									</div><!-- friends list sidebar -->
 									
 								</aside>
 							</div><!-- sidebar -->
@@ -325,7 +381,7 @@
 			</div>
 		</div>	
 	</section>
-
+    
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -474,41 +530,12 @@
 				</div>
 			</form>
 		</div><!-- side panel -->		
-		<script>
-			var userData=JSON.parse(localStorage.getItem("userData"))
-			if(userData.email=="admin@gmail.com")
-			{
-				$(".user-setting").append(
-					`<a href="admin.html"><i class="ti-user">Admin</i></a>
-					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-			else if(userData.role=="Parent")
-			{
-				$(".user-setting").append(
-					`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
-					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-			else{
-				$(".user-setting").append(
-					`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-		</script>
+	
 	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
-	<script src="js/map-init.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
-    <script src="js/main.min.js"></script>
-	<script src="./myjs/chat/chatDragula.js"></script>
-
+	<script src="myjs/admin/admin.js"></script>
+	<!-- <script src="./myjs/timeline-friendsdragula.js"></script> -->
+	<!-- need to add dragula -->
 </body>	
 
 

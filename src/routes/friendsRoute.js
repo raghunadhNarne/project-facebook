@@ -2,6 +2,7 @@ const friendsRouter = require('express').Router()
 const friendsController=require('../controllers/friendsController')
 
 friendsRouter.post('/addfriend',friendsController.addFriend)
+
 //friend requests tab
 friendsRouter.post('/getpendingfriendrequests',friendsController.getPendingFriendRequests)
 friendsRouter.post('/acceptpendingfriendrequest',friendsController.justAcceptPendingFriendRequests);

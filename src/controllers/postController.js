@@ -21,10 +21,9 @@ const { addNewTextPost, addNewFilePost } = require("../utils/Postutils");
 
 async function createNewTextPost(req,res){
     let postData = req.body;
-    let userData = res.locals.user;
     let result = {};
-    // console.log(postData);
-    result = await addNewTextPost(postData.userEmail,postData,userData);
+    console.log("hi",postData);
+    result = await addNewTextPost(postData.userEmail,postData);
 
     res.send(result);
 }
@@ -33,10 +32,9 @@ async function createNewTextPost(req,res){
 async function createNewFilePost(req,res){
     // console.log(req.file);
     let postData = req.body;
-    let userData = res.locals.user;
     let multerFileName = req.file.path;
     let result = {};
-    result = await addNewFilePost(postData.userEmail,postData,userData,multerFileName);
+    result = await addNewFilePost(postData.userEmail,postData,multerFileName);
 
     res.send(result);
 }

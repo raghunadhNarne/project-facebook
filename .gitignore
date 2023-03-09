@@ -1,2 +1,9 @@
-node_modules
+node_modules/
 .env
+src/multer/images/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.mp4

@@ -21,6 +21,10 @@ app.use(function(req, res, next) {
   });
 
 
+// const authRouter = require('./auth/authRoute');
+// app.use('/auth',authRouter);
+
+
 const { upload } = require('./multer/multerConfig');
 
 
@@ -39,7 +43,8 @@ app.use('/post',postRouter);
 const friendsRouter=require('./routes/friendsRoute')
 app.use('/friends',friendsRouter)
 
-
+const userRouter=require('./routes/userRoute')
+app.use('/users',userRouter)
 
 
 // let userRoutes = ["/login"];

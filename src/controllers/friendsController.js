@@ -1,4 +1,6 @@
+
 const { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,myFollowing,unfollowFriend,searchFriends } = require('../utils/friendsUtils')
+
 
 
 async function addFriend(req,res)
@@ -75,3 +77,4 @@ async function justSearchFriends(req,res)
 }
 
 module.exports={addFriend,getPendingFriendRequests,justAcceptPendingFriendRequests,justRejectPendingFriendRequests,getAcceptedFriendRequests,justRemoveFriend,getMyFriendRequests,justRevokeFriendRequest,getFollowers,getMyFollowing,justUnfollowFriend,justSearchFriends}
+

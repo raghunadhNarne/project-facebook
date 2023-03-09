@@ -16,6 +16,7 @@
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
 <body>
@@ -78,13 +79,10 @@
 						<a href="#" title=""><span class="status f-online"></span>online</a>
 						<a href="#" title=""><span class="status f-away"></span>away</a>
 						<a href="#" title=""><span class="status f-off"></span>offline</a>
-						<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-						<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
+						
 					</div>
 				</div>
 			</div>
-			
 			<!-- <span class="ti-menu main-menu" data-ripple=""></span> -->
 		</div>
 	</div><!-- topbar -->
@@ -210,7 +208,7 @@
 											<img src="images/resources/admin2.jpg" alt="">
 										</figure>
 										<div class="newpst-input">
-											<form method="post" name="newPost" id="newPost">
+											<form enctype="multipart/form-data" method="POST" name="newPost" id="newPost">
 												<textarea rows="2" placeholder="write something" name="text" id="text"></textarea>
 												<div class="attachments">
 													<ul>
@@ -1233,11 +1231,40 @@
 			</form>
 		</div><!-- side panel -->		
 	
+	<script>
+		var userData=JSON.parse(localStorage.getItem("userData"))
+		if(userData.email=="admin@gmail.com")
+		{
+			$(".user-setting").append(
+				`<a href="admin.html"><i class="ti-user">Admin</i></a>
+				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+		else if(userData.role=="Parent")
+		{
+			$(".user-setting").append(
+				`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
+				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+		else{
+			$(".user-setting").append(
+				`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+	</script>
 	<!-- <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script> -->
-	<!-- <script src="js/script.js"></script> -->
+	<script src="js/script.js"></script>
 	<!-- <script src="js/map-init.js"></script> -->
 	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script> -->
 	<script src="./myjs/index/indexDragula.js"></script>
+	<script src="./myjs/index/createPost.js"></script>
 
 </body>	
 

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/responsive.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script>
 </head>
 <body>
@@ -90,15 +91,15 @@
 	
 	<section>
 		<div class="feature-photo">
-			<figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
+			<figure><img src="images/resources/timeline-1.jpg" alt="" id="cover-photo" style="width: 100vw;height: 65vh;"></figure>
 			<div class="add-btn">
 				<span>1205 followers</span>
 			</div>
-			<form class="edit-phto">
+			<form class="edit-phto" >
 				<i class="fa fa-camera-retro"></i>
 				<label class="fileContainer">
 					Edit Cover Photo
-				<input type="file"/>
+				<input type="file" id="cover"/>
 				</label>
 			</form>
 			<div class="container-fluid">
@@ -106,12 +107,12 @@
 					<div class="col-lg-2 col-sm-3">
 						<div class="user-avatar">
 							<figure>
-								<img src="images/resources/user-avatar.jpg" alt="">
-								<form class="edit-phto">
+								<img src="images/resources/user-avatar.jpg" alt="" id="profile-photo" style="height: 35vh;">
+								<form class="edit-phto"  enctype="multipart/form-data">
 									<i class="fa fa-camera-retro"></i>
 									<label class="fileContainer">
 										Edit Display Photo
-										<input type="file"/>
+										<input type="file" name="image" id="profile"/>
 									</label>
 								</form>
 							</figure>
@@ -121,7 +122,7 @@
 						<div class="timeline-info">
 							<ul>
 								<li class="admin-name">
-								  <h5>Janice Griffith</h5>
+								  <h5 id="name">Janice Griffith</h5>
 								</li>
 									<li class="facebook">
 										<a title="" href="#"><i class="fa fa-facebook"></i> <span>facebook</span> </a>
@@ -199,7 +200,7 @@
 											</li>
 											<li>
 												<i class="ti-lock"></i>
-												<a href="edit-password.html" title="">change password</a>
+												<a href="editPassword.html" title="">change password</a>
 											</li>
 										</ul>
 									</div>
@@ -211,113 +212,45 @@
 									<div class="editing-info">
 										<h5 class="f-title"><i class="ti-info-alt"></i> Edit Basic Information</h5>
 
-										<form method="post">
+										<form method="post" enctype="multipart/form-data" id="updateuserdata">
 											<div class="form-group half">	
-											  <input type="text" id="input" required="required"/>
+											  <input type="text" id="firstName" required="required"/>
 											  <label class="control-label" for="input">First Name</label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-group half">	
-											  <input type="text" required="required"/>
+											  <input type="text" required="required" id="lastName"/>
 											  <label class="control-label" for="input">Last Name</label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-group">	
-											  <input type="text" required="required"/>
+											  <input type="text" required="required" id="email" readonly/>
 											  <label class="control-label" for="input"><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b0e262a22270b">[email&#160;protected]</a></label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-group">	
-											  <input type="text" required="required"/>
+											  <input type="text" required="required" id="mobileNo"/>
 											  <label class="control-label" for="input">Phone No.</label><i class="mtrl-select"></i>
 											</div>
 											<div class="dob">
-												<div class="form-group">
-													<select>
-														<option value="Day">Day</option>
-														  <option>1</option>
-														  <option>2</option>
-														  <option>3</option>
-														  <option>4</option>
-														  <option>5</option>
-														  <option>6</option>
-														  <option>7</option>
-														  <option>8</option>
-														  <option>9</option>
-														  <option>10</option>
-														  <option>11</option>
-														  <option>12</option>
-														  <option>13</option>
-														  <option>14</option>
-														  <option>15</option>
-														  <option>16</option>
-														  <option>17</option>
-														  <option>18</option>
-														  <option>19</option>
-														  <option>20</option>
-														  <option>21</option>
-														  <option>22</option>
-														  <option>23</option>
-														  <option>24</option>
-														  <option>25</option>
-														  <option>26</option>
-														  <option>27</option>
-														  <option>28</option>
-														  <option>29</option>
-														  <option>30</option>
-														  <option>31</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<select>
-														<option value="month">Month</option>
-														  <option>Jan</option>
-														  <option>Feb</option>
-														  <option>Mar</option>
-														  <option>Apr</option>
-														  <option>May</option>
-														  <option>Jun</option>
-														  <option>Jul</option>
-														  <option>Aug</option>
-														  <option>Sep</option>
-														  <option>Oct</option>
-														  <option>Nov</option>
-														  <option>Dec</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<select>
-													  <option value="year">Year</option>
-													  <option>2000</option>
-													  <option>2001</option>
-													  <option>2002</option>
-													  <option>2004</option>
-													  <option>2005</option>
-													  <option>2006</option>
-													  <option>2007</option>
-													  <option>2008</option>
-													  <option>2009</option>
-													  <option>2010</option>
-													  <option>2011</option>
-													  <option>2012</option>
-													</select>
-												</div>
+												<input type="date" required="required" id="dob" value="2000-05-05"/>
+											  <label class="control-label" for="input">Date of Birth</label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-radio">
 											  <div class="radio">
 												<label>
-												  <input type="radio" checked="checked" name="radio"><i class="check-box"></i>Male
+												  <input type="radio" name="radio" value="Male"><i class="check-box"></i>Male
 												</label>
 											  </div>
 											  <div class="radio">
 												<label>
-												  <input type="radio" name="radio"><i class="check-box"></i>Female
+												  <input type="radio" name="radio" value="Female"><i class="check-box"></i>Female
 												</label>
 											  </div>
 											</div>
 											<div class="form-group">	
-											  <input type="text" required="required"/>
+											  <input type="text" required="required" id="city"/>
 											  <label class="control-label" for="input">City</label><i class="mtrl-select"></i>
 											</div>
 											<div class="form-group">	
-											  <select>
+											  <select id="country">
 												<option value="country">Country</option>
 												  <option value="AFG">Afghanistan</option>
 												  <option value="ALA">Ƭand Islands</option>
@@ -571,12 +504,12 @@
 											  </select>
 											</div>
 											<div class="form-group">	
-											  <textarea rows="4" id="textarea" required="required"></textarea>
+											  <textarea rows="4" id="aboutMe" required="required"></textarea>
 											  <label class="control-label" for="textarea">About Me</label><i class="mtrl-select"></i>
 											</div>
 											<div class="submit-btns">
 												<button type="button" class="mtr-btn"><span>Cancel</span></button>
-												<button type="button" class="mtr-btn"><span>Update</span></button>
+												<button type="button" class="mtr-btn" id="update"><span>Update</span></button>
 											</div>
 										</form>
 									</div>
@@ -858,9 +791,37 @@
 				</div>
 			</form>
 		</div><!-- side panel -->		
-	
+		<script>
+			var userData=JSON.parse(localStorage.getItem("userData"))
+			if(userData.email=="admin@gmail.com")
+			{
+				$(".user-setting").append(
+					`<a href="admin.html"><i class="ti-user">Admin</i></a>
+					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+				)
+			}
+			else if(userData.role=="Parent")
+			{
+				$(".user-setting").append(
+					`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
+					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+				)
+			}
+			else{
+				$(".user-setting").append(
+					`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+				)
+			}
+		</script>
 	<script src="js/script.js"></script>
 	<script src="./myjs/editProfile/editProfileDragula.js"></script>
+	<script src="./myjs/editProfile/editProfile.js"></script>
 
 </body>	
 
