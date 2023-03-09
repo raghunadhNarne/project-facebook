@@ -8,8 +8,7 @@ async function validateCredentials({email,password}){
     } 
 
     try{
-        let userData = await userModel.findOne({email:email},{_id:0});
-        console.log("userData",userData)
+        let userData = await userModel.findOne({email:email,status:"accept"},{_id:0});
 
         if(userData ==  undefined){
             result.message = "user not exist"

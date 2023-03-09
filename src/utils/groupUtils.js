@@ -93,29 +93,30 @@ async function getGlobalGroups(groupDetails) {
     try {
         let data = await groupModel.aggregate([
             {
-                $group:{
-                    _id:{
-                        groupName : "$groupName",
-                        groupOwnerEmail : "$groupOwnerEmail",
-                        groupOwnerName : "$groupOwnerEmail",
-                        groupOwnerPic : "$groupOwnerPic",
-                        groupPic : "$groupPic",
+                $group: {
+                    _id: {
+                        groupName: "$groupName",
+                        groupOwnerEmail: "$groupOwnerEmail",
+                        groupOwnerName: "$groupOwnerEmail",
+                        groupOwnerPic: "$groupOwnerPic",
+                        groupPic: "$groupPic",
                     },
-                    senderEmails : {$push: "$senderEmail"}
+                    senderEmails: { $push: "$senderEmail" }
                 }
             },
             {
-                $match :{
-                    senderEmails :{$ne :"rohith@gmail.com"}
+                $match: {
+                    senderEmails: { $ne: groupDetails.email },
+                    "_id.groupName": {$regex : groupDetails.input , $options : "i"}
                 }
             },
             {
-                $project :{
-                    senderEmails : 0
+                $project: {
+                    senderEmails: 0
                 }
             }
         ])
-        if (data.length != 0) {
+        if (data.length != 0 && groupDetails.input.length!=0) {
             result.success = true;
             result.message = "successfully fetched the groups";
             result.data = data;
@@ -131,13 +132,13 @@ async function getGlobalGroups(groupDetails) {
 }
 
 
-async function joinGrpRequest(requiredDetails){
+async function joinGrpRequest(requiredDetails) {
     let result = {
         success: false,
         message: "",
         data: ""
     }
-    try{
+    try {
         let newGroupRequest = new groupModel({
             groupName: requiredDetails.groupName,
             groupPic: requiredDetails.groupPic,
@@ -150,75 +151,75 @@ async function joinGrpRequest(requiredDetails){
             status: requiredDetails.status
         })
         let data = await newGroupRequest.save();
-        result.success=true;
-        result.message="Successfully sent a group request";
+        result.success = true;
+        result.message = "Successfully sent a group request";
 
     }
-    catch(e){
-        result.message="Unable to send the rewuest";
+    catch (e) {
+        result.message = "Unable to send the rewuest";
     }
     return result;
 }
 
 
-async function getGroupsOfMe(requiredDetails){
+async function getGroupsOfMe(requiredDetails) {
     let result = {
         success: false,
         message: "",
         data: ""
     }
-    try{
-        let data = await groupModel.find({groupOwnerEmail:requiredDetails.email,senderEmail:requiredDetails.email});
+    try {
+        let data = await groupModel.find({ groupOwnerEmail: requiredDetails.email, senderEmail: requiredDetails.email });
         result.success = true;
         result.message = "successfully fetched your groups";
         result.data = data;
     }
-    catch(e){
+    catch (e) {
         result.message = "Unable to fetch the groups";
     }
     return result;
 }
 
 
-async function getSpecificGroupRequests(requiredDetails){
+async function getSpecificGroupRequests(requiredDetails) {
     let result = {
         success: false,
         message: "",
         data: ""
     }
-    try{
-        let data = await groupModel.find({status:requiredDetails.status,groupOwnerEmail:requiredDetails.email,groupName:requiredDetails.groupName});
+    try {
+        let data = await groupModel.find({ status: requiredDetails.status, groupOwnerEmail: requiredDetails.email, groupName: requiredDetails.groupName });
         result.success = true;
         result.message = "Successfully fetched the group requests";
         result.data = data;
     }
-    catch(e){
+    catch (e) {
         result.message = "Unabled to fetch the group requests";
     }
     return result;
 }
 
 
-async function takeActionOnGroupRequest(requiredDetails){
+async function takeActionOnGroupRequest(requiredDetails) {
     let result = {
         success: false,
         message: "",
         data: ""
     }
-    try{
-        if(requiredDetails.status == "accept"){
-            let data = await groupModel.updateOne({groupOwnerEmail:requiredDetails.email,senderEmail:requiredDetails.senderEmail,groupName:requiredDetails.groupName},{$set:{status:requiredDetails.status}});
+    try {
+        if (requiredDetails.status == "accept") {
+            let data = await groupModel.updateOne({ groupOwnerEmail: requiredDetails.email, senderEmail: requiredDetails.senderEmail, groupName: requiredDetails.groupName }, { $set: { status: requiredDetails.status } });
         }
-        else{
-            let data = await groupModel.deleteOne({groupOwnerEmail:requiredDetails.email,senderEmail:requiredDetails.senderEmail,groupName:requiredDetails.groupName});
+        else {
+            let data = await groupModel.deleteOne({ groupOwnerEmail: requiredDetails.email, senderEmail: requiredDetails.senderEmail, groupName: requiredDetails.groupName });
         }
         result.success = true;
         result.message = `Successfully ${requiredDetails.status}ed  request`
     }
-    catch(e){
+    catch (e) {
         result.message = "Unable to take on the request";
     }
     return result;
 }
 
-module.exports = { makeGroup, fetchMyGroups, leaveFromGroup, getGlobalGroups, joinGrpRequest,getGroupsOfMe,getSpecificGroupRequests,takeActionOnGroupRequest}
+module.exports = { makeGroup, fetchMyGroups, leaveFromGroup, getGlobalGroups, joinGrpRequest, getGroupsOfMe, getSpecificGroupRequests, takeActionOnGroupRequest }

@@ -1,4 +1,5 @@
 const { friendsModel }=require('../models/friendsModel')
+const { userModel } = require('../models/userModel')
 
 
 async function addNewFriend(obj)
@@ -253,5 +254,50 @@ async function unfollowFriend(obj)
     return result;
 }
 
+async function searchFriends(obj)
+{
+    // obj=JSON.parse(obj)
+    // console.log(obj)
+    let result = {
+        success : false,
+        message : "",
+        data : ""
+    }
+    try{
+        let data = await friendsModel.find({
+            $or:[
+                {"receiverEmail":obj.email},
+                {"senderEmail":obj.email}
+            ]
+        },
+        {
+            _id:0,
+            senderEmail:1,
+            receiverEmail:1
+        })
+        let arr=[]
+        for(x in data)
+        {
+            if(data[x].receiverEmail==obj.email) arr.push(data[x].senderEmail)
+            else arr.push(data[x].receiverEmail)
+        }
+        arr.push(obj.email)
+        // let str="/"+obj.firstName+"/"
+        // console.log(str)
+        if(obj.firstName.length>0)
+        data = await userModel.find({email:{$nin:arr},firstName:{"$regex":obj.firstName,"$options":"i"}})
+        result.success=true;
+        result.message="successfully searched the friend";
+        result.data=data;
+    }
+    catch(e)
+    {
+        result.message="error to search friend"
+    }
+    return result;
+}
 
-module.exports = { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,myFollowing,unfollowFriend }
+
+module.exports = { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,myFollowing,unfollowFriend,searchFriends }
+
+

@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="css/responsive.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js'></script>
 </head>
 
@@ -91,9 +92,6 @@
 							<a href="#" title=""><span class="status f-online"></span>online</a>
 							<a href="#" title=""><span class="status f-away"></span>away</a>
 							<a href="#" title=""><span class="status f-off"></span>offline</a>
-							<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-							<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-							<a href="#" title=""><i class="ti-power-off"></i>log out</a>
 						</div>
 					</div>
 				</div>
@@ -196,13 +194,13 @@
 									<div class="central-meta">
 										<div class="frnds">
 											<ul class="nav nav-tabs">
-												<li class="nav-item"><a class="active" href="#mygrps"
+												<li class="nav-item"><a class="active" id="mygrpstab" href="#mygrps"
 														data-toggle="tab">My Groups</a></li>
-												<li class="nav-item"><a class="" href="#grp-req" data-toggle="tab">Group
+												<li class="nav-item"><a class="" id="grprequeststab" href="#grp-req" data-toggle="tab">Group
 														Requests</a></li>
-												<li class="nav-item"><a class="" href="#search-grps"
+												<li class="nav-item"><a class="" id="searchgrpstab" href="#search-grps"
 														data-toggle="tab">Search Groups</a></li>
-												<li class="nav-item"><a class="" href="#create-grp"
+												<li class="nav-item"><a class="" id="creategrpstab" href="#create-grp"
 														data-toggle="tab">Create Group</a></li>
 
 											</ul>
@@ -659,12 +657,40 @@
 			</div>
 		</form>
 	</div><!-- side panel -->
-
+	<script>
+		var userData=JSON.parse(localStorage.getItem("userData"))
+		if(userData.email=="admin@gmail.com")
+		{
+			$(".user-setting").append(
+				`<a href="admin.html"><i class="ti-user">Admin</i></a>
+				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+		else if(userData.role=="Parent")
+		{
+			$(".user-setting").append(
+				`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
+				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+		else{
+			$(".user-setting").append(
+				`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+	</script>
 	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 	<script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="./myjs/groups/group.js"></script>
 	<script src="./myjs/timeline-friendsdragula.js"></script>
+	<script src="./myjs/common/assist.js"></script>
 	<!-- need to add dragula -->
 </body>
 

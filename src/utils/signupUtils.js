@@ -12,6 +12,7 @@ async function userExist(email){
 
 
 async function createUser(userDetails){
+
     let result = {
         success : false,
         message : "",
@@ -22,14 +23,14 @@ async function createUser(userDetails){
 
     if(isUserExist == false){
         let newuser = new userModel({
-            firstName : userDetails.firstName,
-            lastName : userDetails.lastName,
+            firstName : userDetails.body.firstName,
+            lastName : userDetails.body.lastName,
             dob : null,
             age : null,
-            gender : userDetails.gender,
-            email : userDetails.email,
-            mobileNo : userDetails.mobileNo,
-            password : userDetails.password,
+            gender : userDetails.body.gender,
+            email : userDetails.body.email,
+            mobileNo : userDetails.body.mobileNo,
+            password : userDetails.body.password,
             city : null,
             country : null,
             aboutMe : null,
@@ -42,9 +43,14 @@ async function createUser(userDetails){
             googleLink : null,
             notifications : [],
             friendList : [],
-            recentActivity : []
+            recentActivity : [],
+            status:"pending",
+            authfile:userDetails.file.path,
+            requested:userDetails.body.type,
+            parent:null
         });
 
+    
         try{
             let data = await newuser.save();
 

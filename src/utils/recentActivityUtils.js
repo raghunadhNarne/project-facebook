@@ -13,6 +13,7 @@ async function fetchAllRecentActivity(myEmail){
         result.success = true;
         result.message = "successfully fetched recentActivity";
         result.data = data;
+        // console.log("recent activities util",data)
     }
     catch(e){
         result.message = "Unable to fetch recentActivity";
@@ -45,4 +46,27 @@ async function addNewRecentActivity(Activitydata){
     return result;
 }
 
-module.exports = {fetchAllRecentActivity, addNewRecentActivity};
+
+async function createRecentActivityforUser(myEmail){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+        let newUser = new recentActivityModel({
+            email : myEmail,
+            activities : [],
+        })
+        await newUser.save();
+        
+        result.success = true;
+        result.message = `successfully initiated recentactivity record for ${myEmail}`;
+    }
+    catch(e){
+        result.message = `failed to initialize recentactivity record for ${myEmail}`;
+    }
+    return result;
+}
+
+module.exports = {fetchAllRecentActivity, addNewRecentActivity, createRecentActivityforUser};

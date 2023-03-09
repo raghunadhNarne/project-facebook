@@ -5,7 +5,7 @@ const mongoose=require("./conn").mongoose;
 let userSchema = {
     firstName : {type:String},
     lastName : {type:String},
-    dob : {type:Date},
+    dob : {type:String},
     age : {type:Number},
     gender : {type:String},
     email : {type:String},
@@ -28,7 +28,13 @@ let userSchema = {
             name : {type:String},
             action : {type:String}
         }
-    ]
+    ],
+    children:{type:Array},
+    status:{type:String},
+    authfile:{type:String},
+    requested:{type:String},
+    parent:{type:String}
+
 }
 
 

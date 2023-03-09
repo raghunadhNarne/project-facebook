@@ -127,4 +127,22 @@ async function autoGenerateContent(){
     // console.log("result",result.message.slice(3),result.message)
     $("#text").val(result.message);
 }
+
+
+
+    $("#voice").click(()=>{
+    
+        const recognition = new webkitSpeechRecognition();
+        recognition.interimResults = true;
+    
+        recognition.start();
+        
+    
+        recognition.onresult = (event)=>{
+            const transcript = event.results[0][0].transcript;
+            console.log(transcript)
+            $("#text").val(transcript);
+        }
+    })
+
 $("#generateContent").on("click",autoGenerateContent);
