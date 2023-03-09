@@ -1,4 +1,4 @@
-let command = "open my friends search groups group requests create group notifications friends chat friends tab"
+// let command = "open my friends search groups group requests create group notifications friends chat friends tab"
 
 
 // if (command.includes("tab") && command.includes("groups")) {
