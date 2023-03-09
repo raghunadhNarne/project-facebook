@@ -1,8 +1,9 @@
+
 $('#login').on("click", function(e) {
     e.preventDefault();
-  
     var email = $('input[name="email"]').val();
     var password = $('input[name="password"]').val();
+    // console.log(email,password)
     // console.log("here");
     $.ajax({
       url: 'http://localhost:7777/login',
@@ -39,8 +40,55 @@ $('#login').on("click", function(e) {
       },
       error: function() {
         alert('Invalid email or password');
-        setTimeout(function() { window.location.href = 'http://localhost:5500/static/404.html'; }, 1000);
+        // setTimeout(function() { window.location.href = 'http://localhost:5500/static/404.html'; }, 1000);
       }
     });
   });
+
+  $("#submit").click(function()
+  {
+    // alert("hello world")
+     var fname=$("#rfname").val();
+     var lname=$("#rlname").val();
+     var mobileno=$("#rmobileno").val()
+     var email=$("#remail").val()
+     var password=$("#rpassword").val()
+     var gender=$("input[type='radio'][name='radio']:checked").val()
+     var type=$("input[type='radio'][name='type']:checked").val();
+     var authfile=document.getElementById("rfile").files[0]
+
+    //  var userDetails=new FormData();
+    //  userDetails.set('firstName',fname)
+    //  userDetails.set('lastName',lname)
+    //  userDetails.set('mobileNo',mobileno)
+    //  userDetails.set('password',password)
+    //  userDetails.set('gender',gender)
+    //  userDetails.set('type',type)
+    //  userDetails.set('email',email)
+    //  userDetails.set('image',authfile)
+      // alert(userDetails)
+      // console.log(userDetails.get("image"));
+
+      let user = new FormData(document.getElementById("registerForm"))
+      user.set('gender',gender)
+      user.set('type',type)
+      user.set('access',"pending")
+
+
+
+
+
+     $.ajax({
+      method: 'POST',
+      processData: false,
+      url: 'http://localhost:7777/signup',
+      contentType: false,
+      data: user,
+      success: function (data) {
+          // alert(data)
+      }
+  })
+
+  })
   
+ 

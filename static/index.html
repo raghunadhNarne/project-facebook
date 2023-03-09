@@ -99,13 +99,10 @@
 						<a href="#" title=""><span class="status f-online"></span>online</a>
 						<a href="#" title=""><span class="status f-away"></span>away</a>
 						<a href="#" title=""><span class="status f-off"></span>offline</a>
-						<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-						<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
+						
 					</div>
 				</div>
 			</div>
-			
 			<!-- <span class="ti-menu main-menu" data-ripple=""></span> -->
 		</div>
 	</div><!-- topbar -->
@@ -1251,6 +1248,37 @@
 			<!-- <img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg"> -->
 		</div><!-- side panel -->		
 	
+	<script>
+		var userData=JSON.parse(localStorage.getItem("userData"))
+		if(userData.email=="admin@gmail.com")
+		{
+			$(".user-setting").append(
+				`<a href="admin.html"><i class="ti-user">Admin</i></a>
+				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+		else if(userData.role=="Parent")
+		{
+			$(".user-setting").append(
+				`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
+				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+		else{
+			$(".user-setting").append(
+				`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+			)
+		}
+	</script>
+	<!-- <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script> -->
+	<!-- <script src="js/map-init.js"></script> -->
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script> -->
 	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/map-init.js"></script>

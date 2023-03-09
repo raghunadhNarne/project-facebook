@@ -16,12 +16,43 @@
     <link rel="stylesheet" href="css/responsive.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <img src="../src/multer/images/1678209210272-about-img.jpg" alt="" style="height:70vh;width: 100vw;" id="imgurl">
+        </div>
+        <div class="modal-footer" style="justify-content: space-between;">
+		<div style="display: flex;flex-direction: row;justify-content: center;align-items: center;gap: 10px;">
+			<div>
+				<h6>Requested as <span id="type" style="color: teal;"></span></h6>
+			</div>
+		</div>
+		
+		
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
 <div class="theme-layout">
 	
 	<div class="responsive-header">
@@ -80,7 +111,9 @@
 						<a href="#" title=""><span class="status f-online"></span>online</a>
 						<a href="#" title=""><span class="status f-away"></span>away</a>
 						<a href="#" title=""><span class="status f-off"></span>offline</a>
-						<!--  -->
+						<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+						<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
 					</div>
 				</div>
 			</div>
@@ -144,122 +177,30 @@
 							<div class="col-lg-6">
 								<div class="central-meta">
 									<div class="frnds">
-										<ul class="nav nav-tabs" style="font-size: 14px;">
-											 <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">My Friends</a> </li>
-											 <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Friend Requests</a></li>
-											 <li class="nav-item"><a class="" href="#my-requests" data-toggle="tab">My Requests</a></li>
-											 <li class="nav-item"><a class="" href="#search-frnds" data-toggle="tab">Search Friends</a></li>
-											 <li class="nav-item"><a class="" href="#my-following" data-toggle="tab">My following</a></li>
+										<ul class="nav nav-tabs" style="font-size: 16px;">
+											 <li class="nav-item" ><a class="active" href="#user-requests" data-toggle="tab">User Requests</a> </li>
+											 <!-- <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Friend Requests</a></li>
+											 <li class="nav-item"><a class="" href="#my-requests" data-toggle="tab">My Requests</a></li> -->
+											 
 											 																																								
 										</ul>
 										<!-- Tab panes -->
 										<div class="tab-content">
-											<!-- friends data -->
-										  	<div class="tab-pane active fade show " id="frends" >
-												<ul class="nearby-contct" id="friendslist">
-
-												
-												</ul>
-												<div class="lodmore"><button class="btn-view btn-load-more"></button></div>
-											</div>
-											<!-- friend requests data -->
-											<div class="tab-pane fade" id="frends-req" >
-												<ul class="nearby-contct" id="friendrequestlist">
-												<!--  -->
-												</ul>	
-											  <button class="btn-view btn-load-more"></button>
-										  </div>
-										  <div class="tab-pane fade" id="search-frnds" style="padding-top: 5%;">
-													<div
-														style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-														<input type="text" placeholder="Search Groups Here"
-															style="width: 100%;outline:none;font-size:18px;padding-left:8px;"
-															id="friendssearch">
-													</div>
-													<ul class="nearby-contct" id="friendgloballist">
-														<!-- <li class="globalfriends" style="cursor:pointer">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/nearly5.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Mana Ongole</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">Add Friend</a>
-																</div>
-															</div>
-														</li>
-														<li class="globalfriends" style="cursor:pointer">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/nearly5.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Mana Nirmal</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">Add Friend</a>
-																</div>
-															</div>
-														</li>
-														<li class="globalfriends" style="cursor:pointer">
-															<div class="nearly-pepls">
-																<figure>
-																	<a href="time-line.html" title=""><img
-																			src="images/resources/nearly5.jpg"
-																			alt=""></a>
-																</figure>
-																<div class="pepl-info">
-																	<h4><a href="time-line.html" title="">Mana Tirupati</a>
-																	</h4>
-																	<span>ftv model</span>
-																	<a href="#" title="" class="add-butn"
-																		data-ripple="">Add Friend</a>
-																</div>
-															</div>
-														</li> -->
+											
+										  <div class="tab-pane active fade show" id="user-requests" style="padding-top: 5%;">
+													
+													<ul class="nearby-contct" id="userspendinglist">
+                                                        
 													</ul>
-													<button class="btn-view btn-load-more"></button>
 											</div>
 											<!-- followers list -->
-											<div class="tab-pane fade" id="my-followers" style="padding-top: 5%;">
+											<div class="tab-pane fade" id="user-pending-requests" style="padding-top: 5%;">
 												<ul class="nearby-contct" id="friendfollowerslist">
 													
 												</ul>
 											</div>
 											<!-- following list -->
-											<div class="tab-pane fade" id="my-following" style="padding-top: 5%;">
-												<ul class="nearby-contct" id="friendfollowinglist" style="margin: 0px;">
-													
-												</ul>
-											</div>
-											<div class="tab-pane fade" id="my-requests" style="padding-top: 5%;">
-												<ul class="nearby-contct" id="myrequestlist" style="margin: 0px;">
-													<!-- <li style="cursor:pointer">
-														<div class="nearly-pepls">
-															<figure>
-																<a href="time-line.html" title=""><img
-																		src="images/resources/nearly4.jpg"
-																		alt=""></a>
-															</figure>
-															<div class="pepl-info">
-																<h4><a href="time-line.html" title="">Kohli</a>
-																</h4>
-																<span>Cricketer</span>
-																<a href="#" title="" class="add-butn"
-																	data-ripple="" onclick="deletefriend('${data[x].senderEmail}','${data[x].receiverEmail}')">Revoke Request</a>
-															</div>
-														</div>
-													</li> -->
-												</ul>
-											</div>
+
 
 										</div>
 									</div>
@@ -440,7 +381,7 @@
 			</div>
 		</div>	
 	</section>
-
+    
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -589,37 +530,10 @@
 				</div>
 			</form>
 		</div><!-- side panel -->		
-		<script>
-			var userData=JSON.parse(localStorage.getItem("userData"))
-			if(userData.email=="admin@gmail.com")
-			{
-				$(".user-setting").append(
-					`<a href="admin.html"><i class="ti-user">Admin</i></a>
-					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-			else if(userData.role=="Parent")
-			{
-				$(".user-setting").append(
-					`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
-					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-			else{
-				$(".user-setting").append(
-					`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-		</script>
+	
 	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
-	<script src="myjs/friendRequests/friend.js"></script>
+	<script src="myjs/admin/admin.js"></script>
 	<!-- <script src="./myjs/timeline-friendsdragula.js"></script> -->
 	<!-- need to add dragula -->
 </body>	
