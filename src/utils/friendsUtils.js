@@ -286,8 +286,10 @@ async function searchFriends(obj)
         // console.log(str)
         if(obj.firstName.length>0)
         data = await userModel.find({email:{$nin:arr},firstName:{"$regex":obj.firstName,"$options":"i"}})
+
         result.success=true;
         result.message="successfully searched the friend";
+        if(obj.firstName.length>0)
         result.data=data;
     }
     catch(e)

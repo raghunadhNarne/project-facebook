@@ -1,4 +1,5 @@
 window.onload=async function(){
+    
     var userData=JSON.parse(localStorage.getItem("userData"));
 
     let update_data = await $.post("http://localhost:7777/users/getsingleuser",{email:userData.email})
@@ -20,7 +21,10 @@ window.onload=async function(){
     $("#country").val(userData.country)
     $("#aboutMe").val(userData.aboutMe)
     if(userData.profilePic!=null)
+    {
         $("#profile-photo").attr('src',"../"+userData.profilePic)
+    }
+        
     if(userData.coverPic!=null)
         $("#cover-photo").attr('src',"../"+userData.coverPic)
 
