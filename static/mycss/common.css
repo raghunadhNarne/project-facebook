@@ -32,14 +32,13 @@
 
 
 .showpopup {
+    display: block;
     border: 1px solid #088DCD;
     padding: 20px;
     background-color: white;
     color: black;
-    z-index: 100;
     position: fixed;
-    /* transform: translate(1%, -30%); */
-    padding: 20px;
+    top: 190px;
     box-shadow: 1px 1px solid grey;
     width: 665px;
     height: 200px;

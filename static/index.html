@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
-	<link rel="stylesheet" href="./mycss/common.css">
+    <link rel="stylesheet" href="./mycss/common.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /><script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script> -->
@@ -216,6 +216,12 @@
 												<textarea rows="2" placeholder="write something" name="text" id="text"></textarea>
 												<div class="attachments">
 													<ul>
+														<!-- <li>
+															<i class="fa fa-music"></i>
+															<label class="fileContainer">
+																<input type="file">
+															</label>
+														</li> -->
 														<li>
 															<i class="fa fa-image"></i>
 															<label class="fileContainer">
@@ -235,10 +241,7 @@
 															</label>
 														</li> -->
 														<li>
-															<div> <i class="fa fa-microphone" id="voice"></i> </div>
-														</li>
-														<li>
-															<div class="btn btn-primary" name="generateContent" id="generateContent" style="background-color: #088DCD;">Generate Content</div>
+															<div class="btn btn-primary" name="generateContent" id="generateContent">Generate Content</div>
 														</li>
 														<li>
 															<button type="submit" name="addPost" id="addPost">Post</button>
@@ -252,7 +255,7 @@
 								<div class="loadMore" id="loadMore">
 								
 								</div>
-								<div id="popup" class="showpopup">
+								<div id="popup" class="closepopup">
 									<div style="display: flex;flex-direction: column;">
 										<div class="container" id="waves" style="margin: auto;">
 											<div class="circle delay1"></div>
