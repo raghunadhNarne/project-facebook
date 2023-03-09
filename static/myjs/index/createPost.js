@@ -68,6 +68,29 @@ $('#newPost').on('submit', async function(event) {
     // console.log("form data: ",formData.get("image").name == "");
 
 
+
+    //sanitize post text
+    try{
+        obj = {
+            postText : formData.get("text")
+        }
+        // console.log("text",obj);
+        let result = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", obj);
+
+        let cleanedDOM = result.cleanedDOM;
+        let removedDOM = result.removedDOM;
+
+        //change the content of text in form data
+        formData.set("text",cleanedDOM.toString());
+        console.log("after sanitizing: ",cleanedDOM);
+        alert(`sorry bro these data from your text is removed: ${JSON.stringify(removedDOM)}`)
+    }
+    catch(e){
+        alert("sanitizing post text failed: " + e);
+    }
+
+
+
     if(formData.get("image").name == "" && formData.get("video").name == ""){
         formData.set("postType","text")
         let postData = {};
