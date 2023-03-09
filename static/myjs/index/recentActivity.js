@@ -1,19 +1,7 @@
-$("#activitiez").append(
-    `<li>
-        <div class="activity-meta">
-            <i>10 hours Ago</i>
-            <span><a href="#" title="">Commented on Video posted </a></span>
-            <h6>by <a href="time-line.html">black demon.</a></h6>
-        </div>
-    </li>`
-)
-
-
-
 async function renderRecentActivity(){
     let recentActivityData = await getRecentActivityData();
     let limit = Math.min(4,recentActivityData.length)
-    console.log(recentActivityData);
+    // console.log(recentActivityData);
 
     for(let recentActivity = 0; recentActivity < limit; recentActivity++){
         $("#activitiez").append(

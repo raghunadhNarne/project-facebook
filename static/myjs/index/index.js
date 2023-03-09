@@ -223,10 +223,11 @@ async function renderPosts(posts){
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
-                                        <textarea placeholder="Post your comment"></textarea>
-                                        
-                                        <button type="submit" name="submitComment" id="submitComment">post</button>
-                                    </form>	
+                                        <textarea id="${post.postId}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
+                                        <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                                onclick="submitMyComment('${post.postId}')"> Post
+                                        </button>
+                                    </form>
                                 </div>
                             </li>
                         </ul>
@@ -320,10 +321,11 @@ async function renderPosts(posts){
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
-                                        <textarea placeholder="Post your comment"></textarea>
-                                        
-                                        <button type="submit" name="submitComment" id="submitComment">post</button>
-                                    </form>	
+                                        <textarea id="${post.postId}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
+                                        <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                                onclick="submitMyComment('${post.postId}')"> Post
+                                        </button>
+                                    </form>
                                 </div>
                             </li>
                         </ul>
@@ -379,7 +381,7 @@ async function toggleLike(likedPostId){
     let likedUsers = likedPostData.data.likedUsers;
     let dislikedUsers = likedPostData.data.dislikedUsers;
     console.log("likedPostData",likedPostData)
-    console.log("hi",likedUsers,dislikedUsers)
+    // console.log("hi",likedUsers,dislikedUsers)
     if(likedUsers.indexOf(likedUserData.email) == -1  && dislikedUsers.indexOf(likedUserData.email) == -1){
         //add like
         //add to recent activity
@@ -398,6 +400,16 @@ async function toggleLike(likedPostId){
             email: likedUserData.email
         }
         await $.post("http://localhost:7777/index/addLike", obj);
+
+
+        //adding to recent activity
+
+        RecentObj = {
+            email : likedPostData.data.userEmail,
+            name : likedUserData.lastName,
+            action : "liked"
+        }
+        await $.post("http://localhost:7777/recentActivity/addNewActivity", RecentObj);
 
     }
     else if(likedUsers.indexOf(likedUserData.email) != -1  && dislikedUsers.indexOf(likedUserData.email) == -1){
@@ -418,6 +430,19 @@ async function toggleLike(likedPostId){
             email: likedUserData.email
         }
         await $.post("http://localhost:7777/index/removeLike", obj);
+
+
+
+        //adding to recent activity
+
+        RecentObj = {
+            email : likedPostData.data.userEmail,
+            name : likedUserData.lastName,
+            action : "removed existing like"
+        }
+        console.log("RecentObj",RecentObj)
+        await $.post("http://localhost:7777/recentActivity/addNewActivity", RecentObj);
+
     }
     else if(likedUsers.indexOf(likedUserData.email) == -1  && dislikedUsers.indexOf(likedUserData.email) != -1){
         //remove dislike and add like
@@ -448,6 +473,19 @@ async function toggleLike(likedPostId){
 
         await $.post("http://localhost:7777/index/removeDislike", obj);
         await $.post("http://localhost:7777/index/addLike", obj);
+
+
+
+
+        //adding to recent activity
+
+        obj = {
+            email : likedPostData.data.userEmail,
+            name : likedUserData.lastName,
+            action : "liked"
+        }
+        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+
     }
 
 }
@@ -490,6 +528,17 @@ async function toggleDislike(dislikedPostId){
         }
         await $.post("http://localhost:7777/index/addDislike", obj);
 
+
+        //adding to recent activity
+
+        obj = {
+            email : likedPostData.data.userEmail,
+            name : dislikedUserData.lastName,
+            action : "disliked"
+        }
+        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+
+
     }
     else if(likedUsers.indexOf(dislikedUserData.email) == -1  && dislikedUsers.indexOf(dislikedUserData.email) != -1){
         //remove dislike
@@ -511,6 +560,17 @@ async function toggleDislike(dislikedPostId){
             email: dislikedUserData.email
         }
         await $.post("http://localhost:7777/index/removeDislike", obj);
+
+
+         //adding to recent activity
+
+         obj = {
+            email : likedPostData.data.userEmail,
+            name : dislikedUserData.lastName,
+            action : "removed existing disliked"
+        }
+        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+
     }
     else if(likedUsers.indexOf(dislikedUserData.email) != -1  && dislikedUsers.indexOf(dislikedUserData.email) == -1){
         //remove like and add dislike
@@ -541,6 +601,18 @@ async function toggleDislike(dislikedPostId){
 
         await $.post("http://localhost:7777/index/removelike", obj);
         await $.post("http://localhost:7777/index/addDislike", obj);
+
+
+
+         //adding to recent activity
+
+         obj = {
+            email : likedPostData.data.userEmail,
+            name : dislikedUserData.lastName,
+            action : "disliked"
+        }
+        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+
     }
 }
 

@@ -1,3 +1,9 @@
+const {Configuration, OpenAIApi} = require('openai');
+const config = new Configuration({
+  apiKey: process.env.OPEN_API_SECRET_KEY
+});
+
+const openai = new OpenAIApi(config);
 const { addNewTextPost, addNewFilePost } = require("../utils/Postutils");
 
 // async function createNewPost(req,res){
@@ -39,4 +45,24 @@ async function createNewFilePost(req,res){
     res.send(result);
 }
 
-module.exports = {createNewFilePost, createNewTextPost}
+
+function autoGenerateContent(req, res){
+    // console.log(req.body)
+    const response = openai.createCompletion({
+        model: 'text-davinci-003',
+        prompt: req.body.text,
+        temperature: 0.9,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        max_tokens: 550
+    });
+  
+    response.then((data) => {
+        const message = {message: data.data.choices[0].text};
+        res.send(message);
+    }).catch((err) => {
+        res.send(err);
+    });
+  }
+module.exports = {createNewFilePost, createNewTextPost, autoGenerateContent}

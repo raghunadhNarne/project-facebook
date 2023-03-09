@@ -20,4 +20,29 @@ async function fetchAllRecentActivity(myEmail){
     return result;
 }
 
-module.exports = {fetchAllRecentActivity};
+
+async function addNewRecentActivity(Activitydata){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+
+        let newActivity = {
+            timeStamp : new Date(),
+            name : Activitydata.name, 
+            action : Activitydata.action
+        }
+        let data = await recentActivityModel.updateOne({email:Activitydata.email},{$push:{activities:newActivity}});
+        result.success = true;
+        result.message = "successfully add newActivity";
+        result.data = data;
+    }
+    catch(e){
+        result.message = "Unable to add newActivity";
+    }
+    return result;
+}
+
+module.exports = {fetchAllRecentActivity, addNewRecentActivity};
