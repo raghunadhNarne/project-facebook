@@ -1,6 +1,7 @@
 async function renderWhosFollowingWidget(){
     let myFollowers = await getFollowers();
 
+    $("#followers").html("")
     for(let follower of myFollowers){
         $("#followers").append(
             await getFollower(follower)
