@@ -69,12 +69,26 @@ socket.on('user-disconnected', userId => {
     console.log(userId + ":Disconnected")
 })
 
-$("#submitmsg").click(()=>{
-    let msg = $("#msgvalue").val();
-    socket.emit('livemsg',msg);
+$("#submitmsg").keypress((e)=>{
+    if(e.which==13){
+        let msg = $("#submitmsg").val();
+        socket.emit('livemsg',msg);
+        $("#submitmsg").val("");
+    }
 })
 
 
 socket.on("getlivmsg",(msg,userId)=>{
+    $("#people-list").append(
+        `<li>
+            <figure>
+                <img src="images/resources/friend-avatar2.jpg" alt="">
+                <span class="status f-away"></span>
+            </figure>
+            <div class="friendz-meta">
+                <a href="time-line.html">${msg}</a>
+            </div>
+        </li>`
+    )
     console.log(userId+"Sent a message : +"+msg);
 })
