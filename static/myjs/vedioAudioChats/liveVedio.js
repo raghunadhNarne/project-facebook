@@ -24,9 +24,9 @@ navigator.mediaDevices.getUserMedia({
         addVideoStream(myVideo, stream)
 
     myPeer.on('call', call => {
-        if(window.location.href.substring(1)!=userData.email){
-            alert("Vachindhi");
-        }
+        // if(window.location.href.substring(1)!=userData.email){
+        //     alert("Vachindhi");
+        // }
         call.answer(stream)
         const video = document.createElement('video')
         call.on('stream', userVideoStream => {
@@ -50,9 +50,9 @@ function connectToNewUser(userId, stream) {
     //     addVideoStream(video, userVideoStream)
     // })
 
-    // call.on('close', () => {
-    //     video.remove()
-    // })
+    call.on('close', () => {
+        video.remove()
+    })
 }
 
 
