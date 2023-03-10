@@ -24,10 +24,10 @@ async function addNewFilePost(myUserEmail,postData,multerFileName){
         result.data = "";
     }
     else{
-        let postCount = await getTotalPostsCount();
+        // let postCount = await getTotalPostsCount();
         // console.log(postData.text);
         let newPostdata = {
-            postId : postCount + 1,
+            // postId : postCount + 1,
             userEmail : myUserEmail,
             userName : postData.userName,
             userPic : postData.userPic,
@@ -85,9 +85,9 @@ async function addNewTextPost(myUserEmail,postData){
         result.data = "";
     }
     else{
-        let postCount = await getTotalPostsCount();
+        // let postCount = await getTotalPostsCount();
         let newPost = new postModel({
-            postId : postCount + 1,
+            // postId : postCount + 1,
             userEmail : myUserEmail,
             userName : postData.userName,
             userPic : postData.userPic,

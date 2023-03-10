@@ -1064,7 +1064,7 @@ header.sticky {
     width: 100%;
 }
 
-.blue {
+/* .blue {
     background: #337ab7;
 }
 
@@ -1074,7 +1074,7 @@ header.sticky {
 
 .green {
     background: #33b7a0;
-}
+} */
 
 .dropdowns.active > a {
     background: #fafafa none repeat scroll 0 0;
