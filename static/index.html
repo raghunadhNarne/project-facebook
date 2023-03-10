@@ -117,7 +117,7 @@
 					<div class="col-lg-12">
 						<div class="row" id="page-contents">
 							<div class="col-lg-3">
-								<aside class="sidebar static"><!-- Shortcuts -->
+								<aside class="sidebar static">
 									<div id="recentwidget">
 									<div class="widget">
 										<h4 class="widget-title">Recent Activity</h4>
@@ -130,79 +130,18 @@
 									<div class="widget">
 										<h4 class="widget-title">Who's follownig</h4>
 										<ul class="followers" id="followers">
-											<li>
-												<figure><img src="images/resources/friend-avatar2.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar4.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Issabel</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar6.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Andrew</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar8.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Sophia</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar3.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Allen</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
+											<!-- will render from  whosFollowingWidget.js -->
 										</ul>
 									</div>
 								</div><!-- who's following -->
 								<div id="shortcutswidget">
 									<div class="widget">
 										<h4 class="widget-title">Shortcuts</h4>
-										<ul class="naves">
-											<li>
-												<i class="ti-files"></i>
-												<a href="fav-page.html" title="">My profile</a>
-											</li>
-											<li>
-												<i class="ti-user"></i>
-												<a href="timeline-friends.html" title="">friends</a>
-											</li>
-											<li>
-												<i class="ti-image"></i>
-												<a href="timeline-photos.html" title="">images</a>
-											</li>
-											<li>
-												<i class="ti-video-camera"></i>
-												<a href="timeline-videos.html" title="">videos</a>
-											</li>
-											<li>
-												<i class="ti-comments-smiley"></i>
-												<a href="messages.html" title="">Messages</a>
-											</li>
-											<li>
-												<i class="ti-bell"></i>
-												<a href="notifications.html" title="">Notifications</a>
-											</li>
-											<li>
-												<i class="ti-power-off"></i>
-												<a href="landing.html" title="">Logout</a>
-											</li>
+										<ul class="naves" id="naves">
+											<!-- will render dynamically from shortcutswidget.js -->
 										</ul>
 									</div>
-								</div>
+								</div> <!-- Shortcuts -->
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
@@ -216,12 +155,9 @@
 												<textarea rows="2" placeholder="write something" name="text" id="text"></textarea>
 												<div class="attachments">
 													<ul>
-														<!-- <li>
-															<i class="fa fa-music"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li> -->
+														<li>
+															<i class="fa fa-microphone" id="voice"></i>
+														</li>
 														<li>
 															<i class="fa fa-image"></i>
 															<label class="fileContainer">
@@ -371,101 +307,7 @@
 										<h4 class="widget-title">Friends</h4>
 										<div id="searchDir"></div>
 										<ul id="people-list" class="friendz-list">
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar.jpg" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">bucky barnes</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0d7c9ced4c5d2d3cfccc4c5d2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar2.jpg" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4d6d5c6dad1c7f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar3.jpg" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">jason borne</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d777c6e72737f5d7a707c7471337e7270">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar4.jpg" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Cameron diaz</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed4dfcdd1d0dcfed9d3dfd7d290ddd1d3">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar5.jpg" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="553f34263a3b37153238343c397b363a38">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar6.jpg" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">andrew</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5933382a36373b193e34383035773a3634">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar7.jpg" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">amy watson</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5933382a36373b193e34383035773a3634">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar5.jpg" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb1baa8b4b5b99bbcb6bab2b7f5b8b4b6">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar2.jpg" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2644475448435566414b474f4a0845494b">[email&#160;protected]</a></i>
-												</div>
-											</li>
+											<!-- will we rendered dynamically with myFriendsWidget.js -->
 										</ul>
 										<div class="chat-box">
 											<div class="chat-head">
@@ -725,7 +567,10 @@
 	<script src="js/map-init.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 	<script src="./myjs/index/indexDragula.js"></script>
-	<script src="./myjs/index/recentActivity.js"></script>
+	<script src="./myjs/widgets/recentActivity.js"></script>
+	<script src="./myjs/widgets/whosFollowingWidget.js"></script>
+	<script src="./myjs/widgets/shortcutsWidget.js"></script>
+	<script src="./myjs/widgets/myFriendsWidget.js"></script>
 	<script src="./myjs/index/createPost.js"></script>
 	<script src="./myjs/index/index.js"></script>
 	<script src="./myjs/common/assist.js"></script>

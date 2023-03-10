@@ -21,19 +21,11 @@ let userSchema = {
     facebookLink : {type:String},
     twitterLink : {type:String},
     googleLink : {type:String},
-    notifications : {type:Array},
-    recentActivity : [
-        {
-            timeStamp : {type:String},
-            name : {type:String},
-            action : {type:String}
-        }
-    ],
     children:{type:Array},
     status:{type:String},
     authfile:{type:String},
     requested:{type:String},
-    parent:{type:String}
+    onlineStatus : {type:String}
 
 }
 

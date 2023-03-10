@@ -1,7 +1,6 @@
 const mongoose = require("./conn").mongoose;
 
 let postSchema = {
-    postId : {type : Number},
     userEmail : {type : String},
     userName : {type : String},
     userPic : {type : String},

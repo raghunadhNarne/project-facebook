@@ -1,4 +1,4 @@
-const { fetchMyPosts, addUserToLikedArray, addUserToDislikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment } = require("../utils/indexUtils");
+const { fetchMyPosts, addUserToLikedArray, addUserToDislikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment, fetchMyFeedPosts } = require("../utils/indexUtils");
 const { fetchUserData } = require("../utils/userUtils");
 
 async function getMyPosts(req, res) {
@@ -69,4 +69,12 @@ async function addComment(req,res){
 }
 
 
-module.exports = {getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData, addComment};
+async function getMyFeedPosts(req, res) {
+    let data = req.body;
+
+    let result = await fetchMyFeedPosts(data.email);
+    res.send(result);
+}
+
+
+module.exports = {getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData, addComment, getMyFeedPosts};

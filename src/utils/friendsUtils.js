@@ -77,7 +77,7 @@ async function createRoomForFriendsChat(chatRoom) {
     }
     let usersChat = new chatModel(obj);
     let data = await usersChat.save();
-    console.log(data);
+    // console.log(data);
 }
 
 async function rejectPendingFriendRequests(obj) {
