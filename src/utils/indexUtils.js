@@ -182,4 +182,85 @@ async function addNewComment(commentData){
     }
     return result;
 }
-module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment};
+
+
+async function fetchMyFeedPosts(email){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+
+        let now = new Date();
+        let yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+
+        let myEmail = email; 
+
+        // Find my friends from friends collection
+        let myFriends = await friendsModel.find({
+        $and: [
+            { $or: [{ senderEmail: myEmail }, { receiverEmail: myEmail }] },
+            { status: "accept" },
+        ],
+        }).distinct("senderEmail receiverEmail");
+
+        // Find my groups from groups collection
+        let myGroups = await groupModel.find({
+        $or: [{ groupOwnerEmail: myEmail }, { senderEmail: myEmail }],
+        status: "accepted",
+        }).distinct("groupName");
+
+        // Find posts from my friends and all posts posted in groupName where groupName is in my groups which are posted in last 24 hours
+        let posts = await postModel.find({
+            $and: [
+                {
+                $or: [
+                    { userEmail: { $in: myFriends } },
+                    { groupName: { $in: myGroups } },
+                ],
+                },
+                { postedTime: { $gte: yesterday } },
+                { userEmail: { $ne: myEmail } },
+            ],
+        });
+
+        let myFriendsPosts = await postModel.find({
+            $and: [
+              { userEmail: { $in: myFriends } },
+              { postedTime: { $gte: yesterday } },
+              { userEmail: { $ne: myEmail } },
+            ],
+          });
+          
+          let myGroupsPosts = await groupPostModel.find({
+            $and: [
+              { groupName: { $in: myGroups } },
+              { postedTime: { $gte: yesterday } },
+              { senderEmail: { $ne: myEmail } },
+            ],
+          });
+
+
+          let finalPosts = {
+            groupPosts : myGroupsPosts ? myGroupsPosts : [],
+            friendsPosts : myFriendsPosts ? myFriendsPosts : []
+          }
+
+
+        if(myFriendsPosts.length != 0 || myGroupsPosts.length != 0){
+            result.success = true;
+            result.message = "Fetched posts";
+            result.data = finalPosts;
+        }
+        else{
+            result.message = "No posts found";
+        }
+    }
+    catch(e){
+        result.message = "Failed to fetch posts";
+    }
+    return result;
+}
+
+module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment, fetchMyFeedPosts};

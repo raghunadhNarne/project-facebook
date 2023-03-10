@@ -1,4 +1,4 @@
-const { fetchAllRecentActivity, addNewRecentActivity } = require("../utils/recentActivityUtils");
+const { fetchAllRecentActivity, addNewRecentActivity, fetchLatestFourActivities } = require("../utils/recentActivityUtils");
 
 
 async function getMyRecentActivity(req,res){
@@ -17,4 +17,11 @@ async function addNewActivity(req,res){
     res.send(result);
 }
 
-module.exports = {getMyRecentActivity, addNewActivity}
+async function getMyLatestFourActivities(req,res){
+    let data = req.body;
+    let result = await fetchLatestFourActivities(data.email);
+
+    res.send(result);
+}
+
+module.exports = {getMyRecentActivity, addNewActivity, getMyLatestFourActivities}

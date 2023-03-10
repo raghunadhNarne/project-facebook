@@ -69,4 +69,42 @@ async function createRecentActivityforUser(myEmail){
     return result;
 }
 
-module.exports = {fetchAllRecentActivity, addNewRecentActivity, createRecentActivityforUser};
+
+async function fetchLatestFourActivities(myEmail){
+    let result = {
+        success : false,
+        message : "",
+        data : "" 
+    }
+    try{
+        let queryResult = await recentActivityModel.aggregate([
+          {$match : {email: myEmail}},
+          {
+            $project : {
+              activities : {
+                $cond : {
+                  if : {$gte: [{$size: "$activities"}, 4]},
+                  then : {$slice: ["$activities", -4]},
+                  else : "$activities",
+                },
+              },
+            },
+          },
+        ]);
+      
+        if(queryResult.length > 0){
+            result.success = true
+            result.message = "successfully fetched activity data"
+            result.data = queryResult[0];
+        } 
+        else{
+          result.message = "failed to get activity data"
+        }
+      } 
+      catch(e){
+        result.message = "Unable to fetch activity data";
+      }
+      return result;
+}
+
+module.exports = {fetchAllRecentActivity, addNewRecentActivity, createRecentActivityforUser, fetchLatestFourActivities};
