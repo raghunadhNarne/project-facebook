@@ -25,11 +25,18 @@ const io = socketio(server, { cors: {} });
 
 
 
-
-
-
-
 io.on('connection', socket => {
+
+  socket.on('join-room', (roomId, userId) => {
+    socket.join(roomId)
+    socket.broadcast.to(roomId).emit('user-connected', userId)
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomId).emit('user-disconnected', userId)
+    })
+    socket.on('livemsg',livemsg=>{
+      io.to(roomId).emit('getlivmsg',livemsg,userId);
+    })
+  })
 
 
   socket.on('joinroom', (obj) => {
@@ -94,12 +101,12 @@ const { upload } = require('./multer/multerConfig');
 // app.use('/auth',authRouter);
 
 
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 
 // const authRouter = require('./auth/authRoute');
@@ -125,23 +132,23 @@ const chatRouter = require('./routes/chatRoute');
 app.use("/chats", chatRouter);
 
 
-const friendsRouter=require('./routes/friendsRoute')
-app.use('/friends',friendsRouter)
+const friendsRouter = require('./routes/friendsRoute')
+app.use('/friends', friendsRouter)
 
-const userRouter=require('./routes/userRoute')
-app.use('/users',userRouter)
+const userRouter = require('./routes/userRoute')
+app.use('/users', userRouter)
 
 const grouChatRouter = require('./routes/groupChatRoute')
-app.use("/groupChats",grouChatRouter);
+app.use("/groupChats", grouChatRouter);
 const indexRouter = require('./routes/indexRoute');
-app.use('/index',indexRouter);
+app.use('/index', indexRouter);
 
 const recentActivityRouter = require('./routes/recentActivityRoute');
-app.use('/recentActivity',recentActivityRouter)
+app.use('/recentActivity', recentActivityRouter)
 
 
 const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
-app.use('/xssScriptingFix',xssScriptingFixRouter)
+app.use('/xssScriptingFix', xssScriptingFixRouter)
 
 
 async function auth(req, res, next) {
@@ -188,4 +195,4 @@ async function auth(req, res, next) {
 
 // server.listen(7007,()=>{console.log("Connected to port 7007")})
 
-server.listen(7777,()=>{console.log("Connected to port 7777")})
+server.listen(7777, () => { console.log("Connected to port 7777") })
