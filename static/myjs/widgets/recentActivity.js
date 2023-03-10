@@ -64,7 +64,7 @@ async function getLatestFourActivityData(){
     let result = await $.post("http://localhost:7777/recentActivity/getMyLatestFourActivities", obj);
 
     let recentActivityData = result.data;
-    console.log(recentActivityData,"recentActivityData")
+    // console.log(recentActivityData,"recentActivityData")
 
     return recentActivityData ? recentActivityData.activities : [];
 }

@@ -50,7 +50,8 @@ async function createUser(userDetails){
             status:"pending",
             authfile:userDetails.file.path,
             requested:userDetails.body.type,
-            parent:null
+            parent:null,
+            onlineStatus:"online"
         });
 
     

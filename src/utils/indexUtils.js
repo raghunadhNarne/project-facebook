@@ -212,19 +212,6 @@ async function fetchMyFeedPosts(email){
         }).distinct("groupName");
 
         // Find posts from my friends and all posts posted in groupName where groupName is in my groups which are posted in last 24 hours
-        let posts = await postModel.find({
-            $and: [
-                {
-                $or: [
-                    { userEmail: { $in: myFriends } },
-                    { groupName: { $in: myGroups } },
-                ],
-                },
-                { postedTime: { $gte: yesterday } },
-                { userEmail: { $ne: myEmail } },
-            ],
-        });
-
         let myFriendsPosts = await postModel.find({
             $and: [
               { userEmail: { $in: myFriends } },
@@ -255,6 +242,10 @@ async function fetchMyFeedPosts(email){
         }
         else{
             result.message = "No posts found";
+            result.data = {
+                groupPosts : [],
+                friendsPosts : []
+            }
         }
     }
     catch(e){
