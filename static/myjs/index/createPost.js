@@ -68,6 +68,29 @@ $('#newPost').on('submit', async function(event) {
     // console.log("form data: ",formData.get("image").name == "");
 
 
+
+    //sanitize post text
+    try{
+        obj = {
+            postText : formData.get("text")
+        }
+        // console.log("text",obj);
+        let result = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", obj);
+
+        let cleanedDOM = result.cleanedDOM;
+        let removedDOM = result.removedDOM;
+
+        //change the content of text in form data
+        formData.set("text",cleanedDOM.toString());
+        console.log("after sanitizing: ",cleanedDOM);
+        alert(`sorry bro these data from your text is removed: ${JSON.stringify(removedDOM)}`)
+    }
+    catch(e){
+        alert("sanitizing post text failed: " + e);
+    }
+
+
+
     if(formData.get("image").name == "" && formData.get("video").name == ""){
         formData.set("postType","text")
         let postData = {};
@@ -114,3 +137,35 @@ $('#newPost').on('submit', async function(event) {
         }
     }
 });
+
+let firstmsg ="";
+async function autoGenerateContent(){
+    let msg = $("#text").val();
+    if(firstmsg == "") firstmsg = msg
+    // console.log(firstmsg);
+    let data = {
+        text : `i am posting on social media, generate me impressive content for: "${firstmsg}". and also add some hashtags. give the response in html format with beautiful stylings to appropriate text `
+    }
+    let result = await $.ajax({method:"POST", "data":data, 'url':"http://127.0.0.1:7777/post/autoGenerateContent"});
+    console.log("result",result.message.slice(3),result.message)
+    $("#text").val(result.message);
+}
+
+
+
+    $("#voice").click(()=>{
+    
+        const recognition = new webkitSpeechRecognition();
+        recognition.interimResults = true;
+    
+        recognition.start();
+        
+    
+        recognition.onresult = (event)=>{
+            const transcript = event.results[0][0].transcript;
+            console.log(transcript)
+            $("#text").val(transcript);
+        }
+    })
+
+$("#generateContent").on("click",autoGenerateContent);

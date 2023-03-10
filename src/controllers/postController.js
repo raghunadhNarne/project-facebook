@@ -1,3 +1,9 @@
+const {Configuration, OpenAIApi} = require('openai');
+const config = new Configuration({
+  apiKey: "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"
+});
+
+const openai = new OpenAIApi(config);
 const { addNewTextPost, addNewFilePost } = require("../utils/Postutils");
 
 // async function createNewPost(req,res){
@@ -39,4 +45,27 @@ async function createNewFilePost(req,res){
     res.send(result);
 }
 
-module.exports = {createNewFilePost, createNewTextPost}
+
+function autoGenerateContent(req, res){
+    // console.log(req.body)
+    const response = openai.createCompletion({
+        model: 'text-davinci-003',
+        prompt: req.body.text,
+        temperature: 0.9,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        max_tokens: 550
+    });
+  
+    response.then((data) => {
+        const message = {message: data.data.choices[0].text};
+       
+        res.send(message);
+
+    }).catch((err) => {
+        // console.log(err)
+        res.send(err);
+    });
+  }
+module.exports = {createNewFilePost, createNewTextPost, autoGenerateContent}

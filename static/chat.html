@@ -142,25 +142,7 @@
 										<div class="message-box">
 											<ul class="peoples" id="messagebox">
 												
-												<li onclick="window.location.href='#rohith@gmail.com'">
-													<figure>
-														<img src="images/resources/friend-avatar2.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>Molly cyrus</span>
-													</div>
-												</li>
-
-												<li onclick="window.location.href='#raghu@gmail.com'">
-													<figure>
-														<img src="images/resources/friend-avatar2.jpg" alt="">
-														<span class="status f-online"></span>
-													</figure>
-													<div class="people-name">
-														<span>Molly cyrus</span>
-													</div>
-												</li>
+												
 												
 												
 											</ul>
@@ -386,8 +368,8 @@
 			</form>
 		</div><!-- side panel -->		
 		<script>
-			var userData=JSON.parse(localStorage.getItem("userData"))
-			if(userData.email=="admin@gmail.com")
+			var userdata=JSON.parse(localStorage.getItem("userData"))
+			if(userdata.email=="admin@gmail.com")
 			{
 				$(".user-setting").append(
 					`<a href="admin.html"><i class="ti-user">Admin</i></a>
@@ -396,7 +378,7 @@
 					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
 				)
 			}
-			else if(userData.role=="Parent")
+			else if(userdata.role=="Parent")
 			{
 				$(".user-setting").append(
 					`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>

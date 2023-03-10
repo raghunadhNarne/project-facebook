@@ -9,5 +9,5 @@ userRouter.post('/addchild',userController.justAddChild)
 userRouter.post('/updateuser',upload.fields([{name:"profile",maxCount:1},{name:"cover",maxCount:1}]),userController.justUpdateUser)
 userRouter.post('/getsingleuser',userController.justGetSingleUser)
 userRouter.post('/changepassword',userController.justChangePassword)
-
+userRouter.post('/forgotpassword',userController.justForgotPassword)
 module.exports = userRouter;

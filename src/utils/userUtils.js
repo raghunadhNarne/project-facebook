@@ -1,5 +1,10 @@
 const { userModel } = require("../models/userModel");
-const { userExist } = require('../utils/signupUtils')
+const { userExist } = require('../utils/signupUtils');
+const { createRecentActivityforUser } = require("./recentActivityUtils");
+const twilio = require('twilio');
+var randomstring = require("randomstring");
+const bcrypt = require('bcrypt')
+
 async function isUserExist(myEmail){
     let userData = await userModel.findOne({email:myEmail});
     // console.log(userData);
@@ -60,6 +65,7 @@ async function acceptPendingRequest(obj)
     }
     try{
         let data = await userModel.updateOne({email:obj.email},{$set:{status:"accept",role:obj.type}})
+        await createRecentActivityforUser(obj.email)
         result.success=true;
         result.message="successfull accepted the pending user request"
         result.data=data
@@ -236,6 +242,46 @@ async function fetchUserData(Myemail){
     return result;
 }
 
+async function forgotPassword(obj)
+{
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{ 
 
-module.exports = {isUserExist,fetchUserData,allPendingUsers,deletePendingRequest,acceptPendingRequest,addChild,updateUser,getSingleUser,changePassword };
+        var tw = new twilio(process.env.TWILIO_SID,process.env.TWILIO_TOKEN);
+        var val=randomstring.generate(5)
+
+        let salt = await bcrypt.genSalt();
+        let hashedpassword = await bcrypt.hash(val,salt);
+
+        
+        tw.messages.create({
+            body: 'Hi '+obj.email+"! this is your new password "+val+". You can change your password after logged in",
+            to: '+918498069774',
+            from: "+15675220781" 
+        })
+        .then(async (message) => {
+            // console.log(message)
+
+            let update=await userModel.updateOne({email:obj.email},{$set:{password:hashedpassword}})
+
+
+            result.success=true;
+            result.message="succesfully sent the otp to mobileNo"
+        })
+        .catch(err=>{
+            result.success=false;
+            result.message="failed to send otp to mobileNo"
+        })
+    }
+    catch(e){
+        result.message = "Failed to send the otp";
+    }
+    return result;
+}
+
+module.exports = {isUserExist,fetchUserData,allPendingUsers,deletePendingRequest,acceptPendingRequest,addChild,updateUser,getSingleUser,changePassword,forgotPassword };
 

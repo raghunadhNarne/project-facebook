@@ -1,4 +1,4 @@
-const { allPendingUsers,deletePendingRequest,acceptPendingRequest,addChild,updateUser,getSingleUser,changePassword } = require('../utils/userUtils')
+const { allPendingUsers,deletePendingRequest,acceptPendingRequest,addChild,updateUser,getSingleUser,changePassword,forgotPassword } = require('../utils/userUtils')
 
 async function getAllPendingUsers(req,res)
 {
@@ -39,4 +39,10 @@ async function justChangePassword(req,res)
     let result = await changePassword(req.body)
     res.send(result)
 }
-module.exports = { getAllPendingUsers,justDeletePendingRequest,justAcceptPendingRequest,justAddChild,justUpdateUser,justGetSingleUser,justChangePassword}
+
+async function justForgotPassword(req,res)
+{
+    let result = await forgotPassword(req.body)
+    res.send(result)
+}
+module.exports = { getAllPendingUsers,justDeletePendingRequest,justAcceptPendingRequest,justAddChild,justUpdateUser,justGetSingleUser,justChangePassword,justForgotPassword}

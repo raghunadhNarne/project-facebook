@@ -270,7 +270,7 @@
 														<label for="profilepic"
 															style="cursor: pointer;width: 100%;border:0.1px solid #545454;text-align: center;padding:5px;font-size:18px;"
 															id="grpprofilepicinput">Select Profile Pic </label>
-														<input style="display: ;" type="file" id="profilepic">
+														<input style="display: none;" type="file" id="profilepic">
 														<div style="padding:5px 10px;text-align: center;font-size:20px;font-weight: 700;cursor: pointer;background-color: #088DCD;color:white;"
 															id="createGrp">Create</div>
 													</div>
@@ -658,8 +658,8 @@
 		</form>
 	</div><!-- side panel -->
 	<script>
-		var userData=JSON.parse(localStorage.getItem("userData"))
-		if(userData.email=="admin@gmail.com")
+		var userdata=JSON.parse(localStorage.getItem("userData"))
+		if(userdata.email=="admin@gmail.com")
 		{
 			$(".user-setting").append(
 				`<a href="admin.html"><i class="ti-user">Admin</i></a>
@@ -668,7 +668,7 @@
 				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
 			)
 		}
-		else if(userData.role=="Parent")
+		else if(userdata.role=="Parent")
 		{
 			$(".user-setting").append(
 				`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>

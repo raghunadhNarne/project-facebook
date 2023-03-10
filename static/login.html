@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -54,10 +54,10 @@
 								<input type="checkbox" checked="checked"/><i class="check-box"></i>Always Remember Me.
 							  </label>
 							</div>
-							<a href="#" title="" class="forgot-pwd">Forgot Password?</a>
+							<a href="#" title="" class="forgot-pwd" data-toggle="modal" data-target="#exampleModalCenter">Forgot Password?</a>
 							<div class="submit-btns">
 								<button class="mtr-btn signin" type="button" id="login" name="login"><span>Login</span></button>
-								<button class="mtr-btn signup" type="button" id="signup" name="signup"><span>Register</span></button>
+								<button class="mtr-btn signup" type="button" id="signup	" name="signup"><span>Register</span></button>
 							</div>
 						</form>
 					</div>
@@ -135,6 +135,40 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+			<div class="form-group">	
+				<input type="text" id="femail" name="email" required="required"/>
+				<label class="control-label" for="input">Enter your email</label><i class="mtrl-select"></i>
+			  </div>
+			<div class="form-group">	
+				<input type="text" id="fmobileNo" name="mobileNo" required="required"/>
+				<label class="control-label" for="input">Enter your mobileNo</label><i class="mtrl-select"></i>
+			  </div>
+			  <button type="button" id="sendotp" class="btn btn-secondary" style="float: right;background-color: #4F93CE;">Send OTP</button>
+        </div>
+        <div class="modal-footer" style="justify-content: space-between;">
+		<div style="display: flex;flex-direction: row;justify-content: center;align-items: center;gap: 10px;">
+			<div>
+				<h6> <span id="otpsent" style="color: rgb(85, 133, 13);" ></span><span style="cursor: pointer;display: none;" id="gotologin"> --> Go to <a href="login.html">Login</a></span></h6>
+			</div>
+		</div>
+		
+		
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+    </div>
+    </div>
+</div>
+
 	
 	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
