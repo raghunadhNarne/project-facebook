@@ -31,8 +31,8 @@ async function renderComment(comment){
 
 async function renderComments(comments){
     let commentsHtml = "";
-    for(let comment of comments){
-        // console.log("comment data",comment);
+    for(let i = comments.length - 1; i >= 0 && i >= comments.length - 4; i--){
+        let comment = comments[i];
         commentsHtml += await renderComment(comment);
     }
     return commentsHtml;
@@ -61,7 +61,7 @@ async function renderPosts(posts){
                             <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
-                            <ins><a href="time-line.html" title="">${post.userName}</a></ins>
+                            <ins><a href="profile.html" title="">${post.userName}</a></ins>
                             <span>published: ${post.postedTime}</span>
                         </div>
                         <div class="post-meta">
@@ -119,7 +119,7 @@ async function renderPosts(posts){
 
 
                             <li>
-                                <a href="#" title="" class="showmore underline">more comments</a>
+                                <a href="post.html#${post._id}" title="" class="showmore underline">more comments</a>
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
@@ -214,7 +214,7 @@ async function renderPosts(posts){
 
 
                             <li>
-                                <a href="#" title="" class="showmore underline">more comments</a>
+                                <a href="post.html#${post._id}" title="" class="showmore underline">more comments</a>
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
@@ -312,7 +312,7 @@ async function renderPosts(posts){
 
 
                             <li>
-                                <a href="#" title="" class="showmore underline">more comments</a>
+                                <a href="post.html#${post._id}" title="" class="showmore underline">more comments</a>
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
@@ -686,11 +686,11 @@ async function submitMyComment(event,postid){
         userName : commentedUserdata.lastName,
         commentText : newCommentText,
     }
-    // console.log("newComment",newComment)
 
     //addding comment to posts database
     let result = await $.post("http://localhost:7777/index/addNewComment", newComment);
     alert(result.message)
+    $(`#${postid}Comment`).val("")
 
 
     //adding to recent activity

@@ -146,46 +146,8 @@
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
 								<div class="central-meta">
-									<div class="new-postbox">
-										<figure>
-											<img src="images/resources/admin2.jpg" alt="">
-										</figure>
-										<div class="newpst-input">
-											<form enctype="multipart/form-data" method="POST" name="newPost" id="newPost">
-												<textarea rows="2" placeholder="write something" name="text" id="text"></textarea>
-												<div class="attachments">
-													<ul>
-														<li>
-															<i class="fa fa-microphone" id="voice"></i>
-														</li>
-														<li>
-															<i class="fa fa-image"></i>
-															<label class="fileContainer">
-																<input type="file" name="image" id="image">
-															</label>
-														</li>
-														<li>
-															<i class="fa fa-video-camera"></i>
-															<label class="fileContainer">
-																<input type="file" name="video" id="video">
-															</label>
-														</li>
-														<!-- <li>
-															<i class="fa fa-camera"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li> -->
-														<li>
-															<div class="btn btn-primary" name="generateContent" id="generateContent">Generate Content</div>
-														</li>
-														<li>
-															<button type="submit" name="addPost" id="addPost">Post</button>
-														</li>
-													</ul>
-												</div>
-											</form>
-										</div>
+									<div class="new-postbox" id="new-postbox">
+										<!-- will render dynamically from renderCreatePostbox.js -->
 									</div>
 								</div><!-- add post new box -->
 								<div class="loadMore" id="loadMore">
@@ -567,6 +529,7 @@
 	<script src="js/map-init.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 	<script src="./myjs/index/indexDragula.js"></script>
+	<script src="./myjs/index/renderCreatePostbox.js"></script>
 	<script src="./myjs/widgets/recentActivity.js"></script>
 	<script src="./myjs/widgets/whosFollowingWidget.js"></script>
 	<script src="./myjs/widgets/shortcutsWidget.js"></script>
