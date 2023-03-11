@@ -26,8 +26,9 @@
         } */
         video{
             width: 100%;
-            height: 70%;
+            height: 293%;
             object-fit: cover;
+			position: absolute;
         }
     </style>
 	<style>
@@ -122,15 +123,15 @@
 	</div><!-- topbar -->
 		
 	<section class="row" style="padding-top:20px;margin-bottom: 0%;padding-bottom: 0%;">
-        <div id="video-grid" class="col-lg-9" style="padding-left:30px;padding-bottom: 0%;margin-bottom: 0%;">
+        <div id="video-grid" class="col-lg-9" style="padding-left:30px;padding-bottom: 0%;margin-bottom: 0%;height:200px !important;">
             
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3" style="max-height:376px;">
             <aside class="sidebar static">
-                <div style="background-color: black;padding:20px;color: white;cursor: pointer;">End Live call</div>
+                <div style="background-color:#088DCD;padding:20px;color: white;cursor: pointer;text-align: center;font-weight: 600;" onclick='location.href="index.html"'>End Live call</div>
                 <div id="friendswidget">
                 <div class="widget friend-list stick-widget">
-                    <h4 class="widget-title">Friends</h4>
+                    <h4 class="widget-title">Live chat</h4>
                     <div id="searchDir"></div>
                     <ul id="people-list" class="friendz-list" style="max-height:376px;">
                         

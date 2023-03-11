@@ -1,7 +1,6 @@
 var socket = io('http://localhost:7777')
 let userData = JSON.parse(localStorage.getItem('userData'));
 
-
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
     host: '/',
@@ -11,7 +10,7 @@ const myVideo = document.createElement('video')
 myVideo.muted = true
 
 myPeer.on('open', id => {
-    socket.emit('join-room', window.location.hash.substring(1), id)
+    socket.emit('join-room', window.location.hash.substring(1), id,userData.email)
 })
 
 
@@ -65,8 +64,10 @@ function addVideoStream(video, stream) {
 }
 
 
-socket.on('user-disconnected', userId => {
-    console.log(userId + ":Disconnected")
+socket.on('user-disconnected', userEmail=> {
+    if(userEmail == window.location.hash.substring(1)){
+        window.location.href='index.html'
+    }    
 })
 
 $("#submitmsg").keypress((e)=>{
@@ -90,5 +91,9 @@ socket.on("getlivmsg",(msg,userId)=>{
             </div>
         </li>`
     )
-    console.log(userId+"Sent a message : +"+msg);
+    let ele = document.getElementById("people-list");
+    ele.scrollTop = ele.scrollHeight;
 })
+
+
+

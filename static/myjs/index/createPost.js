@@ -7,6 +7,7 @@
 //     formData.set("userPic",userData.profilePic);
 //     console.log("form data: ",formData);
 
+
 //     if(formData.get("image") == null && formData.get("video") == null){
 //         formData.set("postType","text")
 //         let postData = {};
@@ -53,7 +54,8 @@
 // $('#addPost').on("click",createNewPost);
 
 
-
+let groupName = window.location.hash;
+let link = window.location.href
 
 $('#newPost').on('submit', async function(event) {
     event.preventDefault(); // prevent the form from submitting normally
@@ -66,6 +68,12 @@ $('#newPost').on('submit', async function(event) {
     formData.set("userName",userData.firstName + " " + userData.lastName)
     formData.set("userPic",userData.profilePic);
     // console.log("form data: ",formData.get("image").name == "");
+    if(groupName.length==0 || !link.includes("groupIndex.html")){
+        formData.set("groupName","");
+    }
+    else{
+        formData.set("groupName",groupName.substring(1));
+    }
 
 
 

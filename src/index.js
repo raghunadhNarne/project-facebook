@@ -27,11 +27,11 @@ const io = socketio(server, { cors: {} });
 
 io.on('connection', socket => {
 
-  socket.on('join-room', (roomId, userId) => {
+  socket.on('join-room', (roomId, userId,email) => {
     socket.join(roomId)
     socket.broadcast.to(roomId).emit('user-connected', userId)
     socket.on('disconnect', () => {
-      socket.broadcast.to(roomId).emit('user-disconnected', userId)
+      socket.broadcast.to(roomId).emit('user-disconnected', email)
     })
     socket.on('livemsg',livemsg=>{
       io.to(roomId).emit('getlivmsg',livemsg,userId);
@@ -40,7 +40,6 @@ io.on('connection', socket => {
 
 
   socket.on('joinroom', (obj) => {
-
 
     socket.join(obj.roomname);
 
@@ -60,7 +59,7 @@ io.on('connection', socket => {
       }
     }
 
-    socket.broadcast.to(obj.roomname).emit("msg", introobj);
+    socket.broadcast.to(obj.roomname).emit("intromsg", introobj);
 
 
     socket.on('chatmsg', msgobj => {
@@ -68,7 +67,7 @@ io.on('connection', socket => {
     })
 
     socket.on('disconnect', socket => {
-      io.to(obj.roomname).emit('msg', extroobj);
+      io.to(obj.roomname).emit('extromsg', extroobj);
     })
 
   })
@@ -148,6 +147,7 @@ app.use('/recentActivity', recentActivityRouter)
 
 
 const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
+const { createCipheriv } = require('crypto');
 app.use('/xssScriptingFix', xssScriptingFixRouter)
 
 

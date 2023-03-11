@@ -24,7 +24,7 @@ function madeGlobalGrps(arr) {
                 <div class="nearly-pepls">
                     <figure>
                         <a href="time-line.html" title=""><img
-                                src="images/resources/${data.groupPic}"
+                                src="../${data.groupPic}"
                                 alt=""></a>
                     </figure>
                     <div class="pepl-info">
@@ -61,11 +61,11 @@ function madeMyGrps(arr) {
     for (x in arr) {
         let data = arr[x];
         $("#mygrplist").append(
-            `<li style="cursor: pointer;">
+            `<li style="cursor: pointer;" onclick=opengrp('${data.groupName}')>
                 <div class="nearly-pepls">
                     <figure>
                         <a href="time-line.html" title=""><img
-                                src="images/resources/${data.groupPic}"
+                                src="../${data.groupPic}"
                                 alt=""></a>
                     </figure>
                     <div class="pepl-info">
@@ -79,6 +79,10 @@ function madeMyGrps(arr) {
             </li>`
         )
     }
+}
+
+function opengrp(grpName){
+    window.location.href="groupIndex.html#"+grpName;
 }
 
 function exitgrp(grpname) {
@@ -99,7 +103,7 @@ function madeGrpsOfMe(arr) {
                 <div class="nearly-pepls">
                     <figure>
                         <a href="time-line.html" title=""><img
-                                src="images/resources/${data.groupPic}"
+                                src="../${data.groupPic}"
                                 alt=""></a>
                     </figure>
                     <div class="pepl-info">
@@ -135,7 +139,7 @@ function appendrequests(arr, grpname) {
             `<li>
             <div class="nearly-pepls">
                 <figure>
-                    <a href="time-line.html" title=""><img src="images/resources/${data.senderPic}" alt=""></a>
+                    <a href="time-line.html" title=""><img src="../${data.senderPic}" alt=""></a>
                 </figure>
                 <div class="pepl-info">
                     <h4><a href="time-line.html" title="">${data.senderName}</a></h4>
@@ -201,18 +205,28 @@ $("#createGrp").click(async () => {
     // let obj = {
     //     groupName : $("#grpnameinput").val(),
     //     groupPic : $("#grpprofilepicinput").val()
-    // }
-    let obj = {
-        groupName: $("#grpnameinput").val(),
-        groupPic: "mumbai.jpg",
-        groupOwnerName: userData.firstName+" "+userData.lastName,
-        groupOwnerEmail: userData.email,
-        groupOwnerPic: userData.profilePic,
-        senderName: userData.firstName+" "+userData.lastName,
-        senderEmail: userData.email,
-        senderPic: userData.profilePic,
-        status: "accepted"
-    }
-    let data = await $.post("http://localhost:7777/groups/createGroup", obj);
-    alert(data.message);
+    // } 
+    let obj = new FormData();
+    obj.append("groupName", $("#grpnameinput").val());
+    obj.append("groupPic", document.getElementById("profilepic").files[0]);
+    obj.append("groupOwnerName", userData.firstName+" "+userData.lastName);
+    obj.append("groupOwnerEmail", userData.email);
+    obj.append("groupOwnerPic", userData.profilePic);
+    obj.append("senderName", userData.firstName+" "+userData.lastName);
+    obj.append("senderEmail", userData.email);
+    obj.append("senderPic", userData.profilePic);
+    obj.append("status", "accepted");
+    console.log(obj);
+    $.ajax({
+        method : "POST",
+        data : obj,
+        contentType : false,
+        processData : false,
+        url : "http://localhost:7777/groups/createGroup",
+        success : (e)=>{
+            alert(e.message)
+        }
+    })
+    // let data = await $.post("http://localhost:7777/groups/createGroup", obj);
+    // alert(data.message);
 })

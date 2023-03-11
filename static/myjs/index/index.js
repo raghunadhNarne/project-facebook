@@ -1,10 +1,23 @@
 let userData = JSON.parse(localStorage.getItem("userData"));
 
+
+groupName = window.location.hash
+link = window.location.href
+
 window.onload = async ()=>{
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    let posts = await $.post("http://localhost:7777/index/getMyPosts", obj);
+    let posts;
+    if(groupName.length==0 || !link.includes("groupIndex.html")){
+        posts = await $.post("http://localhost:7777/index/getMyPosts", obj);
+    }
+    else{
+        obj={
+            groupName : groupName.substring(1)
+        }
+        posts = await $.post("http://localhost:7777/groups/getGroupPosts",obj);
+    }
     // console.log("posts",posts.data)
     await renderPosts(posts.data);
 }
