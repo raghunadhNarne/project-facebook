@@ -148,6 +148,10 @@ const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
 app.use('/xssScriptingFix',xssScriptingFixRouter)
 
 
+const notificationsRouter = require('./routes/notificationsRoute');
+app.use('/notifications',notificationsRouter)
+
+
 async function auth(req, res, next) {
   var token = req.cookies.jwtToken;
   console.log("here", token)
