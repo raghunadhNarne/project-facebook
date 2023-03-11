@@ -405,7 +405,7 @@ async function toggleLike(likedPostId){
             email : likedPostData.data.userEmail,
             name : likedUserData.firstName,
             action : "liked your post",
-            url : `http://127.0.0.1:5500/static/post#${likedPostId}`
+            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
         }
         await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
 
@@ -447,7 +447,7 @@ async function toggleLike(likedPostId){
             email : likedPostData.data.userEmail,
             name : likedUserData.firstName,
             action : "removed existing like on your post",
-            url : `http://127.0.0.1:5500/static/post#${likedPostId}`
+            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
         }
         await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
 
@@ -501,7 +501,7 @@ async function toggleLike(likedPostId){
             email : likedPostData.data.userEmail,
             name : likedUserData.firstName,
             action : "liked your post",
-            url : `http://127.0.0.1:5500/static/post#${likedPostId}`
+            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
         }
         await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
 
@@ -560,7 +560,7 @@ async function toggleDislike(dislikedPostId){
             email : likedPostData.data.userEmail,
             name : dislikedUserData.firstName,
             action : "disliked your post",
-            url : `http://127.0.0.1:5500/static/post#${dislikedPostId}`
+            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
         }
         await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
     }
@@ -602,7 +602,7 @@ async function toggleDislike(dislikedPostId){
             email : likedPostData.data.userEmail,
             name : dislikedUserData.firstName,
             action : "removed existing dislike on your post",
-            url : `http://127.0.0.1:5500/static/post#${dislikedPostId}`
+            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
         }
         await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
 
@@ -655,7 +655,7 @@ async function toggleDislike(dislikedPostId){
             email : likedPostData.data.userEmail,
             name : dislikedUserData.firstName,
             action : "disliked your post",
-            url : `http://127.0.0.1:5500/static/post#${dislikedPostId}`
+            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
         }
         await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
 
@@ -713,7 +713,7 @@ async function submitMyComment(event,postid){
         email : commentedPostData.data.userEmail,
         name : commentedUserdata.firstName,
         action : "commented on your post",
-        url : `http://127.0.0.1:5500/static/post#${postid}`
+        url : `http://127.0.0.1:5500/static/post.html#${postid}`
     }
     await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
     
