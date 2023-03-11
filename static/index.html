@@ -67,7 +67,7 @@
 						<a href="#" title=""><span class="status f-off"></span>offline</a>
 						<a href="profile.html" title=""><i class="ti-user"></i> view profile</a>
 						<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
+						<a href="" title="" id="logout"><i class="ti-power-off"></i>log out</a>
 					</div>
 				</div>
 			</div>
@@ -503,7 +503,7 @@
 					`<a href="admin.html"><i class="ti-user">Admin</i></a>
 					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+					<a href="#" title="" id="logout"><i class="ti-power-off"></i>log out</a>`
 				)
 			}
 			else if(userdata.role=="Parent")
@@ -512,14 +512,14 @@
 					`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
 					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+					<a href="#" title="" id="logout"><i class="ti-power-off"></i>log out</a>`
 				)
 			}
 			else{
 				$(".user-setting").append(
 					`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+					<a href="#" title="" id="logout"><i class="ti-power-off"></i>log out</a>`
 				)
 			}
 		</script>
@@ -538,6 +538,7 @@
 	<script src="./myjs/index/index.js"></script>
 	<script src="./myjs/common/assist.js"></script>
 	<script src="./myjs/common/common.js"></script>
+	<script src="./myjs/logout/logout.js"></script>
 
 </body>	
 

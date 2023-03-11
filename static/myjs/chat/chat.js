@@ -4,7 +4,7 @@ let userData = JSON.parse(localStorage.getItem("userData"));
 
 
 var obj;
-const socket = io('http://localhost:7777');
+const socket = io('http://localhost:7777/chat');
 
 
 window.onload = async ()=> {

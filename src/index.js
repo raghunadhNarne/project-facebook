@@ -32,8 +32,8 @@ const io = socketio(server, { cors: {} });
 
 
 
-
-io.on('connection', socket => {
+const chat = io.of('/chat')
+chat.on('connection', socket => {
 
 
   socket.on('joinroom', (obj) => {
@@ -61,11 +61,11 @@ io.on('connection', socket => {
 
 
     socket.on('chatmsg', msgobj => {
-      io.to(obj.roomname).emit('msg', msgobj);
+      chat.to(obj.roomname).emit('msg', msgobj);
     })
 
     socket.on('disconnect', socket => {
-      io.to(obj.roomname).emit('msg', extroobj);
+      chat.to(obj.roomname).emit('msg', extroobj);
     })
 
   })
@@ -74,6 +74,21 @@ io.on('connection', socket => {
 
 
 
+
+
+
+const videoCall = io.of('/videoCall');
+videoCall.on('connection', socket => {
+  socket.on('join-room', (roomName, userId) => {
+    // console.log("roomName",roomName)
+    socket.join(roomName)
+    socket.broadcast.to(roomName).emit('user-connected', userId)
+
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomName).emit('user-disconnected', userId)
+    })
+  })
+})
 
 
 
