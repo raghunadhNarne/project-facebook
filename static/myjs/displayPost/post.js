@@ -17,6 +17,7 @@ window.onload = async ()=>{
 
 async function renderPost(post){
     let appendComments = await renderComments(post.comments);
+    // alert(appendComments)
 
     let likeResult = await getLikeData(post);
     if(post.postType =="text"){
@@ -85,9 +86,7 @@ async function renderPost(post){
                     ${appendComments}
 
 
-                        <li>
-                            <a href="#" title="" class="showmore underline">more comments</a>
-                        </li>
+                        
                         <li class="post-comment">
                             <div class="comet-avatar">
                                 <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
@@ -113,7 +112,7 @@ async function renderPost(post){
 
     //if post is image post
     else if(post.postType == "image"){
-        $("#loadMore").append(
+        $("#myPost").append(
             `<div class="central-meta item">
             <div class="user-post">
                 <div class="friend-info">
@@ -180,9 +179,7 @@ async function renderPost(post){
                     ${appendComments}
 
 
-                        <li>
-                            <a href="#" title="" class="showmore underline">more comments</a>
-                        </li>
+                        
                         <li class="post-comment">
                             <div class="comet-avatar">
                                 <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
@@ -206,7 +203,7 @@ async function renderPost(post){
 
     // if post is videopost
     else{
-        $("#loadMore").append(
+        $("#myPost").append(
             `<div class="central-meta item">
             <div class="user-post">
                 <div class="friend-info">
@@ -278,9 +275,7 @@ async function renderPost(post){
                     ${appendComments}
 
 
-                        <li>
-                            <a href="#" title="" class="showmore underline">more comments</a>
-                        </li>
+                        
                         <li class="post-comment">
                             <div class="comet-avatar">
                                 <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">

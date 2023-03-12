@@ -275,8 +275,7 @@ async function searchFriends(obj) {
             else arr.push(data[x].receiverEmail)
         }
         arr.push(obj.email)
-        // let str="/"+obj.firstName+"/"
-        // console.log(str)
+        
         if(obj.firstName.length>0)
         data = await userModel.find({email:{$nin:arr},firstName:{"$regex":obj.firstName,"$options":"i"}})
 

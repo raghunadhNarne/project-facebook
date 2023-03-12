@@ -1,6 +1,6 @@
 const {Configuration, OpenAIApi} = require('openai');
 const config = new Configuration({
-  apiKey: "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"
+  apiKey: process.env.OPEN_API_SECRET_KEY
 });
 
 const openai = new OpenAIApi(config);
@@ -38,7 +38,7 @@ async function createNewTextPost(req,res){
 async function createNewFilePost(req,res){
     // console.log(req.file);
     let postData = req.body;
-    let multerFileName = req.file.path;
+    let multerFileName = req.file.location;
     let result = {};
     result = await addNewFilePost(postData.userEmail,postData,multerFileName);
 

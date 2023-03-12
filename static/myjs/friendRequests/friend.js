@@ -42,10 +42,10 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
+                        <a href="addFriend.html" title=""><img src="../${data[x].senderPic}" alt=""></a>
                     </figure>
                     <div class="pepl-info">
-                        <h4><a href="time-line.html" title="">${data[x].senderName}</a></h4>
+                        <h4><a href="addFriend.html#${data[x].senderEmail}" title="">${data[x].senderName}</a></h4>
                         <span>Cricketer</span>
                         <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deletefriend('${data[x].senderEmail}','${data[x].receiverEmail}')">unfriend</a>
                     </div>
@@ -59,10 +59,10 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
+                        <a href="time-line.html" title=""><img src="../${data[x].receiverPic}" alt=""></a>
                     </figure>
                     <div class="pepl-info">
-                        <h4><a href="time-line.html" title="">${data[x].receiverName}</a></h4>
+                        <h4><a href="addFriend.html#${data[x].receiverEmail}" title="">${data[x].receiverName}</a></h4>
                         <span>Cricketer</span>
                         <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deletefriend('${data[x].senderEmail}','${data[x].receiverEmail}')">unfriend</a>
                     </div>

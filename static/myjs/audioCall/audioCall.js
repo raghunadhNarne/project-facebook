@@ -1,17 +1,40 @@
+let mails=window.location.hash.substring(1).split(":")
+// alert(mails)
+callfrom=mails[0]
+callto=mails[1]
+
+$("#callingtext").text(`calling to ${callto}`)
+var userData = JSON.parse(localStorage.getItem("userData"))
+
+window.onload = async()=>{
+
+    notificationObj = {
+        email : callto,
+        name : '',
+        action : "Lift call from "+callfrom,
+        url : `http://127.0.0.1:5500/static/audioCall.html#${callfrom}:${callto}`
+    }
+    // console.log(notificationObj)
+
+    if(userData.email==callfrom)
+    await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+}
+
+
+
 const socket = io('http://localhost:7777/audioCall')
 const videoGrid = document.getElementById('video-grid')
 
-
 const myPeer = new Peer(undefined, {
   host: 'localhost',
-  port: '3101'
+  port: '6747'
 })
 
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
 navigator.mediaDevices.getUserMedia({
-//   video: true,
+  // video: true,
   audio: true
 }).then(stream => {
   addVideoStream(myVideo, stream)
@@ -25,21 +48,25 @@ navigator.mediaDevices.getUserMedia({
     })
   })
   
-  socket.on('user-connected', userId => {
-    console.log("user-connected",userId)
+  socket.on('audiocall-connected', userId => {
+    console.log("audiocall-connected",userId)
+    $("#callingtext").text(`call lifted by ${callto}`)
     connectToNewUser(userId, stream)
   })
 })
 
-socket.on('user-disconnected', userId => {
+socket.on('audiocall-disconnected', userId => {
+
+    $("#callingtext").text(`call ended`)
   if (peers[userId]) peers[userId].close()
   const video = document.createElement('video')
   video.remove()
 })
 
 myPeer.on('open', id => {
-  let myEmail = "pranay@gmail.com";
-  let friendEmail = window.location.hash.substring(1);
+  let myEmail = callfrom;
+
+  let friendEmail = callto;
   let roomName = myEmail < friendEmail ? myEmail + friendEmail : friendEmail + myEmail
   socket.emit('join-call-room', roomName, id)
 })

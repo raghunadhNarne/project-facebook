@@ -8,23 +8,23 @@ window.onload = async ()=>{
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
+    
     let posts;
     if(groupName.length==0 || !link.includes("groupIndex.html")){
         posts = await $.post("http://localhost:7777/index/getMyPosts", obj);
-        console.log(posts);
     }
     else{
-        obj={
+        let obj={
             groupName : groupName.substring(1)
         }
         posts = await $.post("http://localhost:7777/groups/getGroupPosts",obj);
     }
+
     // console.log("posts",posts.data)
     await renderPosts(posts.data);
-
-    let totalFriendsAndLikes = await $.post("http://localhost:7777/friends/totalfriendandfollowers",obj)
-    $("#myfollowers").text(totalFriendsAndLikes.data.followers)
-    $("#friends").text(totalFriendsAndLikes.data.friends)
+    let totalFriendsAndFollowers = await $.post("http://localhost:7777/friends/totalfriendandfollowers",obj)
+    $("#myfollowers").text(totalFriendsAndFollowers.data.followers)
+    $("#friends").text(totalFriendsAndFollowers.data.friends)
 
     let totalLikesAndPosts = await $.post("http://localhost:7777/index/totallikesandposts",obj)
     $("#totallikes").text(totalLikesAndPosts.data.likedCount)
@@ -36,6 +36,9 @@ window.onload = async ()=>{
     let ads=await $.get("http://localhost:7777/ads/getallads")
     $("#link").attr('href',ads.data[0].link)
     $(".bg-image").css('background-image',`url(../${ads.data[0].adImage})`)
+
+    let notifications = await $.post("http://localhost:7777/notifications/getMyNotifications",{email:userData.email})
+    $("#notifications").text(notifications.count)
 
 
     $("#firstName").text(userData.firstName)

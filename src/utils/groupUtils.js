@@ -241,4 +241,23 @@ async function getSpecificGroupPosts(requiredDetails){
     return result;
 }
 
-module.exports = { makeGroup, fetchMyGroups, leaveFromGroup, getGlobalGroups, joinGrpRequest, getGroupsOfMe, getSpecificGroupRequests, takeActionOnGroupRequest ,getSpecificGroupPosts}
+
+async function getThisGroupInfo(requiredDetails){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try {
+        let data = await groupModel.findOne({ groupName: requiredDetails.groupName });
+        result.success = true;
+        result.message = "Successfully fetched the group requests";
+        result.data = data;
+    }
+    catch (e) {
+        result.message = "Unabled to fetch the group requests";
+    }
+    return result;
+}
+
+module.exports = { makeGroup, fetchMyGroups, leaveFromGroup, getGlobalGroups, joinGrpRequest, getGroupsOfMe, getSpecificGroupRequests, takeActionOnGroupRequest ,getSpecificGroupPosts,getThisGroupInfo}

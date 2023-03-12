@@ -1,5 +1,5 @@
 const groupRoute = require('express').Router();
-const { creategroup, getMyGroups , leaveGroup,getNotMyGroups, joinRequest,getGroupsCreatedByMe,groupRequests,acceptOrRejectRequest,getGroupPosts} = require('../controllers/groupController');
+const { creategroup, getMyGroups , leaveGroup,getNotMyGroups, joinRequest,getGroupsCreatedByMe,groupRequests,acceptOrRejectRequest,getGroupPosts,getGroupInfo} = require('../controllers/groupController');
 const { upload } = require('../multer/multerConfig');
 
 
@@ -13,6 +13,7 @@ groupRoute.post("/getGroupsCreatedByMe",getGroupsCreatedByMe);
 groupRoute.post("/groupRequests",groupRequests);
 groupRoute.post("/acceptOrRejectRequest",acceptOrRejectRequest);
 groupRoute.post("/getGroupPosts",getGroupPosts)
+groupRoute.post("/getGroupInfo",getGroupInfo)
 
 
 module.exports =  groupRoute;

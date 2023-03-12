@@ -65,9 +65,9 @@ const audioCall = io.of('/audioCall');
 audioCall.on('connection', socket => {
   socket.on('join-call-room', (roomName, userId) => {
     socket.join(roomName)
-    socket.broadcast.to(roomName).emit('user-connected', userId)
+    socket.broadcast.to(roomName).emit('audiocall-connected', userId)
     socket.on('disconnect', () => {
-      socket.broadcast.to(roomName).emit('user-disconnected', userId)
+      socket.broadcast.to(roomName).emit('audiocall-disconnected', userId)
     })
   })
 })

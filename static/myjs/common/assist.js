@@ -80,6 +80,8 @@ $(".assistant").click(() => {
 
     }
 
+    setTimeout(closepopup,7000);
+
 })
 
 
