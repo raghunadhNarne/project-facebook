@@ -104,6 +104,22 @@ videoCall.on('connection', socket => {
 
 
 
+const audioCall = io.of('/audioCall');
+audioCall.on('connection', socket => {
+  socket.on('join-call-room', (roomName, userId) => {
+    socket.join(roomName)
+    socket.broadcast.to(roomName).emit('user-connected', userId)
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomName).emit('user-disconnected', userId)
+    })
+  })
+})
+
+
+
+
+
+
 
 
 
@@ -171,6 +187,8 @@ const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
 const { createCipheriv } = require('crypto');
 app.use('/xssScriptingFix', xssScriptingFixRouter)
 
+const adRouter = require('./routes/adRoute')
+app.use('/ads',adRouter)
 
 const notificationsRouter = require('./routes/notificationsRoute');
 app.use('/notifications',notificationsRouter)
@@ -217,7 +235,5 @@ async function auth(req, res, next) {
 // xyz()
 
 
-
-// server.listen(7007,()=>{console.log("Connected to port 7007")})
-
-server.listen(7777, () => { console.log("Connected to port 7777") })
+// server.listen(7007,()=>{console.log("connected ")})
+server.listen(7777,()=>{console.log("Connected to port 7777")})

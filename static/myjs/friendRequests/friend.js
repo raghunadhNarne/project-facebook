@@ -8,6 +8,7 @@ var obj={
 //     senderName:"Pranay",
 //     senderPic:"1.jpg"
 // }
+
 window.onload=async function(){
     let friends_data = await $.post("http://localhost:7777/friends/getfriends",obj)
     addfriends(friends_data.data)
@@ -163,7 +164,7 @@ function addmyrequests(data)
 
 function addsearchfriends(data)
 {
-    $("#friendgloballist").html('')
+    $("#friendgloballist").html("")
     for(x in data)
     {
         $("#friendgloballist").append(
@@ -191,6 +192,7 @@ $("#friendssearch").keyup(async () => {
     let input = $("#friendssearch").val().toLowerCase();
     obj.firstName=input;
     let friend_list = await $.post("http://localhost:7777/friends/searchfriends",obj)
+
     addsearchfriends(friend_list.data)
     console.log(friend_list.data)
 

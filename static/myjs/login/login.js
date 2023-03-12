@@ -90,5 +90,18 @@ $('#login').on("click", function(e) {
   })
 
   })
+
+  $("#sendotp").click(async ()=>{
+    alert(100)
+    var obj={
+      email:$("#femail").val(),
+      mobileNo:$("#mobileNo").val()
+    }
+    let data = await $.post("http://localhost:7777/users/forgotpassword",obj)
+
+    $("#sendotp").hide()
+    $("#gotologin").show()
+    $("#otpsent").text("OTP! sent to your registerd Mobile No")
+  })
   
  

@@ -43,3 +43,25 @@ async function deleterequest(email)
     let data = await $.post("http://localhost:7777/users/deletependingrequest",{email:email})
     alert("successfully deleted the user request")
 }
+
+$("#submitad").click(function(){
+    let form=new FormData(document.getElementById("addata"));
+    let company=$("#company").val();
+    let file=document.getElementById('image').files[0]
+    let link=$("#link").val()
+    form.set("image",file)
+    form.set("company",company)
+    form.set("link",link)
+    
+    // alert(form.get("link"))
+    $.ajax({
+        method: 'POST',
+        processData: false,
+        url: 'http://localhost:7777/ads/addnewad',
+        contentType: false,
+        data: form,
+        success: function (data) {
+            alert("successfully added the ad data")
+        }
+    })
+})

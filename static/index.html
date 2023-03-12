@@ -99,9 +99,6 @@
 						<a href="#" title=""><span class="status f-online"></span>online</a>
 						<a href="#" title=""><span class="status f-away"></span>away</a>
 						<a href="#" title=""><span class="status f-off"></span>offline</a>
-						<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
-						<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
 					</div>
 				</div>
 			</div>
@@ -177,20 +174,21 @@
 												<a href="#" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
 											</figure>
 											<div class="page-meta">
-												<a href="#" title="" class="underline">My page</a>
-												<span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
+												<a href="#" title="" class="underline" id="firstName">My page</a>
+												<span><i class="ti-comment"></i><a href="insight.html" title="">Friends <em id="friends">9</em></a></span>
+												<span><i class="ti-home"></i><a href="insight.html" title="">Followers <em id="myfollowers">9</em></a></span>
 												<span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
 											</div>
 											<div class="page-likes">
 												<ul class="nav nav-tabs likes-btn">
 													<li class="nav-item"><a class="active" href="#link1" data-toggle="tab">likes</a></li>
-													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">views</a></li>
+													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">posts</a></li>
 												</ul>
 												<!-- Tab panes -->
 												<div class="tab-content">
 												  <div class="tab-pane active fade show " id="link1" >
-													<span><i class="ti-heart"></i>884</span>
-													  <a href="#" title="weekly-likes">35 new likes this week</a>
+													<span id="totallikes"><i class="ti-heart"></i>0</span>
+													  <a href="#" title="weekly-likes"> <span id="fromlastweeklikescount">0</span> new likes this week</a>
 													  <div class="users-thumb-list">
 														<a href="#" title="Anderw" data-toggle="tooltip">
 															<img src="images/resources/userlist-1.jpg" alt="">  
@@ -216,8 +214,8 @@
 													  </div>
 												  </div>
 												  <div class="tab-pane fade" id="link2" >
-													  <span><i class="ti-eye"></i>440</span>
-													  <a href="#" title="weekly-likes">440 new views this week</a>
+													  <span id="totalposts"><i class="ti-eye"></i>0</span>
+													  <a href="#" title="weekly-likes"> <span id="fromlastweekpostscount">0</span> new posts this week</a>
 													  <div class="users-thumb-list">
 														<a href="#" title="Anderw" data-toggle="tooltip">
 															<img src="images/resources/userlist-1.jpg" alt="">  
@@ -249,19 +247,17 @@
 									</div><!-- page like widget -->
 									<div id="bannerwidget">
 									<div class="widget">
-										<div class="banner medium-opacity bluesh">
-											<div class="bg-image" style="background-image: url(images/resources/baner-widgetbg.jpg)"></div>
+										<div class="banner medium-opacity ">
+											<div class="bg-image" ></div>
 											<div class="baner-top">
-												<span><img alt="" src="images/book-icon.png"></span>
+												<!-- <span><img alt="" src="images/book-icon.png"></span> -->
 												<i class="fa fa-ellipsis-h"></i>
 											</div>
-											<div class="banermeta">
-												<p>
-													create your own favourit page.
-												</p>
-												<span>like them all</span>
-												<a data-ripple="" title="" href="#">start now!</a>
-											</div>
+											<a href="index.html" id="link">
+												<div class="banermeta" style="height: 150px;">
+
+												</div>
+											</a>
 										</div>											
 									</div>
 									</div>

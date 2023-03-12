@@ -160,7 +160,7 @@ async function autoGenerateContent(){
         text : `i am posting on social media, generate me impressive content for: "${firstmsg}". and also add some hashtags. give the response in html format with beautiful stylings to appropriate text `
     }
     let result = await $.ajax({method:"POST", "data":data, 'url':"http://127.0.0.1:7777/post/autoGenerateContent"});
-    // console.log("result",result.message.slice(3),result.message)
+    console.log("result",result.message.slice(3),result.message)
     $("#text").val(result.message);
 }
 

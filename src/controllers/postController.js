@@ -1,6 +1,6 @@
 const {Configuration, OpenAIApi} = require('openai');
 const config = new Configuration({
-  apiKey: process.env.OPEN_API_SECRET_KEY
+  apiKey: "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"
 });
 
 const openai = new OpenAIApi(config);
@@ -60,9 +60,13 @@ function autoGenerateContent(req, res){
   
     response.then((data) => {
         const message = {message: data.data.choices[0].text};
+       
         res.send(message);
+
     }).catch((err) => {
+        // console.log(err)
         res.send(err);
     });
   }
+
 module.exports = {createNewFilePost, createNewTextPost, autoGenerateContent}

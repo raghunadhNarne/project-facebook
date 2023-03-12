@@ -20,7 +20,8 @@ friendsRouter.post('/getmyfollowing',friendsController.getMyFollowing)
 friendsRouter.post('/unfollowfriend',friendsController.justUnfollowFriend)
 //search friends
 friendsRouter.post('/searchfriends',friendsController.justSearchFriends)
-
+//count
+friendsRouter.post('/totalfriendandfollowers',friendsController.getTotalFriendsAndFollowers)
 module.exports=friendsRouter;
 
 // {

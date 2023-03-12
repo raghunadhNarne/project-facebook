@@ -39,7 +39,8 @@ async function addNewFilePost(myUserEmail,postData,multerFileName){
             comments : [],
             likedUsers : [],
             dislikedUsers : [],
-            groupName : postData.groupName
+            groupName : postData.groupName,
+            status:"pending"
         }
         if(postData.postType == "image"){
             newPostdata.postImage = multerFileName;
@@ -100,7 +101,8 @@ async function addNewTextPost(myUserEmail,postData){
             comments : [],
             likedUsers : [],
             dislikedUsers : [],
-            groupName : postData.groupName
+            groupName : postData.groupName,
+            status:"pending"
         })
         try{
             let isPosted = await newPost.save();

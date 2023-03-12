@@ -40,6 +40,7 @@
     color: black;
     position: fixed;
     top: 190px;
+    z-index: 100;
     box-shadow: 1px 1px solid grey;
     width: 665px;
     height: 200px;

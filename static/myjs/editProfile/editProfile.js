@@ -1,4 +1,5 @@
 window.onload=async function(){
+    
     var userData=JSON.parse(localStorage.getItem("userData"));
 
     let update_data = await $.post("http://localhost:7777/users/getsingleuser",{email:userData.email})
@@ -11,6 +12,9 @@ window.onload=async function(){
     $("#email").val(userData.email)
     $("#mobileNo").val(userData.mobileNo)
     $("#dob").val(userData.dob)
+    $("#facebook").val(userData.facebookLink)
+    $("#twitter").val(userData.twitterLink)
+    $("#google").val(userData.googleLink)
     if(userData.gender=='Male')
         $('input:radio[name=radio]')[0].checked = true;
     else
@@ -20,7 +24,10 @@ window.onload=async function(){
     $("#country").val(userData.country)
     $("#aboutMe").val(userData.aboutMe)
     if(userData.profilePic!=null)
+    {
         $("#profile-photo").attr('src',"../"+userData.profilePic)
+    }
+        
     if(userData.coverPic!=null)
         $("#cover-photo").attr('src',"../"+userData.coverPic)
 
@@ -52,6 +59,9 @@ $("#update").click(async function(){
     user.set('gender',gender)
     user.set('profile',document.getElementById("profile").files[0])
     user.set('cover',document.getElementById('cover').files[0])
+    user.set('facebook',$("#facebook").val())
+    user.set('twitter',$("#twitter").val())
+    user.set('google',$("#google").val())
     // console.log(user.get("profile"))
 
 

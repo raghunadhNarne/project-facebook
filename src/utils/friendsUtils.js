@@ -277,11 +277,13 @@ async function searchFriends(obj) {
         arr.push(obj.email)
         // let str="/"+obj.firstName+"/"
         // console.log(str)
-        if (obj.firstName.length > 0)
-            data = await userModel.find({ email: { $nin: arr }, firstName: { "$regex": obj.firstName, "$options": "i" } })
-        result.success = true;
-        result.message = "successfully searched the friend";
-        result.data = data;
+        if(obj.firstName.length>0)
+        data = await userModel.find({email:{$nin:arr},firstName:{"$regex":obj.firstName,"$options":"i"}})
+
+        result.success=true;
+        result.message="successfully searched the friend";
+        if(obj.firstName.length>0)
+        result.data=data;
     }
     catch (e) {
         result.message = "error to search friend"
@@ -290,6 +292,36 @@ async function searchFriends(obj) {
 }
 
 
-module.exports = { addNewFriend, pendingFriendRequests, acceptPendingFriendRequests, rejectPendingFriendRequests, acceptedFriendRequests, removeFriend, myFriendRequests, revokeFriendRequest, followers, myFollowing, unfollowFriend, searchFriends }
+async function totalFriendsAndFollowers(obj)
+{
+    let result = {
+        success: false,
+        message: "",
+        data: {}
+    }
+    try {
+        // console.log(obj.email)
+        let friends = await friendsModel.find({
+            $or: [
+                { senderEmail: obj.email, status:"accept" },
+                { receiverEmail: obj.email, status:"accept" }
+            ]
+        })
+
+        let followers = await friendsModel.find(
+                { receiverEmail: obj.email, status:"reject" }
+            )
+        result.data={friends:friends.length,followers:followers.length}
+        // console.log(friends,followers)
+        result.success = true;
+        result.message = "successfully got the count";
+    }
+    catch (e) {
+        result.message = "error to get count"
+    }
+    return result;
+}
+
+module.exports = { addNewFriend, pendingFriendRequests, acceptPendingFriendRequests, rejectPendingFriendRequests, acceptedFriendRequests, removeFriend, myFriendRequests, revokeFriendRequest, followers, myFollowing, unfollowFriend, searchFriends ,totalFriendsAndFollowers}
 
 

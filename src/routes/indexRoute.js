@@ -1,4 +1,4 @@
-const { getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData, addComment } = require('../controllers/indexController');
+const { getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData, addComment, myChildrenPendingPosts ,justAcceptPendingChildPost,justDeletePendingChildPost,getTotalLikesAndPosts } = require('../controllers/indexController');
 
 const indexRouter = require('express').Router();
 
@@ -13,4 +13,11 @@ indexRouter.post('/addDislike',addDislike)
 
 indexRouter.post('/addNewComment',addComment)
 
+//parent page
+indexRouter.post('/getmychildrenpendingposts',myChildrenPendingPosts)
+indexRouter.post('/acceptpendingchildpost',justAcceptPendingChildPost)
+indexRouter.post('/deletependingchildpost',justDeletePendingChildPost)
+
+//likes and posts
+indexRouter.post('/totallikesandposts',getTotalLikesAndPosts)
 module.exports = indexRouter;

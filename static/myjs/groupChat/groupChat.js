@@ -1,6 +1,6 @@
 let userData = JSON.parse(localStorage.getItem("userData"));
 
-const socket = io("http://localhost:7777")
+const socket = io("http://localhost:7777/chat")
 
 
 let obj = {

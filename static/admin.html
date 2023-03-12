@@ -177,10 +177,10 @@
 							<div class="col-lg-6">
 								<div class="central-meta">
 									<div class="frnds">
-										<ul class="nav nav-tabs" style="font-size: 16px;">
-											 <li class="nav-item" ><a class="active" href="#user-requests" data-toggle="tab">User Requests</a> </li>
-											 <!-- <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Friend Requests</a></li>
-											 <li class="nav-item"><a class="" href="#my-requests" data-toggle="tab">My Requests</a></li> -->
+										<ul class="nav nav-tabs" style="font-size: 16px;color: black;">
+											 <li class="nav-item" ><a class="active" href="#user-requests" data-toggle="tab" >User Requests</a> </li>
+											 <li class="nav-item"><a class="" href="#ads" data-toggle="tab">Add Ads</a></li>
+											 <!-- <li class="nav-item"><a class="" href="#my-requests" data-toggle="tab">My Requests</a></li> -->
 											 
 											 																																								
 										</ul>
@@ -194,10 +194,64 @@
 													</ul>
 											</div>
 											<!-- followers list -->
-											<div class="tab-pane fade" id="user-pending-requests" style="padding-top: 5%;">
-												<ul class="nearby-contct" id="friendfollowerslist">
-													
-												</ul>
+											<div class="tab-pane fade" id="ads" style="padding-top: 5%;">
+												<div class="editing-info" style="background-color: white;padding: 5%;">
+            
+                                                    <form id="addata" enctype="multipart/form-data">
+                                                        <!-- <div class="form-group half">	
+                                                          <input type="text" id="firstname" required="required"/>
+                                                          <label class="control-label" for="input">Firs Name</label><i class="mtrl-select"></i>
+                                                        </div>
+                                                        <div class="form-group half">	
+                                                          <input type="text" required="required" id="lastname"/>
+                                                          <label class="control-label" for="input">Last Name</label><i class="mtrl-select"></i>
+                                                        </div> -->
+                                                        <!-- <div class="form-group">	
+                                                          <input type="text" required="required" id="email"/>
+                                                          <label class="control-label" for="input"><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b0e262a22270b">[email&#160;protected]</a></label><i class="mtrl-select"></i>
+                                                        </div> -->
+                                                        <div class="form-group">	
+															<input type="text" required="required" id="company"/>
+															<label class="control-label" for="input"><a >Add&#160;company name</a></label><i class="mtrl-select"></i>
+														  </div>
+														  <div class="form-group">	
+															<input type="text" required="required" id="link"/>
+															<label class="control-label" for="input"><a >Add&#160;website url</a></label><i class="mtrl-select"></i>
+														  </div>
+														  <div class="form-group">	
+															
+															<label for="image"
+															style="cursor: pointer;width: 100%;border-bottom:0.1px solid #545454;padding:5px;font-size:16px;color: grey;"
+															id="addadslabel">Add Image or video </label>
+															<input style="display: none;" type="file" id="image">
+														  </div>
+														  
+
+														  
+                                                        <!-- <div class="dob">
+                                                            <input type="date" required="required" id="dob"/>
+                                                          <label class="control-label" for="input">Date of Birth</label><i class="mtrl-select"></i>
+                                                        </div>
+                                                        <div class="form-radio">
+                                                          <div class="radio">
+                                                            <label>
+                                                              <input type="radio" checked="checked" name="radio" value="Male"><i class="check-box"></i>Male
+                                                            </label>
+                                                          </div>
+                                                          <div class="radio">
+                                                            <label>
+                                                              <input type="radio" name="radio" value="Female"><i class="check-box" ></i>Female
+                                                            </label>
+                                                          </div>
+                                                        </div> -->
+                                                        
+                                                        
+                                                        <div class="submit-btns">
+                                                            <button type="button" class="mtr-btn"><span>Cancel</span></button>
+                                                            <button type="button" class="mtr-btn" id="submitad"><span>Add</span></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
 											</div>
 											<!-- following list -->
 
