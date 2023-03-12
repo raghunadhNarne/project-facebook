@@ -24,7 +24,7 @@ async function getFollowers(){
     }
     let followersData = result.data;
 
-    return followersData | [];
+    return followersData || [];
 }
 
 async function getFollower(follower){
