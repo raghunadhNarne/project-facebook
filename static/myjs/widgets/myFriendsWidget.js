@@ -35,7 +35,7 @@ async function renderFriend(friend){
             <span class="status f-${currentUserData.onlineStatus}"></span>
             </figure>
             <div class="friendz-meta">
-                <a href = "#"> ${friend.senderEmail ==  userData.email ? friend.receiverName : friend.senderName }</a>
+                <a href = "chat.html"> ${friend.senderEmail ==  userData.email ? friend.receiverName : friend.senderName }</a>
                 <i><a href = "mailto:${friend.senderEmail ==  userData.email ? friend.receiverEmail : friend.senderEmail}">Email</a></i>
             </div>
         </li>`

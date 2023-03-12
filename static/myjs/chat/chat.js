@@ -2,7 +2,7 @@ let userData = JSON.parse(localStorage.getItem("userData"));
 
 
 var obj;
-let socket = io('http://localhost:7777');
+const socket = io('http://localhost:7777/chat');
 
 
 window.onload = async ()=> {
@@ -32,7 +32,7 @@ function appendMyFriends(arr){
         }
         else{
             $("#messagebox").append(
-                `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic})">
+                `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic}')">
                 <figure>
                     <img src="../${data.senderPic}" alt="">
                     <span class="status f-online"></span>

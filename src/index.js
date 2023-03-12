@@ -25,7 +25,12 @@ const io = socketio(server, { cors: {} });
 
 
 
-io.on('connection', socket => {
+// io.on('connection', socket => {
+
+
+
+const chat = io.of('/chat')
+chat.on('connection', socket => {
 
   socket.on('join-room', (roomId, userId,email) => {
     socket.join(roomId)
@@ -34,7 +39,7 @@ io.on('connection', socket => {
       socket.broadcast.to(roomId).emit('user-disconnected', email)
     })
     socket.on('livemsg',(livemsg,profilePic,firstName)=>{
-      io.to(roomId).emit('getlivmsg',livemsg,userId,profilePic,firstName);
+      chat.to(roomId).emit('getlivmsg',livemsg,userId,profilePic,firstName);
     })
   })
 
@@ -63,11 +68,12 @@ io.on('connection', socket => {
 
 
     socket.on('chatmsg', msgobj => {
-      io.to(obj.roomname).emit('msg', msgobj);
+      chat.to(obj.roomname).emit('msg', msgobj);
     })
 
     socket.on('disconnect', socket => {
-      io.to(obj.roomname).emit('extromsg', extroobj);
+      chat.to(obj.roomname).emit('extromsg', extroobj);
+      // chat.to(obj.roomname).emit('msg', extroobj);
     })
 
   })
@@ -76,6 +82,21 @@ io.on('connection', socket => {
 
 
 
+
+
+
+const videoCall = io.of('/videoCall');
+videoCall.on('connection', socket => {
+  socket.on('join-room', (roomName, userId) => {
+    // console.log("roomName",roomName)
+    socket.join(roomName)
+    socket.broadcast.to(roomName).emit('user-connected', userId)
+
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomName).emit('user-disconnected', userId)
+    })
+  })
+})
 
 
 
@@ -149,6 +170,10 @@ app.use('/recentActivity', recentActivityRouter)
 const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
 const { createCipheriv } = require('crypto');
 app.use('/xssScriptingFix', xssScriptingFixRouter)
+
+
+const notificationsRouter = require('./routes/notificationsRoute');
+app.use('/notifications',notificationsRouter)
 
 
 async function auth(req, res, next) {

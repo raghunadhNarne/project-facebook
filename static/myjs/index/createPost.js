@@ -100,6 +100,10 @@ $('#newPost').on('submit', async function(event) {
 
 
     if(formData.get("image").name == "" && formData.get("video").name == ""){
+        if(formData.get("text") == ""){
+            alert("post is empty !!");
+            return;
+        }
         formData.set("postType","text")
         let postData = {};
         for(let [key, val] of formData.entries()) {
@@ -113,6 +117,7 @@ $('#newPost').on('submit', async function(event) {
             // console.log("hi")
             let result = await $.ajax({"method":"POST",data:postData, "url":"http://localhost:7777/post/textPost"});
             alert(result.message);
+            $("#text").text("")
         }
         catch(e){
             alert("failed to post: " + e);

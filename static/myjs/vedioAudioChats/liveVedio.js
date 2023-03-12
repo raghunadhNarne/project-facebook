@@ -1,10 +1,10 @@
-var socket = io('http://localhost:7777')
+var socket = io('http://localhost:7777/chat')
 let userData = JSON.parse(localStorage.getItem('userData'));
 
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
     host: '/',
-    port: '3101'
+    port: '6747'
 })
 const myVideo = document.createElement('video')
 myVideo.muted = true

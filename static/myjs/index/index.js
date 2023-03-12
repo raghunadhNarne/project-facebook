@@ -44,8 +44,8 @@ async function renderComment(comment){
 
 async function renderComments(comments){
     let commentsHtml = "";
-    for(let comment of comments){
-        // console.log("comment data",comment);
+    for(let i = comments.length - 1; i >= 0 && i >= comments.length - 4; i--){
+        let comment = comments[i];
         commentsHtml += await renderComment(comment);
     }
     return commentsHtml;
@@ -74,7 +74,7 @@ async function renderPosts(posts){
                             <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
-                            <ins><a href="time-line.html" title="">${post.userName}</a></ins>
+                            <ins><a href="profile.html" title="">${post.userName}</a></ins>
                             <span>published: ${post.postedTime}</span>
                         </div>
                         <div class="post-meta">
@@ -132,7 +132,7 @@ async function renderPosts(posts){
 
 
                             <li>
-                                <a href="#" title="" class="showmore underline">more comments</a>
+                                <a href="post.html#${post._id}" title="" class="showmore underline">more comments</a>
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
@@ -142,7 +142,7 @@ async function renderPosts(posts){
                                     <form name="commentsForm" id="commentsForm">
                                         <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
                                         <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
-                                                onclick="submitMyComment('${post._id}')"> Post
+                                                onclick="submitMyComment(event,'${post._id}')"> Post
                                         </button>
                                     </form>
                               
@@ -227,7 +227,7 @@ async function renderPosts(posts){
 
 
                             <li>
-                                <a href="#" title="" class="showmore underline">more comments</a>
+                                <a href="post.html#${post._id}" title="" class="showmore underline">more comments</a>
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
@@ -237,7 +237,7 @@ async function renderPosts(posts){
                                     <form name="commentsForm" id="commentsForm">
                                         <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
                                         <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
-                                                onclick="submitMyComment('${post._id}')"> Post
+                                                onclick="submitMyComment(event,'${post._id}')"> Post
                                         </button>
                                     </form>
                                 </div>
@@ -325,7 +325,7 @@ async function renderPosts(posts){
 
 
                             <li>
-                                <a href="#" title="" class="showmore underline">more comments</a>
+                                <a href="post.html#${post._id}" title="" class="showmore underline">more comments</a>
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
@@ -335,7 +335,7 @@ async function renderPosts(posts){
                                     <form name="commentsForm" id="commentsForm">
                                         <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
                                         <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
-                                                onclick="submitMyComment('${post._id}')"> Post
+                                                onclick="submitMyComment(event,'${post._id}')"> Post
                                         </button>
                                     </form>
                                 </div>
@@ -374,16 +374,6 @@ async function getLikeData(currentPost){
 
 async function toggleLike(likedPostId){
     let likedUserData = userData;
-    // console.log("lkhj",likedUsers,likedPostId)
-    // obj = {
-    //     email: likedUserEmail
-    // }
-    // let likedUserData = await $.post("http://localhost:7777/index/getLikedUserData", obj); //need to push into recent activity
-
-    // let likedPostData = await $.post("http://localhost:7777/index/getPostData", obj); //need to push into recent activity
-
-    // document.getElementById("likeicon");
-    // document.getElementById("dislikeicon");
 
     obj = {
         postId: likedPostId     //this is object id
@@ -392,8 +382,6 @@ async function toggleLike(likedPostId){
 
     let likedUsers = likedPostData.data.likedUsers;
     let dislikedUsers = likedPostData.data.dislikedUsers;
-    // console.log("likedPostId",likedPostId)
-    // console.log("likedPostData",likedPostData)
     console.log(likedUsers,dislikedUsers)
     if(likedUsers.indexOf(likedUserData.email) == -1  && dislikedUsers.indexOf(likedUserData.email) == -1){
         //add like
@@ -407,13 +395,6 @@ async function toggleLike(likedPostId){
         let currentValue = parseInt(likeCount.innerHTML);
         likeCount.innerHTML = currentValue + 1;
 
-
-        // if(heart.classList.contains('grey')){
-        //     heart.classList.remove('grey');
-        // }
-        // if(!heart.classList.contains('red')){
-        //     heart.classList.add('red');
-        // }
         
 
         obj = {
@@ -425,12 +406,22 @@ async function toggleLike(likedPostId){
 
         //adding to recent activity
 
-        RecentObj = {
+        recentObj = {
             email : likedUserData.email,
             name : likedPostData.data.userName,
             action : "liked"
         }
-        await $.post("http://localhost:7777/recentActivity/addNewActivity", RecentObj);
+        await $.post("http://localhost:7777/recentActivity/addNewActivity", recentObj);
+
+
+        notificationObj = {
+            email : likedPostData.data.userEmail,
+            name : likedUserData.firstName,
+            action : "liked your post",
+            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
+        }
+        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+
 
     }
     else if(likedUsers.indexOf(likedUserData.email) != -1  && dislikedUsers.indexOf(likedUserData.email) == -1){
@@ -445,14 +436,6 @@ async function toggleLike(likedPostId){
         let currentValue = parseInt(likeCount.innerHTML);
         likeCount.innerHTML = currentValue - 1;
 
-
-
-        // if(heart.classList.contains('red')){
-        //     heart.classList.remove('red');
-        // }
-        // if(!heart.classList.contains('grey')){
-        //     heart.classList.add('grey');
-        // }
 
         obj = {
             postId : likedPostId,
@@ -472,6 +455,16 @@ async function toggleLike(likedPostId){
         console.log("RecentObj",RecentObj)
         await $.post("http://localhost:7777/recentActivity/addNewActivity", RecentObj);
 
+
+        notificationObj = {
+            email : likedPostData.data.userEmail,
+            name : likedUserData.firstName,
+            action : "removed existing like on your post",
+            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
+        }
+        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+
+
     }
     else if(likedUsers.indexOf(likedUserData.email) == -1  && dislikedUsers.indexOf(likedUserData.email) != -1){
         //remove dislike and add like
@@ -485,13 +478,6 @@ async function toggleLike(likedPostId){
         let currentVal = parseInt(dislikeCount.innerHTML);
         dislikeCount.innerHTML = currentVal - 1;
 
-
-        // if(hearBroken.classList.contains('red')){
-        //     hearBroken.classList.remove('red');
-        // }
-        // if(!hearBroken.classList.contains('grey')){
-        //     hearBroken.classList.add('grey');
-        // }
         
 
         let heart = document.getElementById(`${likedPostId}likeicon`);
@@ -502,13 +488,6 @@ async function toggleLike(likedPostId){
         likeCount.innerHTML = currentValue + 1;
 
 
-
-        // if(heart.classList.contains('grey')){
-        //     heart.classList.remove('grey');
-        // }
-        // if(!heart.classList.contains('red')){
-        //     heart.classList.add('red');
-        // }
 
         obj = {
             postId : likedPostId,
@@ -530,6 +509,16 @@ async function toggleLike(likedPostId){
         }
         await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
 
+
+        notificationObj = {
+            email : likedPostData.data.userEmail,
+            name : likedUserData.firstName,
+            action : "liked your post",
+            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
+        }
+        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+
+
     }
 
 }
@@ -538,11 +527,7 @@ async function toggleLike(likedPostId){
 
 
 async function toggleDislike(dislikedPostId){
-    // document.getElementById("likeicon");
-    // document.getElementById("dislikeicon");
     let dislikedUserData = userData;
-    // console.log("ghjk",dislikedUserData)
-
 
 
     obj = {
@@ -567,13 +552,6 @@ async function toggleDislike(dislikedPostId){
 
 
 
-        // if(heartBroken.classList.contains('grey')){
-        //     heartBroken.classList.remove('grey');
-        // }
-        // if(!heartBroken.classList.contains('red')){
-        //     heartBroken.classList.add('red');
-        // }
-
         obj = {
             postId : dislikedPostId,
             email: dislikedUserData.email
@@ -591,7 +569,16 @@ async function toggleDislike(dislikedPostId){
         await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
 
 
+        notificationObj = {
+            email : likedPostData.data.userEmail,
+            name : dislikedUserData.firstName,
+            action : "disliked your post",
+            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
+        }
+        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
     }
+
+
     else if(likedUsers.indexOf(dislikedUserData.email) == -1  && dislikedUsers.indexOf(dislikedUserData.email) != -1){
         //remove dislike
         //add to recent activity
@@ -605,13 +592,6 @@ async function toggleDislike(dislikedPostId){
         dislikeCount.innerHTML = currentValue - 1;
 
 
-        // if(heartBroken.classList.contains('red')){
-        //     heartBroken.classList.remove('red');
-        // }
-        // if(!heartBroken.classList.contains('grey')){
-        //     heartBroken.classList.add('grey');
-        // }
-        
 
 
         obj = {
@@ -626,9 +606,19 @@ async function toggleDislike(dislikedPostId){
          obj = {
             email : dislikedUserData.email,
             name : likedPostData.data.userName,
-            action : "removed existing disliked"
+            action : "removed existing dislike"
         }
         await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+
+
+        notificationObj = {
+            email : likedPostData.data.userEmail,
+            name : dislikedUserData.firstName,
+            action : "removed existing dislike on your post",
+            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
+        }
+        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+
 
     }
     else if(likedUsers.indexOf(dislikedUserData.email) != -1  && dislikedUsers.indexOf(dislikedUserData.email) == -1){
@@ -643,13 +633,7 @@ async function toggleDislike(dislikedPostId){
         let currentVal = parseInt(likeCount.innerHTML);
         likeCount.innerHTML = currentVal - 1;
 
-        
-        // if(heart.classList.contains('red')){
-        //     heart.classList.remove('red');
-        // }
-        // if(!heart.classList.contains('grey')){
-        //     heart.classList.add('grey');
-        // }
+
 
 
         let heartBroken = document.getElementById(`${dislikedPostId}dislikeicon`);
@@ -659,12 +643,6 @@ async function toggleDislike(dislikedPostId){
         let dislikeCount = document.getElementById(`${dislikedPostId}dislikeCount`);
         let currentValue = parseInt(dislikeCount.innerHTML);
         dislikeCount.innerHTML = currentValue + 1;
-        // if(heartBroken.classList.contains('grey')){
-        //     heartBroken.classList.remove('grey');
-        // }
-        // if(!heartBroken.classList.contains('red')){
-        //     heartBroken.classList.add('red');
-        // }
 
         obj = {
             postId : dislikedPostId,
@@ -685,13 +663,24 @@ async function toggleDislike(dislikedPostId){
         }
         await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
 
+
+        notificationObj = {
+            email : likedPostData.data.userEmail,
+            name : dislikedUserData.firstName,
+            action : "disliked your post",
+            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
+        }
+        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+
+
     }
 }
 
 
 
 
-async function submitMyComment(postid){
+async function submitMyComment(event,postid){
+    event.preventDefault();
     //add comment to post database
     //add event to recent activity
     //render comment in frontend page
@@ -699,7 +688,7 @@ async function submitMyComment(postid){
 
 
     let newCommentText = $(`#${postid}Comment`).val()
-    console.log("newCommentText",newCommentText)
+    // console.log("newCommentText",newCommentText)
     let commentedUserdata = userData;
 
 
@@ -710,10 +699,11 @@ async function submitMyComment(postid){
         userName : commentedUserdata.lastName,
         commentText : newCommentText,
     }
-    // console.log("newComment",newComment)
 
     //addding comment to posts database
-    await $.post("http://localhost:7777/index/addNewComment", newComment);
+    let result = await $.post("http://localhost:7777/index/addNewComment", newComment);
+    alert(result.message)
+    $(`#${postid}Comment`).val("")
 
 
     //adding to recent activity
@@ -724,10 +714,22 @@ async function submitMyComment(postid){
 
     obj = {
         email : commentedUserdata.email,
-        name : commentedPostData.userName,
+        name : commentedPostData.data.userName,
         action : "commented"
     }
     await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+
+
+    
+
+    notificationObj = {
+        email : commentedPostData.data.userEmail,
+        name : commentedUserdata.firstName,
+        action : "commented on your post",
+        url : `http://127.0.0.1:5500/static/post.html#${postid}`
+    }
+    await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+    
 
 }
 
