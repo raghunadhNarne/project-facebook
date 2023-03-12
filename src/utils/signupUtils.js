@@ -48,7 +48,7 @@ async function createUser(userDetails){
             friendList : [],
             recentActivity : [],
             status:"pending",
-            authfile:userDetails.file.path,
+            authfile:userDetails.file.location,
             requested:userDetails.body.type,
             parent:null,
             onlineStatus:"online"

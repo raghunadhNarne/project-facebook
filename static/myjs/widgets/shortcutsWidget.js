@@ -51,11 +51,11 @@ async function renderShorcuts(){
         </li>`
     )
 
-    // $("#naves").append(
-    //     ` <li>
-    //         <i class="ti-power-off"></i>
-    //         <a href="landing.html" title="">Logout</a>
-    //     </li> `
-    // )
+    $("#naves").append(
+        ` <li>
+            <i class="ti-power-off"></i>
+            <a href="javascript:logoutUser()" title="">Logout</a>
+        </li> `
+    )
 }
 renderShorcuts();
