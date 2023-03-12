@@ -10,7 +10,7 @@ async function addNewAdd(obj)
     
     let ad = new adModel({
         company:obj.body.company,
-        adImage:obj.file.path,
+        adImage:obj.file.location,
         link:obj.body.link
     })
     try {

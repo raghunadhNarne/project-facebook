@@ -11,10 +11,12 @@ let obj = {
 }
 
 window.onload = async ()=>{
-
+    let groupData = await $.post('http://localhost:7777/groups/getGroupInfo',{groupName:window.location.hash.substring(1)})
+    console.log(groupData)
     let data = await $.post('http://localhost:7777/groupChats/fetchchating',{chatRoom : obj.roomname});
     data = data.data.messages;
-    $("#groupname").html(window.location.hash.substring(1))
+    $("#groupname").html(groupData.data.groupName)
+    $("#groupPic").attr('src',"../"+groupData.data.groupPic)
     for(x in data){
         appendToChat(data[x]);
     }
@@ -87,9 +89,9 @@ $("#sendmessage").click(async (e)=>{
     }
     socket.emit("chatmsg",pobj);
     await $.post("http://localhost:7777/groupChats/putmessage",pobj);
-    let chatMessages = document.getElementById("chatarea")
+    let chatMessages = document.getElementById("chatarea");
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    $("#msgtext").val("")
+    $("#msgtext").val("");
 })
 
 

@@ -112,45 +112,67 @@ async function addChild(userDetails)
     let isUserExist = await userExist(userDetails.email);
 
     if(isUserExist == false){
-        let newuser = new userModel({
-            firstName : userDetails.body.firstName,
-            lastName : userDetails.body.lastName,
-            dob : userDetails.body.dob,
-            age : userDetails.body.age,
-            gender : userDetails.body.gender,
-            email : userDetails.body.email,
-            mobileNo : null,
-            password : userDetails.body.password,
-            city : null,
-            country : null,
-            aboutMe : null,
-            role : 'Child',
-            status : null,
-            profilePic : null,
-            coverPic : null,
-            facebookLink : null,
-            twitterLink : null,
-            googleLink : null,
-            notifications : [],
-            friendList : [],
-            recentActivity : [],
-            status:"accept",
-            authfile:null,
-            requested:"child",
-            parent:userDetails.body.parent
-        });
 
+        var tw = new twilio(process.env.TWILIO_SID,process.env.TWILIO_TOKEN);
+        var val=randomstring.generate(5)
+        let salt = await bcrypt.genSalt();
+        let hashedpassword = await bcrypt.hash(val,salt);
+        tw.messages.create({
+            body: `Your parent created Winku account for you!!.You credentials are Email:${userDetails.body.email},Password:${val}`,
+            to: '+918498069774',
+            from: "+15675220781" 
+        })
+        .then(async (message) => {
+
+            await createRecentActivityforUser(userDetails.body.email)
+            await createNewNotificationforUser(userDetails.body.email);
+            
+            let newuser = new userModel({
+                firstName : userDetails.body.firstName,
+                lastName : userDetails.body.lastName,
+                dob : userDetails.body.dob,
+                age : userDetails.body.age,
+                gender : userDetails.body.gender,
+                email : userDetails.body.email,
+                mobileNo : null,
+                password : hashedpassword,
+                city : null,
+                country : null,
+                aboutMe : null,
+                role : 'Child',
+                status : null,
+                profilePic : null,
+                coverPic : null,
+                facebookLink : null,
+                twitterLink : null,
+                googleLink : null,
+                notifications : [],
+                friendList : [],
+                recentActivity : [],
+                status:"accept",
+                authfile:null,
+                requested:"child",
+                parent:userDetails.body.parent
+            });
     
-        try{
-            let data = await newuser.save();
+        
+            try{
+                let data = await newuser.save();
+                console.log(data);
+                let update_childlist = await userModel.updateOne({email:userDetails.body.parent},{$set:{children:userDetails.body.email}})
+                result.success = true;
+                result.message = "successfully created user child and update child list of parent"; 
+            } 
+            catch(e){
+                result.message = "failed to save user child";
+            }
+        })
+        .catch(err=>{
+            result.success=false;
+            result.message="failed to send otp to mobileNo"
+        })
 
-            let update_childlist = await userModel.updateOne({email:userDetails.body.parent},{$set:{children:userDetails.body.email}})
-            result.success = true;
-            result.message = "successfully created user child and update child list of parent"; 
-        } 
-        catch(e){
-            result.message = "failed to save user child";
-        }
+        
         
     }
     else{
@@ -188,11 +210,11 @@ async function updateUser(obj)
 
         if(obj.files.profile!=undefined)
         {
-            let data=await userModel.updateOne({email:obj.body.email},{$set:{profilePic:obj.files.profile[0].path}})
+            let data=await userModel.updateOne({email:obj.body.email},{$set:{profilePic:obj.files.profile[0].location}})
         }
         if(obj.files.cover!=undefined)
         {
-            let data=await userModel.updateOne({email:obj.body.email},{$set:{coverPic:obj.files.cover[0].path}})
+            let data=await userModel.updateOne({email:obj.body.email},{$set:{coverPic:obj.files.cover[0].location}})
         }
         result.success=true;
         result.message="successfull updated the user"

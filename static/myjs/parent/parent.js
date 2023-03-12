@@ -41,7 +41,7 @@ $("#addchildren").click(async ()=>{
 
 async function postchilddata(obj)
 {
-    let data = await $.post("http://localhost:7777/users/addchild",obj)
+    let data = await $.post("http://localhost:7777/users/addchild",obj);
     alert("successfully posted child data")
 }
 

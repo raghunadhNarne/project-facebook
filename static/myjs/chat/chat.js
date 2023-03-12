@@ -3,7 +3,7 @@ let userData = JSON.parse(localStorage.getItem("userData"));
 
 var obj;
 const socket = io('http://localhost:7777/chat');
-
+let friendPic="";
 
 window.onload = async ()=> {
 
@@ -14,15 +14,17 @@ window.onload = async ()=> {
     appendMyFriends(myFriends.data);
 }
 
-function appendMyFriends(arr){
+async function appendMyFriends(arr){
     for(x in arr){
         let data = arr[x];
         if(data.senderEmail == userData.email){
+            let friendData = await $.post("http://localhost:7777/users/getsingleuser",{email:data.receiverEmail});
+            console.log(friendData)
             $("#messagebox").append(
-                `<li onclick="changeurl('${data.receiverEmail}','${data.receiverName}','${data.receiverPic}')">
+                `<li onclick="changeurl('${data.receiverEmail}','${data.receiverName}','${data.receiverPic}','${friendData.data.onlineStatus}')">
                 <figure>
                     <img src="../${data.receiverPic}" alt="">
-                    <span class="status f-online"></span>
+                    <span class="status f-${friendData.data.onlineStatus}"></span>
                 </figure>
                 <div class="people-name">
                     <span style="font-weight:700">${data.receiverName}</span>
@@ -31,11 +33,13 @@ function appendMyFriends(arr){
             )
         }
         else{
+            let friendData = await $.post("http://localhost:7777/users/getsingleuser",{email:data.receiverEmail});
+            console.log(friendData)
             $("#messagebox").append(
-                `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic}')">
+                `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic}','${friendData.data.onlineStatus}')">
                 <figure>
                     <img src="../${data.senderPic}" alt="">
-                    <span class="status f-online"></span>
+                    <span class="status f-${friendData.data.onlineStatus}"></span>
                 </figure>
                 <div class="people-name">
                     <span style="font-weight:700">${data.senderName}</span>
@@ -47,9 +51,9 @@ function appendMyFriends(arr){
     }
 }
 
-function changeurl(hash,name,pic){
+function changeurl(hash,name,pic,status){
     window.location.href="chat.html#"+hash;
-    $("#frnd-name").html(name);
+    $("#frnd-name").html(name+`<i>${status}</i>`);
     $("#propic").attr('src',pic);
     socket.disconnect();
     socket.connect("http://localhost:7777")
@@ -59,6 +63,8 @@ function changeurl(hash,name,pic){
 
 
 async function getChatOfSpecificuser(friendsMail){
+    let friendData = await $.post("http://localhost:7777/users/getsingleuser",{email:friendsMail});
+    friendPic = friendData.data.profilePic;
     $("#chatarea").html("")
     let chatRoom = userData.email+":"+friendsMail;
     if(friendsMail<userData.email){
@@ -80,7 +86,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="me" style="margin-top:6px">
-                <figure><img src="../${message.picture}" alt=""></figure>
+                <figure><img src="../${userData.profilePic}" alt=""></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
@@ -90,7 +96,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="you" style="margin-top:6px">
-                <figure><img src="../${message.picture}" alt=""></figure>
+                <figure><img src="../${friendPic}" alt=""></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `

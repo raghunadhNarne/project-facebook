@@ -4,14 +4,14 @@ const videoGrid = document.getElementById('video-grid')
 
 const myPeer = new Peer(undefined, {
   host: 'localhost',
-  port: '3101'
+  port: '6747'
 })
 
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
 navigator.mediaDevices.getUserMedia({
-//   video: true,
+  // video: true,
   audio: true
 }).then(stream => {
   addVideoStream(myVideo, stream)

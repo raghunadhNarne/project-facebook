@@ -11,7 +11,6 @@ window.onload = async ()=>{
     let posts;
     if(groupName.length==0 || !link.includes("groupIndex.html")){
         posts = await $.post("http://localhost:7777/index/getMyPosts", obj);
-        console.log(posts);
     }
     else{
         obj={

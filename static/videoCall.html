@@ -1,186 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-	<title>Project-Facebook</title>
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> 
-    
-    <link rel="stylesheet" href="css/main.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/color.css">
-    <link rel="stylesheet" href="css/responsive.css">
 
-<<<<<<< HEAD
-  <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
-  <script src="http://localhost:7777/socket.io/socket.io.js" defer></script>
-  <script src="./myjs/videoCall/videocall.js" defer></script>
-  <title>Document</title>
-=======
-	<link rel="stylesheet" href="./mycss/indexdragula.css">
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
->>>>>>> 3fed7d3e3304dcc5db05d710524fb47c2fabe02f
-  <style>
-    /* #video-grid {
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<title>Project-Facebook</title>
+	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+	<link rel="stylesheet" href="css/main.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/color.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+		integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<style>
+		/* #video-grid {
       display: flex;
       flex-direction: row;
       height: 500px;
       width: 100%;
       margin: auto;
     } */
-    
-    /* video {
+
+		/* video {
       width: 100% !important;
       height: 500px !important;
       margin: auto;
       object-fit: cover !important;
     } */
-  </style>
+	</style>
 
 </head>
-<body>
-<!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	
-	<div class="responsive-header">
-		<div class="logo">
-			<a title="" href="index.html"><img src="images/logo.png" alt=""></a>
-		</div>
-		
-		<div class="top-area">
-			<div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-				<div style="display: flex;flex-direction: row;justify-content: center;align-items: center;width:60%;gap:25%;padding-left:22%;">
-					<a href="index.html"><i class="fa fa-home" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="friendRequests.html"><i class="fa fa-user" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="groups.html"><i class="fa fa-group" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="chat.html"><i class="fa fa-comment" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="notifications.html"><i class="fa fa-bell" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-				</div>
-				
-				<div class="user-img" style="margin-right: 20px;">
-					<img src="images/resources/admin.jpg" alt="" style="margin-left: 10px;">
-					<span class="status f-online"></span>
-					<div class="user-setting">
-						<a href="#" title=""><span class="status f-online"></span>online</a>
-						<a href="#" title=""><span class="status f-away"></span>away</a>
-						<a href="#" title=""><span class="status f-off"></span>offline</a>
-						<a href="profile.html" title=""><i class="ti-user"></i> view profile</a>
-						<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-						<a href="#" title=""><i class="ti-power-off"></i>log out</a>
-					</div>
-				</div>
-			</div>
-			
-			<!-- <span class="ti-menu main-menu" data-ripple=""></span> -->
-		</div>
-	</div>
-	<!-- responsive header -->
-	
-	<div class="topbar stick">
-		<div class="logo">
-			<a title="" href="index.html"><img src="images/logo.png" alt=""></a>
-		</div>
-		
-		<div class="top-area">
-			<div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-				<div style="display: flex;flex-direction: row;justify-content: center;align-items: center;width:60%;gap:25%;padding-left:22%;">
-					<a href="index.html"><i class="fa fa-home" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="friendRequests.html"><i class="fa fa-user" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="groups.html"><i class="fa fa-group" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="chat.html"><i class="fa fa-comment" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-					<a href="notifications.html"><i class="fa fa-bell" style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
-				</div>
-				
-				<div class="user-img" style="margin-right: 20px;">
-					<img src="images/resources/admin.jpg" alt="" style="margin-left: 10px;">
-					<span class="status f-online"></span>
-					<div class="user-setting">
-						<a href="#" title=""><span class="status f-online"></span>online</a>
-						<a href="#" title=""><span class="status f-away"></span>away</a>
-						<a href="#" title=""><span class="status f-off"></span>offline</a>
-						<!--  -->
-					</div>
-				</div>
-			</div>
-			
-			<!-- <span class="ti-menu main-menu" data-ripple=""></span> -->
-		</div>
-	</div><!-- topbar -->
-	
-	
 
-	<section>
-		<div class="gap gray-bg" style="padding-top:2%;">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="row" id="page-contents">
-							<div class="col-lg-3">
-								<aside class="sidebar static">
-									<div class="widget"><!-- shortcuts-->
-										<h4 class="widget-title">Shortcuts</h4>
-										<ul class="naves" id="naves">
-											<!-- will be rendered dynamically with shortcutsWidget.js -->
+<body>
+	<!--<div class="se-pre-con"></div>-->
+	<div class="theme-layout">
+
+		<div class="responsive-header">
+			<div class="logo">
+				<a title="" href="index.html"><img src="images/logo.png" alt=""></a>
+			</div>
+
+			<div class="top-area">
+				<div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+					<div
+						style="display: flex;flex-direction: row;justify-content: center;align-items: center;width:60%;gap:25%;padding-left:22%;">
+						<a href="index.html"><i class="fa fa-home"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="friendRequests.html"><i class="fa fa-user"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="groups.html"><i class="fa fa-group"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="chat.html"><i class="fa fa-comment"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="notifications.html"><i class="fa fa-bell"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+					</div>
+
+					<div class="user-img" style="margin-right: 20px;">
+						<img src="images/resources/admin.jpg" alt="" style="margin-left: 10px;">
+						<span class="status f-online"></span>
+						<div class="user-setting">
+							<a href="#" title=""><span class="status f-online"></span>online</a>
+							<a href="#" title=""><span class="status f-away"></span>away</a>
+							<a href="#" title=""><span class="status f-off"></span>offline</a>
+							<a href="profile.html" title=""><i class="ti-user"></i> view profile</a>
+							<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+							<a href="#" title=""><i class="ti-power-off"></i>log out</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- <span class="ti-menu main-menu" data-ripple=""></span> -->
+			</div>
+		</div>
+		<!-- responsive header -->
+
+		<div class="topbar stick">
+			<div class="logo">
+				<a title="" href="index.html"><img src="images/logo.png" alt=""></a>
+			</div>
+
+			<div class="top-area">
+				<div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+					<div
+						style="display: flex;flex-direction: row;justify-content: center;align-items: center;width:60%;gap:25%;padding-left:22%;">
+						<a href="index.html"><i class="fa fa-home"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="friendRequests.html"><i class="fa fa-user"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="groups.html"><i class="fa fa-group"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="chat.html"><i class="fa fa-comment"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+						<a href="notifications.html"><i class="fa fa-bell"
+								style="font-weight:400;font-size:25px;color: #088DCD;"></i></a>
+					</div>
+
+					<div class="user-img" style="margin-right: 20px;">
+						<img src="images/resources/admin.jpg" alt="" style="margin-left: 10px;">
+						<span class="status f-online"></span>
+						<div class="user-setting">
+							<a href="#" title=""><span class="status f-online"></span>online</a>
+							<a href="#" title=""><span class="status f-away"></span>away</a>
+							<a href="#" title=""><span class="status f-off"></span>offline</a>
+							<!--  -->
+						</div>
+					</div>
+				</div>
+
+				<!-- <span class="ti-menu main-menu" data-ripple=""></span> -->
+			</div>
+		</div><!-- topbar -->
+
+
+
+		<section>
+			<div class="gap gray-bg" style="padding-top:2%;">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="row" id="page-contents">
+								<div class="col-lg-3">
+									<aside class="sidebar static">
+										<div class="widget"><!-- shortcuts-->
+											<h4 class="widget-title">Shortcuts</h4>
+											<ul class="naves" id="naves">
+												<!-- will be rendered dynamically with shortcutsWidget.js -->
+											</ul>
+										</div>
+
+
+										<div class="widget friend-list">
+											<h4 class="widget-title">Friends</h4>
+											<div id="searchDir"></div>
+											<ul id="people-list" class="friendz-list">
+												<!-- will be rendered dynamically with friendswidget.js -->
+											</ul>
+
+										</div><!-- friends list sidebar -->
+
+
+
+									</aside>
+								</div><!-- sidebar -->
+								<div class="col-lg-9">
+									<!-- <div class="central-meta"> -->
+									<div class="row" id="video-grid">
+										<!-- video call -->
+									</div>
+									<!-- </div> -->
+									<!-- friend requests data -->
+									<div class="tab-pane fade" id="frends-req">
+										<ul class="nearby-contct" id="friendrequestlist">
+											<!--  -->
+										</ul>
+										<button class="btn-view btn-load-more"></button>
+									</div>
+									<div class="tab-pane fade" id="search-frnds" style="padding-top: 5%;">
+										<div
+											style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+											<input type="text" placeholder="Search Groups Here"
+												style="width: 100%;outline:none;font-size:18px;padding-left:8px;"
+												id="friendssearch">
+										</div>
+										<ul class="nearby-contct" id="friendgloballist">
+
+										</ul>
+										<button class="btn-view btn-load-more"></button>
+									</div>
+									<!-- followers list -->
+									<div class="tab-pane fade" id="my-followers" style="padding-top: 5%;">
+										<ul class="nearby-contct" id="friendfollowerslist">
+
 										</ul>
 									</div>
-									
-                      
-                      <div class="widget friend-list">
-                        <h4 class="widget-title">Friends</h4>
-                        <div id="searchDir"></div>
-                        <ul id="people-list" class="friendz-list">
-                          <!-- will be rendered dynamically with friendswidget.js -->
-                        </ul>
-                        
-                      </div><!-- friends list sidebar -->
-                      
-                   
-									
-								</aside>
-							</div><!-- sidebar -->
-							<div class="col-lg-9">
-								<!-- <div class="central-meta"> -->
-                  <div class="row" id="video-grid">
-                    <!-- video call -->
-                  </div>
-								<!-- </div> -->
-											<!-- friend requests data -->
-											<div class="tab-pane fade" id="frends-req" >
-												<ul class="nearby-contct" id="friendrequestlist">
-												<!--  -->
-												</ul>	
-											  <button class="btn-view btn-load-more"></button>
-										  </div>
-										  <div class="tab-pane fade" id="search-frnds" style="padding-top: 5%;">
-													<div
-														style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-														<input type="text" placeholder="Search Groups Here"
-															style="width: 100%;outline:none;font-size:18px;padding-left:8px;"
-															id="friendssearch">
-													</div>
-													<ul class="nearby-contct" id="friendgloballist">
-														
-													</ul>
-													<button class="btn-view btn-load-more"></button>
-											</div>
-											<!-- followers list -->
-											<div class="tab-pane fade" id="my-followers" style="padding-top: 5%;">
-												<ul class="nearby-contct" id="friendfollowerslist">
-													
-												</ul>
-											</div>
-											<!-- following list -->
-											<div class="tab-pane fade" id="my-following" style="padding-top: 5%;">
-												<ul class="nearby-contct" id="friendfollowinglist" style="margin: 0px;">
-													
-												</ul>
-											</div>
-											<div class="tab-pane fade" id="my-requests" style="padding-top: 5%;">
-												<ul class="nearby-contct" id="myrequestlist" style="margin: 0px;">
-													<!-- <li style="cursor:pointer">
+									<!-- following list -->
+									<div class="tab-pane fade" id="my-following" style="padding-top: 5%;">
+										<ul class="nearby-contct" id="friendfollowinglist" style="margin: 0px;">
+
+										</ul>
+									</div>
+									<div class="tab-pane fade" id="my-requests" style="padding-top: 5%;">
+										<ul class="nearby-contct" id="myrequestlist" style="margin: 0px;">
+											<!-- <li style="cursor:pointer">
 														<div class="nearly-pepls">
 															<figure>
 																<a href="time-line.html" title=""><img
@@ -196,19 +203,19 @@
 															</div>
 														</div>
 													</li> -->
-												</ul>
-											</div>
-
-										</div>
+										</ul>
 									</div>
-								</div>	
-							</div><!-- centerl meta -->
-							
-						</div>	
-					</div>
+
+								</div>
+							</div>
+						</div>
+					</div><!-- centerl meta -->
+
 				</div>
 			</div>
-		</div>	
+	</div>
+	</div>
+	</div>
 	</section>
 
 	<footer>
@@ -219,9 +226,10 @@
 						<div class="foot-logo">
 							<div class="logo">
 								<a href="index-2.html" title=""><img src="images/logo.png" alt=""></a>
-							</div>	
+							</div>
 							<p>
-								The trio took this simple idea and built it into the world’s leading carpooling platform.
+								The trio took this simple idea and built it into the world’s leading carpooling
+								platform.
 							</p>
 						</div>
 						<ul class="location">
@@ -238,19 +246,28 @@
 				</div>
 				<div class="col-lg-2 col-md-4">
 					<div class="widget">
-						<div class="widget-title"><h4>follow</h4></div>
+						<div class="widget-title">
+							<h4>follow</h4>
+						</div>
 						<ul class="list-style">
-							<li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
-							<li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en" title="">twitter</a></li>
-							<li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en" title="">instagram</a></li>
-							<li><i class="fa fa-google-plus-square"></i> <a href="https://plus.google.com/discover" title="">Google+</a></li>
-							<li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/" title="">Pintrest</a></li>
+							<li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/shopcircut/"
+									title="">facebook</a></li>
+							<li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en"
+									title="">twitter</a></li>
+							<li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en"
+									title="">instagram</a></li>
+							<li><i class="fa fa-google-plus-square"></i> <a href="https://plus.google.com/discover"
+									title="">Google+</a></li>
+							<li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/"
+									title="">Pintrest</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4">
 					<div class="widget">
-						<div class="widget-title"><h4>Navigate</h4></div>
+						<div class="widget-title">
+							<h4>Navigate</h4>
+						</div>
 						<ul class="list-style">
 							<li><a href="about.html" title="">about us</a></li>
 							<li><a href="contact.html" title="">contact us</a></li>
@@ -262,7 +279,9 @@
 				</div>
 				<div class="col-lg-2 col-md-4">
 					<div class="widget">
-						<div class="widget-title"><h4>useful links</h4></div>
+						<div class="widget-title">
+							<h4>useful links</h4>
+						</div>
 						<ul class="list-style">
 							<li><a href="#" title="">leasing</a></li>
 							<li><a href="#" title="">submit route</a></li>
@@ -274,11 +293,16 @@
 				</div>
 				<div class="col-lg-2 col-md-4">
 					<div class="widget">
-						<div class="widget-title"><h4>download apps</h4></div>
+						<div class="widget-title">
+							<h4>download apps</h4>
+						</div>
 						<ul class="colla-apps">
-							<li><a href="https://play.google.com/store?hl=en" title=""><i class="fa fa-android"></i>android</a></li>
-							<li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i class="ti-apple"></i>iPhone</a></li>
-							<li><a href="https://www.microsoft.com/store/apps" title=""><i class="fa fa-windows"></i>Windows</a></li>
+							<li><a href="https://play.google.com/store?hl=en" title=""><i
+										class="fa fa-android"></i>android</a></li>
+							<li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i
+										class="ti-apple"></i>iPhone</a></li>
+							<li><a href="https://www.microsoft.com/store/apps" title=""><i
+										class="fa fa-windows"></i>Windows</a></li>
 						</ul>
 					</div>
 				</div>
@@ -289,52 +313,52 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<span class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></span>
+					<span class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates
+							Hub</a></span>
 					<i><img src="images/credit-cards.png" alt=""></i>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-		<script>
-			var userData=JSON.parse(localStorage.getItem("userData"))
-			if(userData.email=="admin@gmail.com")
-			{
-				$(".user-setting").append(
-					`<a href="admin.html"><i class="ti-user">Admin</i></a>
+	</div>
+	<script>
+		var userData = JSON.parse(localStorage.getItem("userData"))
+		if (userData.email == "admin@gmail.com") {
+			$(".user-setting").append(
+				`<a href="admin.html"><i class="ti-user">Admin</i></a>
 					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
 					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-			else if(userData.role=="Parent")
-			{
-				$(".user-setting").append(
-					`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
+			)
+		}
+		else if (userData.role == "Parent") {
+			$(".user-setting").append(
+				`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
 					<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
 					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-			else{
-				$(".user-setting").append(
-					`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
+			)
+		}
+		else {
+			$(".user-setting").append(
+				`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 					<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
 					<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
-				)
-			}
-		</script>
-	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
+			)
+		}
+	</script>
+	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+	<script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="./myjs/widgets/shortcutsWidget.js"></script>
 	<script src="./myjs/widgets/myFriendsWidget.js"></script>
 	<script src="./myjs/widgets/whosFollowingWidget.js"></script>
 	<script src="myjs/friendRequests/friend.js"></script>
-  <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
-  <script src="http://localhost:7777/socket.io/socket.io.js"></script>
-  <script src="./myjs/videoCall/videocall.js"></script>
+	<script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+	<script src="http://localhost:7777/socket.io/socket.io.js"></script>
+	<script src="./myjs/videoCall/videocall.js"></script>
 	<!-- need to add dragula -->
-</body>	
+</body>
 
 
 </html>
