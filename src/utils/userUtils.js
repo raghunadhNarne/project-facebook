@@ -3,7 +3,8 @@ const { userExist } = require('../utils/signupUtils');
 const { createRecentActivityforUser } = require("./recentActivityUtils");
 const twilio = require('twilio');
 var randomstring = require("randomstring");
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const { createNewNotificationforUser } = require("./notificationsUtils");
 
 async function isUserExist(myEmail){
     let userData = await userModel.findOne({email:myEmail});
@@ -79,6 +80,7 @@ async function acceptPendingRequest(obj)
             let data=await userModel.updateOne({email:obj.email},{$set:{password:hashedpassword,status:"accept",role:obj.type}})
 
             await createRecentActivityforUser(obj.email)
+            await createNewNotificationforUser(obj.email);
             
             result.success=true;
             result.data=data

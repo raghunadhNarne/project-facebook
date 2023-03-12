@@ -1,5 +1,26 @@
-let callingmail=window.location.hash.substring(1);
-$("#callingtext").text(`calling to ${callingmail}`)
+let mails=window.location.hash.substring(1).split(":")
+// alert(mails)
+callfrom=mails[0]
+callto=mails[1]
+
+$("#callingtext").text(`calling to ${callto}`)
+var userData = JSON.parse(localStorage.getItem("userData"))
+
+window.onload = async()=>{
+
+    notificationObj = {
+        email : callto,
+        name : '',
+        action : "Lift call from "+callfrom,
+        url : `http://127.0.0.1:5500/static/audioCall.html#${callfrom}:${callto}`
+    }
+    // console.log(notificationObj)
+
+    if(userData.email==callfrom)
+    await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+}
+
+
 
 const socket = io('http://localhost:7777/audioCall')
 const videoGrid = document.getElementById('video-grid')
@@ -43,8 +64,9 @@ socket.on('audiocall-disconnected', userId => {
 })
 
 myPeer.on('open', id => {
-  let myEmail = "pranay@gmail.com";
-  let friendEmail = window.location.hash.substring(1);
+  let myEmail = callfrom;
+
+  let friendEmail = callto;
   let roomName = myEmail < friendEmail ? myEmail + friendEmail : friendEmail + myEmail
   socket.emit('join-call-room', roomName, id)
 })

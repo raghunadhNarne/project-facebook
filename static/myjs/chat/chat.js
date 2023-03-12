@@ -1,8 +1,6 @@
 let userData = JSON.parse(localStorage.getItem("userData"));
 
 
-
-
 var obj;
 const socket = io('http://localhost:7777/chat');
 
@@ -13,8 +11,7 @@ window.onload = async ()=> {
         email : userData.email
     }
     let myFriends = await $.post("http://localhost:7777/friends/getfriends",obj);
-    appendMyFriends(myFriends.data);    
-    getChatOfSpecificuser(window.location.hash.substring(1))
+    appendMyFriends(myFriends.data);
 }
 
 function appendMyFriends(arr){
@@ -22,26 +19,26 @@ function appendMyFriends(arr){
         let data = arr[x];
         if(data.senderEmail == userData.email){
             $("#messagebox").append(
-                `<li onclick="changeurl('${data.receiverEmail}')">
+                `<li onclick="changeurl('${data.receiverEmail}','${data.receiverName}','${data.receiverPic}')">
                 <figure>
-                    <img src="images/resources/${data.receiverPic}" alt="">
+                    <img src="../${data.receiverPic}" alt="">
                     <span class="status f-online"></span>
                 </figure>
                 <div class="people-name">
-                    <span>${data.receiverName}</span>
+                    <span style="font-weight:700">${data.receiverName}</span>
                 </div>
             </li>`
             )
         }
         else{
             $("#messagebox").append(
-                `<li onclick="changeurl('${data.senderEmail}')">
+                `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic}')">
                 <figure>
-                    <img src="images/resources/${data.senderPic}" alt="">
+                    <img src="../${data.senderPic}" alt="">
                     <span class="status f-online"></span>
                 </figure>
                 <div class="people-name">
-                    <span>${data.senderName}</span>
+                    <span style="font-weight:700">${data.senderName}</span>
                 </div>
             </li>`
             )
@@ -50,10 +47,17 @@ function appendMyFriends(arr){
     }
 }
 
-function changeurl(hash){
+function changeurl(hash,name,pic){
     window.location.href="chat.html#"+hash;
-    window.location.reload();
+    $("#makecall").attr('href','audioCall.html#'+userData.email+":"+hash);
+    $("#frnd-name").html(name);
+    $("#propic").attr('src',pic);
+    socket.disconnect();
+    socket.connect("http://localhost:7777")
+    getChatOfSpecificuser(window.location.hash.substring(1))
+    $("#mesg-box").css("display","inline-block")
 }
+
 
 async function getChatOfSpecificuser(friendsMail){
     $("#chatarea").html("")
@@ -66,26 +70,19 @@ async function getChatOfSpecificuser(friendsMail){
     for(x in data){
         appendToChat(data[x]);
     }
+    let chatMessages = document.getElementById("chatarea")
+    chatMessages.scrollTop = chatMessages.scrollHeight;
     openSocket(friendsMail);
 }
 
 function appendToChat(message){
 
-    if(message.type!="message"){
+    if(message.email == userData.email){
         $("#chatarea").append(
             `
-            <li class="you" style="margin:10px">
-                <p>${message.message}</p>
-            </li>
-            `
-        )
-    }
-    else if(message.email == userData.email){
-        $("#chatarea").append(
-            `
-            <li class="me" style="margin:10px">
-                <figure><img src="images/resources/${message.picture}" alt=""></figure>
-                <p>${message.message}</p>
+            <li class="me" style="margin-top:6px">
+                <figure><img src="../${message.picture}" alt=""></figure>
+                <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
         )
@@ -93,13 +90,15 @@ function appendToChat(message){
     else{
         $("#chatarea").append(
             `
-            <li class="you" style="margin:10px">
-                <figure><img src="images/resources/${message.picture}" alt=""></figure>
-                <p>${message.message}</p>
+            <li class="you" style="margin-top:6px">
+                <figure><img src="../${message.picture}" alt=""></figure>
+                <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
         )
     }
+    let chatMessages = document.getElementById("chatarea")
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 async function openSocket(friendsMail){
@@ -115,18 +114,13 @@ async function openSocket(friendsMail){
     if(friendsMail<userData.email){
         obj.roomname=friendsMail+":"+userData.email;
     }
-
     socket.emit("joinroom",obj)
 }
 
 socket.on("msg",obj=>{
-    console.log(1000);
     appendToChat(obj.message);
 })
 
-
-
-console.log(userData);
 
 
 $("#sendvoicemessage").click(()=>{
@@ -145,7 +139,12 @@ $("#sendvoicemessage").click(()=>{
 
 
 $("#sendmessage").click(async (e)=>{
-    e.preventDefault();
+    e.preventDefault(); 
+    let objt = {
+        postText : $("#msgtext").val()
+    }
+    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let puredText = purifiedText.cleanedDOM;
     let pobj = {
         chatRoom : obj.roomname,
         message : {
@@ -154,11 +153,10 @@ $("#sendmessage").click(async (e)=>{
             picture : userData.profilePic,
             time : "2:30pm",
             roomname : obj.roomname,
-            message : $("#msgtext").val(),
+            message : puredText,
             type : "message"
         }
     }
-    console.log(obj);
     socket.emit("chatmsg",pobj);
     await $.post("http://localhost:7777/chats/putmessage",pobj);
     let chatMessages = document.getElementById("chatarea")

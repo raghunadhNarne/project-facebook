@@ -39,6 +39,7 @@ async function addNewFilePost(myUserEmail,postData,multerFileName){
             comments : [],
             likedUsers : [],
             dislikedUsers : [],
+            groupName : postData.groupName,
             status:"pending"
         }
         if(postData.postType == "image"){
@@ -100,6 +101,7 @@ async function addNewTextPost(myUserEmail,postData){
             comments : [],
             likedUsers : [],
             dislikedUsers : [],
+            groupName : postData.groupName,
             status:"pending"
         })
         try{

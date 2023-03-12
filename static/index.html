@@ -142,15 +142,7 @@
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
-								<div class="central-meta">
-									<div class="new-postbox" id="new-postbox">
-										<!-- will render dynamically from renderCreatePostbox.js -->
-									</div>
-								</div><!-- add post new box -->
-								<div class="loadMore" id="loadMore">
-								
-								</div>
-								<div id="popup" class="closepopup">
+								<div id="popup" class="closepopup" style="z-index: 200;">
 									<div style="display: flex;flex-direction: column;">
 										<div class="container" id="waves" style="margin: auto;">
 											<div class="circle delay1"></div>
@@ -162,6 +154,15 @@
 									</div>
 									<i onclick="closepopup()" class="fa fa-close" style="color: #088DCD;cursor: pointer;transform: translate(0px,-50px);"></i>
 								</div>
+								<div class="central-meta">
+									<div class="new-postbox" id="new-postbox">
+										<!-- will render dynamically from renderCreatePostbox.js -->
+									</div>
+								</div><!-- add post new box -->
+								<div class="loadMore" id="loadMore">
+								
+								</div>
+								
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
 								<aside class="sidebar static">
@@ -174,9 +175,9 @@
 											</figure>
 											<div class="page-meta">
 												<a href="#" title="" class="underline" id="firstName">My page</a>
-												<span><i class="ti-comment"></i><a href="insight.html" title="">Friends <em id="friends">9</em></a></span>
-												<span><i class="ti-home"></i><a href="insight.html" title="">Followers <em id="myfollowers">9</em></a></span>
-												<span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
+												<span><i class="ti-comment"></i><a href="insight.html" title="">Friends <em id="friends">0</em></a></span>
+												<span><i class="ti-home"></i><a href="insight.html" title="">Followers <em id="myfollowers">0</em></a></span>
+												<span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em id="notifications">0</em></a></span>
 											</div>
 											<div class="page-likes">
 												<ul class="nav nav-tabs likes-btn">
@@ -338,6 +339,7 @@
 				</div>
 			</div>
 		</div>	
+		<img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg">
 	</section>
 
 	<footer>
@@ -487,8 +489,7 @@
 					<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
 				</div>
 			</form>
-			<!-- <p class="assistant" onclick="popsup()">Hii</p> -->
-			<!-- <img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg"> -->
+			
 		</div><!-- side panel -->	
 		
 		<script>

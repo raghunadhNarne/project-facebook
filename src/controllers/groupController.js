@@ -1,9 +1,9 @@
-const { makeGroup, fetchMyGroups,leaveFromGroup,getGlobalGroups,joinGrpRequest,getGroupsOfMe,getSpecificGroupRequests,takeActionOnGroupRequest } = require('../utils/groupUtils');
+const { makeGroup, fetchMyGroups,leaveFromGroup,getGlobalGroups,joinGrpRequest,getGroupsOfMe,getSpecificGroupRequests,takeActionOnGroupRequest ,getSpecificGroupPosts} = require('../utils/groupUtils');
 
 async function creategroup(req, res) {
     let groupDetails = req.body;
-
-    let result = await makeGroup(groupDetails);
+    let groupPic = req.file.path;
+    let result = await makeGroup(groupDetails,groupPic);
     res.send(result);
 }
 
@@ -64,4 +64,12 @@ async function acceptOrRejectRequest(req,res){
     res.send(result);
 }
 
-module.exports = { creategroup, getMyGroups,leaveGroup,getNotMyGroups,joinRequest,getGroupsCreatedByMe,groupRequests,acceptOrRejectRequest};
+
+async function getGroupPosts(req,res){
+    let requiredDetails = req.body;
+
+    let result = await getSpecificGroupPosts(requiredDetails);
+    res.send(result);
+}
+
+module.exports = { creategroup, getMyGroups,leaveGroup,getNotMyGroups,joinRequest,getGroupsCreatedByMe,groupRequests,acceptOrRejectRequest,getGroupPosts};

@@ -8,7 +8,7 @@ async function fetchMyPosts(email){
         data: ""
     }
     try{
-        let posts = await postModel.find({ userEmail: email,status:"pending"});
+        let posts = await postModel.find({ userEmail: email});
         if(posts.length != 0){
             result.success = true;
             result.message = "Fetched posts";

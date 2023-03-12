@@ -1,4 +1,14 @@
+let usersData = JSON.parse(localStorage.getItem('userData'));
+
 async function renderShorcuts(){
+
+    $("#naves").append(
+        `<li>
+            <i class="ti-camera"></i>
+            <a href="./liveVedio.html#${usersData.email}" title="">Start Live</a>
+        </li>`
+    )
+
     $("#naves").append(
         `<li>
             <i class="ti-files"></i>

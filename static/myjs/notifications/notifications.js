@@ -46,6 +46,7 @@ async function getNotifications(){
     let result = await $.post("http://localhost:7777/notifications/getMyNotifications", obj);
 
     let myNotifications = result.data;
+    
     // console.log(recentActivityData.activities,"recentActivityData")
 
     return myNotifications?.notifications ? myNotifications.notifications : [];

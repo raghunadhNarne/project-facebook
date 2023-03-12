@@ -4,7 +4,7 @@ const socket = io('http://localhost:7777/videoCall')
 
 const myPeer = new Peer(undefined, {
   host: 'localhost',
-  port: '3101'
+  port: '6747'
 })
 
 const myVideo = document.createElement('video')

@@ -1,4 +1,5 @@
 const { groupModel } = require("../models/groupModel");
+const { postModel } = require("../models/postModel");
 
 
 async function isGroupExists(groupDetails) {
@@ -6,7 +7,7 @@ async function isGroupExists(groupDetails) {
     return data != undefined;
 }
 
-async function makeGroup(groupDetails) {
+async function makeGroup(groupDetails,groupPic) {
     let result = {
         success: false,
         message: "",
@@ -16,7 +17,7 @@ async function makeGroup(groupDetails) {
     if (!isGroupAlreadyExists) {
         let newGroup = new groupModel({
             groupName: groupDetails.groupName,
-            groupPic: groupDetails.groupPic,
+            groupPic: groupPic,
             groupOwnerName: groupDetails.groupOwnerName,
             groupOwnerEmail: groupDetails.groupOwnerEmail,
             groupOwnerPic: groupDetails.groupOwnerPic,
@@ -222,4 +223,22 @@ async function takeActionOnGroupRequest(requiredDetails) {
     return result;
 }
 
-module.exports = { makeGroup, fetchMyGroups, leaveFromGroup, getGlobalGroups, joinGrpRequest, getGroupsOfMe, getSpecificGroupRequests, takeActionOnGroupRequest }
+
+async function getSpecificGroupPosts(requiredDetails){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+        let data = await postModel.find({groupName:requiredDetails.groupName});
+        result.success = true;
+        result.data = data;
+    }
+    catch(e){
+        result.message = "Unable to fetch the group posts";
+    }
+    return result;
+}
+
+module.exports = { makeGroup, fetchMyGroups, leaveFromGroup, getGlobalGroups, joinGrpRequest, getGroupsOfMe, getSpecificGroupRequests, takeActionOnGroupRequest ,getSpecificGroupPosts}

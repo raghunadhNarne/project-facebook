@@ -16,10 +16,6 @@ app.use(cors())
 
 
 
-
-
-
-
 const socketio = require('socket.io');
 const http = require('http');
 const server = http.createServer(app);
@@ -29,12 +25,27 @@ const io = socketio(server, { cors: {} });
 
 
 
+// io.on('connection', socket => {
 
 
 
 const chat = io.of('/chat')
 chat.on('connection', socket => {
+
+  socket.on('join-room', (roomId, userId,email) => {
+    socket.join(roomId)
+    socket.broadcast.to(roomId).emit('user-connected', userId)
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomId).emit('user-disconnected', email)
+    })
+    socket.on('livemsg',(livemsg,profilePic,firstName)=>{
+      chat.to(roomId).emit('getlivmsg',livemsg,userId,profilePic,firstName);
+    })
+  })
+
+
   socket.on('joinroom', (obj) => {
+
     socket.join(obj.roomname);
 
     let introobj = {
@@ -52,14 +63,15 @@ chat.on('connection', socket => {
       }
     }
 
-    socket.broadcast.to(obj.roomname).emit("msg", introobj);
+    socket.broadcast.to(obj.roomname).emit("intromsg", introobj);
 
     socket.on('chatmsg', msgobj => {
       chat.to(obj.roomname).emit('msg', msgobj);
     })
 
     socket.on('disconnect', socket => {
-      chat.to(obj.roomname).emit('msg', extroobj);
+      chat.to(obj.roomname).emit('extromsg', extroobj);
+      // chat.to(obj.roomname).emit('msg', extroobj);
     })
 
   })
@@ -123,12 +135,12 @@ const { upload } = require('./multer/multerConfig');
 // app.use('/auth',authRouter);
 
 
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 
 // const authRouter = require('./auth/authRoute');
@@ -154,23 +166,24 @@ const chatRouter = require('./routes/chatRoute');
 app.use("/chats", chatRouter);
 
 
-const friendsRouter=require('./routes/friendsRoute')
-app.use('/friends',friendsRouter)
+const friendsRouter = require('./routes/friendsRoute')
+app.use('/friends', friendsRouter)
 
-const userRouter=require('./routes/userRoute')
-app.use('/users',userRouter)
+const userRouter = require('./routes/userRoute')
+app.use('/users', userRouter)
 
 const grouChatRouter = require('./routes/groupChatRoute')
-app.use("/groupChats",grouChatRouter);
+app.use("/groupChats", grouChatRouter);
 const indexRouter = require('./routes/indexRoute');
-app.use('/index',indexRouter);
+app.use('/index', indexRouter);
 
 const recentActivityRouter = require('./routes/recentActivityRoute');
-app.use('/recentActivity',recentActivityRouter)
+app.use('/recentActivity', recentActivityRouter)
 
 
 const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
-app.use('/xssScriptingFix',xssScriptingFixRouter)
+const { createCipheriv } = require('crypto');
+app.use('/xssScriptingFix', xssScriptingFixRouter)
 
 const adRouter = require('./routes/adRoute')
 app.use('/ads',adRouter)

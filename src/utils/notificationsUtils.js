@@ -31,13 +31,27 @@ async function fetchAllNotifications(myEmail){
     let result = {
         success: false,
         message: "",
-        data: ""
+        data: "",
+        count:0
     }
     try{
         let data = await notificationsModel.findOne({email:myEmail});
+        let count = await notificationsModel.aggregate([
+            {
+                $match:{email:myEmail}
+            },
+            {
+                $project:{
+                    count:{$size:"$notifications"},
+                    _id:0
+                }
+            }
+        ])
+        // console.log(count)
         result.success = true;
         result.message = "successfully fetched notifications";
         result.data = data;
+        result.count = count[0].count;
         // console.log("notifications util",data)
     }
     catch(e){

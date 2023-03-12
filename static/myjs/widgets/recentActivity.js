@@ -19,6 +19,7 @@ async function renderAllRecentActivity(){
 
 
 
+
 async function getRecentActivityData(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
@@ -41,6 +42,7 @@ async function renderRecentActivity(){
     let limit = Math.min(4,recentActivityData.length)
     // console.log(recentActivityData)
 
+
     for(let recentActivity = limit - 1; recentActivity >= 0; recentActivity--){
         $("#activitiez").append(
             `<li>
@@ -57,14 +59,15 @@ async function renderRecentActivity(){
 
 
 async function getLatestFourActivityData(){
+    
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-
+    
     let result = await $.post("http://localhost:7777/recentActivity/getMyLatestFourActivities", obj);
 
     let recentActivityData = result.data;
-    // console.log(recentActivityData,"recentActivityData")
+    console.log(recentActivityData,"recentActivityData")
 
     return recentActivityData ? recentActivityData.activities : [];
 }
