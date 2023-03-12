@@ -15,12 +15,16 @@ async function getFollowers(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    let result = await $.post("http://localhost:7777/friends/getmyfollowers", obj);
-    // console.log("result",result)
-
+    let result = [];
+    try{
+        result = await $.post("http://localhost:7777/friends/getmyfollowers", obj);
+    }
+    catch(e){
+        console.log("Whos following widet rendering failed...")
+    }
     let followersData = result.data;
 
-    return followersData ? followersData : [];
+    return followersData | [];
 }
 
 async function getFollower(follower){

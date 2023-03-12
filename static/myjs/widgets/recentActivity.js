@@ -24,13 +24,16 @@ async function getRecentActivityData(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    // console.log(obj);
-    let result = await $.post("http://localhost:7777/recentActivity/getMyRecentActivity", obj);
+    let recentActivityData = []
+    try{
+        let result = await $.post("http://localhost:7777/recentActivity/getMyRecentActivity", obj);
+        recentActivityData = result.data;
+    }
+    catch(e){
+        console.log("recent activity widet rendering failed...")
+    }
 
-    let recentActivityData = result.data;
-    // console.log(recentActivityData.activities,"recentActivityData")
-
-    return recentActivityData ? recentActivityData.activities : [];
+    return recentActivityData?.activities || [];
 }
 
 
@@ -40,7 +43,6 @@ async function getRecentActivityData(){
 async function renderRecentActivity(){
     let recentActivityData = await getLatestFourActivityData();
     let limit = Math.min(4,recentActivityData.length)
-    // console.log(recentActivityData)
 
 
     for(let recentActivity = limit - 1; recentActivity >= 0; recentActivity--){
@@ -63,13 +65,17 @@ async function getLatestFourActivityData(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    
-    let result = await $.post("http://localhost:7777/recentActivity/getMyLatestFourActivities", obj);
 
-    let recentActivityData = result.data;
-    console.log(recentActivityData,"recentActivityData")
+    let recentActivityData =[];
+    try{
+        let result = await $.post("http://localhost:7777/recentActivity/getMyLatestFourActivities", obj);
+        recentActivityData = result.data;
+    }
+    catch(e){
+        console.log("recent activity rendering failed")
+    }
 
-    return recentActivityData ? recentActivityData.activities : [];
+    return recentActivityData?.activities || [];
 }
 
 
