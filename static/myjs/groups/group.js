@@ -202,12 +202,14 @@ $("#grpsearch").keyup(async () => {
 
 
 $("#createGrp").click(async () => {
-    // let obj = {
-    //     groupName : $("#grpnameinput").val(),
-    //     groupPic : $("#grpprofilepicinput").val()
-    // } 
+    let objt = {
+        postText : $("#grpnameinput").val()
+    } 
+    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let puredText = purifiedText.cleanedDOM;
+
     let obj = new FormData();
-    obj.append("groupName", $("#grpnameinput").val());
+    obj.append("groupName", puredText);
     obj.append("groupPic", document.getElementById("profilepic").files[0]);
     obj.append("groupOwnerName", userData.firstName+" "+userData.lastName);
     obj.append("groupOwnerEmail", userData.email);

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="./mycss/common.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -136,20 +137,34 @@
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-9">
+								<div id="popup" class="closepopup" style="z-index: 200;">
+									<div style="display: flex;flex-direction: column;">
+										<div class="container" id="waves" style="margin: auto;">
+											<div class="circle delay1"></div>
+											<div class="circle delay2"></div>
+											<div class="circle delay3"></div>
+											<div class="circle delay4"></div>
+										</div>
+										<h2 style="transform: translate(37%,270%);color: #088DCD;">Say something</h2>
+									</div>
+									<i onclick="closepopup()" class="fa fa-close" style="color: #088DCD;cursor: pointer;transform: translate(0px,-50px);"></i>
+								</div>
 								<div class="central-meta">
 									<div class="messages">
 										<h5 class="f-title"><i class="ti-bell"></i>All Messages</h5>
 										<div class="message-box">
-											<ul class="peoples" id="messagebox" style="width:23%;">
+						 					<ul class="peoples" id="messagebox" style="width:23%;">
 												
 												
 												
 												
 											</ul>
-											<div class="peoples-mesg-box">
+											<div class="peoples-mesg-box" style="display: none;" id="mesg-box">
 												<div class="conversation-head" id="conv-head">
-													<figure><img src="images/resources/friend-avatar.jpg" alt=""></figure>
-													<span id="frnd-name"></span>
+													<figure><img src="images/resources/friend-avatar.jpg" alt="" id="propic"></figure>
+													<span id="frnd-name" style="width: 70%;"></span>
+													<i class="fa fa-video-camera" aria-hidden="true" style="padding-right:20px;font-size:20px;cursor: pointer;"></i>
+													<i class="fa fa-phone" aria-hidden="true" style="font-size: 20px;cursor: pointer;"></i>
 												</div>
 												<ul class="chatting-area" id="chatarea" style="padding:10px;">
 													
@@ -161,7 +176,7 @@
 														<div title="send" id="sendmessage" style="cursor: pointer;background-color: #088DCD;"><i class="fa fa-send" style="color:white;padding:9px;font-size:22px"></i></div>
 													</form>
 												</div>
-											</div>
+											</div> 
 										</div>
 									</div>
 								</div>	
@@ -172,6 +187,7 @@
 				</div>
 			</div>
 		</div>	
+		<img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg">
 	</section>
 
 	<footer>
@@ -358,6 +374,8 @@
 	<script src="http://localhost:7777/socket.io/socket.io.js"></script>
 	<script src="./myjs/chat/chatDragula.js"></script>
 	<script src="./myjs/chat/chat.js"></script>
+	<script src="./myjs/common/assist.js"></script>
+	<script src="./myjs/common/common.js"></script>
 
 </body>	
 

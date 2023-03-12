@@ -5,6 +5,7 @@
     width: 45px;
     animation: assistantpopup 2s infinite linear;
     cursor: pointer;
+    z-index: 200;
 }
 
 

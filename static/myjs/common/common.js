@@ -1,8 +1,8 @@
 function popsup(){
     document.getElementById("popup").className="showpopup";
-    setTimeout(3000)
 }
 
 function closepopup(){
+    recognition.stop();
     document.getElementById("popup").className="closepopup";
 }

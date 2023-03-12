@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="./mycss/common.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -178,6 +179,18 @@
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
+								<div id="popup" class="closepopup" style="z-index: 200;">
+									<div style="display: flex;flex-direction: column;">
+										<div class="container" id="waves" style="margin: auto;">
+											<div class="circle delay1"></div>
+											<div class="circle delay2"></div>
+											<div class="circle delay3"></div>
+											<div class="circle delay4"></div>
+										</div>
+										<h2 style="transform: translate(37%,270%);color: #088DCD;">Say something</h2>
+									</div>
+									<i onclick="closepopup()" class="fa fa-close" style="color: #088DCD;cursor: pointer;transform: translate(0px,-50px);"></i>
+								</div>
 								<div class="central-meta">
 									<div class="editing-interest">
 										<h5 class="f-title"><i class="ti-bell"></i>All Notifications </h5>
@@ -411,6 +424,7 @@
 				</div>
 			</div>
 		</div>	
+		<img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg">
 	</section>
 
 	<footer>
@@ -592,6 +606,8 @@
 	<script src="js/main.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="./myjs/notifications/notificationsDragula.js"></script>
+	<script src="./myjs/common/assist.js"></script>
+	<script src="./myjs/common/common.js"></script>
 
 </body>	
 

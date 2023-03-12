@@ -59,5 +59,4 @@ async function insertmessage(requiredDetails) {
     return result;
 }
 
-
 module.exports = { getchats, insertmessage }

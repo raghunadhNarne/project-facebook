@@ -33,8 +33,8 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
       socket.broadcast.to(roomId).emit('user-disconnected', email)
     })
-    socket.on('livemsg',livemsg=>{
-      io.to(roomId).emit('getlivmsg',livemsg,userId);
+    socket.on('livemsg',(livemsg,profilePic,firstName)=>{
+      io.to(roomId).emit('getlivmsg',livemsg,userId,profilePic,firstName);
     })
   })
 

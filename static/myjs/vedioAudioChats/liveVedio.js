@@ -70,21 +70,28 @@ socket.on('user-disconnected', userEmail=> {
     }    
 })
 
-$("#submitmsg").keypress((e)=>{
+$("#submitmsg").keypress(async (e)=>{
+    let objt = {
+        postText : $("#submitmsg").val()
+    } 
+    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let puredText = purifiedText.cleanedDOM;
+
     if(e.which==13){
-        let msg = $("#submitmsg").val();
-        socket.emit('livemsg',msg);
+        let msg = puredText;
+        socket.emit('livemsg',msg,userData.profilePic,userData.firstName);
         $("#submitmsg").val("");
     }
 })
 
 
-socket.on("getlivmsg",(msg,userId)=>{
+socket.on("getlivmsg",(msg,userId,profilePic,firstName)=>{
     $("#people-list").append(
         `<li>
             <figure>
-                <img src="images/resources/friend-avatar2.jpg" alt="">
+                <img src="../${profilePic}" alt="">
                 <span class="status f-away"></span>
+                
             </figure>
             <div class="friendz-meta">
                 <a href="time-line.html">${msg}</a>

@@ -145,6 +145,18 @@
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
+								<div id="popup" class="closepopup" style="z-index: 200;">
+									<div style="display: flex;flex-direction: column;">
+										<div class="container" id="waves" style="margin: auto;">
+											<div class="circle delay1"></div>
+											<div class="circle delay2"></div>
+											<div class="circle delay3"></div>
+											<div class="circle delay4"></div>
+										</div>
+										<h2 style="transform: translate(37%,270%);color: #088DCD;">Say something</h2>
+									</div>
+									<i onclick="closepopup()" class="fa fa-close" style="color: #088DCD;cursor: pointer;transform: translate(0px,-50px);"></i>
+								</div>
 								<div class="central-meta">
 									<div class="new-postbox">
 										<figure>
@@ -191,18 +203,7 @@
 								<div class="loadMore" id="loadMore">
 								
 								</div>
-								<div id="popup" class="closepopup">
-									<div style="display: flex;flex-direction: column;">
-										<div class="container" id="waves" style="margin: auto;">
-											<div class="circle delay1"></div>
-											<div class="circle delay2"></div>
-											<div class="circle delay3"></div>
-											<div class="circle delay4"></div>
-										</div>
-										<h2 style="transform: translate(37%,270%);color: #088DCD;">Say something</h2>
-									</div>
-									<i onclick="closepopup()" class="fa fa-close" style="color: #088DCD;cursor: pointer;transform: translate(0px,-50px);"></i>
-								</div>
+								
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
 								<aside class="sidebar static">
@@ -380,6 +381,7 @@
 				</div>
 			</div>
 		</div>	
+		<img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg">
 	</section>
 
 	<footer>
@@ -529,8 +531,7 @@
 					<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
 				</div>
 			</form>
-			<!-- <p class="assistant" onclick="popsup()">Hii</p> -->
-			<!-- <img class="assistant" onclick="popsup()" src="images/resources/assistant.jpg"> -->
+			
 		</div><!-- side panel -->	
 		
 		<script>

@@ -19,9 +19,9 @@ function appendMyFriends(arr){
         let data = arr[x];
         if(data.senderEmail == userData.email){
             $("#messagebox").append(
-                `<li onclick="changeurl('${data.receiverEmail}','${data.receiverName}')">
+                `<li onclick="changeurl('${data.receiverEmail}','${data.receiverName}','${data.receiverPic}')">
                 <figure>
-                    <img src="images/resources/mumbai.jpg" alt="">
+                    <img src="../${data.receiverPic}" alt="">
                     <span class="status f-online"></span>
                 </figure>
                 <div class="people-name">
@@ -32,9 +32,9 @@ function appendMyFriends(arr){
         }
         else{
             $("#messagebox").append(
-                `<li onclick="changeurl('${data.senderEmail}','${data.senderName}')">
+                `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic})">
                 <figure>
-                    <img src="images/resources/mumbai.jpg" alt="">
+                    <img src="../${data.senderPic}" alt="">
                     <span class="status f-online"></span>
                 </figure>
                 <div class="people-name">
@@ -47,12 +47,14 @@ function appendMyFriends(arr){
     }
 }
 
-function changeurl(hash,name){
+function changeurl(hash,name,pic){
     window.location.href="chat.html#"+hash;
     $("#frnd-name").html(name);
+    $("#propic").attr('src',pic);
     socket.disconnect();
     socket.connect("http://localhost:7777")
     getChatOfSpecificuser(window.location.hash.substring(1))
+    $("#mesg-box").css("display","inline-block")
 }
 
 
@@ -78,7 +80,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="me" style="margin-top:6px">
-                <figure><img src="images/resources/mumbai.jpg" alt=""></figure>
+                <figure><img src="../${message.picture}" alt=""></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
@@ -88,7 +90,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="you" style="margin-top:6px">
-                <figure><img src="images/resources/mumbai.jpg" alt=""></figure>
+                <figure><img src="../${message.picture}" alt=""></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
@@ -137,6 +139,11 @@ $("#sendvoicemessage").click(()=>{
 
 $("#sendmessage").click(async (e)=>{
     e.preventDefault();
+    let objt = {
+        postText : $("#msgtext").val()
+    }
+    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let puredText = purifiedText.cleanedDOM;
     let pobj = {
         chatRoom : obj.roomname,
         message : {
@@ -145,7 +152,7 @@ $("#sendmessage").click(async (e)=>{
             picture : userData.profilePic,
             time : "2:30pm",
             roomname : obj.roomname,
-            message : $("#msgtext").val(),
+            message : puredText,
             type : "message"
         }
     }

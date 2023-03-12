@@ -1,18 +1,20 @@
+let userData = JSON.parse(localStorage.getItem("userData"));
+
 const socket = io("http://localhost:7777")
 
 
 let obj = {
-    name:"Rohith",
-    email:"rohith@gmail.com",
-    picture : "rohithsharma.jpg",
-    time : "2:30pm",
-    roomname : "Mana Ongole"
+    name:userData.firstName+" "+userData.lastName,
+    email : userData.email,
+    picture : userData.profilePic,
+    roomname : window.location.hash.substring(1)
 }
 
 window.onload = async ()=>{
+
     let data = await $.post('http://localhost:7777/groupChats/fetchchating',{chatRoom : obj.roomname});
     data = data.data.messages;
-
+    $("#groupname").html(window.location.hash.substring(1))
     for(x in data){
         appendToChat(data[x]);
     }
@@ -23,25 +25,27 @@ socket.emit("joinroom",obj)
 
 socket.on("msg",obj=>{
     appendToChat(obj.message);
+    let chatMessages = document.getElementById("chatarea")
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 })
 
 function appendToChat(message){
-
+    
     if(message.type!="message"){
         $("#chatarea").append(
             `
-            <li class="you" style="margin:10px">
-                <p>${message.message}</p>
+            <li class="you" style="margin-top:10px">
+                <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
         )
     }
-    else if(message.email == 'rohith@gmail.com'){
+    else if(message.email == userData.email){
         $("#chatarea").append(
             `
-            <li class="me" style="margin:10px">
+            <li class="me" style="margin-top:10px">
                 <figure><img src="images/resources/${message.picture}" alt=""></figure>
-                <p>${message.message}</p>
+                <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
         )
@@ -49,28 +53,35 @@ function appendToChat(message){
     else{
         $("#chatarea").append(
             `
-            <li class="you" style="margin:10px">
+            <li class="you" style="margin-top:10px">
                 <figure><img src="images/resources/${message.picture}" alt=""></figure>
-                <p>${message.message}</p>
+                <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
         )
     }
+    let chatMessages = document.getElementById("chatarea")
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 
 
 $("#sendmessage").click(async (e)=>{
     e.preventDefault();
+    let objt = {
+        postText : $("#msgtext").val()
+    }
+    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let puredText = purifiedText.cleanedDOM;
     let pobj = {
         chatRoom : obj.roomname,
         message : {
-            name:"Raghu",
-            email:"pranay@gmail.com",
-            picture : "rohithsharma.jpg",
+            name:userData.firstName+" "+userData.lastName,
+            email:userData.email,
+            picture : userData.profilePic,
             time : "2:30pm",
-            roomname : "Mana Ongole",
-            message : $("#msgtext").val(),
+            roomname : window.location.hash.substring(1),
+            message : puredText,
             type : "message"
         }
     }
