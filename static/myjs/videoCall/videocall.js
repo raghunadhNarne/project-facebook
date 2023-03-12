@@ -1,5 +1,5 @@
 const socket = io('http://localhost:7777/videoCall')
-const videoGrid = document.getElementById('video-grid')
+// const videoGrid = document.getElementById('video-grid')
 
 
 const myPeer = new Peer(undefined, {
@@ -61,5 +61,8 @@ function addVideoStream(video, stream) {
   video.addEventListener('loadedmetadata', () => {
     video.play()
   })
-  videoGrid.append(video)
+  video.style.width = "100%"
+  video.style.height = "500px"
+  let videoDiv = $('<div class="col-lg-5" style="background-color: black;"></div>').append(video)
+  $("#video-grid").append(videoDiv)
 }
