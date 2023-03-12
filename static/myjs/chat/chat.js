@@ -138,7 +138,7 @@ $("#sendvoicemessage").click(()=>{
 
 
 $("#sendmessage").click(async (e)=>{
-    e.preventDefault();
+    e.preventDefault(); 
     let objt = {
         postText : $("#msgtext").val()
     }
