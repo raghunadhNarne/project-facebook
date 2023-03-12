@@ -49,7 +49,7 @@ async function renderComment(comment){
         </div>
         <div class="we-comment">
             <div class="coment-head">
-                <h5><a href="time-line.html" title="">${comment.userName}</a></h5>
+                <h5><a href="profile.html#${comment.userEmail}" title="">${comment.userName}</a></h5>
                 <span>${comment.commentedTime}</span>
                 <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
             </div>
@@ -90,10 +90,10 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" style="height:70px;width:70px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
-                            <ins><a href="profile.html" title="">${post.userName}</a></ins>
+                            <ins><a href="profile.html#${post.userEmail}" title="">${post.userName}</a></ins>
                             <span>published: ${post.postedTime}</span>
                         </div>
                         <div class="post-meta">
@@ -155,7 +155,7 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="../${userData.profilePic}" style="height:50px;width:1000px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="../${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
@@ -183,10 +183,10 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" style="height:70px;width:70px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
-                            <ins><a href="time-line.html" title="">${post.userName}</a></ins>
+                            <ins><a href="#${post.userEmail}" title="">${post.userName}</a></ins>
                             <span>published: ${post.postedTime}</span>
                         </div>
                         <div class="post-meta">
@@ -250,7 +250,7 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="../${userData.profilePic}" style="height:50px;width:1000px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="../${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
@@ -276,10 +276,10 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" style="height:70px;width:70px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
-                            <ins><a href="time-line.html" title="">${post.userName}</a></ins>
+                            <ins><a href="#${post.userEmail}" title="">${post.userName}</a></ins>
                             <span>published: ${post.postedTime}</span>
                         </div>
                         <div class="post-meta">
@@ -348,7 +348,7 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="../${userData.profilePic}" style="height:50px;width:1000px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="../${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
@@ -717,6 +717,7 @@ async function submitMyComment(event,postid){
         userPic : commentedUserdata.profilePic,
         userName : commentedUserdata.lastName,
         commentText : newCommentText,
+        userEmail : commentedUserdata.email
     }
 
     //addding comment to posts database

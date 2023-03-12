@@ -38,7 +38,7 @@ socket.on('user-disconnected', userId => {
 })
 
 myPeer.on('open', id => {
-  let myEmail = "raghunadhnarne1022@gmail.com";
+  let myEmail = JSON.parse(localStorage.getItem("userData")).email;
   let friendEmail = window.location.hash.substring(1);
   let roomName = myEmail < friendEmail ? myEmail + friendEmail : friendEmail + myEmail
   socket.emit('join-room', roomName, id)

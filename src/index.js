@@ -193,6 +193,9 @@ app.use('/ads',adRouter)
 const notificationsRouter = require('./routes/notificationsRoute');
 app.use('/notifications',notificationsRouter)
 
+const mediaRouter = require('./routes/mediaRoute');
+app.use('/media',mediaRouter)
+
 
 async function auth(req, res, next) {
   var token = req.cookies.jwtToken;
