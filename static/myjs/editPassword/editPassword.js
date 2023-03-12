@@ -21,7 +21,7 @@ $("#update").click(async function(){
             email:JSON.parse(localStorage.getItem("userData")).email,
             new:new_password,
         }
-        var data= await $.post("http://localhost:7777/users/changepassword",obj)
+        var data= await $.post(backendHost+"/users/changepassword",obj)
         alert(data.message)
     }
     

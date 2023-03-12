@@ -5,12 +5,12 @@ window.onload = async () => {
         status: "accepted"
     }
 
-    let myGrps = await $.post("http://localhost:7777/groups/getMyGroups", obj);
+    let myGrps = await $.post(backendHost+"/groups/getMyGroups", obj);
     madeMyGrps(myGrps.data);
     obj = {
         email: userData.email
     }
-    let grpsOfMe = await $.post("http://localhost:7777/groups/getGroupsCreatedByMe", obj);
+    let grpsOfMe = await $.post(backendHost+"/groups/getGroupsCreatedByMe", obj);
     madeGrpsOfMe(grpsOfMe.data);
 }
 
@@ -52,7 +52,7 @@ async function makegrprequest(groupPic1, groupName1, groupOwnerEmail1, groupOwne
         senderPic: userData.profilePic,
         status: "pending"
     }
-    let data = await $.post("http://localhost:7777/groups/joinRequest", obj);
+    let data = await $.post(backendHost+"/groups/joinRequest", obj);
     alert(data.message);
 }
 
@@ -90,7 +90,7 @@ function exitgrp(grpname) {
         email: userData.email,
         groupName: grpname
     }
-    let data = $.post("http://localhost:7777/groups/leaveGroup", obj);
+    let data = $.post(backendHost+"/groups/leaveGroup", obj);
     alert(data);
     alert(data.message);
 }
@@ -125,7 +125,7 @@ async function showrequest(grpname) {
         email: userData.email,
         groupName: grpname
     }
-    let specificGrpRequests = await $.post("http://localhost:7777/groups/groupRequests", obj);
+    let specificGrpRequests = await $.post(backendHost+"/groups/groupRequests", obj);
     appendrequests(specificGrpRequests.data, grpname);
     $("myModal").modal('show');
 }
@@ -160,7 +160,7 @@ async function acceptgrp(senderEmail, grpname) {
         groupName: grpname,
         status: "accepted"
     }
-    let data = await $.post("http://localhost:7777/groups/acceptOrRejectRequest", obj);
+    let data = await $.post(backendHost+"/groups/acceptOrRejectRequest", obj);
     alert(data.message)
 }
 
@@ -171,7 +171,7 @@ async function rejectgrp(senderEmail, grpname) {
         groupName: grpname,
         status: "rejected"
     }
-    let data = await $.post("http://localhost:7777/groups/acceptOrRejectRequest", obj);
+    let data = await $.post(backendHost+"/groups/acceptOrRejectRequest", obj);
     alert(data.message)
 }
 
@@ -194,7 +194,7 @@ $("#grpsearch").keyup(async () => {
         email: userData.email,
         input: $("#grpsearch").val().toLowerCase()
     }
-    let globalGrps = await $.post("http://localhost:7777/groups/getNotMyGroups", obj);
+    let globalGrps = await $.post(backendHost+"/groups/getNotMyGroups", obj);
     madeGlobalGrps(globalGrps.data);
 
 })
@@ -205,7 +205,7 @@ $("#createGrp").click(async () => {
     let objt = {
         postText : $("#grpnameinput").val()
     } 
-    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let purifiedText = await $.post(backendHost+"/xssScriptingFix/sanitizeDOM", objt);
     let puredText = purifiedText.cleanedDOM;
 
     let obj = new FormData();
@@ -224,11 +224,11 @@ $("#createGrp").click(async () => {
         data : obj,
         contentType : false,
         processData : false,
-        url : "http://localhost:7777/groups/createGroup",
+        url : backendHost+"/groups/createGroup",
         success : (e)=>{
             alert(e.message)
         }
     })
-    // let data = await $.post("http://localhost:7777/groups/createGroup", obj);
+    // let data = await $.post(backendHost+"/groups/createGroup", obj);
     // alert(data.message);
 })

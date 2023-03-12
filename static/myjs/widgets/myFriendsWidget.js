@@ -20,7 +20,7 @@ async function getFriends(){
     
     let myFriends = [];
     try{
-        myFriends = await $.post("http://localhost:7777/friends/getfriends",obj)
+        myFriends = await $.post(backendHost+"/friends/getfriends",obj)
     }
     catch(e){
         console.log("My friends widget rendering failed...")
@@ -52,7 +52,7 @@ async function getCurrentUserData(email){
         var obj={
             email : email,
         }
-        result = await $.post("http://localhost:7777/users/getsingleuser",obj)
+        result = await $.post(backendHost+"/users/getsingleuser",obj)
         if(result.success)
             currentUserData = result.data
         else

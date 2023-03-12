@@ -26,7 +26,7 @@ async function getRecentActivityData(){
     }
     let recentActivityData = []
     try{
-        let result = await $.post("http://localhost:7777/recentActivity/getMyRecentActivity", obj);
+        let result = await $.post(backendHost+"/recentActivity/getMyRecentActivity", obj);
         recentActivityData = result.data;
     }
     catch(e){
@@ -68,7 +68,7 @@ async function getLatestFourActivityData(){
 
     let recentActivityData =[];
     try{
-        let result = await $.post("http://localhost:7777/recentActivity/getMyLatestFourActivities", obj);
+        let result = await $.post(backendHost+"/recentActivity/getMyLatestFourActivities", obj);
         recentActivityData = result.data;
     }
     catch(e){

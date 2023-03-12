@@ -1,11 +1,12 @@
-const socket = io('http://localhost:7777/videoCall')
+const socket = io(backendHost+'/videoCall')
 // const videoGrid = document.getElementById('video-grid')
 
 
 const myPeer = new Peer(undefined, {
-  host: 'localhost',
-  port: '6747'
+  host: "18.224.56.154",
+  port: '80'
 })
+
 
 const myVideo = document.createElement('video')
 myVideo.muted = true

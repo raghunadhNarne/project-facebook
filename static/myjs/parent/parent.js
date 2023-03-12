@@ -4,7 +4,7 @@ window.onload=async function(){
         email: JSON.parse(localStorage.getItem("userData")).email,
         children:JSON.parse(localStorage.getItem("userData")).children
     }
-    let pending_posts = await $.post("http://localhost:7777/index/getmychildrenpendingposts", obj);
+    let pending_posts = await $.post(backendHost+"/index/getmychildrenpendingposts", obj);
     // alert(pending_posts)
     console.log(pending_posts)
     addpendingpostsdata(pending_posts.data,obj);
@@ -41,7 +41,7 @@ $("#addchildren").click(async ()=>{
 
 async function postchilddata(obj)
 {
-    let data = await $.post("http://localhost:7777/users/addchild",obj);
+    let data = await $.post(backendHost+"/users/addchild",obj);
     alert("successfully posted child data")
 }
 
@@ -155,12 +155,12 @@ async function addpendingpostsdata(posts,obj)
 async function confirmrequest(email)
 {
     console.log(email)
-    let data = await $.post("http://localhost:7777/index/acceptpendingchildpost",{email:email})
+    let data = await $.post(backendHost+"/index/acceptpendingchildpost",{email:email})
     alert(data.message)
 }
 
 async function deleterequest(email)
 {
-    let data = await $.post("http://localhost:7777/index/deletependingchildpost",{email:email})
+    let data = await $.post(backendHost+"/index/deletependingchildpost",{email:email})
     alert(data.message)
 }

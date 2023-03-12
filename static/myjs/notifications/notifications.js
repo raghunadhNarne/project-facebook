@@ -43,7 +43,7 @@ async function getNotifications(){
         email: JSON.parse(localStorage.getItem("userData")).email
     }
     // console.log(obj);
-    let result = await $.post("http://localhost:7777/notifications/getMyNotifications", obj);
+    let result = await $.post(backendHost+"/notifications/getMyNotifications", obj);
 
     let myNotifications = result.data;
     
@@ -61,6 +61,6 @@ async function removeNotification(event,arrayIndex){
         arrayIndex,
         email : JSON.parse(localStorage.getItem("userData")).email
     }
-    $.post("http://localhost:7777/notifications/deleteNotification",obj)
+    $.post(backendHost+"/notifications/deleteNotification",obj)
 }
 renderMyNotifications()

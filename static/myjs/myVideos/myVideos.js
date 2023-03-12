@@ -15,7 +15,7 @@ async function getMyVideos(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    let result = await $.post("http://localhost:7777/media/getMyVideos", obj);
+    let result = await $.post(backendHost+"/media/getMyVideos", obj);
     console.log("result",result.data)
 
     let videosData = result.data;

@@ -1,11 +1,11 @@
 window.onload=async ()=>{
     let email=window.location.hash.substring(1);
 
-    let totalFriendsAndFollowers = await $.post("http://localhost:7777/friends/totalfriendandfollowers",{email:email})
+    let totalFriendsAndFollowers = await $.post(backendHost+"/friends/totalfriendandfollowers",{email:email})
     $("#followers").text(totalFriendsAndFollowers.data.followers)
     alert(totalFriendsAndFollowers.data.followers)
 
-    let data = await $.post("http://localhost:7777/users/getsingleuser",{email:email})
+    let data = await $.post(backendHost+"/users/getsingleuser",{email:email})
     var userData = data.data
 
     $("#name").text(userData.firstName+" "+userData.lastName)

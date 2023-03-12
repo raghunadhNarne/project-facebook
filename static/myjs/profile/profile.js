@@ -2,7 +2,7 @@ window.onload=async function()
 {
     var userData=JSON.parse(localStorage.getItem("userData"));
 
-    let totalFriendsAndFollowers = await $.post("http://localhost:7777/friends/totalfriendandfollowers",{email:userData.email})
+    let totalFriendsAndFollowers = await $.post(backendHost+"/friends/totalfriendandfollowers",{email:userData.email})
     $("#followers").text(totalFriendsAndFollowers.data.followers)
     $("#friends").text(totalFriendsAndLikes.data.friends)
 

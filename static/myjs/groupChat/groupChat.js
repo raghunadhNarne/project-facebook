@@ -1,6 +1,6 @@
 let userData = JSON.parse(localStorage.getItem("userData"));
 
-const socket = io("http://localhost:7777/chat")
+const socket = io(backendHost+"/chat")
 
 
 let obj = {
@@ -11,9 +11,9 @@ let obj = {
 }
 
 window.onload = async ()=>{
-    let groupData = await $.post('http://localhost:7777/groups/getGroupInfo',{groupName:window.location.hash.substring(1)})
+    let groupData = await $.post(backendHost+'/groups/getGroupInfo',{groupName:window.location.hash.substring(1)})
     console.log(groupData)
-    let data = await $.post('http://localhost:7777/groupChats/fetchchating',{chatRoom : obj.roomname});
+    let data = await $.post(backendHost+'/groupChats/fetchchating',{chatRoom : obj.roomname});
     data = data.data.messages;
     $("#groupname").html(groupData.data.groupName)
     $("#groupPic").attr('src',"../"+groupData.data.groupPic)
@@ -73,7 +73,7 @@ $("#sendmessage").click(async (e)=>{
     let objt = {
         postText : $("#msgtext").val()
     }
-    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let purifiedText = await $.post(backendHost+"/xssScriptingFix/sanitizeDOM", objt);
     let puredText = purifiedText.cleanedDOM;
     let pobj = {
         chatRoom : obj.roomname,
@@ -88,7 +88,7 @@ $("#sendmessage").click(async (e)=>{
         }
     }
     socket.emit("chatmsg",pobj);
-    await $.post("http://localhost:7777/groupChats/putmessage",pobj);
+    await $.post(backendHost+"/groupChats/putmessage",pobj);
     let chatMessages = document.getElementById("chatarea");
     chatMessages.scrollTop = chatMessages.scrollHeight;
     $("#msgtext").val("");

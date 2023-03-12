@@ -15,7 +15,7 @@ async function getMyPhotos(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    let result = await $.post("http://localhost:7777/media/getMyPhotos", obj);
+    let result = await $.post(backendHost+"/media/getMyPhotos", obj);
     // console.log("result",result.data)
 
     let photosData = result.data;

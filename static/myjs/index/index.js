@@ -11,33 +11,33 @@ window.onload = async ()=>{
     
     let posts;
     if(groupName.length==0 || !link.includes("groupIndex.html")){
-        posts = await $.post("http://localhost:7777/index/getMyPosts", obj);
+        posts = await $.post(backendHost+"/index/getMyPosts", obj);
     }
     else{
         let obj={
             groupName : groupName.substring(1)
         }
-        posts = await $.post("http://localhost:7777/groups/getGroupPosts",obj);
+        posts = await $.post(backendHost+"/groups/getGroupPosts",obj);
     }
 
     // console.log("posts",posts.data)
     await renderPosts(posts.data);
-    let totalFriendsAndFollowers = await $.post("http://localhost:7777/friends/totalfriendandfollowers",obj)
+    let totalFriendsAndFollowers = await $.post(backendHost+"/friends/totalfriendandfollowers",obj)
     $("#myfollowers").text(totalFriendsAndFollowers.data.followers)
     $("#friends").text(totalFriendsAndFollowers.data.friends)
 
-    let totalLikesAndPosts = await $.post("http://localhost:7777/index/totallikesandposts",obj)
+    let totalLikesAndPosts = await $.post(backendHost+"/index/totallikesandposts",obj)
     $("#totallikes").text(totalLikesAndPosts.data.likedCount)
     $("#totalposts").text(totalLikesAndPosts.data.postsCount)
     $("#fromlastweeklikescount").text(totalLikesAndPosts.data.fromlastweeklikescount)
     $("#fromlastweekpostscount").text(totalLikesAndPosts.data.fromlastweekpostscount)
 
 
-    let ads=await $.get("http://localhost:7777/ads/getallads")
+    let ads=await $.get(backendHost+"/ads/getallads")
     $("#link").attr('href',ads.data[0].link)
     $(".bg-image").css('background-image',`url(../${ads.data[0].adImage})`)
 
-    let notifications = await $.post("http://localhost:7777/notifications/getMyNotifications",{email:userData.email})
+    let notifications = await $.post(backendHost+"/notifications/getMyNotifications",{email:userData.email})
     $("#notifications").text(notifications.count)
 
 
@@ -400,7 +400,7 @@ async function toggleLike(likedPostId){
     obj = {
         postId: likedPostId     //this is object id
     }
-    let likedPostData = await $.post("http://localhost:7777/index/getPostData", obj);
+    let likedPostData = await $.post(backendHost+"/index/getPostData", obj);
 
     let likedUsers = likedPostData.data.likedUsers;
     let dislikedUsers = likedPostData.data.dislikedUsers;
@@ -423,7 +423,7 @@ async function toggleLike(likedPostId){
             postId : likedPostId,
             email: likedUserData.email
         }
-        await $.post("http://localhost:7777/index/addLike", obj);
+        await $.post(backendHost+"/index/addLike", obj);
 
 
         //adding to recent activity
@@ -433,16 +433,16 @@ async function toggleLike(likedPostId){
             name : likedPostData.data.userName,
             action : "liked"
         }
-        await $.post("http://localhost:7777/recentActivity/addNewActivity", recentObj);
+        await $.post(backendHost+"/recentActivity/addNewActivity", recentObj);
 
 
         notificationObj = {
             email : likedPostData.data.userEmail,
             name : likedUserData.firstName,
             action : "liked your post",
-            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
+            url : frontendHost+`/post.html#${likedPostId}`
         }
-        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+        await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
 
 
     }
@@ -463,7 +463,7 @@ async function toggleLike(likedPostId){
             postId : likedPostId,
             email: likedUserData.email
         }
-        await $.post("http://localhost:7777/index/removeLike", obj);
+        await $.post(backendHost+"/index/removeLike", obj);
 
 
 
@@ -475,16 +475,16 @@ async function toggleLike(likedPostId){
             action : "removed existing like"
         }
         console.log("RecentObj",RecentObj)
-        await $.post("http://localhost:7777/recentActivity/addNewActivity", RecentObj);
+        await $.post(backendHost+"/recentActivity/addNewActivity", RecentObj);
 
 
         notificationObj = {
             email : likedPostData.data.userEmail,
             name : likedUserData.firstName,
             action : "removed existing like on your post",
-            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
+            url : frontendHost+`/post.html#${likedPostId}`
         }
-        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+        await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
 
 
     }
@@ -516,8 +516,8 @@ async function toggleLike(likedPostId){
             email: likedUserData.email
         }
 
-        await $.post("http://localhost:7777/index/removeDislike", obj);
-        await $.post("http://localhost:7777/index/addLike", obj);
+        await $.post(backendHost+"/index/removeDislike", obj);
+        await $.post(backendHost+"/index/addLike", obj);
 
 
 
@@ -529,16 +529,16 @@ async function toggleLike(likedPostId){
             name : likedPostData.data.userName,
             action : "liked"
         }
-        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+        await $.post(backendHost+"/recentActivity/addNewActivity", obj);
 
 
         notificationObj = {
             email : likedPostData.data.userEmail,
             name : likedUserData.firstName,
             action : "liked your post",
-            url : `http://127.0.0.1:5500/static/post.html#${likedPostId}`
+            url : frontendHost+`/post.html#${likedPostId}`
         }
-        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+        await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
 
 
     }
@@ -555,7 +555,7 @@ async function toggleDislike(dislikedPostId){
     obj = {
         postId: dislikedPostId
     }
-    let likedPostData = await $.post("http://localhost:7777/index/getPostData", obj);
+    let likedPostData = await $.post(backendHost+"/index/getPostData", obj);
 
     let likedUsers = likedPostData.data.likedUsers;
     let dislikedUsers = likedPostData.data.dislikedUsers;
@@ -578,7 +578,7 @@ async function toggleDislike(dislikedPostId){
             postId : dislikedPostId,
             email: dislikedUserData.email
         }
-        await $.post("http://localhost:7777/index/addDislike", obj);
+        await $.post(backendHost+"/index/addDislike", obj);
 
 
         //adding to recent activity
@@ -588,16 +588,16 @@ async function toggleDislike(dislikedPostId){
             name : likedPostData.data.userName,
             action : "disliked"
         }
-        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+        await $.post(backendHost+"/recentActivity/addNewActivity", obj);
 
 
         notificationObj = {
             email : likedPostData.data.userEmail,
             name : dislikedUserData.firstName,
             action : "disliked your post",
-            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
+            url : frontendHost+`/post.html#${dislikedPostId}`
         }
-        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+        await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
     }
 
 
@@ -620,7 +620,7 @@ async function toggleDislike(dislikedPostId){
             postId : dislikedPostId,
             email: dislikedUserData.email
         }
-        await $.post("http://localhost:7777/index/removeDislike", obj);
+        await $.post(backendHost+"/index/removeDislike", obj);
 
 
          //adding to recent activity
@@ -630,16 +630,16 @@ async function toggleDislike(dislikedPostId){
             name : likedPostData.data.userName,
             action : "removed existing dislike"
         }
-        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+        await $.post(backendHost+"/recentActivity/addNewActivity", obj);
 
 
         notificationObj = {
             email : likedPostData.data.userEmail,
             name : dislikedUserData.firstName,
             action : "removed existing dislike on your post",
-            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
+            url : frontendHost+`/post.html#${dislikedPostId}`
         }
-        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+        await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
 
 
     }
@@ -671,8 +671,8 @@ async function toggleDislike(dislikedPostId){
             email: dislikedUserData.email
         }
 
-        await $.post("http://localhost:7777/index/removelike", obj);
-        await $.post("http://localhost:7777/index/addDislike", obj);
+        await $.post(backendHost+"/index/removelike", obj);
+        await $.post(backendHost+"/index/addDislike", obj);
 
 
 
@@ -683,16 +683,16 @@ async function toggleDislike(dislikedPostId){
             name : likedPostData.data.userName,
             action : "disliked"
         }
-        await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+        await $.post(backendHost+"/recentActivity/addNewActivity", obj);
 
 
         notificationObj = {
             email : likedPostData.data.userEmail,
             name : dislikedUserData.firstName,
             action : "disliked your post",
-            url : `http://127.0.0.1:5500/static/post.html#${dislikedPostId}`
+            url : frontendHost+`/post.html#${dislikedPostId}`
         }
-        await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+        await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
 
 
     }
@@ -724,7 +724,7 @@ async function submitMyComment(event,postid){
     }
 
     //addding comment to posts database
-    let result = await $.post("http://localhost:7777/index/addNewComment", newComment);
+    let result = await $.post(backendHost+"/index/addNewComment", newComment);
     alert(result.message)
     $(`#${postid}Comment`).val("")
 
@@ -733,14 +733,14 @@ async function submitMyComment(event,postid){
     obj = {
         postId: postid     //this is object id
     }
-    let commentedPostData = await $.post("http://localhost:7777/index/getPostData", obj);
+    let commentedPostData = await $.post(backendHost+"/index/getPostData", obj);
 
     obj = {
         email : commentedUserdata.email,
         name : commentedPostData.data.userName,
         action : "commented"
     }
-    await $.post("http://localhost:7777/recentActivity/addNewActivity", obj);
+    await $.post(backendHost+"/recentActivity/addNewActivity", obj);
 
 
     
@@ -749,9 +749,9 @@ async function submitMyComment(event,postid){
         email : commentedPostData.data.userEmail,
         name : commentedUserdata.firstName,
         action : "commented on your post",
-        url : `http://127.0.0.1:5500/static/post.html#${postid}`
+        url : frontendHost+`/post.html#${postid}`
     }
-    await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+    await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
     
 
 }

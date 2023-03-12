@@ -2,7 +2,7 @@ let userData = JSON.parse(localStorage.getItem("userData"));
 
 
 var obj;
-const socket = io('http://localhost:7777/chat');
+const socket = io(backendHost+'/chat');
 let friendPic="";
 
 window.onload = async ()=> {
@@ -10,7 +10,7 @@ window.onload = async ()=> {
     let obj = {
         email : userData.email
     }
-    let myFriends = await $.post("http://localhost:7777/friends/getfriends",obj);
+    let myFriends = await $.post(backendHost+"/friends/getfriends",obj);
     appendMyFriends(myFriends.data);
 }
 
@@ -18,7 +18,7 @@ async function appendMyFriends(arr){
     for(x in arr){
         let data = arr[x];
         if(data.senderEmail == userData.email){
-            let friendData = await $.post("http://localhost:7777/users/getsingleuser",{email:data.receiverEmail});
+            let friendData = await $.post(backendHost+"/users/getsingleuser",{email:data.receiverEmail});
             console.log(friendData)
             $("#messagebox").append(
                 `<li onclick="changeurl('${data.receiverEmail}','${data.receiverName}','${data.receiverPic}','${friendData.data.onlineStatus}')">
@@ -33,7 +33,7 @@ async function appendMyFriends(arr){
             )
         }
         else{
-            let friendData = await $.post("http://localhost:7777/users/getsingleuser",{email:data.receiverEmail});
+            let friendData = await $.post(backendHost+"/users/getsingleuser",{email:data.receiverEmail});
             console.log(friendData)
             $("#messagebox").append(
                 `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic}','${friendData.data.onlineStatus}')">
@@ -58,21 +58,21 @@ function changeurl(hash,name,pic,status){
     $("#propic").attr('src',pic);
     $("#videoCall").attr('onclick',`connectVideocall("${hash}")`);
     socket.disconnect();
-    socket.connect("http://localhost:7777")
+    socket.connect(backendHost+"")
     getChatOfSpecificuser(window.location.hash.substring(1))
     $("#mesg-box").css("display","inline-block")
 }
 
 
 async function getChatOfSpecificuser(friendsMail){
-    let friendData = await $.post("http://localhost:7777/users/getsingleuser",{email:friendsMail});
+    let friendData = await $.post(backendHost+"/users/getsingleuser",{email:friendsMail});
     friendPic = friendData.data.profilePic;
     $("#chatarea").html("")
     let chatRoom = userData.email+":"+friendsMail;
     if(friendsMail<userData.email){
         chatRoom = friendsMail+":"+userData.email;
     }
-    let data = await $.post('http://localhost:7777/chats/fetchchating',{chatRoom : chatRoom});
+    let data = await $.post(backendHost+'/chats/fetchchating',{chatRoom : chatRoom});
     data = data.data.messages;
     for(x in data){
         appendToChat(data[x]);
@@ -150,7 +150,7 @@ $("#sendmessage").click(async (e)=>{
     let objt = {
         postText : $("#msgtext").val()
     }
-    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let purifiedText = await $.post(backendHost+"/xssScriptingFix/sanitizeDOM", objt);
     let puredText = purifiedText.cleanedDOM;
     let pobj = {
         chatRoom : obj.roomname,
@@ -165,7 +165,7 @@ $("#sendmessage").click(async (e)=>{
         }
     }
     socket.emit("chatmsg",pobj);
-    await $.post("http://localhost:7777/chats/putmessage",pobj);
+    await $.post(backendHost+"/chats/putmessage",pobj);
     let chatMessages = document.getElementById("chatarea")
     chatMessages.scrollTop = chatMessages.scrollHeight;
     $("#msgtext").val("")
@@ -181,9 +181,9 @@ async function connectVideocall(secondUserEmail){
         email : JSON.parse(localStorage.getItem("userData")).email,
         name : JSON.parse(localStorage.getItem("userData")).firstName,
         action : "is Calling you",
-        url : `http://127.0.0.1:5500/static/videoCall.html#${secondUserEmail}`
+        url : frontendHost+`/videoCall.html#${secondUserEmail}`
     }
-    let result = await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+    let result = await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
     if(result.success == true)
         window.location.href = `videoCall.html#${secondUserEmail}`
 }

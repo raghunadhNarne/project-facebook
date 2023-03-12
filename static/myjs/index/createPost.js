@@ -17,7 +17,7 @@
 //         }
 //         console.log("text: ",formData)
 //         try{
-//             let result = await $.ajax({method:"POST",data:JSON.stringify(postData), url:"http://127.0.0.1:7777/post/textPost"});
+//             let result = await $.ajax({method:"POST",data:JSON.stringify(postData), url:backendHost+"/post/textPost"});
 //             alert(result + "successfully posted");
 //         }
 //         catch(e){
@@ -28,7 +28,7 @@
 //     else if(formData.get("image") == null){
 //         formData.set("postType","video")
 //         try{
-//             let result = await $.ajax({method:"POST", data:formData, processData: false, contentType: false, 'url':"http://127.0.0.1:7777/post/filePost"})
+//             let result = await $.ajax({method:"POST", data:formData, processData: false, contentType: false, 'url':backendHost+"/post/filePost"})
 //             alert(result+'successfully posted');
 //         }
 //         catch(e){
@@ -39,7 +39,7 @@
 //     else{
 //         formData.set("postType","image")
 //         try{
-//             let result = await $.ajax({method:"POST", "data":formData, processData: false, contentType: false, 'url':"http://127.0.0.1:7777/post/filePost"})
+//             let result = await $.ajax({method:"POST", "data":formData, processData: false, contentType: false, 'url':backendHost+"/post/filePost"})
 //             alert(result+'successfully posted');
 //         }
 //         catch(e){
@@ -94,7 +94,7 @@ $('#newPost').on('submit', async function(event) {
                     postText : formData.get("text")
                 }
                 // console.log("text",obj);
-                let result = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", obj);
+                let result = await $.post(backendHost+"/xssScriptingFix/sanitizeDOM", obj);
 
                 let cleanedDOM = result.cleanedDOM;
                 let removedDOM = result.removedDOM;
@@ -150,7 +150,7 @@ $('#newPost').on('submit', async function(event) {
                 postData.video = null;
                 // console.log(postData)
                 try{
-                    let result = await $.ajax({"method":"POST",data:postData, "url":"http://localhost:7777/post/textPost"});
+                    let result = await $.ajax({"method":"POST",data:postData, "url":backendHost+"/post/textPost"});
 
                     setTimeout(()=>{
                         Swal.fire({
@@ -183,7 +183,7 @@ $('#newPost').on('submit', async function(event) {
                 formData.set("image",formData.get("video"))
                 formData.set("video",null)
                 try{
-                    let result = await $.ajax({method:"POST", data:formData, processData: false, contentType: false, 'url':"http://127.0.0.1:7777/post/filePost"})
+                    let result = await $.ajax({method:"POST", data:formData, processData: false, contentType: false, 'url':backendHost+"/post/filePost"})
                     setTimeout(()=>{
                         Swal.fire({
                             icon: 'success',
@@ -211,7 +211,7 @@ $('#newPost').on('submit', async function(event) {
             else{
                 formData.set("postType","image")
                 try{
-                    let result = await $.ajax({method:"POST", "data":formData, processData: false, contentType: false, 'url':"http://127.0.0.1:7777/post/filePost"})
+                    let result = await $.ajax({method:"POST", "data":formData, processData: false, contentType: false, 'url':backendHost+"/post/filePost"})
                     setTimeout(()=>{
                         Swal.fire({
                             icon: 'success',
@@ -251,7 +251,7 @@ async function autoGenerateContent(){
     let data = {
         text : `i am posting on social media, generate me impressive content for: "${firstmsg}". and also add some hashtags. give the response in html format with beautiful stylings to appropriate text `
     }
-    let result = await $.ajax({method:"POST", "data":data, 'url':"http://127.0.0.1:7777/post/autoGenerateContent"});
+    let result = await $.ajax({method:"POST", "data":data, 'url':backendHost+"/post/autoGenerateContent"});
     console.log("result",result.message.slice(3),result.message)
     $("#text").val(result.message);
 }
