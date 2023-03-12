@@ -1,4 +1,4 @@
-const { fetchAllNotifications, addNewNotificationForUser, deleteNotificationWithArrayIndex } = require("../utils/notificationsUtils");
+const { fetchAllNotifications, addNewNotificationForUser, deleteNotificationWithArrayIndex,notifyToAllFriends} = require("../utils/notificationsUtils");
 
 async function getMyNotifications(req,res){
     let data = req.body;
@@ -22,6 +22,12 @@ async function deleteNotification(req,res){
 
     res.send(result);
 }
-deleteNotification
 
-module.exports = {getMyNotifications, addNewNotification, deleteNotification}
+async function notifyAllFriends(req,res){
+    let data = req.body;
+
+    let result = await notifyToAllFriends(data);
+    res.send(result);
+}
+
+module.exports = {getMyNotifications, addNewNotification, deleteNotification,notifyAllFriends}

@@ -5,7 +5,7 @@ async function renderShorcuts(){
     $("#naves").append(
         `<li>
             <i class="ti-camera"></i>
-            <a href="./liveVedio.html#${usersData.email}" title="">Start Live</a>
+            <a href="./liveVedio.html#${usersData.email}" title="" id="strtlive">Start Live</a>
         </li>`
     )
 

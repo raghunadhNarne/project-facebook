@@ -50,7 +50,7 @@ navigator.mediaDevices.getUserMedia({
   
   socket.on('audiocall-connected', userId => {
     console.log("audiocall-connected",userId)
-    $("#callingtext").text(`call lifted by ${callingmail}`)
+    $("#callingtext").text(`call lifted by ${callto}`)
     connectToNewUser(userId, stream)
   })
 })
