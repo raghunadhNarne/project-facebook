@@ -6,11 +6,11 @@ $('#login').on("click", function(e) {
     // console.log(email,password)
     // console.log("here");
     $.ajax({
-      url: 'http://localhost:7777/login',
+      url: 'http://127.0.0.1:7777/login',
       type: 'POST',
-      xhrFields: {
-        withCredentials: true // enable sending cookies
-      },
+      // xhrFields: {
+      //   withCredentials: true // enable sending cookies
+      // },
       data: { email: email, password: password },
       success: function(data) {
         console.log("frontend token", data.data);
