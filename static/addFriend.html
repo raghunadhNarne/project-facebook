@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/responsive.css">
 
 	<link rel="stylesheet" href="./mycss/indexdragula.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js' ></script>
 </head>
 <body>
@@ -90,7 +91,7 @@
 	
 	<section>
 		<div class="feature-photo">
-			<figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
+			<figure><img src="images/resources/timeline-1.jpg" id="cover-photo" style="width: 100vw;height: 65vh;" alt=""></figure>
 			<div class="add-btn">
 				<span>1205 followers</span>
 				<a href="#" title="" data-ripple="">Add Friend</a>
@@ -107,7 +108,7 @@
 					<div class="col-lg-2 col-sm-3">
 						<div class="user-avatar">
 							<figure>
-								<img src="images/resources/user-avatar.jpg" alt="">
+								<img src="images/resources/user-avatar.jpg" id="profile-photo" style="height: 35vh;" alt="">
 								<form class="edit-phto">
 									<i class="fa fa-camera-retro"></i>
 									<label class="fileContainer">
@@ -122,7 +123,7 @@
 						<div class="timeline-info">
 							<ul>
 								<li class="admin-name">
-								  <h5>Janice Griffith</h5>
+								  <h5 id="name">Janice Griffith</h5>
 								</li>
 
 								<li class="facebook">
@@ -252,11 +253,12 @@
 											<div class="tab-content">
 												<div class="tab-pane fade show active" id="basic" >
 													<ul class="basics">
-														<li><i class="ti-user"></i>sarah grey</li>
-														<li><i class="ti-map-alt"></i>live in Dubai</li>
-														<li><i class="ti-mobile"></i>+1-234-345675</li>
-														<li><i class="ti-email"></i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c4553494e515d55507c59515d5550125f5351">[email&#160;protected]</a></li>
-														<li><i class="ti-world"></i>www.yoursite.com</li>
+														<li><i class="ti-user"></i><span id="firstName">sarah grey</span></li>
+														<li><i class="ti-map-alt"></i>live in <span id="city"></span></li>
+														<li><i class="ti-mobile"></i>+91-<span id="mobileNo"></span></li>
+														<li><i class="ti-email"></i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c4553494e515d55507c59515d5550125f5351" id="email">[email&#160;protected]</a></li>
+														<li><i class="ti-world"></i><span id="dob">2003-09-01</span> </li>
+														<!-- <li><i class="ti-world"></i>www.yoursite.com</li> -->
 													</ul>
 												</div>
 												<div class="tab-pane fade" id="location" role="tabpanel">
@@ -579,6 +581,7 @@
 	<script src="js/map-init.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 	<script src="./myjs/addFriend/addFriendDragula.js"></script>
+	<script src="./myjs/addFriend/addFriend.js"></script>
 
 </body>	
 

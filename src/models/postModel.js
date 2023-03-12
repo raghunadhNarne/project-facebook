@@ -11,7 +11,8 @@ let postSchema = {
     postType : {type : String},
     comments : [],
     likedUsers : [],
-    dislikedUsers : []
+    dislikedUsers : [],
+    status:{type:String}
 }
 
 let postModel = mongoose.model("posts",postSchema);

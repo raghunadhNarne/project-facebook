@@ -7,6 +7,24 @@ window.onload = async ()=>{
     let posts = await $.post("http://localhost:7777/index/getMyPosts", obj);
     // console.log("posts",posts.data)
     await renderPosts(posts.data);
+
+    let totalFriendsAndLikes = await $.post("http://localhost:7777/friends/totalfriendandfollowers",obj)
+    $("#myfollowers").text(totalFriendsAndLikes.data.followers)
+    $("#friends").text(totalFriendsAndLikes.data.friends)
+
+    let totalLikesAndPosts = await $.post("http://localhost:7777/index/totallikesandposts",obj)
+    $("#totallikes").text(totalLikesAndPosts.data.likedCount)
+    $("#totalposts").text(totalLikesAndPosts.data.postsCount)
+    $("#fromlastweeklikescount").text(totalLikesAndPosts.data.fromlastweeklikescount)
+    $("#fromlastweekpostscount").text(totalLikesAndPosts.data.fromlastweekpostscount)
+
+
+    let ads=await $.get("http://localhost:7777/ads/getallads")
+    $("#link").attr('href',ads.data[0].link)
+    $(".bg-image").css('background-image',`url(../${ads.data[0].adImage})`)
+
+
+    $("#firstName").text(userData.firstName)
 }
 
 async function renderComment(comment){
@@ -58,7 +76,7 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="../${post.userPic}" style="height:70px;width:70px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
                             <ins><a href="time-line.html" title="">${post.userName}</a></ins>
@@ -123,7 +141,7 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="../${userData.profilePic}" style="height:50px;width:1000px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
@@ -151,7 +169,7 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="../${post.userPic}" style="height:70px;width:70px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
                             <ins><a href="time-line.html" title="">${post.userName}</a></ins>
@@ -218,7 +236,7 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="../${userData.profilePic}" style="height:50px;width:1000px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
@@ -244,7 +262,7 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="../${post.userPic}" style="height:70px;width:70px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
                             <ins><a href="time-line.html" title="">${post.userName}</a></ins>
@@ -316,7 +334,7 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="../${userData.profilePic}" style="height:50px;width:1000px" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">

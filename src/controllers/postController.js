@@ -68,4 +68,5 @@ function autoGenerateContent(req, res){
         res.send(err);
     });
   }
+
 module.exports = {createNewFilePost, createNewTextPost, autoGenerateContent}

@@ -15,7 +15,8 @@ async function validateCredentials({email,password}){
             result.message = "user not exist"
         }
         else{
-            let isValid = bcrypt.compare(password,userData.password);
+            // console.log(password)
+            let isValid = await bcrypt.compare(password,userData.password);
             if(isValid){
                 result.success = true;
                 result.message = "successfully verified"
@@ -23,6 +24,7 @@ async function validateCredentials({email,password}){
                 // console.log("user verified");
             }
             else{
+                result.success=false;
                 result.message = "invalid password"
            }
         }

@@ -22,8 +22,8 @@ async function createUser(userDetails){
     let isUserExist = await userExist(userDetails.email);
 
     if(isUserExist == false){
-        let salt = await bcrypt.genSalt();
-        let hashedpassword = await bcrypt.hash(userDetails.body.password,salt);
+        // let salt = await bcrypt.genSalt();
+        // let hashedpassword = await bcrypt.hash(userDetails.body.password,salt);
         
         let newuser = new userModel({
             firstName : userDetails.body.firstName,
@@ -33,7 +33,7 @@ async function createUser(userDetails){
             gender : userDetails.body.gender,
             email : userDetails.body.email,
             mobileNo : userDetails.body.mobileNo,
-            password : hashedpassword,
+            password : null,
             city : null,
             country : null,
             aboutMe : null,

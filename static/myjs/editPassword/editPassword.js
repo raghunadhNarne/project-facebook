@@ -7,14 +7,9 @@ window.onload=function(){
 
 }
 $("#update").click(async function(){
-    var current_password = $("#current-password").val()
     var new_password = $("#new-password").val()
     var confirm_password = $("#confirm-password").val()
-    if(current_password!=JSON.parse(localStorage.getItem("userData")).password)
-    {
-        alert("Please! Enter correct current password")
-    }
-    else if(new_password!=confirm_password)
+    if(new_password!=confirm_password)
     {
         alert("Please! Enter correct confirm password")
     }

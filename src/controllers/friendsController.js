@@ -1,5 +1,5 @@
 
-const { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,myFollowing,unfollowFriend,searchFriends } = require('../utils/friendsUtils')
+const { addNewFriend,pendingFriendRequests,acceptPendingFriendRequests,rejectPendingFriendRequests,acceptedFriendRequests,removeFriend,myFriendRequests,revokeFriendRequest,followers,myFollowing,unfollowFriend,searchFriends,totalFriendsAndFollowers } = require('../utils/friendsUtils')
 
 
 
@@ -76,5 +76,11 @@ async function justSearchFriends(req,res)
     res.send(result)
 }
 
-module.exports={addFriend,getPendingFriendRequests,justAcceptPendingFriendRequests,justRejectPendingFriendRequests,getAcceptedFriendRequests,justRemoveFriend,getMyFriendRequests,justRevokeFriendRequest,getFollowers,getMyFollowing,justUnfollowFriend,justSearchFriends}
+async function getTotalFriendsAndFollowers(req,res)
+{
+    let result = await totalFriendsAndFollowers(req.body)
+    res.send(result)
+}
+
+module.exports={addFriend,getPendingFriendRequests,justAcceptPendingFriendRequests,justRejectPendingFriendRequests,getAcceptedFriendRequests,justRemoveFriend,getMyFriendRequests,justRevokeFriendRequest,getFollowers,getMyFollowing,justUnfollowFriend,justSearchFriends,getTotalFriendsAndFollowers}
 

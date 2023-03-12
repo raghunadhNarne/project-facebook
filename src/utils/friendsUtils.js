@@ -292,6 +292,36 @@ async function searchFriends(obj) {
 }
 
 
-module.exports = { addNewFriend, pendingFriendRequests, acceptPendingFriendRequests, rejectPendingFriendRequests, acceptedFriendRequests, removeFriend, myFriendRequests, revokeFriendRequest, followers, myFollowing, unfollowFriend, searchFriends }
+async function totalFriendsAndFollowers(obj)
+{
+    let result = {
+        success: false,
+        message: "",
+        data: {}
+    }
+    try {
+        // console.log(obj.email)
+        let friends = await friendsModel.find({
+            $or: [
+                { senderEmail: obj.email, status:"accept" },
+                { receiverEmail: obj.email, status:"accept" }
+            ]
+        })
+
+        let followers = await friendsModel.find(
+                { receiverEmail: obj.email, status:"reject" }
+            )
+        result.data={friends:friends.length,followers:followers.length}
+        // console.log(friends,followers)
+        result.success = true;
+        result.message = "successfully got the count";
+    }
+    catch (e) {
+        result.message = "error to get count"
+    }
+    return result;
+}
+
+module.exports = { addNewFriend, pendingFriendRequests, acceptPendingFriendRequests, rejectPendingFriendRequests, acceptedFriendRequests, removeFriend, myFriendRequests, revokeFriendRequest, followers, myFollowing, unfollowFriend, searchFriends ,totalFriendsAndFollowers}
 
 

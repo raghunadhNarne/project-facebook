@@ -13,7 +13,7 @@ window.onload = async ()=> {
         email : userData.email
     }
     let myFriends = await $.post("http://localhost:7777/friends/getfriends",obj);
-    appendMyFriends(myFriends.data);
+    appendMyFriends(myFriends.data);    
     getChatOfSpecificuser(window.location.hash.substring(1))
 }
 

@@ -8,7 +8,7 @@ async function fetchMyPosts(email){
         data: ""
     }
     try{
-        let posts = await postModel.find({ userEmail: email});
+        let posts = await postModel.find({ userEmail: email,status:"pending"});
         if(posts.length != 0){
             result.success = true;
             result.message = "Fetched posts";
@@ -263,4 +263,127 @@ async function fetchMyFeedPosts(email){
     return result;
 }
 
-module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment, fetchMyFeedPosts};
+
+async function childrenPendingPosts(obj)
+{
+    // console.log(obj)
+    let result = {
+        success: false,
+        message: "",
+        data: []
+    }
+    try{
+        let childArray=[]
+        for(x in obj.children)
+        {
+            let data=await (await fetchMyPosts(obj.children[x])).data
+            childArray.push(data[0])
+        }
+        result.success=true;
+        result.message="succesfully got the children pending posts"
+        result.data=childArray;
+    }
+    catch(e){
+        result.message = "failed to get the children pending posts";
+    }
+    return result;
+}
+
+async function acceptPendingChildPost(obj)
+{
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+        console.log(obj.email)
+        let data = await postModel.updateOne({userEmail:obj.email},{$set:{status:"accepted"}})
+        result.success=true;
+        result.message="succesfully accepted the children pending posts"
+    }
+    catch(e){
+        result.message = "failed to accept the children pending posts";
+    }
+    return result;
+}
+
+async function deletePendingChildPost(obj)
+{
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+        let data = await postModel.deleteOne({userEmail:obj.email})
+        result.success=true;
+        result.message="succesfully deleted the children pending posts"
+    }
+    catch(e){
+        result.message = "failed to delete the children pending posts";
+    }
+    return result;
+}
+
+async function totalLikesAndPosts(obj)
+{
+    let result = {
+        success: false,
+        message: "",
+        data: {}
+    }
+    try{
+        let totaldata = await postModel.aggregate([
+            {
+                $match:{userEmail:obj.email}
+            },
+            {
+                $group:{
+                    _id:"$userEmail",
+                    postsCount:{$count:{}},
+                    likedCount:{
+                        $sum:{$size:"$likedUsers"}
+                    }
+                }
+            },
+            {
+                $project:{
+                    _id:0
+                }
+            }
+        ])
+        const date=new Date();
+            let fromLastWeek = await postModel.aggregate([
+            {
+                $match:{userEmail:obj.email,postedTime:{$gte:new Date(date.getTime()-(7*24*60*60*1000))}}
+            },
+            {
+                $group:{
+                    _id:"$userEmail",
+                    postsCount:{$count:{}},
+                    likedCount:{
+                        $sum:{$size:"$likedUsers"}
+                    }
+                }
+            },
+            {
+                $project:{
+                    _id:0
+                }
+            }
+        ])
+
+        result.data=totaldata[0]
+        result.data.fromlastweeklikescount=fromLastWeek[0].likedCount
+        result.data.fromlastweekpostscount=fromLastWeek[0].postsCount
+        result.success=true;
+        result.message="succesfully got the likes and posts count"
+    }
+    catch(e){
+        result.message = "failed to get the likes and posts count";
+    }
+    return result;
+}
+
+module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment, fetchMyFeedPosts ,childrenPendingPosts ,acceptPendingChildPost ,deletePendingChildPost,totalLikesAndPosts};

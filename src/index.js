@@ -147,6 +147,8 @@ app.use('/recentActivity',recentActivityRouter)
 const xssScriptingFixRouter = require('./routes/xssScriptingFixRoute');
 app.use('/xssScriptingFix',xssScriptingFixRouter)
 
+const adRouter = require('./routes/adRoute')
+app.use('/ads',adRouter)
 
 async function auth(req, res, next) {
   var token = req.cookies.jwtToken;
