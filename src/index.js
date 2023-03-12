@@ -32,8 +32,8 @@ const io = socketio(server, { cors: {} });
 
 
 
-
-io.on('connection', socket => {
+const chat = io.of('/chat')
+chat.on('connection', socket => {
 
 
   socket.on('joinroom', (obj) => {
@@ -61,11 +61,11 @@ io.on('connection', socket => {
 
 
     socket.on('chatmsg', msgobj => {
-      io.to(obj.roomname).emit('msg', msgobj);
+      chat.to(obj.roomname).emit('msg', msgobj);
     })
 
     socket.on('disconnect', socket => {
-      io.to(obj.roomname).emit('msg', extroobj);
+      chat.to(obj.roomname).emit('msg', extroobj);
     })
 
   })
@@ -75,6 +75,37 @@ io.on('connection', socket => {
 
 
 
+
+
+const videoCall = io.of('/videoCall');
+videoCall.on('connection', socket => {
+  socket.on('join-room', (roomName, userId) => {
+    // console.log("roomName",roomName)
+    socket.join(roomName)
+    socket.broadcast.to(roomName).emit('user-connected', userId)
+
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomName).emit('user-disconnected', userId)
+    })
+  })
+})
+
+
+
+
+
+
+
+const audioCall = io.of('/audioCall');
+audioCall.on('connection', socket => {
+  socket.on('join-call-room', (roomName, userId) => {
+    socket.join(roomName)
+    socket.broadcast.to(roomName).emit('user-connected', userId)
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomName).emit('user-disconnected', userId)
+    })
+  })
+})
 
 
 
@@ -149,6 +180,10 @@ app.use('/xssScriptingFix',xssScriptingFixRouter)
 
 const adRouter = require('./routes/adRoute')
 app.use('/ads',adRouter)
+
+const notificationsRouter = require('./routes/notificationsRoute');
+app.use('/notifications',notificationsRouter)
+
 
 async function auth(req, res, next) {
   var token = req.cookies.jwtToken;

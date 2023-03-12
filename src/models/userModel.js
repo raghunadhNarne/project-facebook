@@ -25,6 +25,7 @@ let userSchema = {
     status:{type:String},
     authfile:{type:String},
     requested:{type:String},
+    onlineStatus : {type:String}
 
 }
 

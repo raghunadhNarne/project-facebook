@@ -4011,22 +4011,6 @@ a.forgot-pwd {
     padding-bottom: 0;
 }
 
-.notification-box > ul li > i.del {
-    cursor: pointer;
-    display: inline-block;
-    opacity: 0;
-    text-align: right;
-    vertical-align: top;
-    visibility: hidden;
-    transition: all 0.2s linear 0s;
-    color: red;
-}
-
-.notification-box > ul li:hover > i.del {
-    opacity: 1;
-    visibility: visible;
-}
-
 .more-options {
     display: inline-block;
     float: right;
