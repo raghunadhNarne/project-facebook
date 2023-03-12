@@ -45,7 +45,7 @@ function addfriends(data)
                         <a href="time-line.html" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
                     </figure>
                     <div class="pepl-info">
-                        <h4><a href="time-line.html" title="">${data[x].senderName}</a></h4>
+                        <h4><a href="addFriend.html" title="">${data[x].senderName}</a></h4>
                         <span>Cricketer</span>
                         <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deletefriend('${data[x].senderEmail}','${data[x].receiverEmail}')">unfriend</a>
                     </div>

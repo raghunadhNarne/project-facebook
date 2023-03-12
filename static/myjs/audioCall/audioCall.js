@@ -1,10 +1,12 @@
+let callingmail=window.location.hash.substring(1);
+$("#callingtext").text(`calling to ${callingmail}`)
+
 const socket = io('http://localhost:7777/audioCall')
 const videoGrid = document.getElementById('video-grid')
 
-
 const myPeer = new Peer(undefined, {
   host: 'localhost',
-  port: '3101'
+  port: '6747'
 })
 
 const myVideo = document.createElement('video')
@@ -25,13 +27,16 @@ navigator.mediaDevices.getUserMedia({
     })
   })
   
-  socket.on('user-connected', userId => {
-    console.log("user-connected",userId)
+  socket.on('audiocall-connected', userId => {
+    console.log("audiocall-connected",userId)
+    $("#callingtext").text(`call lifted by ${callingmail}`)
     connectToNewUser(userId, stream)
   })
 })
 
-socket.on('user-disconnected', userId => {
+socket.on('audiocall-disconnected', userId => {
+
+    $("#callingtext").text(`call ended`)
   if (peers[userId]) peers[userId].close()
   const video = document.createElement('video')
   video.remove()

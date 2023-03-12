@@ -34,11 +34,7 @@ const io = socketio(server, { cors: {} });
 
 const chat = io.of('/chat')
 chat.on('connection', socket => {
-
-
   socket.on('joinroom', (obj) => {
-
-
     socket.join(obj.roomname);
 
     let introobj = {
@@ -48,7 +44,6 @@ chat.on('connection', socket => {
         type: "into"
       }
     }
-
     let extroobj = {
       chatRoom: obj.roomname,
       message: {
@@ -58,7 +53,6 @@ chat.on('connection', socket => {
     }
 
     socket.broadcast.to(obj.roomname).emit("msg", introobj);
-
 
     socket.on('chatmsg', msgobj => {
       chat.to(obj.roomname).emit('msg', msgobj);
@@ -100,9 +94,9 @@ const audioCall = io.of('/audioCall');
 audioCall.on('connection', socket => {
   socket.on('join-call-room', (roomName, userId) => {
     socket.join(roomName)
-    socket.broadcast.to(roomName).emit('user-connected', userId)
+    socket.broadcast.to(roomName).emit('audiocall-connected', userId)
     socket.on('disconnect', () => {
-      socket.broadcast.to(roomName).emit('user-disconnected', userId)
+      socket.broadcast.to(roomName).emit('audiocall-disconnected', userId)
     })
   })
 })
