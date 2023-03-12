@@ -55,6 +55,7 @@ function changeurl(hash,name,pic,status){
     window.location.href="chat.html#"+hash;
     $("#frnd-name").html(name+`<i>${status}</i>`);
     $("#propic").attr('src',pic);
+    $("#videoCall").attr('onclick',`connectVideocall("${hash}")`);
     socket.disconnect();
     socket.connect("http://localhost:7777")
     getChatOfSpecificuser(window.location.hash.substring(1))
@@ -172,3 +173,16 @@ $("#sendmessage").click(async (e)=>{
 
 
 
+
+async function connectVideocall(secondUserEmail){
+    
+    notificationObj = {
+        email : secondUserEmail,
+        name : JSON.parse(localStorage.getItem("userData")).firstName,
+        action : "is Calling you",
+        url : `http://127.0.0.1:5500/static/videoCall.html#${secondUserEmail}`
+    }
+    let result = await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+    if(result.success == true)
+        window.location.href = `videoCall.html#${secondUserEmail}`
+}

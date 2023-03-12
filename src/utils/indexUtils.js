@@ -8,7 +8,7 @@ async function fetchMyPosts(email){
         data: ""
     }
     try{
-        let posts = await postModel.find({ userEmail: email});
+        let posts = await postModel.find({ userEmail: email, status: "accepted"});
         if(posts.length != 0){
             result.success = true;
             result.message = "Fetched posts";
@@ -163,7 +163,8 @@ async function addNewComment(commentData){
             userPic : commentData.userPic,
             userName : commentData.userName,
             commentText : commentData.commentText,
-            commentedTime : new Date()
+            commentedTime : new Date(),
+            userEmail : commentData.userEmail
         }
         // console.log("newComment",newComment)
         let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(commentData.postId)},{$push:{comments:newComment}});
