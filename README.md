@@ -62,7 +62,7 @@
 
 *Special Features*
 
-- Live videoo chat
+- Live video chat
 - Video calls
 - Voice calls
 - Voice assistant
