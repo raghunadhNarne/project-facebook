@@ -5,6 +5,14 @@ groupName = window.location.hash
 link = window.location.href
 
 window.onload = async ()=>{
+    let result = await validateUser();
+    if(result.success == false){
+        alert(result.message)
+        window.location.href = "login.html"
+        return;
+    }
+
+    
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }

@@ -1,3 +1,10 @@
+let result = await validateUser();
+    if(result.success == false){
+        alert(result.message)
+        window.location.href = "login.html"
+        return;
+    }
+
 const socket = io(backendHost+'/videoCall')
 // const videoGrid = document.getElementById('video-grid')
 

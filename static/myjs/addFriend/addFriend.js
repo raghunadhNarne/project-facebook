@@ -1,4 +1,11 @@
 window.onload=async ()=>{
+    let result = await validateUser();
+    if(result.success == false){
+        alert(result.message)
+        window.location.href = "login.html"
+        return;
+    }
+    
     let email=window.location.hash.substring(1);
 
     let totalFriendsAndFollowers = await $.post(backendHost+"/friends/totalfriendandfollowers",{email:email})
