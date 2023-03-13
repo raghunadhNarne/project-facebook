@@ -181,7 +181,7 @@ async function connectVideocall(secondUserEmail){
         email : secondUserEmail,
         name : JSON.parse(localStorage.getItem("userData")).firstName,
         action : "is Calling you",
-        url : frontendHost+`/videoCall.html#${secondUserEmail}`
+        url : frontendHost+`/videoCall.html#${JSON.parse(localStorage.getItem("userData")).email}`
     }
     let result = await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
     if(result.success == true)
