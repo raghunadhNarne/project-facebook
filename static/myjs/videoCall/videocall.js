@@ -33,6 +33,7 @@ navigator.mediaDevices.getUserMedia({
 })
 
 socket.on('user-disconnected', userId => {
+  window.location.href='chat.html';
   if (peers[userId]) peers[userId].close()
   const video = document.createElement('video')
   video.remove()
@@ -64,6 +65,6 @@ function addVideoStream(video, stream) {
   })
   video.style.width = "100%"
   video.style.height = "500px"
-  let videoDiv = $('<div class="col-lg-5" style="background-color: black;"></div>').append(video)
+  let videoDiv = $('<div style="background-color: white;"></div>').append(video)
   $("#video-grid").append(videoDiv)
 }
