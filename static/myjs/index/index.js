@@ -26,6 +26,8 @@ window.onload = async ()=>{
     let totalFriendsAndFollowers = await $.post(backendHost+"/friends/totalfriendandfollowers",obj)
     $("#myfollowers").text(totalFriendsAndFollowers.data.followers)
     $("#friends").text(totalFriendsAndFollowers.data.friends)
+    $("#userPic").attr('src',userData.profilePic)
+    $("#profPic").attr('src',userData.profilePic)
 
     let totalLikesAndPosts = await $.post(backendHost+"/index/totallikesandposts",obj)
     $("#totallikes").text(totalLikesAndPosts.data.likedCount)
