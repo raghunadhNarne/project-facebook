@@ -95,7 +95,7 @@ $("#submitmsg").keypress(async (e)=>{
 
 socket.on("getlivmsg",(msg,userId,profilePic,firstName)=>{
     $("#people-list").append(
-        `<li>
+        `<li style='background-color:#CAEF8EA6'>
             <figure>
                 <img src="${profilePic}" alt="">
                 <span class="status f-away"></span>
