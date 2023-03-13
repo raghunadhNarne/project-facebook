@@ -1,5 +1,4 @@
 const { fetchAllNotifications, addNewNotificationForUser, deleteNotificationWithArrayIndex } = require("../utils/notificationsUtils");
-
 async function getMyNotifications(req,res){
     let data = req.body;
     let result = await fetchAllNotifications(data.email);
