@@ -1,4 +1,5 @@
 const { postModel } = require("../models/postModel");
+const { friendsModel } = require("../models/friendsModel");
 const mongoose = require('mongoose')
 
 async function fetchMyPosts(email){
@@ -196,58 +197,83 @@ async function fetchMyFeedPosts(email){
         let now = new Date();
         let yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
 
-        let myEmail = email; 
-
+        let myEmail = email;
+        
         // Find my friends from friends collection
         let myFriends = await friendsModel.find({
         $and: [
             { $or: [{ senderEmail: myEmail }, { receiverEmail: myEmail }] },
             { status: "accept" },
         ],
-        }).distinct("senderEmail receiverEmail");
+        },{senderEmail:1, receiverEmail:1});
+        // console.log("myFriends",myFriends)
+
+        let finalUsers = [];
+        for(let x in myFriends){
+            let friend = myFriends[x];
+            if(friend.senderEmail == myEmail){
+                finalUsers.push(friend.receiverEmail)
+                
+            }
+            else{
+                finalUsers.push(friend.senderEmail)
+            }
+                
+        }
+
+
+        //
+        console.log("myemail",myEmail)
+        let myFollowers = await friendsModel.find({ senderEmail : myEmail, status: "reject"},{_id:0,receiverEmail : 1});
+        for(follower of myFollowers){
+            finalUsers.push(follower.receiverEmail)
+        }
+
 
         // Find my groups from groups collection
-        let myGroups = await groupModel.find({
-        $or: [{ groupOwnerEmail: myEmail }, { senderEmail: myEmail }],
-        status: "accepted",
-        }).distinct("groupName");
+        // let myGroups = await groupModel.find({
+        // $or: [{ groupOwnerEmail: myEmail }, { senderEmail: myEmail }],
+        // status: "accepted",
+        // }).distinct("groupName");
 
         // Find posts from my friends and all posts posted in groupName where groupName is in my groups which are posted in last 24 hours
         let myFriendsPosts = await postModel.find({
             $and: [
-              { userEmail: { $in: myFriends } },
+              { userEmail: { $in: finalUsers } },
               { postedTime: { $gte: yesterday } },
               { userEmail: { $ne: myEmail } },
             ],
           });
           
-          let myGroupsPosts = await groupPostModel.find({
-            $and: [
-              { groupName: { $in: myGroups } },
-              { postedTime: { $gte: yesterday } },
-              { senderEmail: { $ne: myEmail } },
-            ],
-          });
+        //   let myGroupsPosts = await groupPostModel.find({
+        //     $and: [
+        //       { groupName: { $in: myGroups } },
+        //       { postedTime: { $gte: yesterday } },
+        //       { senderEmail: { $ne: myEmail } },
+        //     ],
+        //   });
 
 
-          let finalPosts = {
-            groupPosts : myGroupsPosts ? myGroupsPosts : [],
-            friendsPosts : myFriendsPosts ? myFriendsPosts : []
-          }
+        //   let finalPosts = {
+        //     groupPosts : myGroupsPosts ? myGroupsPosts : [],
+        //     friendsPosts : myFriendsPosts ? myFriendsPosts : []
+        //   }
 
 
-        if(myFriendsPosts.length != 0 || myGroupsPosts.length != 0){
-            result.success = true;
-            result.message = "Fetched posts";
-            result.data = finalPosts;
-        }
-        else{
-            result.message = "No posts found";
-            result.data = {
-                groupPosts : [],
-                friendsPosts : []
-            }
-        }
+        // if(myFriendsPosts.length != 0 || myGroupsPosts.length != 0){
+        //     result.success = true;
+        //     result.message = "Fetched posts";
+        //     result.data = finalPosts;
+        // }
+        // else{
+        //     result.message = "No posts found";
+        //     result.data = {
+        //         groupPosts : [],
+        //         friendsPosts : []
+        //     }
+        // }
+        result.success = true;
+        result.data = myFriendsPosts ?  myFriendsPosts : []
     }
     catch(e){
         result.message = "Failed to fetch posts";

@@ -16,7 +16,7 @@ window.onload = async ()=>{
     let data = await $.post(backendHost+'/groupChats/fetchchating',{chatRoom : obj.roomname});
     data = data.data.messages;
     $("#groupname").html(groupData.data.groupName)
-    $("#groupPic").attr('src',"../"+groupData.data.groupPic)
+    $("#groupPic").attr('src',groupData.data.groupPic)
     for(x in data){
         appendToChat(data[x]);
     }

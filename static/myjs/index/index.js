@@ -11,7 +11,8 @@ window.onload = async ()=>{
     
     let posts;
     if(groupName.length==0 || !link.includes("groupIndex.html")){
-        posts = await $.post(backendHost+"/index/getMyPosts", obj);
+        posts = await $.post(backendHost+"/index/getMyFeedPosts", obj);
+        console.log(posts,"posts")
     }
     else{
         let obj={
@@ -35,7 +36,7 @@ window.onload = async ()=>{
 
     let ads=await $.get(backendHost+"/ads/getallads")
     $("#link").attr('href',ads.data[0].link)
-    $(".bg-image").css('background-image',`url(../${ads.data[0].adImage})`)
+    $(".bg-image").css('background-image',`url(${ads.data[0].adImage})`)
 
     let notifications = await $.post(backendHost+"/notifications/getMyNotifications",{email:userData.email})
     $("#notifications").text(notifications.count)
@@ -93,7 +94,7 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
                             <ins><a href="profile.html#${post.userEmail}" title="">${post.userName}</a></ins>
@@ -158,12 +159,12 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="../${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
                                     <form name="commentsForm" id="commentsForm">
                                         <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
-                                        <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                        <button name="submitComment" id="submitComment" style="background-color:blue;display: inline-block;" class="btn btn-primary" 
                                                 onclick="submitMyComment(event,'${post._id}')"> Post
                                         </button>
                                     </form>
@@ -186,14 +187,14 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
                             <ins><a href="#${post.userEmail}" title="">${post.userName}</a></ins>
                             <span>published: ${post.postedTime}</span>
                         </div>
                         <div class="post-meta">
-                            <img style="height:auto;width:100%;"src="../${post.postImage}" onerror="this.onerror=null; this.src='../static/images/resources/defaultPost.png'" alt="image not found">
+                            <img style="height:auto;width:100%;"src="${post.postImage}" onerror="this.onerror=null; this.src='../static/images/resources/defaultPost.png'" alt="image not found">
                             <div class="we-video-info">
                                 <ul>
                                     <li>
@@ -253,12 +254,12 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="../${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
-                                    <form name="commentsForm" id="commentsForm">
+                                    <form name="commentsForm" id="commentsForm" >
                                         <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
-                                        <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                        <button name="submitComment" id="submitComment" style="background-color:blue;display: inline-block;" class="btn btn-primary" 
                                                 onclick="submitMyComment(event,'${post._id}')"> Post
                                         </button>
                                     </form>
@@ -279,7 +280,7 @@ async function renderPosts(posts){
                 <div class="user-post">
                     <div class="friend-info">
                         <figure>
-                            <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                            <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                         </figure>
                         <div class="friend-name">
                             <ins><a href="#${post.userEmail}" title="">${post.userName}</a></ins>
@@ -287,9 +288,9 @@ async function renderPosts(posts){
                         </div>
                         <div class="post-meta">
                             <video width="100%" height="400px" controls loop>  
-                                <source src="../${post.postVideo}" type="video/mp4">  
-                                <source src="../${post.postVideo}" type="video/webm">
-                                <source src="../${post.postVideo}" type="video/ogg">
+                                <source src="${post.postVideo}" type="video/mp4">  
+                                <source src="${post.postVideo}" type="video/webm">
+                                <source src="${post.postVideo}" type="video/ogg">
                                 Your browser does not support the html video tag.  
                             </video> 
                             <div class="we-video-info">
@@ -351,12 +352,12 @@ async function renderPosts(posts){
                             </li>
                             <li class="post-comment">
                                 <div class="comet-avatar">
-                                    <img src="../${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                                    <img src="${userData.profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                                 </div>
                                 <div class="post-comt-box">
-                                    <form name="commentsForm" id="commentsForm">
+                                    <form name="commentsForm" id="commentsForm" >
                                         <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
-                                        <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                        <button name="submitComment" id="submitComment" style="background-color:blue;display: inline-block;" class="btn btn-primary" 
                                                 onclick="submitMyComment(event,'${post._id}')"> Post
                                         </button>
                                     </form>

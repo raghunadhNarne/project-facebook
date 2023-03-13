@@ -23,7 +23,7 @@ async function appendMyFriends(arr){
             $("#messagebox").append(
                 `<li onclick="changeurl('${data.receiverEmail}','${data.receiverName}','${data.receiverPic}','${friendData.data.onlineStatus}')">
                 <figure>
-                    <img src="../${data.receiverPic}" alt="">
+                    <img src="${data.receiverPic}" alt="">
                     <span class="status f-${friendData.data.onlineStatus}"></span>
                 </figure>
                 <div class="people-name">
@@ -38,7 +38,7 @@ async function appendMyFriends(arr){
             $("#messagebox").append(
                 `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic}','${friendData.data.onlineStatus}')">
                 <figure>
-                    <img src="../${data.senderPic}" alt="">
+                    <img src="${data.senderPic}" alt="">
                     <span class="status f-${friendData.data.onlineStatus}"></span>
                 </figure>
                 <div class="people-name">
@@ -88,7 +88,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="me" style="margin-top:6px">
-                <figure><img src="../${userData.profilePic}" alt=""></figure>
+                <figure><img src="${userData.profilePic}" alt=""></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
@@ -98,7 +98,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="you" style="margin-top:6px">
-                <figure><img src="../${friendPic}" alt=""></figure>
+                <figure><img src="${friendPic}" alt=""></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `

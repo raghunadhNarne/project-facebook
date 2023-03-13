@@ -24,5 +24,6 @@ $("#strtlive").click(async ()=>{
 
 
 backendHost = "http://18.224.56.252";
+// backendHost = "http://localhost:7777"
 frontendHost = "http://18.220.86.145/project-facebook/static";
 peerHost = "http://18.224.56.154";

@@ -3,9 +3,9 @@ window.onload=function(){
     var userData=JSON.parse(localStorage.getItem("userData"));
     $("#name").text(userData.firstName+" "+userData.lastName)
     if(userData.profilePic!=null)
-    $("#profile-photo").attr('src',"../"+userData.profilePic)
+    $("#profile-photo").attr('src',userData.profilePic)
     if(userData.coverPic!=null)
-    $("#cover-photo").attr('src',"../"+userData.coverPic)
+    $("#cover-photo").attr('src',userData.coverPic)
 
 }
 $("#update").click(async function(){

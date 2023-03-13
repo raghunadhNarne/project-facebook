@@ -25,11 +25,11 @@ window.onload=async function(){
     $("#aboutMe").val(userData.aboutMe)
     if(userData.profilePic!=null)
     {
-        $("#profile-photo").attr('src',"../"+userData.profilePic)
+        $("#profile-photo").attr('src',userData.profilePic)
     }
         
     if(userData.coverPic!=null)
-        $("#cover-photo").attr('src',"../"+userData.coverPic)
+        $("#cover-photo").attr('src',userData.coverPic)
 
 }
 

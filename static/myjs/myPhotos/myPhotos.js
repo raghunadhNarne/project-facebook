@@ -26,8 +26,8 @@ async function getMyPhotos(){
 async function getPhoto(photo){
     return `
         <li>
-            <a class="strip" href="../${photo.postImage}" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-            <img src="../${photo.postImage}" onerror="this.onerror=null; this.src='../static/images/resources/defaultPost.png'" alt="Default Image"></a>
+            <a class="strip" href="${photo.postImage}" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
+            <img src="${photo.postImage}" onerror="this.onerror=null; this.src='static/images/resources/defaultPost.png'" alt="Default Image"></a>
         </li>`
 }
 

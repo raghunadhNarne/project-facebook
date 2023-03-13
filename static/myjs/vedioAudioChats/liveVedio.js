@@ -89,7 +89,7 @@ socket.on("getlivmsg",(msg,userId,profilePic,firstName)=>{
     $("#people-list").append(
         `<li>
             <figure>
-                <img src="../${profilePic}" alt="">
+                <img src="${profilePic}" alt="">
                 <span class="status f-away"></span>
                 
             </figure>

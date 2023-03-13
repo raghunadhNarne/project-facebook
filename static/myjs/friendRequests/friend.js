@@ -42,7 +42,7 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="addFriend.html" title=""><img src="../${data[x].senderPic}" alt=""></a>
+                        <a href="addFriend.html" title=""><img src="${data[x].senderPic}" alt=""></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="addFriend.html#${data[x].senderEmail}" title="">${data[x].senderName}</a></h4>
@@ -59,7 +59,7 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img src="../${data[x].receiverPic}" alt=""></a>
+                        <a href="time-line.html" title=""><img src="${data[x].receiverPic}" alt=""></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="addFriend.html#${data[x].receiverEmail}" title="">${data[x].receiverName}</a></h4>

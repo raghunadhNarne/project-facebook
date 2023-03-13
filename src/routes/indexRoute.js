@@ -1,8 +1,9 @@
-const { getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData, addComment, myChildrenPendingPosts ,justAcceptPendingChildPost,justDeletePendingChildPost,getTotalLikesAndPosts } = require('../controllers/indexController');
+const { getMyPosts, getLikedUserdata, addLike, addDislike, removeLike, removeDislike, getPostData, addComment, myChildrenPendingPosts ,justAcceptPendingChildPost,justDeletePendingChildPost,getTotalLikesAndPosts, getMyFeedPosts } = require('../controllers/indexController');
 
 const indexRouter = require('express').Router();
 
 indexRouter.post('/getMyPosts',getMyPosts);
+indexRouter.post('/getMyFeedPosts',getMyFeedPosts)
 indexRouter.post('/getLikedUserdata',getLikedUserdata);
 
 indexRouter.post('/getPostData',getPostData)

@@ -28,7 +28,7 @@ async function addallpendingusersdata(data)
 
 async function uploadimage(url,type)
 {
-    $("#imgurl").attr('src',"../"+url)
+    $("#imgurl").attr('src',url)
     $("#type").html(type)
 }
 

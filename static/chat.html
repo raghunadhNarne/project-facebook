@@ -99,39 +99,14 @@
 						<div class="row" id="page-contents">
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									<div class="widget"><!-- shortcuts-->
-										<h4 class="widget-title">Shortcuts</h4>
-										<ul class="naves">
-											<li>
-												<i class="ti-files"></i>
-												<a href="fav-page.html" title="">My profile</a>
-											</li>
-											<li>
-												<i class="ti-user"></i>
-												<a href="timeline-friends.html" title="">friends</a>
-											</li>
-											<li>
-												<i class="ti-image"></i>
-												<a href="timeline-photos.html" title="">images</a>
-											</li>
-											<li>
-												<i class="ti-video-camera"></i>
-												<a href="timeline-videos.html" title="">videos</a>
-											</li>
-											<li>
-												<i class="ti-comments-smiley"></i>
-												<a href="messages.html" title="">Messages</a>
-											</li>
-											<li>
-												<i class="ti-bell"></i>
-												<a href="notifications.html" title="">Notifications</a>
-											</li>
-											<li>
-												<i class="ti-power-off"></i>
-												<a href="landing.html" title="">Logout</a>
-											</li>
-										</ul>
-									</div>
+									<div id="shortcutswidget">
+										<div class="widget">
+											<h4 class="widget-title">Shortcuts</h4>
+											<ul class="naves" id="naves">
+												<!-- will render dynamically from shortcutswidget.js -->
+											</ul>
+										</div>
+									</div> <!-- Shortcuts -->
 									
 									
 								</aside>
@@ -375,6 +350,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
     <script src="js/main.min.js"></script>
 	<script src="http://localhost:7777/socket.io/socket.io.js"></script>
+	<script src="./myjs/widgets/shortcutsWidget.js"></script>
 	<script src="./myjs/chat/chatDragula.js"></script>
 	<script src="./myjs/chat/chat.js"></script>
 	<script src="./myjs/common/assist.js"></script>

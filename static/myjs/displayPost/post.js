@@ -26,7 +26,7 @@ async function renderPost(post){
             <div class="user-post">
                 <div class="friend-info">
                     <figure>
-                        <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                        <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title="">${post.userName}</a></ins>
@@ -94,7 +94,7 @@ async function renderPost(post){
                             <div class="post-comt-box">
                                 <form name="commentsForm" id="commentsForm">
                                     <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
-                                    <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                    <button name="submitComment" id="submitComment" style="background-color:blue;display: inline-block;" class="btn btn-primary" 
                                             onclick="submitMyComment(event,'${post._id}')"> Post
                                     </button>
                                 </form>
@@ -117,14 +117,14 @@ async function renderPost(post){
             <div class="user-post">
                 <div class="friend-info">
                     <figure>
-                        <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                        <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title="">${post.userName}</a></ins>
                         <span>published: ${post.postedTime}</span>
                     </div>
                     <div class="post-meta">
-                        <img style="height:auto;width:100%;"src="../${post.postImage}" onerror="this.onerror=null; this.src='../static/images/resources/defaultPost.png'" alt="image not found">
+                        <img style="height:auto;width:100%;"src="${post.postImage}" onerror="this.onerror=null; this.src='../static/images/resources/defaultPost.png'" alt="image not found">
                         <div class="we-video-info">
                             <ul>
                                 <li>
@@ -187,7 +187,7 @@ async function renderPost(post){
                             <div class="post-comt-box">
                                 <form name="commentsForm" id="commentsForm">
                                     <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
-                                    <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                    <button name="submitComment" id="submitComment" style="background-color:blue;display: inline-block;" class="btn btn-primary" 
                                             onclick="submitMyComment(event,'${post._id}')"> Post
                                     </button>
                                 </form>
@@ -208,7 +208,7 @@ async function renderPost(post){
             <div class="user-post">
                 <div class="friend-info">
                     <figure>
-                        <img src="../${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
+                        <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title="">${post.userName}</a></ins>
@@ -216,9 +216,9 @@ async function renderPost(post){
                     </div>
                     <div class="post-meta">
                         <video width="100%" height="400px" controls loop>  
-                            <source src="../${post.postVideo}" type="video/mp4">  
-                            <source src="../${post.postVideo}" type="video/webm">
-                            <source src="../${post.postVideo}" type="video/ogg">
+                            <source src="${post.postVideo}" type="video/mp4">  
+                            <source src="${post.postVideo}" type="video/webm">
+                            <source src="${post.postVideo}" type="video/ogg">
                             Your browser does not support the html video tag.  
                         </video> 
                         <div class="we-video-info">
@@ -283,7 +283,7 @@ async function renderPost(post){
                             <div class="post-comt-box">
                                 <form name="commentsForm" id="commentsForm">
                                     <textarea id="${post._id}Comment" style="display: inline-block; width: 80%;" placeholder="Post your comment"></textarea>
-                                    <button name="submitComment" id="submitComment" style="display: inline-block;" class="btn btn-primary" 
+                                    <button name="submitComment" id="submitComment" style="background-color:blue;display: inline-block;" class="btn btn-primary" 
                                             onclick="submitMyComment(event,'${post._id}')"> Post
                                     </button>
                                 </form>
@@ -660,6 +660,10 @@ async function submitMyComment(event,postid){
 
 
     let newCommentText = $(`#${postid}Comment`).val()
+    if(newCommentText == "" || newCommentText == undefined){
+        alert("cant post emmpty comment")
+        return;
+    }
     let commentedUserdata = userData;
 
 
