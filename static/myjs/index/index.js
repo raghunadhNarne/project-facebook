@@ -6,11 +6,6 @@ link = window.location.href
 
 window.onload = async ()=>{
     let result = await validateUser();
-    if(result.success == false){
-        alert(result.message)
-        window.location.href = "login.html"
-        return;
-    }
 
     
     obj = {
@@ -36,10 +31,10 @@ window.onload = async ()=>{
     $("#friends").text(totalFriendsAndFollowers.data.friends)
 
     let totalLikesAndPosts = await $.post(backendHost+"/index/totallikesandposts",obj)
-    $("#totallikes").text(totalLikesAndPosts.data.likedCount)
-    $("#totalposts").text(totalLikesAndPosts.data.postsCount)
-    $("#fromlastweeklikescount").text(totalLikesAndPosts.data.fromlastweeklikescount)
-    $("#fromlastweekpostscount").text(totalLikesAndPosts.data.fromlastweekpostscount)
+    $("#totallikes").text(totalLikesAndPosts?.data?.likedCount || "")
+    $("#totalposts").text(totalLikesAndPosts?.data?.postsCount || "")
+    $("#fromlastweeklikescount").text(totalLikesAndPosts?.data?.fromlastweeklikescount || "")
+    $("#fromlastweekpostscount").text(totalLikesAndPosts?.data?.fromlastweekpostscount || "")
 
 
     let ads=await $.get(backendHost+"/ads/getallads")
@@ -47,7 +42,7 @@ window.onload = async ()=>{
     $(".bg-image").css('background-image',`url(${ads.data[0].adImage})`)
 
     let notifications = await $.post(backendHost+"/notifications/getMyNotifications",{email:userData.email})
-    $("#notifications").text(notifications.count)
+    $("#notifications").text(notifications?.count || 0)
 
 
     $("#firstName").text(userData.firstName)

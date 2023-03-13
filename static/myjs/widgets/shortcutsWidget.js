@@ -1,6 +1,10 @@
 let usersData = JSON.parse(localStorage.getItem('userData'));
 
 async function renderShorcuts(){
+    if(usersData == null) {
+        console.log("Shorcuts widet rendering failed...");
+        return;
+    }
 
     $("#naves").append(
         `<li>

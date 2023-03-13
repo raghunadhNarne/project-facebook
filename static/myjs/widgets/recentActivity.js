@@ -21,11 +21,11 @@ async function renderAllRecentActivity(){
 
 
 async function getRecentActivityData(){
-    obj = {
-        email: JSON.parse(localStorage.getItem("userData")).email
-    }
     let recentActivityData = []
     try{
+        obj = {
+            email: JSON.parse(localStorage.getItem("userData")).email
+        }
         let result = await $.post(backendHost+"/recentActivity/getMyRecentActivity", obj);
         recentActivityData = result.data;
     }
@@ -62,12 +62,12 @@ async function renderRecentActivity(){
 
 async function getLatestFourActivityData(){
     
-    obj = {
-        email: JSON.parse(localStorage.getItem("userData")).email
-    }
 
     let recentActivityData =[];
     try{
+        obj = {
+            email: JSON.parse(localStorage.getItem("userData")).email
+        }
         let result = await $.post(backendHost+"/recentActivity/getMyLatestFourActivities", obj);
         recentActivityData = result.data;
     }

@@ -1,3 +1,14 @@
+window.onload = async function(){
+    let result = await validateUser();
+    if(result.success == false){
+        return;
+    }
+    else{
+        renderMyPhotos();
+    }
+}
+
+
 async function renderMyPhotos(){
     let myPhotos = await getMyPhotos();
 
@@ -30,14 +41,3 @@ async function getPhoto(photo){
             <img src="${photo.postImage}" onerror="this.onerror=null; this.src='static/images/resources/defaultPost.png'" alt="Default Image"></a>
         </li>`
 }
-
-async function start(){
-    let result = await validateUser();
-    if(result.success == false){
-        alert(result.message)
-        window.location.href = "login.html"
-        return;
-    }
-    renderMyPhotos();
-}
-start()

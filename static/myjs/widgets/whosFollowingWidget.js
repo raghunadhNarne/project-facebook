@@ -12,19 +12,19 @@ async function renderWhosFollowingWidget(){
 
 
 async function getFollowers(){
-    obj = {
-        email: JSON.parse(localStorage.getItem("userData")).email
-    }
     let result = [];
     try{
+        obj = {
+            email: JSON.parse(localStorage.getItem("userData")).email
+        }
         result = await $.post(backendHost+"/friends/getmyfollowers", obj);
     }
     catch(e){
         console.log("Whos following widet rendering failed...")
     }
-    let followersData = result.data;
+    let followersData = result?.data || [];
 
-    return followersData || [];
+    return followersData;
 }
 
 async function getFollower(follower){

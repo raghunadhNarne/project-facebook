@@ -8,11 +8,6 @@ var userData = JSON.parse(localStorage.getItem("userData"))
 
 window.onload = async()=>{
   let result = await validateUser();
-    if(result.success == false){
-        alert(result.message)
-        window.location.href = "login.html"
-        return;
-    }
     notificationObj = {
         email : callto,
         name : '',

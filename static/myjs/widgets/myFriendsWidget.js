@@ -14,12 +14,12 @@ async function renderMyFriends(){
 
 
 async function getFriends(){
-    var obj={
-        email : userData.email,
-    }
     
     let myFriends = [];
     try{
+        var obj={
+            email : userData.email,
+        }
         myFriends = await $.post(backendHost+"/friends/getfriends",obj)
     }
     catch(e){

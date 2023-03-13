@@ -222,8 +222,8 @@ async function fetchMyFeedPosts(email){
         }
 
 
-        //
-        console.log("myemail",myEmail)
+
+        
         let myFollowers = await friendsModel.find({ senderEmail : myEmail, status: "reject"},{_id:0,receiverEmail : 1});
         for(follower of myFollowers){
             finalUsers.push(follower.receiverEmail)
@@ -242,6 +242,7 @@ async function fetchMyFeedPosts(email){
               { userEmail: { $in: finalUsers } },
               { postedTime: { $gte: yesterday } },
               { userEmail: { $ne: myEmail } },
+              { status : "accepted"}
             ],
           });
           
@@ -273,7 +274,7 @@ async function fetchMyFeedPosts(email){
         //     }
         // }
         result.success = true;
-        result.data = myFriendsPosts ?  myFriendsPosts : []
+        result.data = myFriendsPosts ?  myFriendsPosts.reverse() : []
     }
     catch(e){
         result.message = "Failed to fetch posts";
