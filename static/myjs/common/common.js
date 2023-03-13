@@ -8,6 +8,17 @@ function closepopup(){
 }
 
 
+if(JSON.parse(localStorage.getItem("userData"))!=null)
+{
+    let us= JSON.parse(localStorage.getItem("userData"))
+    if(us.profilePic!=null)
+    {
+        // alert(us.profilePic)
+        $(".user-profilepic").attr('src',us.profilePic)
+    }
+}
+
+
 
 
 $("#strtlive").click(async ()=>{
@@ -22,7 +33,7 @@ $("#strtlive").click(async ()=>{
 
 
 
-
+// alert(100)
 backendHost = "http://18.224.56.252";
 // backendHost = "http://localhost:7777"
 // frontendHost = "http://18.220.86.145/project-facebook/static";
