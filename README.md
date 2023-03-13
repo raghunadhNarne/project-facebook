@@ -78,3 +78,97 @@
 - dompurify for preventing xss scripting attack.
 
 
+# API Documentation
+
+## IndexRoute
+
+* indexRouter.post('/getMyPosts',getMyPosts);
+* indexRouter.post('/getLikedUserdata',getLikedUserdata);
+* indexRouter.post('/getPostData',getPostData)
+* indexRouter.post('/addLike',addLike)
+* indexRouter.post('/removeLike',removeLike)
+* indexRouter.post('/removeDislike',removeDislike)
+* indexRouter.post('/addDislike',addDislike)
+* indexRouter.post('/addNewComment',addComment)
+* indexRouter.post('/getmychildrenpendingposts',myChildrenPendingPosts)
+* indexRouter.post('/acceptpendingchildpost',justAcceptPendingChildPost)
+* indexRouter.post('/deletependingchildpost',justDeletePendingChildPost)
+* indexRouter.post('/totallikesandposts',getTotalLikesAndPosts)
+
+## FriendsRoute
+
+* friendsRouter.post('/addfriend',friendsController.addFriend)
+* friendsRouter.post('/getpendingfriendrequests',friendsController.getPendingFriendRequests)
+* friendsRouter.post('/acceptpendingfriendrequest',friendsController.justAcceptPendingFriendRequests);
+* friendsRouter.post('/rejectpendingfriendrequest',friendsController.justRejectPendingFriendRequests);
+* friendsRouter.post('/getfriends',friendsController.getAcceptedFriendRequests)
+* friendsRouter.post('/removefriend',friendsController.justRemoveFriend)
+* friendsRouter.post('/getmyfriendrequests',friendsController.getMyFriendRequests)
+* friendsRouter.post('/revokefriendrequest',friendsController.justRevokeFriendRequest)
+* friendsRouter.post('/getmyfollowers',friendsController.getFollowers)
+* friendsRouter.post('/getmyfollowing',friendsController.getMyFollowing)
+* friendsRouter.post('/unfollowfriend',friendsController.justUnfollowFriend)
+* friendsRouter.post('/searchfriends',friendsController.justSearchFriends)
+* friendsRouter.post('/totalfriendandfollowers',friendsController.getTotalFriendsAndFollowers)
+
+## GroupRoute
+* groupRoute.post("/createGroup",upload.single('groupPic'),creategroup);
+* groupRoute.post("/getMyGroups",getMyGroups);
+* groupRoute.post("/leaveGroup",leaveGroup);
+* groupRoute.post("/getNotMyGroups",getNotMyGroups);
+* groupRoute.post("/joinRequest",joinRequest);
+* groupRoute.post("/getGroupsCreatedByMe",getGroupsCreatedByMe);
+* groupRoute.post("/groupRequests",groupRequests);
+* groupRoute.post("/acceptOrRejectRequest",acceptOrRejectRequest);
+* groupRoute.post("/getGroupPosts",getGroupPosts)
+* groupRoute.post("/getGroupInfo",getGroupInfo)
+
+## GroupChatRoute
+* groupChatRoute.post("/fetchchating", fetchchating);
+* groupChatRoute.post("/putmessage", putmessage);
+
+## ChatRoute
+* chatRoute.post("/fetchchating",fetchchating);
+* chatRoute.post("/putmessage",putmessage);
+
+
+## NotificationsRoute
+
+* notificationsRouter.post('/getMyNotifications',getMyNotifications);
+* notificationsRouter.post('/addNewNotification', addNewNotification);
+* notificationsRouter.post('/deleteNotification', deleteNotification)
+
+## UserRoute 
+* userRouter.get('/getallpendingusers',userController.getAllPendingUsers)
+* userRouter.post('/deletependingrequest',userController.justDeletePendingRequest)
+* userRouter.post('/acceptpendingrequest',userController.justAcceptPendingRequest)
+* userRouter.post('/addchild',userController.justAddChild)
+* userRouter.post('/updateuser',upload.fields([{name:"profile",maxCount:1},{name:"cover",maxCount:1}]),userController.justUpdateUser)
+* userRouter.post('/getsingleuser',userController.justGetSingleUser)
+* userRouter.post('/changepassword',userController.justChangePassword)
+* userRouter.post('/forgotpassword',userController.justForgotPassword)
+
+## xssScriptingFixRoute
+* xssScriptingFixRouter.post('/sanitizeDOM',sanitizeDOM);
+
+## RecentActivityRoute
+
+* recentActivityRouter.post('/getMyRecentActivity',getMyRecentActivity);
+* recentActivityRouter.post('/addNewActivity', addNewActivity);
+* recentActivityRouter.post('/getMyLatestFourActivities',getMyLatestFourActivities)
+
+## PostRoute
+* postRouter.post('/textPost',createNewTextPost);
+* postRouter.post('/filePost',upload.single("image"),createNewFilePost);
+* postRouter.post('/autoGenerateContent',autoGenerateContent)
+
+## MediaRoute
+* mediaRouter.post('/getMyPhotos',getMyPhotos);
+* mediaRouter.post('/getMyVideos', getMyVideos);
+
+## adRoute
+
+* adRoute.post('/addnewad',upload.single("image"),justAddNewAdd)
+* adRoute.get('/getallads',justGetAllAds)
+
+
