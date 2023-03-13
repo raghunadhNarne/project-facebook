@@ -1,4 +1,10 @@
 window.onload=async function(){
+    let result = await validateUser();
+    if(result.success == false){
+        alert(result.message)
+        window.location.href = "login.html"
+        return;
+    }
     
     var userData=JSON.parse(localStorage.getItem("userData"));
 

@@ -11,6 +11,15 @@ let obj = {
 }
 
 window.onload = async ()=>{
+    let result = await validateUser();
+    if(result.success == false){
+        alert(result.message)
+        window.location.href = "login.html"
+        return;
+    }
+
+
+    
     let groupData = await $.post(backendHost+'/groups/getGroupInfo',{groupName:window.location.hash.substring(1)})
     console.log(groupData)
     let data = await $.post(backendHost+'/groupChats/fetchchating',{chatRoom : obj.roomname});

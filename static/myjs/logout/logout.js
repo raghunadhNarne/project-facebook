@@ -9,6 +9,7 @@ async function logoutUser(){
         allowOutsideClick: false,
         preConfirm:  () => {
             localStorage.removeItem("userData");
+            localStorage.removeItem("jwtToken");
     
             var now = new Date();
             now.setTime(now.getTime() - 1);

@@ -22,7 +22,11 @@ $('#login').on("click", function(e) {
 
           //copying user details into local storage
           let token =JSON.stringify(data.data);
-          console.log("data.data",data.data)
+
+          //inserting token into local storage
+          localStorage.setItem('jwtToken',JSON.stringify(data.data));
+          
+          // console.log("data.data",data.data)
           var base64Url = token.split(".")[1];
           var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
           var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
@@ -31,7 +35,7 @@ $('#login').on("click", function(e) {
           jsonPayload = JSON.parse(jsonPayload);
           localStorage.setItem('userData',JSON.stringify(jsonPayload.user));
 
-          console.log(localStorage.getItem('userData'));
+          // console.log(localStorage.getItem('userData'));
           
           window.location.href = '/static/index.html';
         } else {

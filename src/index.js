@@ -66,5 +66,8 @@ app.use('/notifications',notificationsRouter)
 const mediaRouter = require('./routes/mediaRoute');
 app.use('/media',mediaRouter)
 
+const authRouter = require('./routes/authRoute');
+app.use('/auth',authRouter)
+
 
 server.listen(7777,()=>{console.log("Connected to port 7777")})

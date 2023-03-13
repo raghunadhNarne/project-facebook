@@ -1,5 +1,11 @@
 window.onload=async function()
 {
+    let result = await validateAdmin();
+    if(result.success == false){
+        alert(result.message)
+        window.location.href = "login.html"
+        return;
+    }
     var pending_data=await $.get(backendHost+"/users/getallpendingusers")
     addallpendingusersdata(pending_data.data)
 }
