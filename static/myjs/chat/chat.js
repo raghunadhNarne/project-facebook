@@ -34,7 +34,7 @@ async function appendMyFriends(arr){
         }
         else{
             let friendData = await $.post(backendHost+"/users/getsingleuser",{email:data.receiverEmail});
-            console.log(friendData)
+            // console.log(friendData)
             $("#messagebox").append(
                 `<li onclick="changeurl('${data.senderEmail}','${data.senderName}','${data.senderPic}','${friendData.data.onlineStatus}')">
                 <figure>
@@ -178,7 +178,7 @@ $("#sendmessage").click(async (e)=>{
 async function connectVideocall(secondUserEmail){
     
     notificationObj = {
-        email : JSON.parse(localStorage.getItem("userData")).email,
+        email : secondUserEmail,
         name : JSON.parse(localStorage.getItem("userData")).firstName,
         action : "is Calling you",
         url : frontendHost+`/videoCall.html#${secondUserEmail}`
