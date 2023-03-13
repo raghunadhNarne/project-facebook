@@ -56,7 +56,7 @@ navigator.mediaDevices.getUserMedia({
 })
 
 socket.on('audiocall-disconnected', userId => {
-
+  window.location.href='chat.html';
     $("#callingtext").text(`call ended`)
   if (peers[userId]) peers[userId].close()
   const video = document.createElement('video')

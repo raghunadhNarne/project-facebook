@@ -3,8 +3,8 @@ window.onload=async ()=>{
 
     let totalFriendsAndFollowers = await $.post(backendHost+"/friends/totalfriendandfollowers",{email:email})
     $("#followers").text(totalFriendsAndFollowers.data.followers)
-    $("#profPic").attr('src',JSON.parse(localStorage.getItem("userData")).profilePic);
-    
+    alert(totalFriendsAndFollowers.data.followers)
+
     let data = await $.post(backendHost+"/users/getsingleuser",{email:email})
     var userData = data.data
 

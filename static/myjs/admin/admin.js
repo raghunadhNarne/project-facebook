@@ -1,6 +1,5 @@
 window.onload=async function()
 {
-    $("#profPic").attr('src',JSON.parse(localStorage.getItem("userData")).profilePic);
     var pending_data=await $.get(backendHost+"/users/getallpendingusers")
     addallpendingusersdata(pending_data.data)
 }
