@@ -12,22 +12,22 @@ window.onload = async()=>{
         email : callto,
         name : '',
         action : "Lift call from "+callfrom,
-        url : `http://127.0.0.1:5500/static/audioCall.html#${callfrom}:${callto}`
+        url : frontendHost+`/audioCall.html#${callfrom}:${callto}`
     }
     // console.log(notificationObj)
 
     if(userData.email==callfrom)
-    await $.post("http://localhost:7777/notifications/addNewNotification", notificationObj);
+    await $.post(backendHost+"/notifications/addNewNotification", notificationObj);
 }
 
 
 
-const socket = io('http://localhost:7777/audioCall')
+const socket = io(backendHost+'/audioCall')
 const videoGrid = document.getElementById('video-grid')
 
 const myPeer = new Peer(undefined, {
-  host: 'localhost',
-  port: '6747'
+  host: "18.224.56.154",
+  port: '80'
 })
 
 const myVideo = document.createElement('video')
@@ -50,7 +50,7 @@ navigator.mediaDevices.getUserMedia({
   
   socket.on('audiocall-connected', userId => {
     console.log("audiocall-connected",userId)
-    $("#callingtext").text(`call lifted by ${callingmail}`)
+    $("#callingtext").text(`call lifted by ${callto}`)
     connectToNewUser(userId, stream)
   })
 })

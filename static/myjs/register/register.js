@@ -5,7 +5,7 @@ $('#register').on("click",function(e) {
     var password = $('input[name="password"]').val();
     // console.log("here");
     $.ajax({
-      url: 'http://localhost:7777/login',
+      url: backendHost+'/login',
       type: 'POST',
       data: {email: email, password: password},
       success: function(data){

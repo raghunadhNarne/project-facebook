@@ -6,11 +6,11 @@ $('#login').on("click", function(e) {
     // console.log(email,password)
     // console.log("here");
     $.ajax({
-      url: 'http://localhost:7777/login',
+      url: backendHost+'/login',
       type: 'POST',
-      xhrFields: {
-        withCredentials: true // enable sending cookies
-      },
+      // xhrFields: {
+      //   withCredentials: true // enable sending cookies
+      // },
       data: { email: email, password: password },
       success: function(data) {
         console.log("frontend token", data.data);
@@ -81,7 +81,7 @@ $('#login').on("click", function(e) {
      $.ajax({
       method: 'POST',
       processData: false,
-      url: 'http://localhost:7777/signup',
+      url: backendHost+'/signup',
       contentType: false,
       data: user,
       success: function (data) {
@@ -97,7 +97,7 @@ $('#login').on("click", function(e) {
       email:$("#femail").val(),
       mobileNo:$("#mobileNo").val()
     }
-    let data = await $.post("http://localhost:7777/users/forgotpassword",obj)
+    let data = await $.post(backendHost+"/users/forgotpassword",obj)
 
     $("#sendotp").hide()
     $("#gotologin").show()

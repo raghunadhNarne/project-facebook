@@ -15,12 +15,16 @@ async function getFollowers(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    let result = await $.post("http://localhost:7777/friends/getmyfollowers", obj);
-    // console.log("result",result)
-
+    let result = [];
+    try{
+        result = await $.post(backendHost+"/friends/getmyfollowers", obj);
+    }
+    catch(e){
+        console.log("Whos following widet rendering failed...")
+    }
     let followersData = result.data;
 
-    return followersData ? followersData : [];
+    return followersData || [];
 }
 
 async function getFollower(follower){
@@ -37,7 +41,7 @@ async function getFollower(follower){
 async function confirmRequest(senderEmail)
 {
     let receiverEmail = JSON.parse(localStorage.getItem("userData")).email  //my email
-    let data = await $.post("http://localhost:7777/friends/acceptpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
+    let data = await $.post(backendHost+"/friends/acceptpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
     alert("succesfully accepted the request")
 }
 

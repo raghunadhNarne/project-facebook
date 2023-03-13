@@ -1,10 +1,10 @@
-var socket = io('http://localhost:7777/chat')
+var socket = io(backendHost+'/chat')
 let userData = JSON.parse(localStorage.getItem('userData'));
 
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
-    host: '/',
-    port: '6747'
+    host: "18.224.56.154",
+    port: '80'
 })
 const myVideo = document.createElement('video')
 myVideo.muted = true
@@ -74,7 +74,7 @@ $("#submitmsg").keypress(async (e)=>{
     let objt = {
         postText : $("#submitmsg").val()
     } 
-    let purifiedText = await $.post("http://localhost:7777/xssScriptingFix/sanitizeDOM", objt);
+    let purifiedText = await $.post(backendHost+"/xssScriptingFix/sanitizeDOM", objt);
     let puredText = purifiedText.cleanedDOM;
 
     if(e.which==13){
@@ -89,7 +89,7 @@ socket.on("getlivmsg",(msg,userId,profilePic,firstName)=>{
     $("#people-list").append(
         `<li>
             <figure>
-                <img src="../${profilePic}" alt="">
+                <img src="${profilePic}" alt="">
                 <span class="status f-away"></span>
                 
             </figure>

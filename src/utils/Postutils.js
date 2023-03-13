@@ -1,6 +1,6 @@
 const { postModel } = require("../models/postModel");
 const { getTotalPostsCount, updateTotalPostsCount } = require("./postsCount");
-const { isUserExist } = require("./userUtils");
+const { isUserExist, getRole } = require("./userUtils");
 
 
 
@@ -87,6 +87,13 @@ async function addNewTextPost(myUserEmail,postData){
         result.data = "";
     }
     else{
+
+        let userRole = await getRole(myUserEmail);
+        let postStatus = "pending";
+        if(userRole.data == "Parent"){
+            postStatus = "accepted";
+        }
+
         // let postCount = await getTotalPostsCount();
         let newPost = new postModel({
             // postId : postCount + 1,
@@ -102,7 +109,7 @@ async function addNewTextPost(myUserEmail,postData){
             likedUsers : [],
             dislikedUsers : [],
             groupName : postData.groupName,
-            status:"pending"
+            status:postStatus
         })
         try{
             let isPosted = await newPost.save();

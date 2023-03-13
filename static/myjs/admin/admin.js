@@ -1,6 +1,6 @@
 window.onload=async function()
 {
-    var pending_data=await $.get("http://localhost:7777/users/getallpendingusers")
+    var pending_data=await $.get(backendHost+"/users/getallpendingusers")
     addallpendingusersdata(pending_data.data)
 }
 async function addallpendingusersdata(data)
@@ -28,19 +28,19 @@ async function addallpendingusersdata(data)
 
 async function uploadimage(url,type)
 {
-    $("#imgurl").attr('src',"../"+url)
+    $("#imgurl").attr('src',url)
     $("#type").html(type)
 }
 
 async function acceptrequest(email,type)
 {
-    let data = await $.post("http://localhost:7777/users/acceptpendingrequest",{email:email,type:type})
+    let data = await $.post(backendHost+"/users/acceptpendingrequest",{email:email,type:type})
     alert("successfully accepted the user request")
 }
 
 async function deleterequest(email)
 {
-    let data = await $.post("http://localhost:7777/users/deletependingrequest",{email:email})
+    let data = await $.post(backendHost+"/users/deletependingrequest",{email:email})
     alert("successfully deleted the user request")
 }
 
@@ -57,7 +57,7 @@ $("#submitad").click(function(){
     $.ajax({
         method: 'POST',
         processData: false,
-        url: 'http://localhost:7777/ads/addnewad',
+        url: backendHost+'/ads/addnewad',
         contentType: false,
         data: form,
         success: function (data) {

@@ -333,5 +333,22 @@ async function forgotPassword(obj)
     return result;
 }
 
-module.exports = {isUserExist,fetchUserData,allPendingUsers,deletePendingRequest,acceptPendingRequest,addChild,updateUser,getSingleUser,changePassword,forgotPassword };
+async function getRole(email){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+        let data = await userModel.findOne({email:email});
+        result.success = true;
+        result.data = data.role;
+    }
+    catch(e){
+        result.message = "failed to get role"
+    }
+    return result;
+}
+
+module.exports = {isUserExist,fetchUserData,allPendingUsers,deletePendingRequest,acceptPendingRequest,addChild,updateUser,getSingleUser,changePassword,forgotPassword, getRole };
 

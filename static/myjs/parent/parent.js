@@ -4,7 +4,7 @@ window.onload=async function(){
         email: JSON.parse(localStorage.getItem("userData")).email,
         children:JSON.parse(localStorage.getItem("userData")).children
     }
-    let pending_posts = await $.post("http://localhost:7777/index/getmychildrenpendingposts", obj);
+    let pending_posts = await $.post(backendHost+"/index/getmychildrenpendingposts", obj);
     // alert(pending_posts)
     console.log(pending_posts)
     addpendingpostsdata(pending_posts.data,obj);
@@ -41,7 +41,7 @@ $("#addchildren").click(async ()=>{
 
 async function postchilddata(obj)
 {
-    let data = await $.post("http://localhost:7777/users/addchild",obj);
+    let data = await $.post(backendHost+"/users/addchild",obj);
     alert("successfully posted child data")
 }
 
@@ -56,7 +56,7 @@ async function addpendingpostsdata(posts,obj)
                 `<div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
                 <div class="friend-info">
                         <figure>
-                        <img src="../${post.userPic}" alt="">
+                        <img src="${post.userPic}" alt="">
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title="">${post.userName}</a></ins>
@@ -86,14 +86,14 @@ async function addpendingpostsdata(posts,obj)
                 `<div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
                 <div class="friend-info">
                     <figure>
-                        <img src="../${post.userPic}" alt="">
+                        <img src="${post.userPic}" alt="">
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
                         <span>published: june,2 2018 19:PM</span>
                     </div>
                     <div class="post-meta">
-                        <img src="../${post.postImage}" alt="">
+                        <img src="${post.postImage}" alt="">
                         
                         <div class="description">
                             
@@ -118,7 +118,7 @@ async function addpendingpostsdata(posts,obj)
                 `<div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
                 <div class="friend-info">
                     <figure>
-                        <img src="../${post.userPic}" alt="">
+                        <img src="${post.userPic}" alt="">
                     </figure>
                     
                     <div class="friend-name">
@@ -127,9 +127,9 @@ async function addpendingpostsdata(posts,obj)
                     </div>
                     <div class="post-meta">
                         <video width="100%" height="400px" controls loop>  
-                                <source src="../${post.postVideo}" type="video/mp4">  
-                                <source src="../${post.postVideo}" type="video/webm">
-                                <source src="../${post.postVideo}" type="video/ogg">
+                                <source src="${post.postVideo}" type="video/mp4">  
+                                <source src="${post.postVideo}" type="video/webm">
+                                <source src="${post.postVideo}" type="video/ogg">
                                 Your browser does not support the html video tag.  
                             </video> 
                         <div class="description">
@@ -155,12 +155,12 @@ async function addpendingpostsdata(posts,obj)
 async function confirmrequest(email)
 {
     console.log(email)
-    let data = await $.post("http://localhost:7777/index/acceptpendingchildpost",{email:email})
+    let data = await $.post(backendHost+"/index/acceptpendingchildpost",{email:email})
     alert(data.message)
 }
 
 async function deleterequest(email)
 {
-    let data = await $.post("http://localhost:7777/index/deletependingchildpost",{email:email})
+    let data = await $.post(backendHost+"/index/deletependingchildpost",{email:email})
     alert(data.message)
 }

@@ -3,9 +3,9 @@ window.onload=function(){
     var userData=JSON.parse(localStorage.getItem("userData"));
     $("#name").text(userData.firstName+" "+userData.lastName)
     if(userData.profilePic!=null)
-    $("#profile-photo").attr('src',"../"+userData.profilePic)
+    $("#profile-photo").attr('src',userData.profilePic)
     if(userData.coverPic!=null)
-    $("#cover-photo").attr('src',"../"+userData.coverPic)
+    $("#cover-photo").attr('src',userData.coverPic)
 
 }
 $("#update").click(async function(){
@@ -21,7 +21,7 @@ $("#update").click(async function(){
             email:JSON.parse(localStorage.getItem("userData")).email,
             new:new_password,
         }
-        var data= await $.post("http://localhost:7777/users/changepassword",obj)
+        var data= await $.post(backendHost+"/users/changepassword",obj)
         alert(data.message)
     }
     

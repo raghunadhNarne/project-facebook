@@ -10,22 +10,22 @@ var obj={
 // }
 
 window.onload=async function(){
-    let friends_data = await $.post("http://localhost:7777/friends/getfriends",obj)
+    let friends_data = await $.post(backendHost+"/friends/getfriends",obj)
     addfriends(friends_data.data)
     
-    let requests_data = await $.post("http://localhost:7777/friends/getpendingfriendrequests",obj)
+    let requests_data = await $.post(backendHost+"/friends/getpendingfriendrequests",obj)
     addfriendrequests(requests_data.data)
 
-    let followers_data = await $.post("http://localhost:7777/friends/getmyfollowers",obj)
+    let followers_data = await $.post(backendHost+"/friends/getmyfollowers",obj)
     addmyfollowers(followers_data.data)
 
-    let following_data = await $.post("http://localhost:7777/friends/getmyfollowing",obj)
+    let following_data = await $.post(backendHost+"/friends/getmyfollowing",obj)
     addmyfollowing(following_data.data)
 
-    let my_requests = await $.post("http://localhost:7777/friends/getmyfriendrequests",obj)
+    let my_requests = await $.post(backendHost+"/friends/getmyfriendrequests",obj)
     addmyrequests(my_requests.data)
 
-    // let friend_list = await $.post("http://localhost:7777/friends/searchfriends",obj)
+    // let friend_list = await $.post(backendHost+"/friends/searchfriends",obj)
     // addsearchfriends(friend_list.data)
 
    
@@ -42,7 +42,7 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="addFriend.html" title=""><img src="../${data[x].senderPic}" alt=""></a>
+                        <a href="addFriend.html" title=""><img src="${data[x].senderPic}" alt=""></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="addFriend.html#${data[x].senderEmail}" title="">${data[x].senderName}</a></h4>
@@ -59,7 +59,7 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img src="../${data[x].receiverPic}" alt=""></a>
+                        <a href="time-line.html" title=""><img src="${data[x].receiverPic}" alt=""></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="addFriend.html#${data[x].receiverEmail}" title="">${data[x].receiverName}</a></h4>
@@ -191,7 +191,7 @@ function addsearchfriends(data)
 $("#friendssearch").keyup(async () => {
     let input = $("#friendssearch").val().toLowerCase();
     obj.firstName=input;
-    let friend_list = await $.post("http://localhost:7777/friends/searchfriends",obj)
+    let friend_list = await $.post(backendHost+"/friends/searchfriends",obj)
 
     addsearchfriends(friend_list.data)
     console.log(friend_list.data)
@@ -211,25 +211,25 @@ $("#friendssearch").keyup(async () => {
 
 async function deletefriend(senderEmail,receiverEmail)
 {
-    let data=await $.post("http://localhost:7777/friends/unfollowfriend",{senderEmail:senderEmail,receiverEmail:receiverEmail})
+    let data=await $.post(backendHost+"/friends/unfollowfriend",{senderEmail:senderEmail,receiverEmail:receiverEmail})
     alert("successfully deleted your friend")
 }
 
 async function deleterequest(senderEmail,receiverEmail)
 {
-    let data = await $.post("http://localhost:7777/friends/rejectpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
+    let data = await $.post(backendHost+"/friends/rejectpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
     alert("succesfully deleted the request")
 }
 
 async function confirmrequest(senderEmail,receiverEmail)
 {
-    let data=await $.post("http://localhost:7777/friends/acceptpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
+    let data=await $.post(backendHost+"/friends/acceptpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
     alert("succesfully accepted the request")
 }
 
 async function revokerequest(senderEmail,receiverEmail)
 {
-    let data=await $.post("http://localhost:7777/friends/revokefriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
+    let data=await $.post(backendHost+"/friends/revokefriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
     alert("succesfully revoked the request")
 
 }
@@ -244,7 +244,7 @@ async function addglobalfriendrequest(receiverEmail,receiverPic,receiverName)
         receiverPic:receiverPic,
         status:"pending"
     }
-    let data = $.post("http://localhost:7777/friends/addfriend",obj1)
+    let data = $.post(backendHost+"/friends/addfriend",obj1)
     alert("Successfully added new friend request")
 
 }

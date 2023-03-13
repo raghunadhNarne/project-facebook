@@ -3,9 +3,7 @@ userData = JSON.parse(localStorage.getItem("userData"))
 
 async function renderMyFriends(){
     let myFriends = await getFriends();
-    // console.log(myFriends,"myFriends")
-
-
+    
     for(let friend of myFriends){
         $("#people-list").append(
             await renderFriend(friend)
@@ -19,15 +17,21 @@ async function getFriends(){
     var obj={
         email : userData.email,
     }
-    let myFriends = await $.post("http://localhost:7777/friends/getfriends",obj)
-    return myFriends.data;
+    
+    let myFriends = [];
+    try{
+        myFriends = await $.post(backendHost+"/friends/getfriends",obj)
+    }
+    catch(e){
+        console.log("My friends widget rendering failed...")
+    }
+    return myFriends?.data || [];
 }
 
 
 
 async function renderFriend(friend){
     let currentUserData = await getCurrentUserData(friend.senderEmail ==  userData.email ? friend.receiverEmail : friend.senderEmail);
-    // console.log("currentUserData.onlineStatus",currentUserData)
     return `
             <li>
             <figure>
@@ -48,12 +52,11 @@ async function getCurrentUserData(email){
         var obj={
             email : email,
         }
-        result = await $.post("http://localhost:7777/users/getsingleuser",obj)
+        result = await $.post(backendHost+"/users/getsingleuser",obj)
         if(result.success)
             currentUserData = result.data
         else
             console.log(result.message)
-        // console.log("currentUserData",currentUserData)
     }
     catch(e){
         console.log("failed to get user data");

@@ -2,7 +2,7 @@ window.onload=async function(){
     
     var userData=JSON.parse(localStorage.getItem("userData"));
 
-    let update_data = await $.post("http://localhost:7777/users/getsingleuser",{email:userData.email})
+    let update_data = await $.post(backendHost+"/users/getsingleuser",{email:userData.email})
 
     userData=update_data.data
     localStorage.setItem("userData",JSON.stringify(userData))
@@ -25,11 +25,11 @@ window.onload=async function(){
     $("#aboutMe").val(userData.aboutMe)
     if(userData.profilePic!=null)
     {
-        $("#profile-photo").attr('src',"../"+userData.profilePic)
+        $("#profile-photo").attr('src',userData.profilePic)
     }
         
     if(userData.coverPic!=null)
-        $("#cover-photo").attr('src',"../"+userData.coverPic)
+        $("#cover-photo").attr('src',userData.coverPic)
 
 }
 
@@ -68,7 +68,7 @@ $("#update").click(async function(){
     $.ajax({
         method: 'POST',
         processData: false,
-        url: 'http://localhost:7777/users/updateuser',
+        url: backendHost+'/users/updateuser',
         contentType: false,
         data: user,
         success: function (data) {
@@ -77,6 +77,6 @@ $("#update").click(async function(){
     })
 
     // console.log(obj)
-    // let data = await $.post("http://localhost:7777/users/updateuser",obj)
+    // let data = await $.post(backendHost+"/users/updateuser",obj)
     // alert("successfully updated user data")
 })

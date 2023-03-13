@@ -15,7 +15,7 @@ async function getMyVideos(){
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email
     }
-    let result = await $.post("http://localhost:7777/media/getMyVideos", obj);
+    let result = await $.post(backendHost+"/media/getMyVideos", obj);
     console.log("result",result.data)
 
     let videosData = result.data;
@@ -26,7 +26,7 @@ async function getMyVideos(){
 async function getVideo(video){
     return `
         <li>
-        <a href="../${video.postVideo}" title="" data-strip-group="mygroup" class="strip" data-strip-options="width: 700,height: 450,youtube: { autoplay: 1 }"><img src="images/resources/photo1.jpg" alt="">
+        <a href="${video.postVideo}" title="" data-strip-group="mygroup" class="strip" data-strip-options="width: 700,height: 450,youtube: { autoplay: 1 }"><img src="images/resources/photo1.jpg" alt="">
             <i>
                 <svg version="1.1" class="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="40px" width="40px"
                 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">

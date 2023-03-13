@@ -1,4 +1,5 @@
 const { notificationsModel } = require("../models/notificationsModel");
+const { acceptedFriendRequests } = require("./friendsUtils");
 
 async function getNotificationsByEmailWithinLast24Hours(myEmail){
     let result = {
@@ -132,4 +133,43 @@ async function createNewNotificationforUser(myEmail){
     return result;
 }
 
-module.exports = {getNotificationsByEmailWithinLast24Hours, fetchAllNotifications, addNewNotificationForUser, deleteNotificationWithArrayIndex, createNewNotificationforUser}
+
+async function notifyToAllFriends(requiredDetails){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    let data = await acceptedFriendRequests(requiredDetails);
+    let friends = []
+    for(x in data.data){
+        obj=data.data[x];
+        if(obj.senderEmail == requiredDetails.email){
+            friends.push(obj.receiverEmail)
+        }
+        else{
+            friends.push(obj.senderEmail);
+        }
+    }
+    try{
+        let newNotification = {
+            timeStamp : new Date(),
+            name : requiredDetails.name, 
+            action : requiredDetails.action,
+            url : requiredDetails.url
+        }
+        data = await notificationsModel.updateMany({email:{$in:friends}},{$push:{notifications:newNotification}});
+        result.success = 'true';
+        result.message = 'Successfully sent notfications';
+    }
+    catch(e){
+        result.message = "unable to send notifications to the friends"
+    }
+    return result;
+}
+
+
+
+
+
+module.exports = {getNotificationsByEmailWithinLast24Hours, fetchAllNotifications, addNewNotificationForUser, deleteNotificationWithArrayIndex, createNewNotificationforUser,notifyToAllFriends}
