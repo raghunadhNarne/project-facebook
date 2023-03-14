@@ -16,7 +16,7 @@ window.onload = async ()=>{
 
     
     let groupData = await $.post(backendHost+'/groups/getGroupInfo',{groupName:window.location.hash.substring(1)})
-    console.log(groupData)
+    // console.log(groupData)
     let data = await $.post(backendHost+'/groupChats/fetchchating',{chatRoom : obj.roomname});
     data = data.data.messages;
     $("#groupname").html(groupData.data.groupName)
@@ -47,20 +47,22 @@ function appendToChat(message){
         )
     }
     else if(message.email == userData.email){
+        alert(message.picture)
         $("#chatarea").append(
             `
             <li class="me" style="margin-top:10px">
-                <figure><img src="images/resources/${message.picture}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></figure>
+                <figure><img src="${message.picture}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
         )
     }
     else{
+        alert(message.picture)
         $("#chatarea").append(
             `
             <li class="you" style="margin-top:10px">
-                <figure><img src="images/resources/${message.picture}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></figure>
+                <figure><img src="${message.picture}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `

@@ -15,6 +15,6 @@ async function logoutUser(){
             now.setTime(now.getTime() - 1);
             document.cookie = "jwtToken=; expires=" + now.toUTCString() + "; path=/;";
     
-            window.location.href = "sign.html"
+            window.location.href = "signin.html"
         },});
 }

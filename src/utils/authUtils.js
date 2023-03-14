@@ -3,7 +3,7 @@ async function loginValidate(jwtToken) {
     let result = {
         success: false,
         message: "",
-        url : "sign.html"
+        url : "signin.html"
     }
 
     try{
@@ -29,7 +29,7 @@ async function parentValidate(jwtToken) {
     let result = {
         success: false,
         message: "",
-        url : "sign.html"
+        url : "signin.html"
     }
 
     try{
@@ -64,7 +64,7 @@ async function adminValidate(jwtToken) {
     let result = {
         success: false,
         message: "",
-        url : "sign.html"
+        url : "signin.html"
     }
 
     try{

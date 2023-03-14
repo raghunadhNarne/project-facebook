@@ -3,11 +3,6 @@ var obj={
     senderName:JSON.parse(localStorage.getItem("userData")).firstName,
     senderPic:JSON.parse(localStorage.getItem("userData")).profilePic
 }
-// var obj={
-//     email:"pranay@gmail.com",
-//     senderName:"Pranay",
-//     senderPic:"1.jpg"
-// }
 
 window.onload=async function(){
     let result = await validateUser();
@@ -50,7 +45,6 @@ function addfriends(data)
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="addFriend.html#${data[x].senderEmail}" title="">${data[x].senderName}</a></h4>
-                        <span>Cricketer</span>
                         <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deletefriend('${data[x].senderEmail}','${data[x].receiverEmail}')">unfriend</a>
                     </div>
                 </div>

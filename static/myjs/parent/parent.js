@@ -3,7 +3,6 @@ window.onload=async function(){
 
 
 
-    // alert('jljl')
     obj = {
         email: JSON.parse(localStorage.getItem("userData")).email,
         children:JSON.parse(localStorage.getItem("userData")).children
@@ -71,7 +70,7 @@ async function addpendingpostsdata(posts,obj)
                         <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     <div class="friend-name">
-                        <ins><a href="time-line.html" title="">${post.userName}</a></ins>
+                        <ins><a href="#" title="">${post.userName}</a></ins>
                         <span>published: june,2 2018 19:PM</span>
                     </div>
                     <div class="post-meta">
@@ -101,7 +100,7 @@ async function addpendingpostsdata(posts,obj)
                         <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     <div class="friend-name">
-                        <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
+                        <ins><a href="#" title="">Janice Griffith</a></ins>
                         <span>published: june,2 2018 19:PM</span>
                     </div>
                     <div class="post-meta">
@@ -134,7 +133,7 @@ async function addpendingpostsdata(posts,obj)
                     </figure>
                     
                     <div class="friend-name">
-                        <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
+                        <ins><a href="#" title="">Janice Griffith</a></ins>
                         <span>published: june,2 2018 19:PM</span>
                     </div>
                     <div class="post-meta">

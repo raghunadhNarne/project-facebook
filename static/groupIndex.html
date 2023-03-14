@@ -133,48 +133,12 @@
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
 								<div class="central-meta">
-									<div class="new-postbox">
-										<figure>
-											<img src="images/resources/admin2.jpg" alt="">
-										</figure>
-										<div class="newpst-input">
-											<form enctype="multipart/form-data" method="POST" name="newPost" id="newPost">
-												<textarea rows="2" placeholder="write something" name="text" id="text"></textarea>
-												<div class="attachments">
-													<ul>
-														<li>
-															<i class="fa fa-microphone" id="voice"></i>
-														</li>
-														<li>
-															<i class="fa fa-image"></i>
-															<label class="fileContainer">
-																<input type="file" name="image" id="image">
-															</label>
-														</li>
-														<li>
-															<i class="fa fa-video-camera"></i>
-															<label class="fileContainer">
-																<input type="file" name="video" id="video">
-															</label>
-														</li>
-														<!-- <li>
-															<i class="fa fa-camera"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li> -->
-														<li>
-															<div class="btn btn-primary" name="generateContent" id="generateContent">Generate Content</div>
-														</li>
-														<li>
-															<button type="submit" name="addPost" id="addPost">Post</button>
-														</li>
-													</ul>
-												</div>
-											</form>
+									<div class="central-meta">
+										<div class="new-postbox" id="new-postbox">
+											<!-- will render dynamically from renderCreatePostbox.js -->
 										</div>
-									</div>
-								</div><!-- add post new box -->
+									</div><!-- add post new box -->
+								</div>
 								<div class="loadMore" id="loadMore">
 								
 								</div>
@@ -473,6 +437,7 @@
 	<script src="./myjs/widgets/shortcutsWidget.js"></script>
 	<script src="./myjs/widgets/myFriendsWidget.js"></script>
 	<script src="./myjs/index/createPost.js"></script>
+	<script src="./myjs/index/renderCreatePostbox.js"></script>
 	<script src="./myjs/index/index.js"></script>
 	<script src="./myjs/common/assist.js"></script>
 	<script src="./myjs/common/common.js"></script>

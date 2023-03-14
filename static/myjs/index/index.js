@@ -735,7 +735,15 @@ async function submitMyComment(event,postid){
 
     //addding comment to posts database
     let result = await $.post(backendHost+"/index/addNewComment", newComment);
-    alert(result.message)
+    Swal.fire({
+        icon: 'success',
+        title: result.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:2000
+        
+      });
     $(`#${postid}Comment`).val("")
 
 

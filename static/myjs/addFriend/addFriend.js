@@ -1,8 +1,5 @@
 window.onload=async ()=>{
     let result = await validateUser();
-    if(result.success == false){
-        return;
-    }
     
     let email=window.location.hash.substring(1);
 

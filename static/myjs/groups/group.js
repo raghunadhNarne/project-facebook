@@ -31,9 +31,8 @@ function madeGlobalGrps(arr) {
                                 onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
-                        <h4><a href="time-line.html" title="">${data.groupName}</a>
+                        <h4><a href="#" title="">${data.groupName}</a>
                         </h4>
-                        <span>ftv model</span>
                         <a href="#" title="" class="add-butn"
                             data-ripple="" onclick = "makegrprequest('${data.groupPic}','${data.groupName}','${data.groupOwnerEmail}','${data.groupOwnerPic}','${data.groupOwnerName}')">Ask To Join</a>
                     </div>
@@ -80,9 +79,8 @@ function madeMyGrps(arr) {
                                 onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
-                        <h4><a href="time-line.html" title="">${data.groupName}</a>
+                        <h4><a href="#" title="">${data.groupName}</a>
                         </h4>
-                        <span>ftv model</span>
                         <a href="#" title="" class="add-butn"
                             data-ripple="" onclick="exitgrp('${data.groupName}')">Exit Group</a>
                     </div>
@@ -125,9 +123,8 @@ function madeGrpsOfMe(arr) {
                                 onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
-                        <h4><a href="time-line.html" title="">${data.groupName}</a>
+                        <h4><a href="#" title="">${data.groupName}</a>
                         </h4>
-                        <span>ftv model</span>
                         <a href="#" title="" class="add-butn"
                             id='viewreqs' data-ripple="" data-toggle="modal" data-target="#myModal" onclick="showrequest('${data.groupName}')">View Requests</a>
                     </div>
@@ -160,7 +157,7 @@ function appendrequests(arr, grpname) {
                     <a href="#" title=""><img src="${data.senderPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                 </figure>
                 <div class="pepl-info">
-                    <h4><a href="time-line.html" title="">${data.senderName}</a></h4>
+                    <h4><a href="#" title="">${data.senderName}</a></h4>
                     <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="rejectgrp('${data.senderEmail}','${grpname}')">Reject</a>
                     <a href="#" title="" class="add-butn" data-ripple="" onclick="acceptgrp('${data.senderEmail}','${grpname}')">Accept</a>
                 </div>

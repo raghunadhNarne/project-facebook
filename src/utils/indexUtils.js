@@ -1,6 +1,7 @@
 const { postModel } = require("../models/postModel");
 const { friendsModel } = require("../models/friendsModel");
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { post } = require("../routes/indexRoute");
 
 async function fetchMyPosts(email){
     let result = {
@@ -14,6 +15,29 @@ async function fetchMyPosts(email){
             result.success = true;
             result.message = "Fetched posts";
             result.data = posts;
+        }
+        else{
+            result.message = "No posts till now";
+        }
+    }
+    catch(e){
+        result.message = "Failed to fetch posts";
+    }
+    return result;
+}
+
+async function fetchMyChildPendingPosts(email){
+    let result = {
+        success: false,
+        message: "",
+        data: ""
+    }
+    try{
+        let posts = await postModel.find({ userEmail: email, status: "pending"});
+        if(posts.length != 0){
+            result.success = true;
+            result.message = "Fetched posts";
+            result.data = posts ? posts : [];
         }
         else{
             result.message = "No posts till now";
@@ -137,6 +161,7 @@ async function fetchPostData(postid){
         message: "",
         data: ""
     }
+    // console.log("postid",new mongoose.Types.ObjectId(postid))
     try{
         let fetchResult = await postModel.findOne({_id: new mongoose.Types.ObjectId(postid)});
             result.success = true;
@@ -157,6 +182,7 @@ async function addNewComment(commentData){
         message: "",
         data: ""
     }
+    // console.log("commentData",commentData)
     try{
         let newComment = {
             userPic : commentData.userPic,
@@ -165,8 +191,10 @@ async function addNewComment(commentData){
             commentedTime : new Date(),
             userEmail : commentData.userEmail
         }
+        // console.log("newComment",newComment)
         let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(commentData.postId)},{$push:{comments:newComment}});
         if(updateResult.modifiedCount != 0){
+            // console.log("updated")
             result.success = true;
             result.message = "Added comment to comments list";
             result.data = "";
@@ -202,6 +230,7 @@ async function fetchMyFeedPosts(email){
             { status: "accept" },
         ],
         },{senderEmail:1, receiverEmail:1});
+        // console.log("myFriends",myFriends)
 
         let finalUsers = [];
         for(let x in myFriends){
@@ -280,6 +309,7 @@ async function fetchMyFeedPosts(email){
 
 async function childrenPendingPosts(obj)
 {
+    // console.log(obj)
     let result = {
         success: false,
         message: "",
@@ -289,7 +319,7 @@ async function childrenPendingPosts(obj)
         let childArray=[]
         for(x in obj.children)
         {
-            let data=await (await fetchMyPosts(obj.children[x])).data
+            let data = (await fetchMyChildPendingPosts(obj.children[x])).data
             childArray.push(data[0])
         }
         result.success=true;
@@ -310,7 +340,7 @@ async function acceptPendingChildPost(obj)
         data: ""
     }
     try{
-        // console.log(obj.email)
+        console.log(obj.email)
         let data = await postModel.updateOne({userEmail:obj.email},{$set:{status:"accepted"}})
         result.success=true;
         result.message="succesfully accepted the children pending posts"
@@ -399,4 +429,4 @@ async function totalLikesAndPosts(obj)
     return result;
 }
 
-module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment, fetchMyFeedPosts ,childrenPendingPosts ,acceptPendingChildPost ,deletePendingChildPost,totalLikesAndPosts};
+module.exports = {fetchMyPosts, addUserToDislikedArray, addUserToLikedArray, removeUserFromDislikedArray, removeUserFromLikedArray, fetchPostData, addNewComment, fetchMyFeedPosts ,childrenPendingPosts ,acceptPendingChildPost ,deletePendingChildPost,totalLikesAndPosts,fetchMyChildPendingPosts};
