@@ -73,7 +73,15 @@ $("#update").click(async function(){
         contentType: false,
         data: user,
         success: function (data) {
-            alert("successfully updated user data")
+            Swal.fire({
+                icon: 'success',
+                title: "successfully updated user data",
+                
+                showConfirmButton: false, 
+                allowOutsideClick: false, 
+                timer:1500
+                
+              });
         }
     })
 

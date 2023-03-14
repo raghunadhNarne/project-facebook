@@ -239,7 +239,7 @@ async function unfollowFriend(obj) {
                 { senderEmail: obj.receiverEmail, receiverEmail: obj.senderEmail }
             ]
         })
-        console.log(data)
+        // console.log(data)
         result.success = true;
         result.message = "successfully unfollowed the friend";
     }

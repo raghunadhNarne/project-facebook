@@ -76,7 +76,7 @@ async function acceptPendingRequest(obj)
             from: "+15675220781" 
         })
         .then(async (message) => {
-            console.log(message)
+            // console.log(message)
             let data=await userModel.updateOne({email:obj.email},{$set:{password:hashedpassword,status:"accept",role:obj.type}})
 
             await createRecentActivityforUser(obj.email)
@@ -158,7 +158,7 @@ async function addChild(userDetails)
         
             try{
                 let data = await newuser.save();
-                console.log(data);
+                // console.log(data);
                 let update_childlist = await userModel.updateOne({email:userDetails.body.parent},{$set:{children:userDetails.body.email}})
                 result.success = true;
                 result.message = "successfully created user child and update child list of parent"; 

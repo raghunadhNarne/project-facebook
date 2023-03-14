@@ -14,7 +14,15 @@ $("#update").click(async function(){
     var confirm_password = $("#confirm-password").val()
     if(new_password!=confirm_password)
     {
-        alert("Please! Enter correct confirm password")
+        Swal.fire({
+            icon: 'error',
+            title: "Please Enter correct confirm password",
+            
+            showConfirmButton: false, 
+            allowOutsideClick: false, 
+            timer:1500
+            
+          });
     }
     else
     {
@@ -23,7 +31,15 @@ $("#update").click(async function(){
             new:new_password,
         }
         var data= await $.post(backendHost+"/users/changepassword",obj)
-        alert(data.message)
+        Swal.fire({
+            icon: 'success',
+            title: data.message,
+            
+            showConfirmButton: false, 
+            allowOutsideClick: false, 
+            timer:1500
+            
+          });
     }
     
 })

@@ -42,7 +42,15 @@ async function confirmRequest(senderEmail)
 {
     let receiverEmail = JSON.parse(localStorage.getItem("userData")).email  //my email
     let data = await $.post(backendHost+"/friends/acceptpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
-    alert("succesfully accepted the request")
+    Swal.fire({
+        icon: 'success',
+        title: "succesfully accepted the request",
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 

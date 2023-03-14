@@ -37,9 +37,14 @@ window.onload = async ()=>{
     $("#fromlastweekpostscount").text(totalLikesAndPosts?.data?.fromlastweekpostscount || "")
 
 
-    let ads=await $.get(backendHost+"/ads/getallads")
-    $("#link").attr('href',ads.data[0].link)
-    $(".bg-image").css('background-image',`url(${ads.data[0].adImage})`)
+    try{
+        let ads=await $.get(backendHost+"/ads/getallads")
+        $("#link").attr('href',ads.data[0].link)
+        $(".bg-image").css('background-image',`url(${ads.data[0].adImage})`)
+    }
+    catch(e){
+        console.log("no ads...")
+    }
 
     let notifications = await $.post(backendHost+"/notifications/getMyNotifications",{email:userData.email})
     $("#notifications").text(notifications?.count || 0)
