@@ -12,11 +12,6 @@ let obj = {
 
 window.onload = async ()=>{
     let result = await validateUser();
-    if(result.success == false){
-        alert(result.message)
-        window.location.href = "login.html"
-        return;
-    }
 
 
     

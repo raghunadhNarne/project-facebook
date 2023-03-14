@@ -24,7 +24,7 @@ $('#login').on("click", function(e) {
           let token =JSON.stringify(data.data);
 
           //inserting token into local storage
-          localStorage.setItem('jwtToken',JSON.stringify(data.data));
+          localStorage.setItem('jwtToken',data.data);
           
           // console.log("data.data",data.data)
           var base64Url = token.split(".")[1];
@@ -37,7 +37,7 @@ $('#login').on("click", function(e) {
 
           // console.log(localStorage.getItem('userData'));
           
-          window.location.href = '/static/index.html';
+          window.location.href = 'index.html';
         } else {
           alert(data.message);
         }

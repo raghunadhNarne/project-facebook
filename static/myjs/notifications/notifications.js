@@ -1,4 +1,5 @@
 async function renderMyNotifications(){
+    let result = await validateUser();
     let notifications = await getNotifications();
     // console.log(notifications,"0000");
 
@@ -63,13 +64,4 @@ async function removeNotification(event,arrayIndex){
     }
     $.post(backendHost+"/notifications/deleteNotification",obj)
 }
-async function start(){
-    let result = await validateUser();
-    if(result.success == false){
-        alert(result.message)
-        window.location.href = "login.html"
-        return;
-    }
-    renderMyNotifications()
-}
-start()
+renderMyNotifications()

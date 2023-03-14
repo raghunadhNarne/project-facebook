@@ -18,7 +18,6 @@ async function validateUser(req,res){
         let user = result.data;
         // console.log("user",user);
         let token = jwt.sign({user}, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
-        // console.log(token)
         result.success = true;
         result.data = token;
         res.cookie('jwtToken', token).send(result);

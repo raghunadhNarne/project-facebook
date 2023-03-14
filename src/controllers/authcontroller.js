@@ -18,7 +18,6 @@ async function authParent(req,res){
 
 async function authAdmin(req,res){
     let token = req.body;
-
     let result = await adminValidate(token.jwtToken);
     res.send(result);
 }

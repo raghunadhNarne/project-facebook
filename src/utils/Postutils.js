@@ -24,8 +24,11 @@ async function addNewFilePost(myUserEmail,postData,multerFileName){
         result.data = "";
     }
     else{
-        // let postCount = await getTotalPostsCount();
-        // console.log(postData.text);
+        let userRole = await getRole(myUserEmail);
+        let postStatus = "pending";
+        if(userRole.data == "Parent"){
+            postStatus = "accepted";
+        }
         let newPostdata = {
             // postId : postCount + 1,
             userEmail : myUserEmail,
@@ -40,7 +43,7 @@ async function addNewFilePost(myUserEmail,postData,multerFileName){
             likedUsers : [],
             dislikedUsers : [],
             groupName : postData.groupName,
-            status:"pending"
+            status:postStatus
         }
         if(postData.postType == "image"){
             newPostdata.postImage = multerFileName;
@@ -55,8 +58,6 @@ async function addNewFilePost(myUserEmail,postData,multerFileName){
             let isPosted = await newPost.save();
             result.success = true;
             result.message = "successfully posted";
-
-            await updateTotalPostsCount();
         }
         catch(e){
             result.message = "failed to add post: " + e;
