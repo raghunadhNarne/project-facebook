@@ -39,11 +39,27 @@ $('#login').on("click", function(e) {
           
           window.location.href = 'index.html';
         } else {
-          alert(data.message);
+          Swal.fire({
+            icon: 'error',
+            title: data.message,
+            
+            showConfirmButton: false, 
+            allowOutsideClick: false, 
+            timer:1500
+            
+          });
         }
       },
       error: function() {
-        alert('Invalid email or password');
+        Swal.fire({
+          icon: 'error',
+          title: 'error loggin in',
+          
+          showConfirmButton: false, 
+          allowOutsideClick: false, 
+          timer:1500
+          
+        });
         // setTimeout(function() { window.location.href = 'http://localhost:5500/static/404.html'; }, 1000);
       }
     });
@@ -90,13 +106,22 @@ $('#login').on("click", function(e) {
       data: user,
       success: function (data) {
           // alert(data)
+          Swal.fire({
+            icon: 'success',
+            title: 'successfully sent request to admin',
+            
+            showConfirmButton: false, 
+            allowOutsideClick: false, 
+            timer:1500
+            
+          });
       }
   })
 
   })
 
   $("#sendotp").click(async ()=>{
-    alert(100)
+    // alert(100)
     var obj={
       email:$("#femail").val(),
       mobileNo:$("#mobileNo").val()

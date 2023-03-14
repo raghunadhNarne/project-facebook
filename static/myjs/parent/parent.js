@@ -46,7 +46,15 @@ $("#addchildren").click(async ()=>{
 async function postchilddata(obj)
 {
     let data = await $.post(backendHost+"/users/addchild",obj);
-    alert("successfully posted child data")
+    Swal.fire({
+        icon: 'success',
+        title: 'Successfully created child account',
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 async function addpendingpostsdata(posts,obj)
@@ -158,13 +166,28 @@ async function addpendingpostsdata(posts,obj)
 
 async function confirmrequest(email)
 {
-    console.log(email)
     let data = await $.post(backendHost+"/index/acceptpendingchildpost",{email:email})
-    alert(data.message)
+    Swal.fire({
+        icon: 'success',
+        title: data.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 async function deleterequest(email)
 {
     let data = await $.post(backendHost+"/index/deletependingchildpost",{email:email})
-    alert(data.message)
+    Swal.fire({
+        icon: 'success',
+        title: data.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }

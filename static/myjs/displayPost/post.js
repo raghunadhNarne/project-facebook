@@ -367,7 +367,7 @@ async function toggleLike(likedPostId){
 
     let likedUsers = likedPostData.data.likedUsers;
     let dislikedUsers = likedPostData.data.dislikedUsers;
-    console.log(likedUsers,dislikedUsers)
+    // console.log(likedUsers,dislikedUsers)
     if(likedUsers.indexOf(likedUserData.email) == -1  && dislikedUsers.indexOf(likedUserData.email) == -1){
         //add like
         //add to recent activity
@@ -667,7 +667,15 @@ async function submitMyComment(event,postid){
 
     let newCommentText = $(`#${postid}Comment`).val()
     if(newCommentText == "" || newCommentText == undefined){
-        alert("cant post emmpty comment")
+        Swal.fire({
+            icon: 'error',
+            title: "cant post empty comment",
+            
+            showConfirmButton: false, 
+            allowOutsideClick: false, 
+            timer:1500
+            
+          });
         return;
     }
     let commentedUserdata = userData;
@@ -684,7 +692,15 @@ async function submitMyComment(event,postid){
 
     //addding comment to posts database
     let result = await $.post(backendHost+"/index/addNewComment", newComment);
-    alert(result.message)
+    Swal.fire({
+        icon: 'success',
+        title: result.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 
 
     //adding to recent activity

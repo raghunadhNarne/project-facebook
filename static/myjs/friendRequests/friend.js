@@ -198,7 +198,7 @@ $("#friendssearch").keyup(async () => {
     let friend_list = await $.post(backendHost+"/friends/searchfriends",obj)
 
     addsearchfriends(friend_list.data)
-    console.log(friend_list.data)
+    // console.log(friend_list.data)
 
 
     // let groups = $(".globalfriends");
@@ -216,25 +216,57 @@ $("#friendssearch").keyup(async () => {
 async function deletefriend(senderEmail,receiverEmail)
 {
     let data=await $.post(backendHost+"/friends/unfollowfriend",{senderEmail:senderEmail,receiverEmail:receiverEmail})
-    alert("successfully deleted your friend")
+    Swal.fire({
+        icon: 'success',
+        title: "successfully deleted your friend",
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 async function deleterequest(senderEmail,receiverEmail)
 {
     let data = await $.post(backendHost+"/friends/rejectpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
-    alert("succesfully deleted the request")
+    Swal.fire({
+        icon: 'success',
+        title: "succesfully deleted the request",
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 async function confirmrequest(senderEmail,receiverEmail)
 {
     let data=await $.post(backendHost+"/friends/acceptpendingfriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
-    alert("succesfully accepted the request")
+    Swal.fire({
+        icon: 'success',
+        title: "succesfully accepted the request",
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 async function revokerequest(senderEmail,receiverEmail)
 {
     let data=await $.post(backendHost+"/friends/revokefriendrequest",{senderEmail:senderEmail,receiverEmail:receiverEmail})
-    alert("succesfully revoked the request")
+    Swal.fire({
+        icon: 'success',
+        title: "succesfully revoked the request",
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 
 }
 async function addglobalfriendrequest(receiverEmail,receiverPic,receiverName)
@@ -249,6 +281,14 @@ async function addglobalfriendrequest(receiverEmail,receiverPic,receiverName)
         status:"pending"
     }
     let data = $.post(backendHost+"/friends/addfriend",obj1)
-    alert("Successfully added new friend request")
+    Swal.fire({
+        icon: 'success',
+        title: "Successfully sent friend request",
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 
 }

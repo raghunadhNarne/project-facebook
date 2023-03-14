@@ -9,17 +9,25 @@ $('#register').on("click",function(e) {
       type: 'POST',
       data: {email: email, password: password},
       success: function(data){
-        console.log("forntend token",data.data);
+        // console.log("forntend token",data.data);
         if(data.success == true){
             document.cookie = 'jwtToken=' + JSON.stringify(data.data);
             window.location.href = '/static/index.html';
         }
         else{
-            alert(data.message);
+            
         }
       },
       error: function(){
-        alert('Invalid email or password');
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid email or password',
+          
+          showConfirmButton: false, 
+          allowOutsideClick: false, 
+          timer:1500
+          
+        });
         setTimeout(()=>window.location.href = 'http://localhost:5500/static/404.html',1000);
       }
     });

@@ -102,6 +102,8 @@ $('#newPost').on('submit', async function(event) {
                 //change the content of text in form data
                 formData.set("text",cleanedDOM.toString());
                 console.log("after sanitizing: ",cleanedDOM);
+                //clearing the input
+                $("#text").val("");
                 // alert(`sorry bro these data from your text is removed: ${JSON.stringify(removedDOM)}`)
                 Swal.fire({
                     icon: 'success',

@@ -19,6 +19,10 @@ async function getNotificationsByEmailWithinLast24Hours(myEmail){
         result.success = true;
         result.message = "successfully fetched notifications";
         result.data = notifications;
+<<<<<<< HEAD
+=======
+        // console.log("notifications util",notifications)
+>>>>>>> d3f65c96b3b1ee1e782735055f219832def6641b
     }
     catch(e){
         result.message = "Unable to fetch notifications";

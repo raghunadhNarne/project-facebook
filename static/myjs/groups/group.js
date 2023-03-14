@@ -26,9 +26,9 @@ function madeGlobalGrps(arr) {
             `<li class="globalgrps" style="cursor:pointer">
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img
+                        <a href="#" title=""><img
                                 src="${data.groupPic}"
-                                alt=""></a>
+                                onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="time-line.html" title="">${data.groupName}</a>
@@ -56,7 +56,15 @@ async function makegrprequest(groupPic1, groupName1, groupOwnerEmail1, groupOwne
         status: "pending"
     }
     let data = await $.post(backendHost+"/groups/joinRequest", obj);
-    alert(data.message);
+    Swal.fire({
+        icon: 'success',
+        title: data.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 
@@ -67,9 +75,9 @@ function madeMyGrps(arr) {
             `<li style="cursor: pointer;" onclick=opengrp('${data.groupName}')>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img
+                        <a href="#" title=""><img
                                 src="${data.groupPic}"
-                                alt=""></a>
+                                onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="time-line.html" title="">${data.groupName}</a>
@@ -94,8 +102,15 @@ function exitgrp(grpname) {
         groupName: grpname
     }
     let data = $.post(backendHost+"/groups/leaveGroup", obj);
-    alert(data);
-    alert(data.message);
+    Swal.fire({
+        icon: 'warning',
+        title: data.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 function madeGrpsOfMe(arr) {
@@ -105,9 +120,9 @@ function madeGrpsOfMe(arr) {
             `<li style="cursor: pointer;">
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img
+                        <a href="#" title=""><img
                                 src="${data.groupPic}"
-                                alt=""></a>
+                                onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="time-line.html" title="">${data.groupName}</a>
@@ -142,7 +157,7 @@ function appendrequests(arr, grpname) {
             `<li>
             <div class="nearly-pepls">
                 <figure>
-                    <a href="time-line.html" title=""><img src="${data.senderPic}" alt=""></a>
+                    <a href="#" title=""><img src="${data.senderPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                 </figure>
                 <div class="pepl-info">
                     <h4><a href="time-line.html" title="">${data.senderName}</a></h4>
@@ -164,7 +179,15 @@ async function acceptgrp(senderEmail, grpname) {
         status: "accepted"
     }
     let data = await $.post(backendHost+"/groups/acceptOrRejectRequest", obj);
-    alert(data.message)
+    Swal.fire({
+        icon: 'success',
+        title: data.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 async function rejectgrp(senderEmail, grpname) {
@@ -175,7 +198,15 @@ async function rejectgrp(senderEmail, grpname) {
         status: "rejected"
     }
     let data = await $.post(backendHost+"/groups/acceptOrRejectRequest", obj);
-    alert(data.message)
+    Swal.fire({
+        icon: 'success',
+        title: data.message,
+        
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
 }
 
 
@@ -229,7 +260,15 @@ $("#createGrp").click(async () => {
         processData : false,
         url : backendHost+"/groups/createGroup",
         success : (e)=>{
-            alert(e.message)
+            Swal.fire({
+                icon: 'success',
+                title: e.message,
+                
+                showConfirmButton: false, 
+                allowOutsideClick: false, 
+                timer:1500
+                
+              });
         }
     })
     // let data = await $.post(backendHost+"/groups/createGroup", obj);
