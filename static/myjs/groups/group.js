@@ -26,9 +26,9 @@ function madeGlobalGrps(arr) {
             `<li class="globalgrps" style="cursor:pointer">
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img
+                        <a href="#" title=""><img
                                 src="${data.groupPic}"
-                                alt=""></a>
+                                onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="time-line.html" title="">${data.groupName}</a>
@@ -75,9 +75,9 @@ function madeMyGrps(arr) {
             `<li style="cursor: pointer;" onclick=opengrp('${data.groupName}')>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img
+                        <a href="#" title=""><img
                                 src="${data.groupPic}"
-                                alt=""></a>
+                                onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="time-line.html" title="">${data.groupName}</a>
@@ -120,9 +120,9 @@ function madeGrpsOfMe(arr) {
             `<li style="cursor: pointer;">
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img
+                        <a href="#" title=""><img
                                 src="${data.groupPic}"
-                                alt=""></a>
+                                onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="time-line.html" title="">${data.groupName}</a>
@@ -157,7 +157,7 @@ function appendrequests(arr, grpname) {
             `<li>
             <div class="nearly-pepls">
                 <figure>
-                    <a href="time-line.html" title=""><img src="${data.senderPic}" alt=""></a>
+                    <a href="#" title=""><img src="${data.senderPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                 </figure>
                 <div class="pepl-info">
                     <h4><a href="time-line.html" title="">${data.senderName}</a></h4>
