@@ -98,7 +98,7 @@ socket.on("getlivmsg",(msg,userId,profilePic,firstName)=>{
     $("#people-list").append(
         `<li style='background-color:#CAEF8EA6'>
             <figure>
-                <img src="${profilePic}" alt="">
+                <img src="${profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                 <span class="status f-away"></span>
                 
             </figure>

@@ -1,9 +1,6 @@
 window.onload=async function()
 {
     let result = await validateAdmin();
-    if(result.success == false){
-        return;
-    }
     var pending_data=await $.get(backendHost+"/users/getallpendingusers")
     addallpendingusersdata(pending_data.data)
 }
@@ -11,12 +8,11 @@ async function addallpendingusersdata(data)
 {
     for(x in data)
     {
-        console.log(data[x])
         $("#userspendinglist").append(
             `<li>
             <div class="nearly-pepls">
                 <figure>
-                    <a href="time-line.html" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
+                    <a href="#" title=""><img src="${data[x].profilePic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                 </figure>
                 <div class="pepl-info">
                     <h4><a href="time-line.html" title="">${data[x].firstName}</a></h4>

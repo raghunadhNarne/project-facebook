@@ -77,7 +77,6 @@ async function createRoomForFriendsChat(chatRoom) {
     }
     let usersChat = new chatModel(obj);
     let data = await usersChat.save();
-    // console.log(data);
 }
 
 async function rejectPendingFriendRequests(obj) {
@@ -239,7 +238,6 @@ async function unfollowFriend(obj) {
                 { senderEmail: obj.receiverEmail, receiverEmail: obj.senderEmail }
             ]
         })
-        console.log(data)
         result.success = true;
         result.message = "successfully unfollowed the friend";
     }
@@ -250,8 +248,6 @@ async function unfollowFriend(obj) {
 }
 
 async function searchFriends(obj) {
-    // obj=JSON.parse(obj)
-    // console.log(obj)
     let result = {
         success: false,
         message: "",
@@ -299,7 +295,6 @@ async function totalFriendsAndFollowers(obj)
         data: {}
     }
     try {
-        // console.log(obj.email)
         let friends = await friendsModel.find({
             $or: [
                 { senderEmail: obj.email, status:"accept" },
@@ -311,7 +306,6 @@ async function totalFriendsAndFollowers(obj)
                 { receiverEmail: obj.email, status:"reject" }
             )
         result.data={friends:friends.length,followers:followers.length}
-        // console.log(friends,followers)
         result.success = true;
         result.message = "successfully got the count";
     }

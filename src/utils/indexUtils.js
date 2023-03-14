@@ -137,7 +137,6 @@ async function fetchPostData(postid){
         message: "",
         data: ""
     }
-    // console.log("postid",new mongoose.Types.ObjectId(postid))
     try{
         let fetchResult = await postModel.findOne({_id: new mongoose.Types.ObjectId(postid)});
             result.success = true;
@@ -158,7 +157,6 @@ async function addNewComment(commentData){
         message: "",
         data: ""
     }
-    // console.log("commentData",commentData)
     try{
         let newComment = {
             userPic : commentData.userPic,
@@ -167,10 +165,8 @@ async function addNewComment(commentData){
             commentedTime : new Date(),
             userEmail : commentData.userEmail
         }
-        // console.log("newComment",newComment)
         let updateResult = await postModel.updateOne({_id:new mongoose.Types.ObjectId(commentData.postId)},{$push:{comments:newComment}});
         if(updateResult.modifiedCount != 0){
-            // console.log("updated")
             result.success = true;
             result.message = "Added comment to comments list";
             result.data = "";
@@ -206,7 +202,6 @@ async function fetchMyFeedPosts(email){
             { status: "accept" },
         ],
         },{senderEmail:1, receiverEmail:1});
-        // console.log("myFriends",myFriends)
 
         let finalUsers = [];
         for(let x in myFriends){
@@ -285,7 +280,6 @@ async function fetchMyFeedPosts(email){
 
 async function childrenPendingPosts(obj)
 {
-    // console.log(obj)
     let result = {
         success: false,
         message: "",
@@ -316,7 +310,6 @@ async function acceptPendingChildPost(obj)
         data: ""
     }
     try{
-        console.log(obj.email)
         let data = await postModel.updateOne({userEmail:obj.email},{$set:{status:"accepted"}})
         result.success=true;
         result.message="succesfully accepted the children pending posts"

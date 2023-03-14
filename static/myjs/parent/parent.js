@@ -60,7 +60,7 @@ async function addpendingpostsdata(posts,obj)
                 `<div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
                 <div class="friend-info">
                         <figure>
-                        <img src="${post.userPic}" alt="">
+                        <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title="">${post.userName}</a></ins>
@@ -90,14 +90,14 @@ async function addpendingpostsdata(posts,obj)
                 `<div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
                 <div class="friend-info">
                     <figure>
-                        <img src="${post.userPic}" alt="">
+                        <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     <div class="friend-name">
                         <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
                         <span>published: june,2 2018 19:PM</span>
                     </div>
                     <div class="post-meta">
-                        <img src="${post.postImage}" alt="">
+                        <img src="${post.postImage}" onerror="this.onerror=null; this.src='../static/images/resources/defaultPost.png'" alt="image not found">
                         
                         <div class="description">
                             
@@ -122,7 +122,7 @@ async function addpendingpostsdata(posts,obj)
                 `<div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
                 <div class="friend-info">
                     <figure>
-                        <img src="${post.userPic}" alt="">
+                        <img src="${post.userPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image">
                     </figure>
                     
                     <div class="friend-name">

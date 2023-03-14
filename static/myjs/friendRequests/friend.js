@@ -46,7 +46,7 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="addFriend.html" title=""><img src="${data[x].senderPic}" alt=""></a>
+                        <a href="addFriend.html" title=""><img src="${data[x].senderPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="addFriend.html#${data[x].senderEmail}" title="">${data[x].senderName}</a></h4>
@@ -63,7 +63,7 @@ function addfriends(data)
                 `<li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img src="${data[x].receiverPic}" alt=""></a>
+                        <a href="#" title=""><img src="${data[x].receiverPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="addFriend.html#${data[x].receiverEmail}" title="">${data[x].receiverName}</a></h4>
@@ -85,7 +85,7 @@ function addfriendrequests(data)
             `<li>
             <div class="nearly-pepls">
                 <figure>
-                    <a href="time-line.html" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
+                    <a href="#" title=""><img src="${data[x].senderPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image" ></a>
                 </figure>
                 <div class="pepl-info">
                     <h4><a href="time-line.html" title="">${data[x].senderName}</a></h4>
@@ -108,9 +108,9 @@ function addmyfollowing(data)
             `<li style="cursor:pointer">
             <div class="nearly-pepls">
                 <figure>
-                    <a href="time-line.html" title=""><img
-                            src="images/resources/nearly4.jpg"
-                            alt=""></a>
+                    <a href="#" title=""><img
+                            src="${data[x].receiverPic}"
+                            onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                 </figure>
                 <div class="pepl-info">
                     <h4><a href="time-line.html" title="">${data[x].receiverName}</a>
@@ -131,7 +131,7 @@ function addmyfollowers(data)
     {
         $(".followers").append(
             `<li>
-            <figure><img src="images/resources/friend-avatar3.jpg" alt=""></figure>
+            <figure><img src="${data[x].senderPic}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></figure>
             <div class="friend-meta">
                 <h4><a href="time-line.html" title="">${data[x].senderName}</a></h4>
                 <a href="#" title="" class="underline">Add Friend</a>
@@ -149,9 +149,9 @@ function addmyrequests(data)
                 `<li style="cursor:pointer">
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img
-                                src="images/resources/nearly4.jpg"
-                                alt=""></a>
+                        <a href="#" title=""><img
+                                src="${data[x].receiverPic}"
+                                onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                     </figure>
                     <div class="pepl-info">
                         <h4><a href="time-line.html" title="">${data[x].receiverName}</a>
@@ -175,9 +175,9 @@ function addsearchfriends(data)
             `<li class="globalfriends" style="cursor:pointer">
             <div class="nearly-pepls">
                 <figure>
-                    <a href="time-line.html" title=""><img
-                            src="images/resources/nearly4.jpg"
-                            alt=""></a>
+                    <a href="$" title=""><img
+                            src="${data[x].profilePic}"
+                            onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></a>
                 </figure>
                 <div class="pepl-info">
                     <h4><a href="time-line.html" title="">${data[x].firstName}</a>

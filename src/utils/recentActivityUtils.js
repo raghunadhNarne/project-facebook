@@ -13,7 +13,6 @@ async function fetchAllRecentActivity(myEmail){
         result.success = true;
         result.message = "successfully fetched recentActivity";
         result.data = data;
-        // console.log("recent activities util",data)
     }
     catch(e){
         result.message = "Unable to fetch recentActivity";

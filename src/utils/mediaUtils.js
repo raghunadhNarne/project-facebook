@@ -7,12 +7,10 @@ async function fetchAllPhotosOfUser(userEmail){
         data: ""
     }
     try{
-        // console.log("userEmail",userEmail.email)
         let data = await postModel.find({userEmail:userEmail.email,status:"accepted",postType:"image"});
         result.success = true;
         result.message = "successfully fetched photos";
         result.data = data;
-        // console.log("media util",data)
     }
     catch(e){
         result.message = "Unable to fetch photos";
@@ -33,7 +31,6 @@ async function fetchAllVideosOfUser(userEmail){
         result.success = true;
         result.message = "successfully fetched videos";
         result.data = data;
-        // console.log("media util",data)
     }
     catch(e){
         result.message = "Unable to fetch videos";

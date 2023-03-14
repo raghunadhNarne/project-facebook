@@ -50,7 +50,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="me" style="margin-top:10px">
-                <figure><img src="images/resources/${message.picture}" alt=""></figure>
+                <figure><img src="images/resources/${message.picture}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `
@@ -60,7 +60,7 @@ function appendToChat(message){
         $("#chatarea").append(
             `
             <li class="you" style="margin-top:10px">
-                <figure><img src="images/resources/${message.picture}" alt=""></figure>
+                <figure><img src="images/resources/${message.picture}" onerror="this.onerror=null; this.src='../static/images/resources/defaultUser.png'" alt="Default Image"></figure>
                 <p style="width:40%;overflow-wrap: break-word;">${message.message}</p>
             </li>
             `

@@ -18,7 +18,6 @@ async function addNewFilePost(myUserEmail,postData,multerFileName){
     }
     
     else if(await isUserExist(myUserEmail) == false){
-        console.log("no user");
         result.success = false;
         result.message = `no user with ${myUserEmail} email`;
         result.data = "";

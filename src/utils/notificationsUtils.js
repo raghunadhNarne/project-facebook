@@ -19,7 +19,6 @@ async function getNotificationsByEmailWithinLast24Hours(myEmail){
         result.success = true;
         result.message = "successfully fetched notifications";
         result.data = notifications;
-        console.log("notifications util",notifications)
     }
     catch(e){
         result.message = "Unable to fetch notifications";
@@ -48,12 +47,10 @@ async function fetchAllNotifications(myEmail){
                 }
             }
         ])
-        // console.log(count)
         result.success = true;
         result.message = "successfully fetched notifications";
         result.data = data;
         result.count = count[0].count;
-        // console.log("notifications util",data)
     }
     catch(e){
         result.message = "Unable to fetch notifications";
@@ -76,7 +73,6 @@ async function addNewNotificationForUser(notificationData){
             action : notificationData.action,
             url : notificationData.url
         }
-        // console.log("newNotification",newNotification)
         let data = await notificationsModel.updateOne({email:notificationData.email},{$push:{notifications:newNotification}});
         result.success = true;
         result.message = "successfully added notification";
