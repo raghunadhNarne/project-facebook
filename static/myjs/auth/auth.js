@@ -7,7 +7,7 @@ async function validateUser(){
         }
         let result = await $.post(backendHost+'/auth/login',jwt)
         if(jwtToken == null){
-            window.location.href = "login.html"
+            window.location.href = "signin.html"
         }
         else if(result.success == false){
             window.location.href = result.url
@@ -16,7 +16,7 @@ async function validateUser(){
     catch{
         // alert("you are not logged in...")
         setTimeout(()=>{
-            window.location.href = "login.html";
+            window.location.href = "signin.html";
         },100)
     }
 }
@@ -37,7 +37,7 @@ async function validateParent(){
     catch{
         // alert("you are not logged in...")
         setTimeout(()=>{
-            window.location.href = "login.html";
+            window.location.href = "signin.html";
         },100)
     }
 }
@@ -58,7 +58,7 @@ async function validateAdmin(){
     catch{
         // alert("you are not logged in...")
         setTimeout(()=>{
-            window.location.href = "login.html";
+            window.location.href = "signin.html";
         },100)
     }
 }
