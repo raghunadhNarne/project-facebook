@@ -15,7 +15,7 @@ window.onload = async ()=>{
     let posts;
     if(groupName.length==0 || !link.includes("groupIndex.html")){
         posts = await $.post(backendHost+"/index/getMyFeedPosts", obj);
-        console.log(posts,"posts")
+        // console.log(posts,"posts")
     }
     else{
         let obj={
@@ -31,10 +31,10 @@ window.onload = async ()=>{
     $("#friends").text(totalFriendsAndFollowers.data.friends)
 
     let totalLikesAndPosts = await $.post(backendHost+"/index/totallikesandposts",obj)
-    $("#totallikes").text(totalLikesAndPosts?.data?.likedCount || "")
-    $("#totalposts").text(totalLikesAndPosts?.data?.postsCount || "")
-    $("#fromlastweeklikescount").text(totalLikesAndPosts?.data?.fromlastweeklikescount || "")
-    $("#fromlastweekpostscount").text(totalLikesAndPosts?.data?.fromlastweekpostscount || "")
+    $("#totallikes").text(totalLikesAndPosts?.data?.likedCount || 0)
+    $("#totalposts").text(totalLikesAndPosts?.data?.postsCount || 0)
+    $("#fromlastweeklikescount").text(totalLikesAndPosts?.data?.fromlastweeklikescount || 0)
+    $("#fromlastweekpostscount").text(totalLikesAndPosts?.data?.fromlastweekpostscount || 0)
 
 
     try{
@@ -51,6 +51,7 @@ window.onload = async ()=>{
 
 
     $("#firstName").text(userData.firstName)
+    $("#myPagePic").attr('src',userData.profilePic)
 }
 
 async function renderComment(comment){

@@ -13,10 +13,7 @@ async function updateTotalPostsCount(){
         return true;
     }
     catch(e){
-<<<<<<< HEAD
-=======
         // console.log("error is here");
->>>>>>> d3f65c96b3b1ee1e782735055f219832def6641b
         return false;
     }
     

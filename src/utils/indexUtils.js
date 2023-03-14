@@ -310,10 +310,7 @@ async function acceptPendingChildPost(obj)
         data: ""
     }
     try{
-<<<<<<< HEAD
-=======
         // console.log(obj.email)
->>>>>>> d3f65c96b3b1ee1e782735055f219832def6641b
         let data = await postModel.updateOne({userEmail:obj.email},{$set:{status:"accepted"}})
         result.success=true;
         result.message="succesfully accepted the children pending posts"

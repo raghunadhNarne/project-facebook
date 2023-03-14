@@ -19,4 +19,5 @@ window.onload=async function()
     $("#profile-photo").attr('src',userData.profilePic)
     if(userData.coverPic!=null)
     $("#cover-photo").attr('src',userData.coverPic)
+    $("#aboutMe").text(userData.aboutMe)
 }

@@ -1,8 +1,5 @@
 window.onload = async function(){
     let result = await validateUser();
-    if(result.success == false){
-        return;
-    }
 }
 
 

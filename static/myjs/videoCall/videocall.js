@@ -1,5 +1,5 @@
 window.onload = async function(){
-  let result = await validateUser();6
+  let result = await validateUser();
 }
 
 const socket = io(backendHost+'/videoCall')
