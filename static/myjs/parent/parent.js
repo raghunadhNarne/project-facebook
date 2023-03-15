@@ -82,8 +82,8 @@ async function addpendingpostsdata(posts,obj)
                             </p>
                         </div>
                         <div class="pepl-info">
-                            <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${post.userEmail}')">Reject</a>
-                            <a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${post.userEmail}')">Accept</a>
+                            <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${post.userEmail}','${post._id}')">Reject</a>
+                            <a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${post.userEmail}','${post._id}')">Accept</a>
                         </div>
                     </div>
                 </div>
@@ -113,8 +113,8 @@ async function addpendingpostsdata(posts,obj)
                             </p>
                         </div>
                         <div class="pepl-info">
-                            <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${post.userEmail}')">Reject</a>
-                            <a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${post.userEmail}')">Accept</a>
+                            <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${post.userEmail}','${post._id}')">Reject</a>
+                            <a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${post.userEmail}','${post._id}')">Accept</a>
                         </div>
                     </div>
                 </div>
@@ -150,8 +150,8 @@ async function addpendingpostsdata(posts,obj)
                             </p>
                         </div>
                         <div class="pepl-info">
-                            <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${post.userEmail}')">Reject</a>
-                            <a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${post.userEmail}')">Accept</a>
+                            <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${post.userEmail}','${post._id}')">Reject</a>
+                            <a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${post.userEmail}','${post._id}')">Accept</a>
                         </div>
                     </div>
                 </div>
@@ -163,9 +163,9 @@ async function addpendingpostsdata(posts,obj)
     }
 }
 
-async function confirmrequest(email)
+async function confirmrequest(email,postId)
 {
-    let data = await $.post(backendHost+"/index/acceptpendingchildpost",{email:email})
+    let data = await $.post(backendHost+"/index/acceptpendingchildpost",{email:email,postId:postId})
     Swal.fire({
         icon: 'success',
         title: data.message,
@@ -177,9 +177,9 @@ async function confirmrequest(email)
       });
 }
 
-async function deleterequest(email)
+async function deleterequest(email,postId)
 {
-    let data = await $.post(backendHost+"/index/deletependingchildpost",{email:email})
+    let data = await $.post(backendHost+"/index/deletependingchildpost",{email:email,postId:postId})
     Swal.fire({
         icon: 'success',
         title: data.message,

@@ -47,7 +47,6 @@ function appendToChat(message){
         )
     }
     else if(message.email == userData.email){
-        alert(message.picture)
         $("#chatarea").append(
             `
             <li class="me" style="margin-top:10px">
@@ -58,7 +57,6 @@ function appendToChat(message){
         )
     }
     else{
-        alert(message.picture)
         $("#chatarea").append(
             `
             <li class="you" style="margin-top:10px">

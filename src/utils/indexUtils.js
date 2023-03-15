@@ -340,8 +340,8 @@ async function acceptPendingChildPost(obj)
         data: ""
     }
     try{
-        console.log(obj.email)
-        let data = await postModel.updateOne({userEmail:obj.email},{$set:{status:"accepted"}})
+        console.log(obj)
+        let data = await postModel.updateOne({_id:new mongoose.Types.ObjectId(obj.postId)},{$set:{status:"accepted"}})
         result.success=true;
         result.message="succesfully accepted the children pending posts"
     }
@@ -359,7 +359,7 @@ async function deletePendingChildPost(obj)
         data: ""
     }
     try{
-        let data = await postModel.deleteOne({userEmail:obj.email})
+        let data = await postModel.deleteOne({_id:new mongoose.Types.ObjectId(obj.postId)})
         result.success=true;
         result.message="succesfully deleted the children pending posts"
     }
