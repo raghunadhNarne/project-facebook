@@ -101,109 +101,29 @@
 							<div class="col-lg-3">
 								<aside class="sidebar static"><!-- Shortcuts -->
 									<div id="recentwidget">
-									<div class="widget">
-										<h4 class="widget-title">Recent Activity</h4>
-										<ul class="activitiez" id="activitiez">
-											<li>
-												<div class="activity-meta">
-													<i>10 hours Ago</i>
-													<span><a href="#" title="">Commented on Video posted </a></span>
-													<h6>by <a href="time-line.html">black demon.</a></h6>
-												</div>
-											</li>
-											<li>
-												<div class="activity-meta">
-													<i>30 Days Ago</i>
-													<span><a href="#" title="">Posted your status. “Hello guys, how are you?”</a></span>
-												</div>
-											</li>
-											<li>
-												<div class="activity-meta">
-													<i>2 Years Ago</i>
-													<span><a href="#" title="">Share a video on her timeline.</a></span>
-													<h6>"<a href="#">you are so funny mr.been.</a>"</h6>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div><!-- recent activites -->
+										<div class="widget">
+											<h4 class="widget-title">Recent Activity</h4>
+											<ul class="activitiez" id="activitiez">
+												<!-- will render dynamically -->
+											</ul>
+										</div>
+									</div><!-- recent activites -->
 									<div id="whoswidget">
-									<div class="widget">
-										<h4 class="widget-title">Who's follownig</h4>
-										<ul class="followers" id="followers">
-											<li>
-												<figure><img src="images/resources/friend-avatar2.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar4.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Issabel</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar6.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Andrew</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar8.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Sophia</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-											<li>
-												<figure><img src="images/resources/friend-avatar3.jpg" alt=""></figure>
-												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Allen</a></h4>
-													<a href="#" title="" class="underline">Add Friend</a>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div><!-- who's following -->
-								<div id="shortcutswidget">
-									<div class="widget">
-										<h4 class="widget-title">Shortcuts</h4>
-										<ul class="naves">
-											<li>
-												<i class="ti-files"></i>
-												<a href="fav-page.html" title="">My profile</a>
-											</li>
-											<li>
-												<i class="ti-user"></i>
-												<a href="timeline-friends.html" title="">friends</a>
-											</li>
-											<li>
-												<i class="ti-image"></i>
-												<a href="timeline-photos.html" title="">images</a>
-											</li>
-											<li>
-												<i class="ti-video-camera"></i>
-												<a href="timeline-videos.html" title="">videos</a>
-											</li>
-											<li>
-												<i class="ti-comments-smiley"></i>
-												<a href="messages.html" title="">Messages</a>
-											</li>
-											<li>
-												<i class="ti-bell"></i>
-												<a href="notifications.html" title="">Notifications</a>
-											</li>
-											<li>
-												<i class="ti-power-off"></i>
-												<a href="landing.html" title="">Logout</a>
-											</li>
-										</ul>
-									</div>
-								</div>
+										<div class="widget">
+											<h4 class="widget-title">Who's follownig</h4>
+											<ul class="followers" id="followers">
+												<!-- will render from  whosFollowingWidget.js -->
+											</ul>
+										</div>
+									</div><!-- who's following -->
+									<div id="shortcutswidget">
+										<div class="widget">
+											<h4 class="widget-title">Shortcuts</h4>
+											<ul class="naves" id="naves">
+												<!-- will render dynamically from shortcutswidget.js -->
+											</ul>
+										</div>
+									</div> <!-- Shortcuts -->
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6" >
@@ -218,148 +138,7 @@
 
                                             <div class="tab-pane active fade show" id="posts">
 
-                                                <!-- <div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
-                                                    <div class="friend-info">
-                                                        <figure>
-                                                            <img src="images/resources/friend-avatar10.jpg" alt="">
-                                                        </figure>
-                                                        <div class="friend-name">
-                                                            <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
-                                                            <span>published: june,2 2018 19:PM</span>
-                                                        </div>
-                                                        <div class="post-meta">
-                                                            <img src="images/resources/user-post.jpg" alt="">
-                                                            
-                                                            <div class="description">
-                                                                
-                                                                <p>
-                                                                    World's most beautiful car in Curabitur <a href="#" title="">#test drive booking !</a> the most beatuiful car available in america and the saudia arabia, you can book your test drive by our official website
-                                                                </p>
-                                                            </div>
-															<div class="pepl-info">
-																<a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${data[x].senderEmail}','${data[x].receiverEmail}')">Reject</a>
-																<a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${data[x].senderEmail}','${data[x].receiverEmail}')">Accept</a>
-															</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-												<div class="user-post" style="padding-bottom:5%;background-color: white;padding: 5%;margin: 2%;">
-                                                    <div class="friend-info">
-                                                        <figure>
-                                                            <img src="images/resources/friend-avatar10.jpg" alt="">
-                                                        </figure>
-                                                        <div class="friend-name">
-                                                            <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
-                                                            <span>published: june,2 2018 19:PM</span>
-                                                        </div>
-                                                        <div class="post-meta">
-                                                            <img src="images/resources/user-post.jpg" alt="">
-                                                            
-                                                            <div class="description">
-                                                                
-                                                                <p>
-                                                                    World's most beautiful car in Curabitur <a href="#" title="">#test drive booking !</a> the most beatuiful car available in america and the saudia arabia, you can book your test drive by our official website
-                                                                </p>
-                                                            </div>
-															<div class="pepl-info">
-																<a href="#" title="" class="add-butn more-action" data-ripple="" onclick="deleterequest('${data[x].senderEmail}','${data[x].receiverEmail}')">Reject</a>
-																<a href="#" title="" class="add-butn" data-ripple="" onclick="confirmrequest('${data[x].senderEmail}','${data[x].receiverEmail}')">Accept</a>
-															</div>
-                                                        </div>
-                                                    </div>
-
-                                                </div> -->
-
-												
-
-												
-
-												
-												
-
-												<!-- <div class="user-post">
-                                                    <div class="friend-info">
-                                                        <figure>
-                                                            <img src="images/resources/friend-avatar10.jpg" alt="">
-                                                        </figure>
-                                                        <div class="friend-name">
-                                                            <ins><a href="time-line.html" title="">Janice Griffith</a></ins>
-                                                            <span>published: june,2 2018 19:PM</span>
-                                                        </div>
-                                                        <div class="post-meta">
-                                                            <img src="images/resources/user-post.jpg" alt="">
-                                                            <div class="we-video-info">
-                                                                <ul>
-                                                                    <li>
-                                                                        <span class="views" data-toggle="tooltip" title="views">
-                                                                            <i class="fa fa-eye"></i>
-                                                                            <ins>1.2k</ins>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <span class="comment" data-toggle="tooltip" title="Comments">
-                                                                            <i class="fa fa-comments-o"></i>
-                                                                            <ins>52</ins>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <span class="like" data-toggle="tooltip" title="like">
-                                                                            <i class="ti-heart"></i>
-                                                                            <ins>2.2k</ins>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <span class="dislike" data-toggle="tooltip" title="dislike">
-                                                                            <i class="ti-heart-broken"></i>
-                                                                            <ins>200</ins>
-                                                                        </span>
-                                                                    </li>
-                                                                    <li class="social-media">
-                                                                        <div class="menu">
-                                                                          <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
-                                                                          <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
-                                                                          </div>
-                                                                          <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
-                                                                          </div>
-                                                                          <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
-                                                                          </div>
-                                                                          <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
-                                                                          </div>
-                                                                          <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
-                                                                          </div>
-                                                                          <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
-                                                                            </div>
-                                                                          </div>
-                                                                            <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="rotater">
-                                                                            <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
-                                                                            </div>
-                                                                          </div>
-            
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="description">
-                                                                
-                                                                <p>
-                                                                    World's most beautiful car in Curabitur <a href="#" title="">#test drive booking !</a> the most beatuiful car available in america and the saudia arabia, you can book your test drive by our official website
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div> -->
+                                                
                                             </div>
 
                                             <div class="tab-pane fade " id="frends-req">
@@ -417,84 +196,7 @@
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									<div id="yourpagewidget">
-									<div class="widget">
-										<h4 class="widget-title">Your page</h4>	
-										<div class="your-page">
-											<figure>
-												<a href="#" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
-											</figure>
-											<div class="page-meta">
-												<a href="#" title="" class="underline">My page</a>
-												<span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
-												<span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
-											</div>
-											<div class="page-likes">
-												<ul class="nav nav-tabs likes-btn">
-													<li class="nav-item"><a class="active" href="#link1" data-toggle="tab">likes</a></li>
-													 <li class="nav-item"><a class="" href="#link2" data-toggle="tab">views</a></li>
-												</ul>
-												<!-- Tab panes -->
-												<div class="tab-content">
-												  <div class="tab-pane active fade show " id="link1" >
-													<span><i class="ti-heart"></i>884</span>
-													  <a href="#" title="weekly-likes">35 new likes this week</a>
-													  <div class="users-thumb-list">
-														<a href="#" title="Anderw" data-toggle="tooltip">
-															<img src="images/resources/userlist-1.jpg" alt="">  
-														</a>
-														<a href="#" title="frank" data-toggle="tooltip">
-															<img src="images/resources/userlist-2.jpg" alt="">  
-														</a>
-														<a href="#" title="Sara" data-toggle="tooltip">
-															<img src="images/resources/userlist-3.jpg" alt="">  
-														</a>
-														<a href="#" title="Amy" data-toggle="tooltip">
-															<img src="images/resources/userlist-4.jpg" alt="">  
-														</a>
-														<a href="#" title="Ema" data-toggle="tooltip">
-															<img src="images/resources/userlist-5.jpg" alt="">  
-														</a>
-														<a href="#" title="Sophie" data-toggle="tooltip">
-															<img src="images/resources/userlist-6.jpg" alt="">  
-														</a>
-														<a href="#" title="Maria" data-toggle="tooltip">
-															<img src="images/resources/userlist-7.jpg" alt="">  
-														</a>  
-													  </div>
-												  </div>
-												  <div class="tab-pane fade" id="link2" >
-													  <span><i class="ti-eye"></i>440</span>
-													  <a href="#" title="weekly-likes">440 new views this week</a>
-													  <div class="users-thumb-list">
-														<a href="#" title="Anderw" data-toggle="tooltip">
-															<img src="images/resources/userlist-1.jpg" alt="">  
-														</a>
-														<a href="#" title="frank" data-toggle="tooltip">
-															<img src="images/resources/userlist-2.jpg" alt="">  
-														</a>
-														<a href="#" title="Sara" data-toggle="tooltip">
-															<img src="images/resources/userlist-3.jpg" alt="">  
-														</a>
-														<a href="#" title="Amy" data-toggle="tooltip">
-															<img src="images/resources/userlist-4.jpg" alt="">  
-														</a>
-														<a href="#" title="Ema" data-toggle="tooltip">
-															<img src="images/resources/userlist-5.jpg" alt="">  
-														</a>
-														<a href="#" title="Sophie" data-toggle="tooltip">
-															<img src="images/resources/userlist-6.jpg" alt="">  
-														</a>
-														<a href="#" title="Maria" data-toggle="tooltip">
-															<img src="images/resources/userlist-7.jpg" alt="">  
-														</a>  
-													  </div>
-												  </div>
-												</div>
-											</div>
-										</div>
-									</div>
-									</div><!-- page like widget -->
+
 									<div id="bannerwidget">
 									<div class="widget">
 										<div class="banner medium-opacity bluesh">
@@ -514,170 +216,15 @@
 									</div>
 									</div>
 									<div id="friendswidget">
-									<div class="widget friend-list stick-widget">
-										<h4 class="widget-title">Friends</h4>
-										<div id="searchDir"></div>
-										<ul id="people-list" class="friendz-list">
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar.jpg" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">bucky barnes</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0d7c9ced4c5d2d3cfccc4c5d2e0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar2.jpg" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4d6d5c6dad1c7f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar3.jpg" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">jason borne</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d777c6e72737f5d7a707c7471337e7270">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												<figure>
-													<img src="images/resources/friend-avatar4.jpg" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Cameron diaz</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed4dfcdd1d0dcfed9d3dfd7d290ddd1d3">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar5.jpg" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="553f34263a3b37153238343c397b363a38">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar6.jpg" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">andrew</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5933382a36373b193e34383035773a3634">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar7.jpg" alt="">
-													<span class="status f-off"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">amy watson</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5933382a36373b193e34383035773a3634">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar5.jpg" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb1baa8b4b5b99bbcb6bab2b7f5b8b4b6">[email&#160;protected]</a></i>
-												</div>
-											</li>
-											<li>
-												
-												<figure>
-													<img src="images/resources/friend-avatar2.jpg" alt="">
-													<span class="status f-away"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2644475448435566414b474f4a0845494b">[email&#160;protected]</a></i>
-												</div>
-											</li>
-										</ul>
-										<div class="chat-box">
-											<div class="chat-head">
-												<span class="status f-online"></span>
-												<h6>Bucky Barnes</h6>
-												<div class="more">
-													<span><i class="ti-more-alt"></i></span>
-													<span class="close-mesage"><i class="ti-close"></i></span>
-												</div>
-											</div>
-											<div class="chat-list">
-												<ul>
-													<li class="me">
-														<div class="chat-thumb"><img src="images/resources/chatlist1.jpg" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-													<li class="you">
-														<div class="chat-thumb"><img src="images/resources/chatlist2.jpg" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-													<li class="me">
-														<div class="chat-thumb"><img src="images/resources/chatlist1.jpg" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-												</ul>
-												<form class="text-box">
-													<textarea placeholder="Post enter to post..."></textarea>
-													<div class="add-smiles">
-														<span title="add icon" class="em em-expressionless"></span>
-													</div>
-													<div class="smiles-bunch">
-														<i class="em em---1"></i>
-														<i class="em em-smiley"></i>
-														<i class="em em-anguished"></i>
-														<i class="em em-laughing"></i>
-														<i class="em em-angry"></i>
-														<i class="em em-astonished"></i>
-														<i class="em em-blush"></i>
-														<i class="em em-disappointed"></i>
-														<i class="em em-worried"></i>
-														<i class="em em-kissing_heart"></i>
-														<i class="em em-rage"></i>
-														<i class="em em-stuck_out_tongue"></i>
-													</div>
-													<button type="submit"></button>
-												</form>
-											</div>
-										</div>
-									</div>
-									</div><!-- friends list sidebar -->
+										<div class="widget friend-list stick-widget">
+											<h4 class="widget-title">Friends</h4>
+											<div id="searchDir"></div>
+											<ul id="people-list" class="friendz-list">
+												<!-- will we rendered dynamically with myFriendsWidget.js -->
+											</ul>
+											
+										</div><!-- friends list sidebar -->
+									
 								</aside>
 							</div><!-- sidebar -->
 						</div>	
@@ -846,6 +393,11 @@
 	<script src="./myjs/index/indexDragula.js"></script>
     <script src="myjs/parent/parent.js"></script>
 	<script src="./myjs/common/common.js"></script>
+
+	<script src="./myjs/widgets/recentActivity.js"></script>
+	<script src="./myjs/widgets/whosFollowingWidget.js"></script>
+	<script src="./myjs/widgets/shortcutsWidget.js"></script>
+	<script src="./myjs/widgets/myFriendsWidget.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>	

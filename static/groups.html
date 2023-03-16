@@ -501,7 +501,7 @@
 				`<a href="admin.html"><i class="ti-user">Admin</i></a>
 				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+				<a href="javascript:logoutUser()" title=""><i class="ti-power-off"></i>log out</a>`
 			)
 		}
 		else if(userdata.role=="Parent")
@@ -510,14 +510,14 @@
 				`<a href="parent.html" title=""><i class="ti-user">Parent</i></a>
 				<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+				<a href="javascript:logoutUser()" title=""><i class="ti-power-off"></i>log out</a>`
 			)
 		}
 		else{
 			$(".user-setting").append(
 				`<a href="profile.html" title=""><i class="ti-user">view profile</i></a>
 				<a href="editProfile.html" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-				<a href="#" title=""><i class="ti-power-off"></i>log out</a>`
+				<a href="javascript:logoutUser()" title=""><i class="ti-power-off"></i>log out</a>`
 			)
 		}
 	</script>

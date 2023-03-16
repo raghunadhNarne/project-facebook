@@ -158,7 +158,7 @@ async function addChild(userDetails)
             try{
                 let data = await newuser.save();
                 // console.log(data);
-                let update_childlist = await userModel.updateOne({email:userDetails.body.parent},{$set:{children:userDetails.body.email}})
+                let update_childlist = await userModel.updateOne({email:userDetails.body.parent},{$push:{children:userDetails.body.email}})
                 result.success = true;
                 result.message = "successfully created user child and update child list of parent"; 
             } 

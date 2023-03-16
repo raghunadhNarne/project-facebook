@@ -16,6 +16,10 @@ window.onload=async ()=>{
     $("#mobileNo").text(userData.mobileNo)
     $("#city").text(userData.city)
     $("#dob").text(userData.dob)
+    $("#aboutMe").text(userData.aboutMe)
+    $("#facebookLink").attr('href',userData.facebookLink)
+    $("#twitterLink").attr('href',userData.twitterLink)
+    $("#googleLink").attr('href',userData.googleLink)
 
     if(userData.profilePic!=null)
     $("#profile-photo").attr('src',userData.profilePic)

@@ -20,4 +20,7 @@ window.onload=async function()
     if(userData.coverPic!=null)
     $("#cover-photo").attr('src',userData.coverPic)
     $("#aboutMe").text(userData.aboutMe)
+    $("#facebookLink").attr('href',userData.facebookLink)
+    $("#twitterLink").attr('href',userData.twitterLink)
+    $("#googleLink").attr('href',userData.googleLink)
 }

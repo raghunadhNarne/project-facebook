@@ -31,6 +31,8 @@ window.onload=async function(){
         
     if(userData.coverPic!=null)
         $("#cover-photo").attr('src',userData.coverPic)
+    let totalFriendsAndFollowers = await $.post(backendHost+"/friends/totalfriendandfollowers",{email:userData.email})
+    $("#followers").text(totalFriendsAndFollowers.data.followers)
 
 }
 
